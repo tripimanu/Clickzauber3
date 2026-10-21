@@ -1,0 +1,38 @@
+# robots.txt — clickzauber
+User-agent: *
+Allow: /
+
+# Interne Unterlagen und technische Seiten nicht indexieren
+Disallow: /scraps/
+Disallow: /uploads/
+Disallow: /clickzauber-api/
+Disallow: /angebot.html
+Disallow: /ausweich.html
+Disallow: /meine-anfrage.html
+Disallow: /clickzauber-handbuch.html
+Disallow: /clickzauber-anmelden.html
+Disallow: /clickzauber-login.html
+Disallow: /clickzauber-app.html
+Disallow: /clickzauber-cockpit-live.html
+Disallow: /clickzauber-editor.html
+Disallow: /hochzeitslocation-webseite.html
+Disallow: /clickzauber-vertrieb.html
+Disallow: /clickzauber-qr-druck.html
+Disallow: /clickzauber-demo-antwort.html
+Disallow: /termin.html
+Disallow: /einladung.html
+Disallow: /vorschau.html
+Disallow: /t/
+Disallow: /q/
+Disallow: /clickzauber-plattform.html
+Disallow: /clickzauber-test-cockpit.html
+Disallow: /demo/
+Disallow: /index-standalone.html
+Disallow: /verkauf/
+Disallow: /verkaufsslides/
+Disallow: /kunden/
+
+Sitemap: https://clickzauber.de/sitemap.xml
+Disallow: /clickzauber-meilensteine.html
+Disallow: /offline.html
+Disallow: /stand-pruefen.html
