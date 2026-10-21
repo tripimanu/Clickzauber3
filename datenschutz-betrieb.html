@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Datenschutzerklärung zum Anfrage-Formular</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{--bg:#f5f2ea;--card:#fffdf8;--ink:#241f19;--ink-2:#5c544a;--line:rgba(36,31,25,.12);--accent:#2f7d59}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}a:hover{color:#255f45}
+main{max-width:760px;margin:0 auto;padding:32px 20px 64px}
+h1{font-size:clamp(26px,5vw,34px);line-height:1.2;letter-spacing:-.02em;margin:0 0 6px}
+.sub{color:var(--ink-2);margin:0 0 28px}
+h2{font-size:19px;margin:30px 0 8px}
+p,li{text-wrap:pretty}
+ul{padding-left:20px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.box p{margin:0}
+.fuss{margin-top:40px;font-size:13.5px;color:var(--ink-2)}
+.fehlt{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+</style>
+</head>
+<body>
+<main id="ds">
+<p class="sub">Wird geladen …</p>
+</main>
+<script>
+(function(){
+  var API='https://clickzauber-api.vercel.app/api';
+  var b=new URLSearchParams(location.search).get('b')||'';
+  var box=document.getElementById('ds');
+  function e(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function fehlt(){ box.innerHTML='<div class="fehlt"><h1>Datenschutzerklärung nicht gefunden</h1><p>Dieser Link ist unvollständig oder der Betrieb nutzt clickzauber nicht mehr. Bitte wenden Sie sich direkt an den Betrieb.</p></div>'; }
+  if(!b){ fehlt(); return; }
+  fetch(API+'/ds-betrieb?b='+encodeURIComponent(b)).then(function(r){ return r.ok?r.json():null; }).then(function(d){
+    if(!d||!d.ok){ fehlt(); return; }
+    var wer=d.firma||d.name||'der Betrieb';
+    document.title='Datenschutzerklärung · '+wer;
+    var frist=+d.loeschfrist_monate;
+    var fristText=frist>0?'spätestens '+frist+' Monate nach Ihrer letzten Anfrage':'so lange, bis Sie die Löschung verlangen oder der Zweck entfällt';
+    box.innerHTML=
+      '<h1>Datenschutzerklärung</h1>'+
+      '<p class="sub">zum Anfrage- und Buchungsformular von '+e(wer)+'</p>'+
+      '<h2>1. Wer ist verantwortlich?</h2>'+
+      '<div class="box"><p><b>'+e(wer)+'</b>'+(d.firma&&d.name?'<br>'+e(d.name):'')+
+        (d.strasse?'<br>'+e(d.strasse):'')+(d.plz_ort?'<br>'+e(d.plz_ort):'')+
+        (d.telefon?'<br>Telefon: '+e(d.telefon):'')+
+        (d.email?'<br>E-Mail: <a href="mailto:'+e(d.email)+'">'+e(d.email)+'</a>':'')+'</p></div>'+
+      '<h2>2. Welche Daten verarbeiten wir?</h2>'+
+      '<p>Wenn Sie das Formular nutzen, verarbeiten wir die Angaben, die Sie dort machen: Ihren Namen, Ihre Telefonnummer, gegebenenfalls Ihre E-Mail-Adresse, Ihre Antworten auf die Fragen, Ihren Terminwunsch, Ihre Nachricht und gegebenenfalls Fotos, die Sie hochladen. Dazu kommen Datum und Uhrzeit der Anfrage.</p>'+
+      '<h2>3. Wozu und auf welcher Grundlage?</h2>'+
+      '<p>Wir nutzen die Daten, um Ihre Anfrage zu beantworten, einen Termin zu vereinbaren und Sie an den Termin zu erinnern oder über Änderungen zu informieren. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Anbahnung und Durchführung eines Vertrags). Soweit Sie in etwas ausdrücklich einwilligen, ist Art. 6 Abs. 1 lit. a DSGVO die Grundlage; eine Einwilligung können Sie jederzeit für die Zukunft widerrufen.</p>'+
+      '<p>Ihre Angaben können automatisch geordnet werden, damit wir schneller antworten können. Jede Entscheidung über Ihre Anfrage trifft ein Mensch.</p>'+
+      '<h2>4. Wer verarbeitet die Daten außerdem?</h2>'+
+      '<p>Das Formular wird technisch von <b>clickzauber</b> betrieben (Anbieter siehe <a href="https://clickzauber.de/impressum.html" target="_blank" rel="noopener">clickzauber.de/impressum</a>). clickzauber verarbeitet Ihre Daten ausschließlich in unserem Auftrag nach Art. 28 DSGVO. Die Daten liegen in einem Rechenzentrum in der EU (Frankfurt am Main). Für Betrieb und E-Mail-Versand setzt clickzauber weitere Dienstleister ein; die Liste steht in der <a href="https://clickzauber.de/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung von clickzauber</a>.</p>'+
+      '<p>Antworten wir Ihnen per WhatsApp, gelten zusätzlich die Datenschutzbestimmungen von WhatsApp (Meta Platforms Ireland Ltd.). Das geschieht nur, wenn Sie uns Ihre Handynummer gegeben haben. Ist Ihnen das nicht recht, sagen Sie es uns, dann melden wir uns per Anruf oder E-Mail.</p>'+
+      '<p>Eine Übermittlung zu Werbezwecken oder ein Verkauf Ihrer Daten findet nicht statt.</p>'+
+      '<h2>5. Wie lange speichern wir die Daten?</h2>'+
+      '<p>Wir löschen Ihre Anfrage '+fristText+', sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Hochgeladene Fotos löschen wir spätestens mit der Anfrage.</p>'+
+      '<h2>6. Müssen Sie die Daten angeben?</h2>'+
+      '<p>Nein. Ohne Name und Telefonnummer können wir Ihre Anfrage aber nicht bearbeiten und Ihnen nicht antworten.</p>'+
+      '<h2>7. Ihre Rechte</h2>'+
+      '<p>Sie haben das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21). Wenden Sie sich dafür einfach an uns, die Kontaktdaten stehen oben. Außerdem können Sie sich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Behörde des Bundeslands, in dem Sie wohnen.</p>'+
+      '<h2>8. Cookies</h2>'+
+      '<p>Das Formular speichert nichts auf Ihrem Gerät: keine Cookies und keine anderen Daten im Browser.</p>'+
+      '<p class="fuss">Stand: '+new Date().getFullYear()+'. Bereitgestellt über clickzauber für '+e(wer)+'.</p>';
+  }).catch(function(){ box.innerHTML='<div class="fehlt"><h1>Gerade nicht erreichbar</h1><p>Bitte laden Sie die Seite in einem Moment neu.</p></div>'; });
+})();
+</script>
+</body>
+</html>

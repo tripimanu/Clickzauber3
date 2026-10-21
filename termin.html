@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* iPhone/iPad: kein automatisches Hineinzoomen beim Antippen eines Eingabefelds. Mit zwei Fingern zoomen bleibt möglich. */(function(){if(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)){var m=document.querySelector("meta[name=viewport]");if(m&&!/maximum-scale/.test(m.content))m.content+=", maximum-scale=1";}})();</script>
+<title>Gesprächstermin · clickzauber</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f5f2ea">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="assets/cz-favicon-32.png?v=2"><link rel="apple-touch-icon" sizes="180x180" href="assets/cz-apple-180.png?v=2">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f2ea;--card:#fffdf8;--ink:#241f19;--ink-2:#5c544a;--line:rgba(36,31,25,.14);--accent:#2f7d59;--accent-2:#255f45;--hell:#eef5f0;--bad:#a8442f}
+*{box-sizing:border-box}
+html,body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}a:hover{color:var(--accent-2)}
+main{max-width:540px;margin:0 auto;padding:26px 20px 56px}
+.kopf{display:flex;align-items:center;gap:12px;margin:0 0 26px}
+.kopf .mk{width:42px;height:42px;border-radius:12px;background:var(--accent);color:#fff;display:grid;place-items:center;flex:0 0 auto}
+.kopf .mk svg{width:62%;height:62%;display:block}
+.kopf b{display:block;font-size:16px;line-height:1.25}
+.kopf span{display:block;font-size:14px;color:var(--ink-2)}
+h1{font-size:28px;line-height:1.2;letter-spacing:-.02em;margin:0 0 10px;text-wrap:balance}
+h2{font-size:19px;line-height:1.3;margin:28px 0 12px;text-wrap:balance}
+p{margin:0 0 16px;color:var(--ink-2);text-wrap:pretty}
+.notiz{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 6px;color:var(--ink);white-space:pre-wrap}
+.vs{display:flex;flex-direction:column;gap:10px}
+.vs button{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;min-height:68px;padding:12px 18px;border-radius:16px;border:1.5px solid var(--line);background:var(--card);font:inherit;color:var(--ink);cursor:pointer;text-align:left}
+.vs button:hover{border-color:var(--accent)}
+.vs button b{font-size:18px;line-height:1.3}
+.vs button span{font-size:18px;font-weight:700;white-space:nowrap}
+.vs button[aria-pressed="true"]{border-color:var(--accent);background:var(--hell);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.weg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
+.weg button{min-height:56px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:17px;font-weight:700;color:var(--ink);cursor:pointer}
+.weg button[aria-pressed="true"]{border-color:var(--accent);background:var(--hell);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.f{display:flex;flex-direction:column;gap:12px}.f[hidden],[hidden]{display:none!important}
+.f label{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:600;color:var(--ink-2)}
+.f input,.f textarea{width:100%;min-height:54px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:17px;padding:12px 14px;color:var(--ink)}
+.f textarea{min-height:100px;resize:vertical;line-height:1.45}
+.f input:focus,.f textarea:focus{outline:none;border-color:var(--accent)}
+.go{display:flex;align-items:center;justify-content:center;width:100%;min-height:58px;padding:0 18px;border-radius:14px;border:0;font:inherit;font-size:18px;font-weight:700;color:#fff;background:var(--accent);cursor:pointer;text-decoration:none}
+.go:hover{color:#fff;background:var(--accent-2)}.go.dunkel{background:var(--ink)}.go.rot{background:var(--bad)}.go:disabled{opacity:.6;cursor:default}
+.hell-k{display:flex;align-items:center;justify-content:center;width:100%;min-height:56px;padding:0 18px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:17px;font-weight:700;color:var(--ink);cursor:pointer;text-decoration:none}
+.hell-k:hover{border-color:var(--accent);color:var(--ink)}
+.zur{align-self:center;background:none;border:0;font:inherit;font-size:16px;color:var(--ink-2);text-decoration:underline;cursor:pointer;padding:10px 4px;min-height:44px}
+.msg{margin:2px 0 0;font-size:15px;font-weight:600;color:var(--ink-2)}.msg:empty{display:none}.msg.bad{color:var(--bad)}
+.wann{background:var(--card);border:1.5px solid var(--accent);border-radius:18px;padding:18px 20px;margin:0 0 18px}
+.wann span{display:block;font-size:14px;font-weight:600;color:var(--ink-2)}
+.wann b{display:block;font-size:23px;line-height:1.3;margin:2px 0 8px}
+.wann p{margin:0;color:var(--ink)}
+.reihe{display:flex;flex-direction:column;gap:10px;margin:0 0 6px}
+.demo{background:var(--hell);border-radius:18px;padding:18px 20px;margin:22px 0 0}
+.demo b{display:block;font-size:18px;line-height:1.3;margin:0 0 4px}
+.demo p{color:var(--ink);margin:0 0 14px}
+.so{font-size:15px;margin:20px 0 0}
+.klein{font-size:14px;line-height:1.5;color:var(--ink-2);margin:30px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+.klein a{color:var(--ink-2)}
+.bsp{background:#6f5d33;color:#f7f2e6;font-size:14px;line-height:1.4;text-align:center;padding:10px 16px}
+</style>
+</head>
+<body>
+<main id="m"><p>Wird geladen …</p></main>
+<script>
+/* clickzauber — Termin-Link für Interessenten (clickzauber.de/t/CODE, lib/vertrieb-termin.js, sql/64).
+   Der Interessent wählt einen Vorschlag und, wie er die Bestätigung bekommt: per E-Mail mit Kalender-Eintrag oder per WhatsApp von Manuel.
+   Danach: Kalender-Eintrag, auf Wunsch eigene 7-Tage-Demo, „Anderen Termin wünschen“ oder „Absagen“.
+   ?beispiel=1 zeigt die Seite mit erfundenen Angaben, ohne Server (Test-Cockpit). */
+(function () {
+  var API = 'https://clickzauber-api.vercel.app/api/vertrieb-termin', VON = 'Manuel Tripi', TEL = '+49 176 61398922', WA = '4917661398922', MAIL = 'projekt@clickzauber.de';
+  var q = new URLSearchParams(location.search), C = String(q.get('c') || '').toLowerCase().replace(/[^a-z0-9]/g, ''), BSP = q.get('beispiel') === '1';
+  var T = (location.search.match(/[?&]t=[^&#]+/) || [''])[0].replace('?', '&');
+  var m = document.getElementById('m'), J = null, WAHL = null, WEG = '';
+  var MARK = '<svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="4.4" fill="currentColor"></circle><path d="M16 5.6a10.4 10.4 0 0 1 10.4 10.4" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path><path d="M16 26.4A10.4 10.4 0 0 1 5.6 16" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></svg>';
+  function e(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function $(i) { return document.getElementById(i); }
+  function vorname(n) { return String(n || '').trim().split(/\s+/)[0] || ''; }
+  function kopf() { return '<div class="kopf"><span class="mk">' + MARK + '</span><div><b>' + VON + '</b><span>clickzauber</span></div></div>'; }
+  function fuss() {
+    return '<p class="klein">Fragen? ' + VON + ', <a href="tel:' + TEL.replace(/\s/g, '') + '">' + TEL + '</a>, <a href="https://wa.me/' + WA + '" target="_blank" rel="noopener">WhatsApp</a> oder <a href="mailto:' + MAIL + '">' + MAIL + '</a>.<br>'
+      + 'Ihre Angaben nutze ich nur für diesen Termin und Ihre Demo. <a href="datenschutz.html#termin">Datenschutz</a></p>';
+  }
+  function zeig(innen) { m.innerHTML = kopf() + innen + fuss(); }
+  function woText(j) {
+    if (j.art === 'telefon') return j.telefon ? 'Ich rufe Sie an: ' + j.telefon + '.' : 'Ich rufe Sie an.';
+    if (j.art === 'video') return j.ort ? 'Link zum Gespräch: ' + j.ort : 'Den Link zum Gespräch schicke ich Ihnen vorher.';
+    return j.ort ? 'Ort: ' + j.ort : 'Ich komme zu Ihnen in den Betrieb.';
+  }
+  function ungueltig(t) { zeig('<h1>' + e(t || 'Dieser Link ist nicht mehr gültig.') + '</h1><p>Melden Sie sich gern direkt bei mir, dann finden wir einen Termin.</p>'); }
+
+  /* ── Daten holen und senden (im Beispiel ohne Server) ── */
+  function holen() {
+    if (BSP) return Promise.resolve(beispiel());
+    return fetch(API + '?c=' + encodeURIComponent(C)).then(function (r) { return r.json(); });
+  }
+  function senden(d) {
+    if (BSP) return Promise.resolve(beispielAntwort(d));
+    d.c = C;
+    return fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(d) })
+      .then(function (r) { return r.json().catch(function () { return { ok: false }; }); }).catch(function () { return { ok: false, hinweis: 'Keine Verbindung. Bitte gleich noch einmal versuchen.' }; });
+  }
+  function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function werktag(n) { var d = new Date(); d.setDate(d.getDate() + n); while (d.getDay() === 0 || d.getDay() === 6) d.setDate(d.getDate() + 1); return d; }
+  function lang(v) { var d = new Date(v.datum + 'T12:00:00'); return ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'][d.getDay()] + ', ' + d.getDate() + '. ' + ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'][d.getMonth()] + ', ' + v.zeit + ' Uhr'; }
+  var B = null;
+  function beispiel() {
+    if (!B) {
+      var V = [[1, '10:00'], [2, '14:30'], [4, '17:00']].map(function (x, i) { var d = werktag(x[0]); return { datum: iso(d), zeit: x[1], i: i }; });
+      V.forEach(function (v) { v.text = lang(v); });
+      B = { ok: true, betrieb: 'Pizza Mobil', name: 'Sandra Keller', branche: 'catering', art: 'telefon', art_text: 'Telefonat', dauer: 30, ort: '', status: 'offen', vorschlaege: V,
+        nachricht: 'Wie besprochen zeige ich Ihnen, wie alle Anfragen für Ihren Food Truck an einer Stelle ankommen.', email: 'sandra.keller@example.de', telefon: '0171 2345678', demo: true, gewaehlt: null, weg: '', wunsch: '', demo_link: '' };
+    }
+    return JSON.parse(JSON.stringify(B));
+  }
+  function beispielAntwort(d) {
+    if (d.aktion === 'waehlen') {
+      var v = B.vorschlaege[d.i]; B.status = 'bestaetigt'; B.weg = d.weg; B.gewaehlt = { datum: v.datum, zeit: v.zeit, text: v.text, vorbei: false };
+      if (d.email) B.email = d.email; if (d.telefon) B.telefon = d.telefon;
+      B.demo_link = 'clickzauber-cockpit-live.html?demo=1&branche=catering' + T;
+      return Object.assign(beispiel(), { mail: d.weg === 'mail' });
+    }
+    B.status = d.aktion === 'absagen' ? 'abgesagt' : 'anderer'; B.wunsch = d.wunsch || d.text || ''; B.gewaehlt = null;
+    return beispiel();
+  }
+  function icsBeispiel() {
+    var g = J.gewaehlt, p = g.datum.split('-'), z = g.zeit.split(':'), a = new Date(+p[0], +p[1] - 1, +p[2], +z[0], +z[1]), b = new Date(a.getTime() + (J.dauer || 30) * 6e4);
+    var f = function (d) { return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); };
+    var t = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//clickzauber//Termin//DE', 'BEGIN:VEVENT', 'UID:beispiel-' + Date.now() + '@clickzauber.de', 'DTSTAMP:' + f(new Date()), 'DTSTART:' + f(a), 'DTEND:' + f(b), 'SUMMARY:Gespräch mit ' + VON + ' (clickzauber)', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    return URL.createObjectURL(new Blob([t], { type: 'text/calendar' }));
+  }
+
+  /* ── Ansichten ── */
+  function zeichnen(j) {
+    J = j;
+    if (!j || !j.ok) { ungueltig(j && j.error === 'abgesagt' ? 'Dieses Gespräch ist abgesagt.' : ''); return; }
+    if (j.status === 'bestaetigt' && j.gewaehlt) { fest(j); return; }
+    if (j.status === 'abgesagt') { zeig('<h1>Das Gespräch ist abgesagt.</h1><p>Wenn es wieder passt, melden Sie sich gern. Dann finden wir einen neuen Termin.</p>'); return; }
+    if (j.status === 'anderer') { anderer(j); return; }
+    offen(j);
+  }
+  function offen(j, mitWunsch) {
+    var vn = vorname(j.name), V = j.vorschlaege || [];
+    WEG = WEG || (j.email ? 'mail' : j.telefon ? 'whatsapp' : 'mail');
+    var h = '<h1>' + (vn ? 'Hallo ' + e(vn) + ', wann' : 'Wann') + ' passt es Ihnen?</h1>'
+      + '<p>Ich zeige Ihnen clickzauber in Ruhe und beantworte Ihre Fragen. ' + e(j.art_text) + ', etwa ' + (j.dauer || 30) + ' Minuten.</p>'
+      + (j.nachricht ? '<div class="notiz">' + e(j.nachricht) + '</div>' : '');
+    if (V.length) {
+      h += '<h2>Bitte wählen Sie einen Termin</h2><div class="vs" id="vs">' + V.map(function (v) {
+        var t = String(v.text || ''), k = t.lastIndexOf(', ');
+        return '<button type="button" data-i="' + v.i + '" aria-pressed="' + (WAHL === v.i ? 'true' : 'false') + '"><b>' + e(k > 0 ? t.slice(0, k) : t) + '</b><span>' + e(k > 0 ? t.slice(k + 2) : '') + '</span></button>';
+      }).join('') + '</div>'
+        + '<div id="schritt2"' + (WAHL === null ? ' hidden' : '') + '><h2>Wie soll ich Ihnen den Termin bestätigen?</h2>'
+        + '<div class="weg" role="group" aria-label="Bestätigung"><button type="button" data-weg="mail" aria-pressed="' + (WEG === 'mail') + '">Per E-Mail</button><button type="button" data-weg="whatsapp" aria-pressed="' + (WEG === 'whatsapp') + '">Per WhatsApp</button></div>'
+        + '<div class="f"><label id="l-mail"' + (WEG === 'mail' ? '' : ' hidden') + '>Ihre E-Mail-Adresse<input id="i-mail" type="email" inputmode="email" autocomplete="email" maxlength="120" value="' + e(j.email) + '"></label>'
+        + '<label id="l-tel"' + (WEG === 'whatsapp' ? '' : ' hidden') + '>Ihre Handynummer für WhatsApp<input id="i-tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="40" value="' + e(j.telefon) + '"></label>'
+        + '<p class="msg" id="hinweis-weg" style="font-weight:400">' + (WEG === 'mail' ? 'Sie bekommen sofort eine Bestätigung mit Kalender-Eintrag und am Vortag eine kurze Erinnerung.' : 'Ich schicke Ihnen die Bestätigung selbst per WhatsApp.') + '</p>'
+        + '<button type="button" class="go" id="los">Termin bestätigen</button><p class="msg" id="msg" role="status"></p></div></div>';
+    } else h += '<p><b style="color:var(--ink)">Die Vorschläge sind leider schon vorbei.</b> Schreiben Sie mir kurz, wann es Ihnen passt.</p>';
+    h += '<div id="anders"' + (V.length && !mitWunsch ? ' hidden' : '') + '><h2>Wann würde es Ihnen passen?</h2><div class="f"><label>Ihr Wunsch<textarea id="i-wunsch" maxlength="500" placeholder="z. B. Montag oder Dienstag ab 15 Uhr"></textarea></label>'
+      + '<button type="button" class="go dunkel" data-go="anderer">Wunsch senden</button><p class="msg" id="msg2" role="status"></p></div></div>'
+      + (V.length ? '<div style="display:flex;justify-content:center;margin-top:8px"><button type="button" class="zur" id="kp"' + (mitWunsch ? ' hidden' : '') + '>Keiner passt? Anderen Termin wünschen</button></div>' : '');
+    zeig(h);
+  }
+  function fest(j) {
+    var g = j.gewaehlt, vn = vorname(j.name);
+    var weg = j.weg === 'whatsapp' ? 'Ich bestätige Ihnen den Termin per WhatsApp' + (j.telefon ? ' an ' + e(j.telefon) : '') + '.'
+      : (j.mail === false ? 'Die E-Mail ging gerade nicht raus. Ich melde mich bei Ihnen.' : 'Die Bestätigung mit Kalender-Eintrag ist per E-Mail' + (j.email ? ' an ' + e(j.email) : '') + ' unterwegs. Am Vortag kommt eine kurze Erinnerung.');
+    var ics = BSP ? icsBeispiel() : API + '?c=' + encodeURIComponent(C) + '&ics=1';
+    var h = '<h1>' + (g.vorbei ? 'Unser Gespräch' : 'Danke' + (vn ? ', ' + e(vn) : '') + '. Der Termin steht.') + '</h1>'
+      + '<div class="wann"><span>Gespräch mit ' + VON + '</span><b>' + e(g.text) + '</b><p>' + e(j.art_text) + ', etwa ' + (j.dauer || 30) + ' Minuten. ' + e(woText(j)) + '</p></div>'
+      + (g.vorbei ? '<p>Dieser Termin ist vorbei. Für einen neuen Termin melden Sie sich gern direkt bei mir.</p>'
+        : '<p>' + weg + '</p><div class="reihe"><a class="hell-k" href="' + e(ics) + '" download="termin-clickzauber.ics">In meinen Kalender</a></div>');
+    if (j.demo_link) h += '<div class="demo"><b>Bis dahin schon ausprobieren</b><p>Ihre eigene clickzauber-Demo für 7 Tage, mit Beispieldaten aus Ihrer Branche. Probieren Sie alles in Ruhe aus, Ihre Fragen besprechen wir dann im Gespräch.</p>'
+      + '<a class="go" href="' + e(j.demo_link) + '" target="_blank" rel="noopener">Demo öffnen</a></div>';
+    if (!g.vorbei) h += '<p class="so">Übrigens: Genau so bestätigen später Ihre Kunden ihre Termine bei Ihnen. Ein Tipp, kein Anruf, und alles steht im Kalender.</p>'
+      + '<h2>Kommt etwas dazwischen?</h2><div class="reihe" id="wahl2"><button type="button" class="hell-k" data-zeig="anders">Anderen Termin wünschen</button><button type="button" class="hell-k" data-zeig="absage">Absagen</button></div>'
+      + '<div id="anders" hidden><div class="f"><label>Wann würde es Ihnen besser passen?<textarea id="i-wunsch" maxlength="500" placeholder="z. B. nächste Woche Dienstag ab 15 Uhr"></textarea></label><button type="button" class="go dunkel" data-go="anderer">Wunsch senden</button><p class="msg" id="msg2" role="status"></p><button type="button" class="zur" data-zurueck>Zurück</button></div></div>'
+      + '<div id="absage" hidden><div class="f"><label>Grund (freiwillig)<input id="i-grund" maxlength="300"></label><button type="button" class="go rot" data-go="absagen">Gespräch absagen</button><p class="msg" id="msg3" role="status"></p><button type="button" class="zur" data-zurueck>Zurück</button></div></div>';
+    zeig(h);
+  }
+  function anderer(j) {
+    zeig('<h1>Danke, ich melde mich.</h1><div class="wann" style="border-color:var(--line)"><span>Ihr Wunsch</span><p>' + e(j.wunsch || '–') + '</p></div>'
+      + '<p>Ich schicke Ihnen neue Vorschläge. Sie bekommen dafür wieder diesen Link.</p>'
+      + ((j.vorschlaege || []).length ? '<div style="display:flex;justify-content:center"><button type="button" class="zur" data-doch>Doch einer der bisherigen Vorschläge?</button></div>' : ''));
+  }
+
+  /* ── Klicks ── */
+  function meld(id, t, bad) { var x = $(id); if (x) { x.textContent = t || ''; x.className = 'msg' + (bad ? ' bad' : ''); } }
+  m.addEventListener('click', function (ev) {
+    var b;
+    if ((b = ev.target.closest('[data-i]'))) {
+      WAHL = +b.getAttribute('data-i');
+      [].forEach.call(m.querySelectorAll('[data-i]'), function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      var s = $('schritt2'), neu = s.hidden; s.hidden = false;
+      if (neu) setTimeout(function () { window.scrollTo({ top: s.getBoundingClientRect().top + window.pageYOffset - 16, behavior: 'smooth' }); }, 60);
+      return;
+    }
+    if ((b = ev.target.closest('[data-weg]'))) {
+      WEG = b.getAttribute('data-weg');
+      [].forEach.call(m.querySelectorAll('[data-weg]'), function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      $('l-mail').hidden = WEG !== 'mail'; $('l-tel').hidden = WEG !== 'whatsapp';
+      $('hinweis-weg').textContent = WEG === 'mail' ? 'Sie bekommen sofort eine Bestätigung mit Kalender-Eintrag und am Vortag eine kurze Erinnerung.' : 'Ich schicke Ihnen die Bestätigung selbst per WhatsApp.';
+      meld('msg', ''); return;
+    }
+    if (ev.target.closest('#kp')) { $('anders').hidden = false; $('kp').hidden = true; setTimeout(function () { $('i-wunsch').focus(); }, 60); return; }
+    if ((b = ev.target.closest('[data-zeig]'))) { $('wahl2').hidden = true; $(b.getAttribute('data-zeig')).hidden = false; return; }
+    if (ev.target.closest('[data-zurueck]')) { $('wahl2').hidden = false; $('anders').hidden = true; $('absage').hidden = true; return; }
+    if (ev.target.closest('[data-doch]')) { offen(J); return; }
+    if (ev.target.closest('#los')) { bestaetigen(ev.target.closest('#los')); return; }
+    if ((b = ev.target.closest('[data-go]'))) { melden(b); }
+  });
+  function bestaetigen(b) {
+    if (WAHL === null) return;
+    var d = { aktion: 'waehlen', i: WAHL, weg: WEG, email: ($('i-mail').value || '').trim(), telefon: ($('i-tel').value || '').trim() };
+    if (WEG === 'mail' && !/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(d.email)) { meld('msg', 'Bitte eine gültige E-Mail-Adresse eintragen.', true); $('i-mail').focus(); return; }
+    if (WEG === 'whatsapp' && d.telefon.replace(/\D/g, '').length < 7) { meld('msg', 'Bitte Ihre Handynummer eintragen.', true); $('i-tel').focus(); return; }
+    b.disabled = true; meld('msg', 'Einen Moment …');
+    senden(d).then(function (j) {
+      b.disabled = false;
+      if (!j || !j.ok) { meld('msg', (j && j.hinweis) || 'Das hat nicht geklappt. Bitte noch einmal versuchen.', true); return; }
+      window.scrollTo(0, 0); zeichnen(j);
+    });
+  }
+  function melden(b) {
+    var was = b.getAttribute('data-go'), id = was === 'absagen' ? 'msg3' : 'msg2', d = { aktion: was };
+    if (was === 'anderer') { d.wunsch = ($('i-wunsch').value || '').trim(); if (d.wunsch.length < 2) { meld(id, 'Bitte schreiben Sie kurz, wann es Ihnen passt.', true); $('i-wunsch').focus(); return; } }
+    else d.text = ($('i-grund').value || '').trim();
+    b.disabled = true; meld(id, 'Einen Moment …');
+    senden(d).then(function (j) {
+      b.disabled = false;
+      if (!j || !j.ok) { meld(id, (j && j.hinweis) || 'Das hat nicht geklappt. Bitte noch einmal versuchen.', true); return; }
+      window.scrollTo(0, 0); WAHL = null; zeichnen(j);
+    });
+  }
+
+  if (BSP) { var bs = document.createElement('div'); bs.className = 'bsp'; bs.textContent = 'Beispiel mit erfundenen Angaben. Es wird nichts gespeichert oder verschickt.'; document.body.insertBefore(bs, m); }
+  if (!C && !BSP) { ungueltig(); return; }
+  holen().then(zeichnen).catch(function () { ungueltig('Die Seite lädt gerade nicht.'); var p = m.querySelector('h1 + p'); if (p) p.textContent = 'Bitte laden Sie die Seite in einem Moment neu.'; });
+})();
+</script>
+</body>
+</html>

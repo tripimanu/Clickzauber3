@@ -1,0 +1,103 @@
+/* clickzauber Cockpit · neue Gestaltung (seit 17.10.2026). Legt sich über das Cockpit, ändert nur Aussehen und Anordnung. Version 1.0: NICHT-HOCHLADEN/archiv/cockpit-version-1.0/ */
+:root{--c3-fest:#1f5e40;--c3-anfr:#2f6fd0}
+[data-theme=dunkel]{--c3-fest:#3f9a6c;--c3-anfr:#6aa3f2}
+/* Entdecken raus, Glühbirnen-Lasche raus (Funktionen stehen in den Einstellungen) */
+[data-view="entdecken"],[data-first="entdecken"],#g-e,#fxm-tab{display:none!important}
+/* Missionen: keine Box unten rechts, keine Feier-Fenster; nur ein Aufstieg wird gezeigt (js/cz-cockpit.js) */
+#msn,#msn-toast{display:none!important}
+#msn-feier:not(.c3-zeigen){display:none!important}
+.msn-m.ok .tx b,.msn-m.ok .tx span{text-decoration:line-through;opacity:.6}.msn-m em{display:none}
+/* Kalender: kein „Heute“, Monat über die ganze Breite, kein Schnell-Termin im Tag */
+html.c3 #kv-heute{display:none!important}
+html.c3 .kv-nav{flex:1 1 100%;justify-content:space-between}
+html.c3 .kv-nav strong{flex:1;font-size:22px}
+html.c3 .kv-nav button{width:52px;height:52px;font-size:24px}
+html.c3 #kv-tag [data-salneu]{display:none!important}
+html.c3 .kv-d{min-height:104px}
+/* Rot-Grün-Schwäche: Anfragen blau, feste Termine dunkelgrün */
+.kv-leg .fest{background:var(--c3-fest)!important}.kv-leg .wunsch{background:var(--c3-anfr)!important}
+.kv-d .ev{background:color-mix(in srgb,var(--c3-fest) 24%,transparent)!important}
+.kv-d .ev.wunsch{background:color-mix(in srgb,var(--c3-anfr) 22%,transparent)!important}
+.sal-k.offen{border-color:var(--c3-anfr)!important;background:color-mix(in srgb,var(--c3-anfr) 7%,var(--card,var(--panel)))!important}
+.sal-k.fest{border-color:color-mix(in srgb,var(--c3-fest) 55%,var(--line-2))!important}
+.sal-k .sal-ruf{color:var(--c3-anfr)!important}
+/* Im Kalender: Zahnrad, Sprache und Live schalten ausblenden */
+body.c3-kal .czl-sw,body.c3-kal .gl-btn,body.c3-kal .czl-p{display:none!important}
+/* Leiste unten: Übersicht · Vernetzen · Formular · Kalender */
+/* Leiste unten: Übersicht · (Anfragen) · Formular · Vernetzen · Kalender */
+html.c3 #unten [data-view="overview"]{order:1}html.c3 #unten [data-view="leads"]{order:2}html.c3 #unten [data-view="widget"]{order:3}html.c3 #unten [data-view="netzprofil"]{order:4}html.c3 #unten [data-view="kalender"]{order:5}
+/* Reihe auf der Übersicht: Liste | Tagesplan | Zeitraum | Abzeichen, vier gleiche Kacheln */
+#c3-reihe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 14px}
+#c3-reihe.ohne-ansicht{grid-template-columns:repeat(2,minmax(0,1fr))}#c3-reihe.ohne-ansicht .c3-ansicht{display:none}
+.c3-ansicht{display:contents}
+html.c3 #c3-reihe #ta-wahl{display:contents!important}
+#c3-reihe #ta-wahl button,.c3-t{min-width:0;min-height:72px;margin:0;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:var(--card,var(--panel));color:var(--ink);font:inherit;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;text-align:center;overflow-wrap:anywhere}
+#c3-reihe #ta-wahl button.on,#c3-reihe #ta-wahl button.an,#c3-reihe #ta-wahl button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.c3-t{flex-direction:column;gap:2px}.c3-t small{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}.c3-t b{font-size:15px;line-height:1.2}
+#c3-az{flex-direction:row;text-align:left}#c3-az>span:last-child{display:flex;flex-direction:column;gap:2px;min-width:0}.c3-az-b{flex:none;display:grid;place-items:center}.c3-az-b svg{width:34px;height:34px}
+.c3-t:hover,#c3-reihe #ta-wahl button:hover{border-color:var(--line-2)}
+@media(max-width:420px){#c3-reihe{grid-template-columns:repeat(2,minmax(0,1fr))}#c3-reihe #ta-wahl button,.c3-t{min-height:64px}}
+/* Punkte bleiben versteckt, nur Abzeichen und Haken */
+.msn-dlg .msn-n,.msn-dlg .msn-p,.msn-dlg [class*="punkte"],.msn-toast i{display:none!important}
+/* Einstellungen in Gruppen */
+html.c3 [data-v="settings"] .set-schnell,html.c3 .thm-reihe,html.c3 .thm,html.c3 .side .fxm-nav{display:none!important}
+#c3-gruppen{display:flex;flex-direction:column;gap:10px;margin:0 0 18px}
+.c3-g{border:1px solid var(--line);border-radius:14px;background:var(--card,var(--panel));overflow:hidden}
+.c3-gk,.c3-lk{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;padding:12px 16px;border:0;background:none;color:var(--ink);font:inherit;text-align:left;cursor:pointer;text-decoration:none}
+.c3-gk span,.c3-lk span{display:flex;flex-direction:column;gap:3px;min-width:0}.c3-gk b{font-size:16px}.c3-lk b{font-size:15px}
+.c3-gk i,.c3-lk i{font-style:normal;font-size:13px;color:var(--ink-2);line-height:1.4}
+.c3-gk svg,.c3-lk svg{width:18px;height:18px;flex:none;color:var(--ink-3);transition:transform .2s}
+.c3-g.auf>.c3-gk svg{transform:rotate(90deg)}.c3-g.auf>.c3-gk{border-bottom:1px solid var(--line)}
+.c3-gb{display:none;padding:12px;flex-direction:column;gap:12px;background:var(--bg)}.c3-g.auf>.c3-gb{display:flex}
+.c3-gb>.card{margin:0!important}.c3-gb .akk-kopf{display:none}.c3-gb .akk .akk-koerper,.c3-gb .akk-koerper{display:block!important;max-height:none!important;overflow:visible!important}
+.c3-lks{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;background:var(--card,var(--panel));overflow:hidden}.c3-lks>*+*{border-top:1px solid var(--line)}
+.c3-g.leise{background:none;border-style:dashed}.c3-g.leise .c3-gk b{color:var(--bad,#a8442f)}
+.c3-seg{display:flex;gap:3px;padding:3px;border:1px solid var(--line);border-radius:12px;background:var(--panel-2);flex-wrap:nowrap;width:max-content;max-width:100%}
+.c3-seg button{flex:1 1 auto;min-height:42px;padding:0 14px;border:0;border-radius:9px;background:none;color:var(--ink-2);font-family:var(--fd);font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
+.c3-seg button.an{background:var(--accent);color:#fff}
+/* Darstellung: Text links, Schalter rechts in voller Breite; am Handy untereinander */
+#c2-dar{padding:6px 20px}
+#c2-dar .setrow .r{flex:0 0 auto;min-width:0;max-width:none}
+@media(max-width:760px){#c2-dar{padding:6px 16px}#c2-dar .setrow{flex-direction:column;align-items:stretch;gap:10px}#c2-dar .c3-seg{width:100%}}
+/* Kacheln auf der Übersicht (js/cz-kacheln.js) */
+#c2k-einst{background:var(--card,var(--panel));border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+#c2k-einst .c2-h{display:flex;flex-direction:column;gap:4px;margin:0 0 14px}#c2k-einst .c2-h b{font-size:16px;font-weight:700}#c2k-einst .c2-h span{font-size:13px;line-height:1.45;color:var(--ink-2);text-wrap:pretty}
+@media(max-width:760px){#c2k-einst{padding:16px}}
+/* Kalender verbinden */
+.c3-kal-karte>:not(#c3-kal){display:none!important}
+#c3-kal h2{margin:0 0 12px}
+.c3-kal-l{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:10px}
+.c3-kal-z{display:flex;align-items:stretch;gap:8px;min-width:0}
+.c3-kal-k{flex:1;min-width:0;min-height:62px;display:flex;flex-direction:column;justify-content:center;gap:2px;padding:10px 14px;border:1.5px solid var(--line-2);border-radius:12px;background:var(--panel-2);color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.c3-kal-k b{font-size:15px}.c3-kal-k i{font-style:normal;font-size:12.5px;color:var(--ink-2)}
+button.c3-kal-k:hover{border-color:var(--accent)}
+.c3-kal-z.aus .c3-kal-k{opacity:.5;border-style:dashed;cursor:default}.c3-kal-z.aus .c3-kal-k i{color:var(--c3-fest);font-weight:600}
+.c3-ent{flex:none;min-height:44px;align-self:center;padding:0 12px;border:1px solid var(--line-2);border-radius:10px;background:none;color:var(--ink-2);font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.c3-ent:hover{color:var(--bad,#a8442f);border-color:currentColor}
+.c3-kal-hin{display:none;margin:10px 0 0;font-size:12.5px;color:var(--ink-3)}#c3-kal.hat .c3-kal-hin{display:block}
+/* Kalender verbinden: nur noch die echte Verbindung (#kd) */
+html.c3 .c3-weg{display:none!important}
+html.c3 #kd>p.cs,html.c3 #kd-an{display:none!important}
+html.c3 #kd.c3-an #kd-aus{display:block!important}html.c3 #kd.c3-an #kd-icloud{display:none!important}
+.c3-kdz{display:flex;align-items:center;gap:8px;min-width:0}.c3-kdz>.abo-k{flex:1;min-width:0}
+.c3-kdz .c3-ent{display:none}.c3-kdz.aus{grid-column:1/-1}.c3-kdz.aus .c3-ent{display:block}
+.c3-kdz.aus>.abo-k{opacity:.5;border-style:dashed;pointer-events:none}.c3-kdz.aus>.abo-k span{color:var(--c3-fest);font-weight:600}.c3-kdz.aus>.abo-k span{font-size:0}.c3-kdz.aus>.abo-k span::after{content:"Verbunden";font-size:12.5px}
+#kd.c3-an .c3-kdz:not(.aus)>.abo-k{opacity:.4;pointer-events:none}
+html.c3 [data-v="belegung"] .card.kal{display:none!important}
+#c3-spruch{margin:18px 4px 0;font-size:14px;font-style:italic;color:var(--ink-2);text-align:center;text-wrap:pretty}
+html.c3 [data-v="kalender"] .kv-d{min-height:118px}
+/* Formular: Vorschau der ersten Seite, Antippen öffnet den Konfigurator */
+#c3-fv{display:block;max-width:440px;margin:0 auto 16px;text-decoration:none;color:var(--ink)}
+.c3-fv-rahmen{position:relative;height:min(620px,68vh);border:1px solid var(--line-2);border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.c3-fv-rahmen iframe{width:100%;height:100%;border:0;pointer-events:none}
+.c3-fv-k{display:flex;align-items:center;justify-content:center;gap:6px;min-height:52px;margin-top:10px;border-radius:12px;background:var(--accent);color:#fff;font-weight:600}.c3-fv-k svg{width:18px;height:18px}
+#c3-fv:hover .c3-fv-rahmen{border-color:var(--accent)}
+[data-v="widget"].c3-hat .helper>.card>.big{display:none}
+#c3-hin{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:9500;transform:translate(-50%,12px);opacity:0;pointer-events:none;padding:11px 16px;border-radius:12px;background:var(--ink);color:var(--bg);font-size:14px;transition:.2s;max-width:calc(100vw - 32px)}#c3-hin.an{opacity:1;transform:translate(-50%,0)}
+/* Kacheln oben im selben Raster wie die Reihe darunter */
+@media(min-width:761px){html.c3 #c2-kacheln .c2k-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px}}
+@media(max-width:760px){html.c3 #c2-kacheln .c2k-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px}}
+.c3-az-b>*{width:34px!important;height:34px!important}
+/* Zeitraum oben nur leise, Auswahl in den Einstellungen */
+html.c3 [data-v="overview"] #rng{display:none!important}
+html.c3 [data-v="overview"] #sub{font-size:13px;color:var(--ink-3)}

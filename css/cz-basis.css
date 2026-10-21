@@ -1,0 +1,6 @@
+/* clickzauber · eine Gestaltung (seit 15.10.2026). Werte aus dem Cockpit.
+   Skizze: NICHT-HOCHLADEN/skizzen-und-vorschlaege/Eine-Gestaltung-echtes-Beispiel.html
+   Gilt für alle Seiten: Hintergrund #f5f2ea, Grün #2f7d59, Schrift Figtree, Karten 14 px, Knöpfe 12 px.
+   Server-Seiten (lib/termine.js) haben dieselben Werte fest eingebaut. */
+@import url("https://fonts.bunny.net/css2?family=Figtree:wght@400;500;600;700&display=swap");
+:root{--cz-bg:#f5f2ea;--cz-panel:#fffdf8;--cz-panel-2:#efebe1;--cz-ink:#241f19;--cz-ink-2:rgba(36,31,25,.68);--cz-ink-3:rgba(36,31,25,.5);--cz-line:rgba(36,31,25,.1);--cz-line-2:rgba(36,31,25,.18);--cz-accent:#2f7d59;--cz-accent-d:#255f45;--cz-accent-hell:#e3efe8;--cz-bad:#a8442f;--cz-font:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;--cz-r-karte:14px;--cz-r-knopf:12px}

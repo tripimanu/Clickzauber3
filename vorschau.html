@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Ihre Vorschau · clickzauber</title>
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f2ea;--card:#fffdf8;--ink:#211d16;--ink2:#5f584a;--line:#e3d9c4;--g:#2f7d59;--gd:#1f6d4a;--fd:Figtree,system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fd);font-size:16px;line-height:1.5;display:flex;flex-direction:column}
+a{color:var(--gd)}a:hover{color:var(--g)}
+.kopf{display:flex;align-items:center;gap:12px;padding:12px 16px calc(10px);padding-top:max(12px,env(safe-area-inset-top));background:var(--card);border-bottom:1px solid var(--line)}
+.logo{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:0 0 auto}
+.logo img{width:100%;height:100%;object-fit:contain;padding:4px}
+.kopf b{display:block;font-size:17px;line-height:1.25}
+.kopf span{display:block;font-size:13.5px;color:var(--ink2)}
+.uhr{margin-left:auto;font-size:13px;font-weight:600;color:var(--gd);background:color-mix(in srgb,var(--g) 12%,transparent);border-radius:999px;padding:6px 12px;white-space:nowrap}
+.tabs{display:flex;gap:6px;padding:10px 16px;background:var(--card);border-bottom:1px solid var(--line)}
+.tabs button{flex:1;min-height:44px;border:1.5px solid var(--line);border-radius:999px;background:transparent;font:inherit;font-weight:600;font-size:15px;color:var(--ink2);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fffdf8}
+.buehne{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr)}
+.buehne iframe{width:100%;height:100%;border:0;display:none;background:#fff}
+.buehne iframe.an{display:block}
+@media(min-width:1100px){.tabs{display:none}.buehne{grid-template-columns:440px minmax(0,1fr);gap:0}.buehne iframe{display:block}#f-form{border-right:1px solid var(--line)}}
+.hinweis{margin:0;padding:8px 16px;font-size:13.5px;color:var(--ink2);background:var(--card);border-bottom:1px solid var(--line);text-wrap:pretty}
+.toast{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translate(-50%,24px);opacity:0;pointer-events:none;transition:.25s;display:flex;align-items:center;gap:12px;background:var(--ink);color:#fffdf8;border-radius:16px;padding:12px 12px 12px 16px;box-shadow:0 12px 34px rgba(0,0,0,.25);width:min(92vw,440px)}
+.toast.an{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast p{margin:0;flex:1;font-size:14.5px}.toast p b{display:block}
+.toast button{min-height:44px;border:0;border-radius:12px;background:var(--g);color:#fff;font:inherit;font-weight:700;padding:0 14px;cursor:pointer;white-space:nowrap}
+.zu{flex:1;display:flex;align-items:center;justify-content:center;padding:24px}
+.zu div{max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.zu h1{margin:0;font-size:22px}.zu p{margin:0;color:var(--ink2)}
+</style>
+</head>
+<body>
+<script src="kunden/akten.js"></script>
+<script>
+(function(){
+  var Q=new URLSearchParams(location.search), V=String(Q.get('v')||''), BIS=+Q.get('bis')||0, K=String(Q.get('k')||''), BSP=Q.get('beispiel')==='1';
+  function pz(s){ var h=5381; for(var i=0;i<s.length;i++) h=((h<<5)+h+s.charCodeAt(i))>>>0; return h.toString(36); }
+  function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
+  var A=(window.CZ_AKTEN||[]).filter(function(x){ return x.formular&&x.formular.v===V; })[0];
+  function weg(){ try{ var a=JSON.parse(localStorage.getItem('cz_demo_neu')||'null'); if(a&&/^vs/.test(a.id||'')) localStorage.removeItem('cz_demo_neu'); localStorage.removeItem('cz_demo_vs'); }catch(x){} }
+  function zu(t,p,neu){ if(!neu) weg(); document.body.insertAdjacentHTML('beforeend','<main class="zu"><div><h1>'+esc(t)+'</h1><p>'+esc(p)+'</p>'+(neu?'<button type="button" onclick="location.reload()" style="align-self:flex-start;min-height:48px;padding:0 20px;border:0;border-radius:999px;background:var(--ink);color:#fffdf8;font:inherit;font-weight:700;cursor:pointer">Neu laden</button>':'')+'</div></main>'); }
+  /* Daten nicht geladen (schlechtes Netz): nicht „ungültig“ sagen, sonst hält der Kunde den Link für kaputt. */
+  if(!window.CZ_AKTEN){ zu('Die Vorschau lädt gerade nicht.','Bitte prüfen Sie Ihre Internetverbindung und laden Sie die Seite neu.',true); return; }
+  if(!A){ zu('Dieser Link ist nicht gültig.','Bitte fragen Sie bei clickzauber nach einem neuen Link.'); return; }
+  if(!BSP&&(!BIS||K!==pz(V+'|'+BIS+'|clickzauber'))){ zu('Dieser Link ist nicht gültig.','Bitte fragen Sie bei clickzauber nach einem neuen Link.'); return; }
+  if(!BSP&&Date.now()>BIS){ zu('Diese Vorschau ist abgelaufen.','Der Link galt 24 Stunden. Melden Sie sich gern, dann zeigen wir Ihnen alles noch einmal.'); return; }
+  var f=A.formular, z=(A.zeigen||[]).filter(function(x){ return /^Cockpit/.test(x[0]); })[0];
+  var ck=z?z[1]:'clickzauber-cockpit-live.html?demo=1&rahmen=1&branche=catering&probe='+encodeURIComponent(A.firma);
+  if(!/[?&]leer=1/.test(ck)) ck+='&leer=1';
+  if(!/[?&]rahmen=1/.test(ck)) ck+='&rahmen=1';
+  var br=(ck.match(/[?&]branche=([a-z]+)/)||[])[1]||'catering';
+  var form='verkaufsslides/inhaltsverzeichnis.html?v='+encodeURIComponent(V)+'&vorschau=1&br='+br;
+  var termin=!f.seiten;
+  function rest(){ var h=Math.max(0,Math.ceil((BIS-Date.now())/36e5)); return BSP?'Beispiel':h<=1?'Noch unter 1 Std.':'Noch '+h+' Std.'; }
+  document.body.insertAdjacentHTML('beforeend',
+    '<header class="kopf">'+(A.logo?'<div class="logo"'+(A.logo_grund?' style="background:'+esc(A.logo_grund)+';border-color:'+esc(A.logo_grund)+'"':'')+'><img src="'+esc(A.logo)+'" alt=""></div>':'')
+    +'<div><b>'+esc(A.firma)+'</b><span>Ihr Formular und Ihr Cockpit</span></div><span class="uhr" id="uhr">'+rest()+'</span></header>'
+    +'<p class="hinweis">So haben wir es für Sie gebaut. Schicken Sie eine Test'+(termin?'buchung':'anfrage')+' ab: Sie erscheint sofort in Ihrem Cockpit.</p>'
+    +'<nav class="tabs" role="tablist" aria-label="Ansicht"><button type="button" role="tab" aria-selected="true" data-t="form">Formular</button><button type="button" role="tab" aria-selected="false" data-t="cockpit">Cockpit</button></nav>'
+    +'<div class="buehne"><iframe id="f-form" class="an" title="Ihr Formular" src="'+esc(form)+'"></iframe><iframe id="f-cockpit" title="Ihr Cockpit" src="'+esc(ck)+'"></iframe></div>'
+    +'<div class="toast" id="toast" role="status"><p><b id="t-titel">Neue Anfrage</b>Sie ist jetzt in Ihrem Cockpit.</p><button type="button" id="t-los">Im Cockpit ansehen</button></div>');
+  function zeige(w){
+    [].forEach.call(document.querySelectorAll('.tabs button'),function(b){ b.setAttribute('aria-selected',b.getAttribute('data-t')===w?'true':'false'); });
+    document.getElementById('f-form').classList.toggle('an',w==='form'); document.getElementById('f-cockpit').classList.toggle('an',w==='cockpit');
+  }
+  document.querySelector('.tabs').addEventListener('click',function(e){ var b=e.target.closest('button'); if(b) zeige(b.getAttribute('data-t')); });
+  var LETZT='';
+  function cockpitNeu(id){ document.getElementById('f-cockpit').src=ck+'&t='+Date.now()+(id?'#anfrage-'+id:''); }
+  window.addEventListener('message',function(e){
+    if(e.origin!==location.origin||!e.data||e.data.typ!=='cz-vorschau-anfrage') return;
+    LETZT=e.data.id||''; document.getElementById('t-titel').textContent='Neue '+(termin?'Buchung':'Anfrage')+' von '+(e.data.name||'Ihrem Gast');
+    cockpitNeu(LETZT);
+    var t=document.getElementById('toast'); t.classList.add('an'); clearTimeout(t._z); t._z=setTimeout(function(){ t.classList.remove('an'); },9000);
+  });
+  document.getElementById('t-los').onclick=function(){ document.getElementById('toast').classList.remove('an'); zeige('cockpit'); if(innerWidth>=1100) cockpitNeu(LETZT); };
+  setInterval(function(){ if(!BSP&&Date.now()>BIS){ location.reload(); return; } var u=document.getElementById('uhr'); if(u) u.textContent=rest(); },60000);
+})();
+</script>
+</body>
+</html>

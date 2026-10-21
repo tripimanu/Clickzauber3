@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ihre Einladung · clickzauber</title>
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f2ea;--card:#fff;--ink:#211d16;--ink2:#5f584a;--ink3:#7a7262;--line:#e6ddca;--g:#2f7d59;--gd:#1f6d4a;--gl:#e7f2ec;--rot:#a3341f;--fd:Figtree,system-ui,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fd);font-size:16px;line-height:1.55}
+a{color:var(--gd)}a:hover{color:var(--g)}
+main{max-width:1120px;margin:0 auto;padding:28px 18px 60px;display:flex;flex-direction:column;gap:24px}
+main.schmal{max-width:560px}
+.kopf{display:flex;gap:18px;align-items:center}
+.logo{width:84px;height:84px;flex:none;border-radius:18px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;font-weight:700;font-size:28px;color:var(--ink2)}
+.logo img{width:100%;height:100%;object-fit:contain}
+h1{margin:0;font-size:30px;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
+.kopf p{margin:6px 0 0;color:var(--ink2);text-wrap:pretty}
+.zwei{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px;align-items:start}
+section{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px}
+h2{margin:0;font-size:19px}
+.unter{margin:-8px 0 0;color:var(--ink2);font-size:15px;text-wrap:pretty}
+.status{margin:0;padding:10px 14px;border-radius:12px;background:#f6efe0;color:#5e4a1c;font-size:14.5px;line-height:1.5;text-wrap:pretty}
+.status.an{background:var(--gl);color:var(--gd)}
+.form-box{border:1px solid var(--line);border-radius:14px;overflow:hidden;min-height:440px;background:#fffdf8}
+.form-box iframe{display:block;width:100%;height:760px;border:0}
+.laden{padding:40px 20px;text-align:center;color:var(--ink2)}
+.cockpit{position:sticky;top:18px}
+.knopf{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;border:0;border-radius:999px;background:var(--ink);color:#fffdf8;font:inherit;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;padding:0 20px}
+.knopf:hover{background:#000;color:#fffdf8}
+.knopf:disabled{opacity:.55;cursor:default}
+.knopf.leise{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.knopf.leise:hover{background:#f3eee3;color:var(--ink)}
+.test{display:flex;gap:12px;align-items:center;background:var(--gl);color:var(--gd);border-radius:12px;padding:10px 14px;font-size:14.5px;font-weight:500}
+.test b{font-size:24px;line-height:1}
+form{display:flex;flex-direction:column;gap:14px}
+.feld{display:flex;flex-direction:column;gap:5px}
+.feld>span{font-size:14px;font-weight:600}
+.feld input{width:100%;font:inherit;min-height:48px;border:1.5px solid var(--line);border-radius:12px;padding:0 14px;background:#fff;color:var(--ink)}
+.feld input:focus{outline:none;border-color:var(--g)}
+.feld small{color:var(--ink3);font-size:13px}
+.pw{position:relative;display:block}
+.pw input{padding-right:100px}
+.pw button{position:absolute;right:4px;top:50%;transform:translateY(-50%);min-height:40px;padding:0 12px;border:0;background:none;color:var(--gd);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.haken{display:grid;grid-template-columns:24px minmax(0,1fr);gap:8px;font-size:14px;color:var(--ink2);align-items:start}
+.haken input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--g)}
+.fehler{margin:0;color:var(--rot);font-size:14px}
+.fehler:empty{display:none}
+.ok-msg{margin:0;color:var(--gd);font-size:14px}
+.frage-box{display:flex;flex-direction:column;gap:12px}.frage-box[hidden]{display:none}
+.frage-box textarea{width:100%;min-height:110px;font:inherit;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;color:var(--ink);resize:vertical}
+.frage-box textarea:focus{outline:none;border-color:var(--g)}
+.klein{font-size:14px;color:var(--ink2);text-align:center;margin:0}
+.leer{max-width:520px;margin:12vh auto;text-align:center}
+.leer h1{margin-bottom:10px}
+.fuss{font-size:13px;color:var(--ink3);text-align:center;margin:0}
+@media(max-width:860px){.zwei{grid-template-columns:minmax(0,1fr)}.cockpit{position:static;order:-1}h1{font-size:25px}.logo{width:64px;height:64px;border-radius:14px}.form-box iframe{height:680px}}
+</style>
+</head>
+<body>
+<main id="seite">
+<p class="laden">Einen Moment …</p>
+</main>
+<script src="kunden/akten.js"></script>
+<script>
+(function(){
+  var API='https://clickzauber-api.vercel.app/api', HOST='https://clickzauber-api.vercel.app';
+  var Q=new URLSearchParams(location.search), CODE=(Q.get('c')||'').trim().toLowerCase(), BEISPIEL=Q.get('beispiel')==='1';
+  var M=document.getElementById('seite');
+  var FUSS='<p class="fuss">clickzauber · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>';
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function token(){try{return localStorage.getItem('cz_user_token')||'';}catch(e){return '';}}
+  function leer(t,s){M.className='';M.innerHTML='<div class="leer"><h1>'+esc(t)+'</h1><p>'+s+'</p></div>';}
+  /* Logo aus kunden/akten.js (seit 10.10.2026): Bei dunklen Formularen ist das Logo im Formular weiß und wäre hier unsichtbar. logo_grund = Hintergrund dahinter. */
+  function norm(s){ return String(s||'').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,''); }
+  function akte(f){ var n=norm(f); return (n&&(window.CZ_AKTEN||[]).filter(function(a){ return norm(a.firma)===n; })[0])||null; }
+  /* Terminbuchung (Kate, Amar) oder Anfrage-Formular (z. B. Speckrausch): danach richten sich die Texte */
+  function termin(d){ if(d.termin!=null) return !!d.termin; var c=d.config; return !!(c&&(c.steps||[]).some(function(s){ return s&&s.typ==='termin'; })); }
+  function kopf(d,text){
+    var firma=d.firma||'Ihr Betrieb', cfg=d.config||{}, x=akte(firma), logo=(x&&x.logo)||(cfg.theme&&cfg.theme.logo)||cfg.logo||d.logo||'';
+    document.title=firma+' · Ihre Einladung';
+    var anf=firma.replace(/[^A-Za-zÄÖÜäöü]/g,'').slice(0,2).toUpperCase(), grund=x&&x.logo&&x.logo_grund;
+    return '<header class="kopf"><div class="logo"'+(grund?' style="background:'+esc(grund)+';border-color:'+esc(grund)+'"':'')+'>'+(logo?'<img src="'+esc(logo)+'" alt="">':esc(anf))+'</div><div><h1>Für '+esc(firma)+'</h1><p>'+text+'</p></div></header>';
+  }
+
+  /* „Manuel fragen“ (seit 10.10.2026): geht ohne Zugang, nur mit dem Code aus dem Link. Kommt bei Manuel als Push und Mail an. */
+  function frageHtml(){
+    return '<button type="button" class="knopf leise" id="frage-auf" aria-expanded="false" aria-controls="frage-box">Manuel fragen</button>'
+      +'<div class="frage-box" id="frage-box" hidden><label class="feld"><span>Ihre Frage</span><textarea id="frage-text" rows="4" maxlength="2000"></textarea><small>Kommt sofort bei mir an. Ich melde mich bei Ihnen.</small></label>'
+      +'<p class="fehler" id="frage-msg" role="status"></p><button type="button" class="knopf" id="frage-los">Frage abschicken</button></div>';
+  }
+  function frageAn(){
+    var auf=document.getElementById('frage-auf'), box=document.getElementById('frage-box'), t=document.getElementById('frage-text'), m=document.getElementById('frage-msg'), b=document.getElementById('frage-los');
+    if(!auf) return;
+    auf.onclick=function(){ box.hidden=!box.hidden; auf.setAttribute('aria-expanded',box.hidden?'false':'true'); if(!box.hidden) t.focus(); };
+    b.onclick=function(){
+      var v=(t.value||'').trim(); m.className='fehler';
+      if(v.length<3){ m.textContent='Bitte schreiben Sie ein paar Worte.'; return; }
+      if(BEISPIEL){ m.className='ok-msg'; m.textContent='Beispiel: Hier ginge Ihre Frage an Manuel.'; return; }
+      b.disabled=true; m.textContent='';
+      fetch(API+'/einladung',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({aktion:'frage',c:CODE,text:v})})
+        .then(function(r){return r.json().catch(function(){return {ok:false};});})
+        .then(function(j){ b.disabled=false; if(j.ok){ t.value=''; m.className='ok-msg'; m.textContent='Danke, Ihre Frage ist angekommen. Ich melde mich bei Ihnen.'; } else m.textContent=j.error||'Das hat nicht geklappt. Bitte noch einmal versuchen.'; })
+        .catch(function(){ b.disabled=false; m.textContent='Keine Verbindung. Bitte noch einmal versuchen.'; });
+    };
+  }
+
+  /* Vor dem Einlösen: nur der Zugang. Eins nach dem anderen. */
+  function zugang(d){
+    M.className='schmal';
+    M.innerHTML=kopf(d,'Ich habe Ihnen '+(termin(d)?'Ihre Online-Terminanfrage':'Ihr Online-Anfrageformular')+' gebaut. Legen Sie zuerst Ihren Zugang an. Danach führt Sie Ihr Cockpit Schritt für Schritt weiter.')
+      +'<section><h2>Ihr Zugang</h2>'
+      +'<div class="test"><b>14</b><span>Tage kostenlos testen. Der Test startet, sobald Ihr Zugang steht.</span></div>'
+      +'<form id="anlegen" novalidate>'
+      +(d.vorname_fehlt?'<label class="feld"><span>Vorname</span><input name="vorname" autocomplete="given-name"></label>':'')
+      +'<label class="feld"><span>E-Mail-Adresse</span><input name="email" type="email" autocomplete="email" inputmode="email"><small>Dorthin kommen später Ihre Anfragen.</small></label>'
+      +'<label class="feld"><span>Passwort festlegen</span><span class="pw"><input name="passwort" type="password" autocomplete="new-password"><button type="button" id="pw-zeigen">Anzeigen</button></span><small>Mindestens 8 Zeichen, nicht nur Zahlen.</small></label>'
+      +'<label class="haken"><input type="checkbox" name="agb"><span>Ich habe die <a href="agb.html" target="_blank" rel="noopener">AGB</a> und die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen.</span></label>'
+      +'<p class="fehler" id="fehler" role="alert"></p>'
+      +'<button type="submit" class="knopf" id="los">Zugang anlegen</button></form>'
+      +'<p class="klein">Schon einen Zugang? <a href="clickzauber-login.html">Anmelden</a></p>'+frageHtml()+'</section>'+FUSS;
+    frageAn();
+    var F=document.getElementById('anlegen'), Z=document.getElementById('pw-zeigen');
+    Z.onclick=function(){ var an=F.passwort.type==='password'; F.passwort.type=an?'text':'password'; Z.textContent=an?'Verbergen':'Anzeigen'; };
+    F.onsubmit=function(ev){
+      ev.preventDefault();
+      var f=document.getElementById('fehler'), b=document.getElementById('los');
+      var dat={c:CODE,email:F.email.value.trim(),passwort:F.passwort.value,agb:F.agb.checked};
+      if(F.vorname) dat.vorname=F.vorname.value.trim();
+      /* Geprüft wird am Server (seit 10.10.2026), damit Manuel jeden Fehlversuch mit Grund sieht. Nur das Beispiel prüft hier. */
+      if(BEISPIEL){
+        var g=F.vorname&&!dat.vorname?'Bitte Ihren Vornamen eintragen.':!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(dat.email)?'Bitte eine gültige E-Mail-Adresse eingeben.':dat.passwort.length<8?'Das Passwort braucht mindestens 8 Zeichen.':!dat.agb?'Bitte AGB und Datenschutz bestätigen.':'';
+        f.textContent=g||'Beispiel: Hier öffnet jetzt das Cockpit, der Test startet.'; return;
+      }
+      f.textContent=''; b.disabled=true; b.textContent='Wird angelegt …';
+      fetch(API+'/einladung',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(dat)})
+        .then(function(r){return r.json().catch(function(){return {ok:false};});})
+        .then(function(j){
+          if(j.eingeloest){ start(); return; }
+          if(!j.ok){ b.disabled=false; b.textContent='Zugang anlegen'; f.textContent=j.error||'Das hat nicht geklappt. Bitte noch einmal versuchen.'; return; }
+          try{ localStorage.setItem('cz_user_token',j.token); localStorage.setItem('cz_user_email',j.email); }catch(x){}
+          location.href='clickzauber-cockpit-live.html?test=start';
+        })
+        .catch(function(){ b.disabled=false; b.textContent='Zugang anlegen'; f.textContent='Keine Verbindung. Bitte noch einmal versuchen.'; });
+    };
+  }
+
+  /* Nach dem Einlösen: das echte Formular (oder die Vorschau, solange es nicht eingeschaltet ist) und der Weg ins Cockpit. */
+  function formularSeite(d){
+    M.className='';
+    var link=d.slug?HOST+'/share.html?w='+encodeURIComponent(d.slug):'', drin=!!token();
+    M.innerHTML=kopf(d,'So sehen Ihre Kunden Ihr Formular. Was hier abgeschickt wird, kommt in Ihrem Cockpit an.')
+      +'<div class="zwei"><section><h2>Ihr Formular</h2>'
+      +(d.live?'<p class="status an">Eingeschaltet. Jede Anfrage hier ist echt.</p>':'<p class="status">Noch nicht eingeschaltet. Tippen Sie im Cockpit oben rechts auf den grünen Schalter. Bis dahin ist das eine Vorschau, es wird nichts gesendet.</p>')
+      +'<div class="form-box" id="form-box"><p class="laden">Formular wird geladen …</p></div></section>'
+      +'<section class="cockpit"><h2>Ihr Cockpit</h2><p class="unter">'+(termin(d)?'Hier kommen Ihre Anfragen an. Sie sagen zu, schlagen einen anderen Termin vor und ändern Leistungen, Preise und Aussehen selbst.':'Hier kommen Ihre Anfragen an. Sie schicken Angebote, sagen zu oder schlagen einen anderen Tag vor und ändern Fragen, Preise und Aussehen selbst.')+'</p>'
+      +'<a class="knopf" href="'+(drin?'clickzauber-cockpit-live.html':'clickzauber-login.html')+'">Ihr Cockpit öffnen</a>'
+      +(d.live&&link?'<button type="button" class="knopf leise" id="teilen">Zum Testen weiterschicken</button>':'')
+      +'<p class="klein">'+(drin?'Auf diesem Gerät sind Sie angemeldet.':'Anmelden mit Ihrer E-Mail und Ihrem Passwort.')+'</p>'+frageHtml()+'</section></div>'+FUSS;
+    frageAn();
+    var box=document.getElementById('form-box');
+    if(BEISPIEL) box.innerHTML='<iframe src="verkaufsslides/inhaltsverzeichnis.html?v='+encodeURIComponent(d.v||'kate')+'" title="Formular"></iframe>';
+    else if(d.live&&link) box.innerHTML='<iframe src="'+esc(link)+'&embed=1" title="Formular"></iframe>';
+    else if(d.config) vorschau(box,d.config);
+    else box.innerHTML='<p class="laden">Das Formular ist noch nicht fertig.</p>';
+    var T=document.getElementById('teilen');
+    if(T) T.onclick=function(){
+      var text=termin(d)?'Ich teste gerade meine neue Online-Terminanfrage. Magst du einmal einen Termin anfragen und mir sagen, wie es war?':'Ich teste gerade mein neues Online-Anfrageformular. Magst du einmal eine Anfrage schicken und mir sagen, wie es war?';
+      if(navigator.share){ navigator.share({text:text,url:link}).catch(function(){}); return; }
+      window.open('https://wa.me/?text='+encodeURIComponent(text+' '+link),'_blank');
+    };
+  }
+  function vorschau(box,cfg){
+    window.CZ_VORSCHAU_CONFIG=cfg;
+    box.innerHTML='<p class="laden">Formular wird geladen …</p><div data-cz-mount="__vorschau"></div>';
+    var s=document.createElement('script'); s.src=HOST+'/w.js?p='+Date.now(); s.setAttribute('data-cz','__vorschau'); s.setAttribute('data-cz-lang','de');
+    s.onload=function(){ var l=box.querySelector('.laden'); if(l) l.remove(); };
+    s.onerror=function(){ var l=box.querySelector('.laden'); if(l) l.textContent='Das Formular lädt nicht. Bitte Internet prüfen.'; };
+    box.appendChild(s);
+  }
+
+  function start(){
+    /* Ohne Server: ?beispiel=1, dazu &v=amar oder &v=speckrausch (Standard Kate), &eingeloest=1 für danach, &live=1 eingeschaltet */
+    if(BEISPIEL){ var BV={kate:['Kate Cosmetics',1],amar:['Barber by Becks',1],speckrausch:['Speckrausch',0]}, bv=BV[Q.get('v')]?Q.get('v'):'kate'; var d={firma:BV[bv][0],termin:!!BV[bv][1],v:bv,live:Q.get('live')==='1'}; if(Q.get('eingeloest')==='1') formularSeite(d); else zugang(d); return; }
+    if(!CODE){ leer('Dieser Link ist unvollständig','Bitte öffnen Sie den Link noch einmal so, wie Sie ihn bekommen haben.'); return; }
+    fetch(API+'/einladung?c='+encodeURIComponent(CODE)).then(function(r){return r.json().catch(function(){return {ok:false};});})
+      .then(function(j){ if(!j.ok){ leer(j.error||'Dieser Link ist nicht gültig','Fragen Sie bitte bei Manuel nach einem neuen Link.'); return; } if(j.eingeloest) formularSeite(j); else zugang(j); })
+      .catch(function(){ leer('Keine Verbindung','Bitte prüfen Sie Ihr Internet und laden Sie die Seite neu.'); });
+  }
+  start();
+})();
+</script>
+</body>
+</html>

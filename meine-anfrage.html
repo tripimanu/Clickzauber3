@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ihr Termin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f2ea;--card:#fffdf8;--ink:#241f19;--ink-2:#5c544a;--line:rgba(36,31,25,.14);--accent:#2f7d59;--bad:#a8442f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}a:hover{color:#255f45}
+main{max-width:520px;margin:0 auto;padding:40px 20px 60px}
+h1{font-size:28px;line-height:1.2;letter-spacing:-.02em;margin:0 0 10px;text-wrap:balance}
+p{margin:0 0 18px;color:var(--ink-2);text-wrap:pretty}
+.wann{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:16px 18px;margin:0 0 22px;font-size:20px;font-weight:700;color:var(--ink)}
+.wann span{display:block;font-size:14px;font-weight:600;color:var(--ink-2);margin-bottom:2px}
+.wahl{display:flex;flex-direction:column;gap:12px}.wahl[hidden]{display:none}
+.wahl>button{min-height:64px;border-radius:16px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:19px;font-weight:700;color:var(--ink);cursor:pointer}
+.wahl>button:hover{border-color:var(--accent)}
+.f{display:flex;flex-direction:column;gap:10px;margin-top:4px}.f[hidden]{display:none}
+.f label{display:flex;flex-direction:column;gap:5px;font-size:15px;font-weight:600;color:var(--ink-2)}
+.f input{min-height:54px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:17px;padding:0 14px;color:var(--ink)}
+.f button{min-height:58px;border-radius:14px;border:0;font:inherit;font-size:18px;font-weight:700;color:#fff;background:var(--ink);cursor:pointer}
+.f button.rot{background:var(--bad)}
+.f button:disabled{opacity:.6}
+.zur{background:none;border:0;font:inherit;font-size:15px;color:var(--ink-2);text-decoration:underline;cursor:pointer;padding:8px 0;align-self:center}
+.ok{background:var(--card);border:1.5px solid var(--accent);border-radius:16px;padding:20px}
+.ok p{margin:0;color:var(--ink)}
+</style>
+</head>
+<body>
+<main id="m"><p>Wird geladen …</p></main>
+<script>
+(function(){
+  var API='https://clickzauber-api.vercel.app/api', q=new URLSearchParams(location.search), l=q.get('l')||'', k=q.get('k')||'', m=document.getElementById('m');
+  var WT=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+  function e(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function tag(s){ var d=new Date(String(s).slice(0,10)+'T12:00:00'); return WT[d.getDay()]+', '+d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(); }
+  function fehler(t){ m.innerHTML='<h1>Das hat nicht geklappt</h1><p>'+e(t||'Dieser Link ist ungültig. Bitte melden Sie sich direkt beim Betrieb.')+'</p>'; }
+  function gemeldet(g, wer, weg){
+    if(weg){ m.innerHTML='<h1>Ihr Termin ist abgesagt</h1><div class="ok"><p>'+e(wer||'Der Betrieb')+' hat Ihre Absage bekommen. Die Zeit ist wieder frei. Danke, dass Sie Bescheid gegeben haben.</p></div>'; return; }
+    var ab=g.was==='absage';
+    m.innerHTML='<h1>Danke für Ihre Nachricht</h1><div class="ok"><p>'+e(wer||'Der Betrieb')+' weiß jetzt, dass Sie '+(ab?'absagen möchten':'einen anderen Tag wünschen'+(g.wunsch?' ('+tag(g.wunsch)+')':''))+', und meldet sich bei Ihnen.</p></div>';
+  }
+  if(!l||!k){ fehler(); return; }
+  fetch(API+'/auftrag?aktion=gast&l='+encodeURIComponent(l)+'&k='+encodeURIComponent(k)).then(function(r){ return r.json(); }).then(function(j){
+    if(!j||!j.ok){ fehler(j&&j.error); return; }
+    if(j.zu){ m.innerHTML='<h1>Diese Anfrage ist abgeschlossen</h1><p>Bei Fragen melden Sie sich bitte direkt bei '+e(j.betrieb||'dem Betrieb')+'.</p>'; return; }
+    if(j.gemeldet){ gemeldet(j.gemeldet, j.betrieb); return; }
+    if(j.vergangen){ m.innerHTML='<h1>Dieser Termin ist schon vorbei</h1><p>Für einen neuen Termin melden Sie sich bitte direkt bei '+e(j.betrieb||'dem Betrieb')+'.</p>'; return; }
+    var heute=new Date(); heute=heute.getFullYear()+'-'+String(heute.getMonth()+1).padStart(2,'0')+'-'+String(heute.getDate()).padStart(2,'0');
+    m.innerHTML='<h1>'+(j.name?'Hallo '+e(j.name)+', ':'')+'kommt etwas dazwischen?</h1>'
+      +(j.termin?'<div class="wann"><span>'+(j.fest?'Ihr Termin':'Ihr Wunschtermin')+(j.betrieb?' bei '+e(j.betrieb):'')+'</span>'+e(tag(j.termin))+'</div>':'')
+      +'<p>Hier können Sie absagen oder einen anderen Tag wünschen. '+e(j.betrieb||'Der Betrieb')+' bekommt sofort Bescheid und meldet sich bei Ihnen.</p>'
+      +'<div class="wahl" id="wahl"><button type="button" data-w="verschieben">Anderen Tag wünschen</button><button type="button" data-w="absage">Absagen</button></div>'
+      +'<div class="f" id="f-verschieben" hidden><label>Welcher Tag würde passen? (freiwillig)<input type="date" id="v-tag" min="'+heute+'"></label><label>Nachricht (freiwillig)<input id="v-text" maxlength="300" placeholder="z. B. lieber im Frühjahr"></label><button type="button" data-go="verschieben">Wunsch senden</button><button type="button" class="zur" data-zur>Zurück</button></div>'
+      +'<div class="f" id="f-absage" hidden><label>Grund (freiwillig)<input id="a-text" maxlength="300" placeholder="z. B. Feier fällt aus"></label><button type="button" class="rot" data-go="absage">Absage senden</button><button type="button" class="zur" data-zur>Zurück</button></div>';
+    m.addEventListener('click',function(ev){
+      var w=ev.target.closest('[data-w]');
+      if(w){ document.getElementById('wahl').hidden=true; document.getElementById('f-'+w.getAttribute('data-w')).hidden=false; return; }
+      if(ev.target.closest('[data-zur]')){ document.getElementById('wahl').hidden=false; document.getElementById('f-verschieben').hidden=true; document.getElementById('f-absage').hidden=true; return; }
+      var g=ev.target.closest('[data-go]'); if(!g) return;
+      var was=g.getAttribute('data-go'); g.disabled=true;
+      var d={aktion:'gast',l:l,k:k,was:was};
+      if(was==='verschieben'){ d.wunsch=document.getElementById('v-tag').value; d.text=document.getElementById('v-text').value; } else d.text=document.getElementById('a-text').value;
+      fetch(API+'/auftrag',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){ return r.json(); })
+        .then(function(x){ if(x&&x.ok) gemeldet(x.gemeldet||{was:was}, j.betrieb, !!x.abgesagt); else { g.disabled=false; fehler(x&&x.error); } })
+        .catch(function(){ g.disabled=false; fehler('Gerade nicht erreichbar. Bitte in einem Moment noch einmal versuchen.'); });
+    });
+  }).catch(function(){ fehler('Gerade nicht erreichbar. Bitte in einem Moment neu laden.'); });
+})();
+</script>
+</body>
+</html>

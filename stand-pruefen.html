@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Stand prüfen · clickzauber</title>
+<style>
+body{margin:0;background:#f5f2ea;color:#211d16;font:16px/1.5 system-ui,-apple-system,sans-serif}
+main{max-width:640px;margin:0 auto;padding:28px 18px}
+h1{font-size:22px;margin:0 0 6px}p.u{color:#5f584a;margin:0 0 20px}
+ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+li{background:#fffdf8;border:1px solid #e3ddd0;border-radius:14px;padding:14px 16px;display:grid;grid-template-columns:28px 1fr;gap:4px 10px}
+li b{font-size:15px}li small{grid-column:2;color:#5f584a}
+.ok{color:#2f7d59}.nein{color:#a8442f}.w{color:#8a6a1f}
+img{grid-column:2;width:72px;height:72px;border-radius:50%;background:#14120e;margin-top:6px}
+a{color:#2f7d59}
+</style>
+</head>
+<body>
+<main>
+<h1>Stand prüfen: Uncle’s Salon</h1>
+<p class="u">Prüft, ob die neuen Dateien wirklich auf clickzauber.de liegen. Grün = neu, rot = noch alt oder fehlt.</p>
+<ul id="l"></ul>
+</main>
+<script>
+/* Seit 17.10.2026: zeigt, welche Dateien für Uncle’s Salon auf IONOS und GitHub/Vercel noch alt sind. Liegt in der Wurzel, weil es Dateien von clickzauber.de lesen muss. */
+(function () {
+  var L = document.getElementById('l');
+  function zeile(ok, titel, text, extra) { var li = document.createElement('li'); li.innerHTML = '<span class="' + (ok === true ? 'ok' : ok === false ? 'nein' : 'w') + '">' + (ok === true ? '✓' : ok === false ? '✕' : '?') + '</span><b>' + titel + '</b><small>' + text + '</small>' + (extra || ''); L.appendChild(li); }
+  function hole(u) { return fetch(u + (u.indexOf('?') < 0 ? '?' : '&') + 'p=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.text() : null; }).catch(function () { return null; }); }
+  function bild(u) { return new Promise(function (ok) { var i = new Image(); i.onload = function () { ok(true); }; i.onerror = function () { ok(false); }; i.src = u + '?p=' + Date.now(); }); }
+  Promise.all([
+    hole('kunden/akten.js'), hole('js/cz-kundenakte.js'), hole('kunden/uncles-salon/webseite.html'), hole('verkaufsslides/w.js'),
+    bild('kunden/uncles-salon/logo-gold.png'), bild('kunden/uncles-salon/logo-rund.png'),
+    hole('https://clickzauber-api.vercel.app/w.js'),
+    fetch('https://clickzauber-api.vercel.app/api/config?widget=uncle-s-salon-2-0-vj0y&p=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.json(); }).catch(function () { return null; })
+  ]).then(function (x) {
+    var akten = x[0] || '', ka = x[1] || '', web = x[2] || '', vw = x[3] || '', gold = x[4], alt = x[5], pw = x[6] || '', cfg = x[7];
+    zeile(/logo-gold\.png/.test(akten) && !/Formular zum Vorführen', 'verkaufsslides\/inhaltsverzeichnis\.html\?v=uncles/.test(akten), 'IONOS: kunden/akten.js', /logo-gold/.test(akten) ? 'Neu.' : 'Noch alt. Ohne sie zeigt die Plattform das alte Logo und das Vorführ-Formular, und der Abgleich holt die alten Daten.');
+    zeile(/abgleichen/.test(ka) && /Formular aktualisieren/.test(ka), 'IONOS: js/cz-kundenakte.js', /Formular aktualisieren/.test(ka) ? 'Neu: Karte „Formular aktualisieren“ in der Akte.' : 'Noch alt. Dann fehlt in der Akte der Knopf „Mit der Akte abgleichen“.');
+    zeile(gold, 'IONOS: kunden/uncles-salon/logo-gold.png', gold ? 'Da.' : 'Fehlt. Ohne diese Datei hat das Formular kein Logo.', gold ? '<img src="kunden/uncles-salon/logo-gold.png" alt="">' : '');
+    zeile(!alt, 'IONOS: altes logo-rund.png gelöscht', alt ? 'Liegt noch da. Bitte im Ordner kunden/uncles-salon/ löschen (auch logo.jpg).' : 'Gelöscht.');
+    zeile(/logo-gold\.png/.test(web) && /impressum\.html/.test(web), 'IONOS: kunden/uncles-salon/webseite.html', /logo-gold/.test(web) ? 'Neu.' : 'Noch alt.');
+    zeile(/eineReihe/.test(vw), 'IONOS: verkaufsslides/w.js', /eineReihe/.test(vw) ? 'Neu.' : 'Noch alt.');
+    zeile(/eineReihe/.test(pw) && /eigen\.rand/.test(pw), 'GitHub/Vercel: public/w.js', /eineReihe/.test(pw) ? 'Neu (Kacheln in einer Reihe, goldener Rand).' : 'Noch alt. Bitte public/w.js zu GitHub, dann warten bis Vercel „Ready“.');
+    var th = cfg && cfg.theme || {}, n = cfg && cfg.termin && cfg.termin.leistungen ? cfg.termin.leistungen.length : 0;
+    var abgl = /logo-gold/.test(String(th.logo || '')) && n >= 10;
+    zeile(cfg ? abgl : null, 'Echtes Formular von Ilmir', cfg ? (abgl ? 'Abgeglichen: neues Logo, ' + n + ' Leistungen, Schrift ' + (th.font || '?') + '.' : 'Noch alt: ' + n + ' Leistungen, Logo ' + (String(th.logo || '').split('/').pop() || 'keins') + '. Erst wenn alles oben grün ist: Plattform → Akte Uncle’s → „Mit der Akte abgleichen“.') : 'Konnte nicht gelesen werden.');
+  });
+})();
+</script>
+</body>
+</html>

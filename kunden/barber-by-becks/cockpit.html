@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barber by Becks · 14-Tage-Demo · clickzauber</title>
+<meta name="robots" content="noindex, nofollow">
+<style>html,body{margin:0;height:100%;background:#faf7f0}iframe{display:block;width:100%;height:100%;border:0;visibility:hidden}iframe.da{visibility:visible}</style>
+</head>
+<body>
+<iframe id="f" title="14-Tage-Demo Friseur"></iframe>
+<script>
+/* Amars Cockpit zum Vorführen, so wie es bei ihm startet (seit 10.10.2026 leer): keine Beispiel-Anfragen, Termine, Zahlen und kein Team, Mitarbeiter ist nur Amar.
+   Leistungen und Arbeitstage kommen aus kunden/akten.js (&leer=1, js/cz-demo-branchen.js). Ein Formular, Pilotbetrieb, Name des Betriebs aus ?betrieb= (sonst „Barber by Becks“).
+   Läuft ohne Server mit den Dateien aus dem Projekt. Kundenakte: index.html in diesem Ordner. */
+(function () {
+  var B = 'friseur', BSP = 'Barber by Becks';
+  var q = new URLSearchParams(location.search), name = (q.get('betrieb') || '').trim() || BSP;
+  /* In der Vorschau braucht jede Datei das Zeichen t= aus der eigenen Adresse (wie im Test-Cockpit). */
+  var vq = location.search.replace(/^\?/, '').split('&').filter(function (x) { return x && !/^betrieb=/.test(x); }).join('&');
+  var f = document.getElementById('f');
+  f.src = '../../clickzauber-cockpit-live.html?demo=1&rahmen=1&branche=' + B + '&probe=' + encodeURIComponent(name) + '&vorname=Amar&nachname=Litric&leer=1' + (vq ? '&' + vq : '');
+  document.title = name + ' · 14-Tage-Demo · clickzauber';
+  /* „Beispieldaten — kein Server“ ist für die Vorführung zu technisch. Dort steht nur „Beispieldaten“. */
+  var n = 0;
+  setTimeout(function () { f.className = 'da'; }, 5000);
+  (function p() {
+    var d, lb; try { d = f.contentWindow.document; } catch (e) { f.className = 'da'; return; }
+    if (!d || !(lb = d.querySelector('.top .live'))) { if (++n < 300) setTimeout(p, 100); return; }
+    var fix = function () { if (/kein Server/.test(lb.textContent)) lb.innerHTML = '<span class="dot"></span>Beispieldaten'; };
+    fix(); new f.contentWindow.MutationObserver(fix).observe(lb, { childList: true, characterData: true, subtree: true });
+    setTimeout(function () { f.className = 'da'; }, 400);
+  })();
+})();
+</script>
+</body>
+</html>

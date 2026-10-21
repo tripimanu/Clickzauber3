@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Abfrage-Architektur: Anfrageformular &amp; Online-Terminbuchung | clickzauber</title>
+<link rel="canonical" href="https://clickzauber.de/">
+<meta name="description" content="Abfrage-Architektur für Betriebe: Kunden fragen an oder buchen online, alles landet in einem Cockpit. Für Friseure, Kosmetik, Food Trucks, Locations, Handwerk.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="clickzauber">
+<meta property="og:locale" content="de_DE">
+<meta property="og:url" content="https://clickzauber.de/">
+<meta property="og:title" content="clickzauber – Abfrage-Architektur für Anfragen &amp; Online-Termine">
+<meta property="og:description" content="Abfrage-Architektur für Betriebe: Kunden fragen an oder buchen online, alles landet in einem Cockpit. Für Friseure, Kosmetik, Food Trucks, Locations, Handwerk.">
+<meta property="og:image" content="https://clickzauber.de/assets/og-clickzauber.jpg">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#f5f2ea">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="clickzauber">
+<link rel="manifest" href="site.webmanifest">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="assets/cz-favicon-32.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/cz-apple-180.png?v=2">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://clickzauber.de/#org","name":"clickzauber","url":"https://clickzauber.de/","logo":"https://clickzauber.de/assets/logo.png","description":"Abfrage-Architektur für Anfragen und Online-Termine von Betrieben","email":"projekt@clickzauber.de","address":{"@type":"PostalAddress","addressLocality":"Lindau am Bodensee","addressCountry":"DE"}},{"@type":"WebSite","@id":"https://clickzauber.de/#website","name":"clickzauber","url":"https://clickzauber.de/","inLanguage":"de-DE","publisher":{"@id":"https://clickzauber.de/#org"}}]}</script>
+<template id="__bundler_thumbnail" data-bg-color="#f5f2ea"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#f5f2ea"></rect><rect x="30" y="30" width="40" height="40" rx="11" fill="#2f7d59"></rect></svg></template>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@400;500;600;700&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{--bg:#f5f2ea;--card:#fff;--ink:#27241d;--ink-2:rgba(34,31,24,.68);--ink-3:rgba(34,31,24,.5);--line:rgba(34,31,24,.13);--accent:#2f7d59;--accent-d:#236446;--bad:#a8432f;--fd:"Figtree","Segoe UI",system-ui,sans-serif;--fs:"Lora",Georgia,serif}
+html,body{margin:0;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--fd);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100dvh;display:flex;flex-direction:column}
+a{color:var(--accent)}a:hover{color:var(--accent-d)}
+main{flex:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,400px);gap:clamp(40px,7vw,96px);align-items:center;max-width:1040px;width:100%;margin:0 auto;padding:clamp(40px,9vh,110px) clamp(20px,5vw,48px) 40px}
+@media(max-width:860px){main{grid-template-columns:minmax(0,1fr);gap:34px;max-width:440px;padding-top:calc(env(safe-area-inset-top) + 44px)}}
+.marke{display:flex;align-items:center;gap:13px;margin:0 0 26px}
+.marke .mk{width:46px;height:46px;border-radius:14px;background:var(--accent);color:#fff;display:grid;place-items:center;flex:0 0 auto}
+.marke b{font-size:24px;font-weight:700;letter-spacing:-.02em}
+svg.cz-mark{width:62%;height:62%;display:block}
+h1{font-size:clamp(30px,4.2vw,46px);line-height:1.12;letter-spacing:-.025em;font-weight:600;margin:0;text-wrap:balance}
+h1 em,.inhalt h2 em{font-family:var(--fs);font-style:italic;font-weight:500;letter-spacing:0;color:var(--accent)}
+.unter{margin:18px 0 0;color:var(--ink-2);font-size:clamp(16px,1.6vw,18.5px);max-width:40ch;text-wrap:pretty}
+.mehr-link{display:inline-flex;align-items:center;gap:6px;margin:20px 0 0;font-size:15.5px;font-weight:600;text-decoration:none;min-height:44px}
+.mehr-link:hover{text-decoration:underline}.mehr-link svg{width:18px;height:18px}
+@media(max-width:860px){.links-seite{text-align:center}.marke{justify-content:center}.unter{margin-left:auto;margin-right:auto}}
+.karte{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 24px 22px;box-shadow:0 30px 60px -36px rgba(60,45,20,.35)}
+form{display:flex;flex-direction:column;gap:12px}
+input{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:15px 16px;min-height:54px;transition:border-color .15s}
+input::placeholder{color:var(--ink-3)}
+input:focus{outline:none;border-color:var(--accent)}
+.pw{position:relative}.pw input{padding-right:56px}
+.auge{position:absolute;right:5px;top:50%;transform:translateY(-50%);width:44px;height:44px;border:0;background:none;border-radius:10px;color:var(--ink-3);display:grid;place-items:center;cursor:pointer}
+.auge:hover{color:var(--ink)}.auge svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7}
+.knopf{font:inherit;font-size:17px;font-weight:600;border:0;border-radius:12px;min-height:54px;padding:0 20px;cursor:pointer;background:var(--accent);color:#fff;transition:background .15s}
+.knopf:hover{background:var(--accent-d)}.knopf[disabled]{opacity:.6;cursor:default}
+a.knopf{color:#fff;text-decoration:none}a.knopf:hover{color:#fff}
+.vergessen{display:block;text-align:center;font-size:14.5px;margin:14px 0 0;text-decoration:none}
+.vergessen:hover{text-decoration:underline}
+.meld{border-radius:12px;padding:12px 14px;font-size:14.5px;line-height:1.5;background:color-mix(in oklab,var(--bad) 9%,#fff);border:1px solid color-mix(in oklab,var(--bad) 30%,transparent);color:var(--bad);text-wrap:pretty}
+.meld[hidden]{display:none}
+.trenn{height:1px;background:var(--line);margin:20px 0 18px}
+.einl{text-align:center}
+.einl b{display:block;font-size:15.5px;font-weight:600}
+.knopf.neu,.knopf.zweit{display:flex;align-items:center;justify-content:center;text-decoration:none;margin:12px 0 0;background:transparent;color:var(--accent);border:1.5px solid var(--accent)}.knopf.neu:hover,.knopf.zweit:hover{background:var(--accent);color:#fff}
+.inhalt{max-width:1040px;width:100%;margin:0 auto;padding:clamp(64px,9vw,112px) clamp(20px,5vw,48px) 0;scroll-margin-top:12px}
+.inhalt h2{font-size:clamp(27px,3.2vw,38px);line-height:1.14;letter-spacing:-.022em;font-weight:600;margin:0 0 14px;max-width:24ch;text-wrap:balance}
+.inhalt h3{font-size:18px;line-height:1.3;letter-spacing:-.01em;font-weight:600;margin:0 0 6px}
+.vor{margin:0;color:var(--ink-2);max-width:62ch;text-wrap:pretty}
+.drei{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,3.4vw,40px);margin:40px 0 0}
+.drei>div{border-top:1px solid rgba(34,31,24,.3);padding-top:16px}
+.drei p,.branchen p{margin:0;font-size:15.5px;color:var(--ink-2);text-wrap:pretty}
+.branchen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:34px 0 0;padding:0;list-style:none}
+.branchen li{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 20px 22px}
+.auch{margin:18px 0 0;font-size:15.5px;color:var(--ink-2)}
+.fragen{margin:26px 0 0;border-top:1px solid var(--line);max-width:760px}
+.fragen details{border-bottom:1px solid var(--line)}
+.fragen summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:17px 0;min-height:44px;font-weight:600;font-size:17px}
+.fragen summary::-webkit-details-marker{display:none}
+.fragen summary::after{content:"+";flex:0 0 auto;font-size:24px;font-weight:400;line-height:1;color:var(--accent)}
+.fragen details[open] summary::after{content:"–"}
+.fragen summary:hover{color:var(--accent)}
+.fragen details p{margin:-4px 0 18px;color:var(--ink-2);max-width:62ch;text-wrap:pretty}
+.schluss{padding-bottom:clamp(56px,8vw,96px)}
+.schluss-k{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 48px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(26px,4vw,44px)}
+.schluss-k h2{margin-bottom:10px}
+.schluss-k p{margin:0;color:var(--ink-2);max-width:50ch;text-wrap:pretty}
+.schluss-w{display:flex;flex-direction:column;gap:10px;min-width:220px}
+.schluss-w .knopf{display:flex;align-items:center;justify-content:center;margin:0}
+@media(max-width:960px){.branchen{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.drei,.branchen{grid-template-columns:minmax(0,1fr)}.drei{gap:26px}.schluss-k{grid-template-columns:minmax(0,1fr)}.schluss-w{min-width:0}}
+footer{display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:center;padding:22px 20px calc(env(safe-area-inset-bottom) + 22px);font-size:13.5px;color:var(--ink-3)}
+footer a{color:var(--ink-3);text-decoration:none}footer a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+<main>
+<section class="links-seite">
+<div class="marke"><span class="mk"><svg class="cz-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="4.4" fill="currentColor"></circle><path d="M16 5.6a10.4 10.4 0 0 1 10.4 10.4" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path><path d="M16 26.4A10.4 10.4 0 0 1 5.6 16" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></svg></span><b>clickzauber</b></div>
+<h1>Anfragen und Online-Termine für Ihren Betrieb, <em>an einem Ort.</em></h1>
+<p class="unter">clickzauber ist eine Abfrage-Architektur: Ihr Formular für Website, Instagram und WhatsApp fragt alles Wichtige ab, und jede Anfrage landet vollständig in Ihrem Cockpit.</p>
+<a class="mehr-link" href="#was">Mehr erfahren<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg></a>
+</section>
+<section class="karte" aria-label="Anmelden">
+<form id="f" autocomplete="on" novalidate>
+<div class="meld" id="meld" role="alert" hidden></div>
+<input type="email" id="mail" name="email" autocomplete="username" inputmode="email" placeholder="E-Mail-Adresse" required>
+<div class="pw"><input type="password" id="pw" name="password" autocomplete="current-password" placeholder="Passwort" required><button type="button" class="auge" id="auge" aria-label="Passwort anzeigen"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></div>
+<button type="submit" class="knopf" id="los">Anmelden</button>
+</form>
+<a class="vergessen" id="vergessen" href="clickzauber-login.html?vergessen=1">Passwort vergessen?</a>
+<div class="trenn"></div>
+<div class="einl">
+<b>Noch kein Konto?</b>
+<a class="knopf neu" id="neu" href="clickzauber-anmelden.html">Konto anlegen</a>
+</div>
+</section>
+</main>
+<section class="inhalt" id="was" aria-labelledby="h-was">
+<h2 id="h-was">Die Abfrage-Architektur für Anfragen <em>und Termine.</em></h2>
+<p class="vor">Kunden schreiben per WhatsApp, rufen an oder schicken eine E-Mail. Oft fehlt dabei das Wichtigste: welcher Tag, welche Leistung, wie viele Personen. clickzauber fragt das vorher ab, Schritt für Schritt und mit den Fragen Ihrer Branche. Weil die Fragen aufeinander aufbauen, nennen wir das eine Abfrage-Architektur. Bei Ihnen kommt die fertige Anfrage an, als Mitteilung aufs Handy, als E-Mail und im Cockpit.</p>
+<div class="drei">
+<div><h3>Vollständige Anfragen</h3><p>Datum, Leistung, Personenzahl und Wünsche stehen in jeder Anfrage. Sie müssen seltener nachfragen und können schneller zusagen.</p></div>
+<div><h3>Alles an einem Ort</h3><p>Ob Website, Instagram-Bio, Google-Profil oder QR-Code am Tresen: Alle Anfragen landen im selben Cockpit, auf Handy, Tablet und Computer.</p></div>
+<div><h3>Termine, die halten</h3><p>Kunden buchen freie Zeiten online und bekommen eine Bestätigung per E-Mail. Am Vortag erinnert clickzauber sie. Absagen oder einen anderen Tag wünschen geht über einen Link in der Bestätigung.</p></div>
+</div>
+</section>
+<section class="inhalt" id="branchen" aria-labelledby="h-br">
+<h2 id="h-br">Vorlagen für Ihre <em>Branche.</em></h2>
+<p class="vor">Für jede Branche gibt es eine fertige Vorlage mit den passenden Fragen. Leistungen, Preise und Zeiten passen Sie selbst an.</p>
+<ul class="branchen">
+<li><h3>Friseur und Barbier</h3><p>Online-Terminbuchung mit Leistung, Mitarbeiter und freier Uhrzeit. Dauer und Preis rechnet das Formular aus den gewählten Leistungen aus.</p></li>
+<li><h3>Kosmetik, Nägel und Wimpern</h3><p>Für Kosmetik-, Nagel- und Wimpernstudios: Behandlungen online buchen lassen, mit Ihren Preisen und Zeiten.</p></li>
+<li><h3>Food Truck und Catering</h3><p>Anfragen mit Datum, Personenzahl und Wünschen zum Essen. Passt der Tag nicht, schlagen Sie einen anderen vor.</p></li>
+<li><h3>Hochzeits- und Eventlocations</h3><p>Brautpaare und Firmen sehen gleich, ob ihr Wunschtermin frei ist. Bei Ihnen kommt die Anfrage mit Gästezahl und Wünschen an.</p></li>
+<li><h3>Handwerk und Solar</h3><p>Anfragen mit allen Angaben zum Auftrag. Auf Wunsch sieht der Kunde vorab einen Richtwert für den Preis.</p></li>
+<li><h3>Makler und Beratung</h3><p>Anfragen mit Anliegen und Kontaktdaten, damit Sie vorbereitet ins erste Gespräch gehen.</p></li>
+</ul>
+<p class="auch">Außerdem für DJs, Foto und Video, Floristik und Konditoreien.</p>
+</section>
+<section class="inhalt" id="fragen" aria-labelledby="h-fr">
+<h2 id="h-fr">Häufige Fragen</h2>
+<div class="fragen">
+<details><summary>Brauche ich eine eigene Website?</summary><p>Nein. Ihr Formular hat eine eigene Seite mit Link und QR-Code. Den Link teilen Sie in der Instagram-Bio, im Google-Profil oder per WhatsApp.</p></details>
+<details><summary>Wie kommt das Formular auf meine Website?</summary><p>Mit einer Zeile Code. Das geht mit WordPress, Wix, Jimdo, Squarespace, Webflow, Shopify und jeder eigenen Seite. Wie es Schritt für Schritt geht, steht in der <a href="einbauen.html">Einbau-Anleitung</a>.</p></details>
+<details><summary>Muss ich etwas installieren?</summary><p>Nein. Das Cockpit läuft im Browser, auf Handy, Tablet und Computer. Neue Anfragen kommen per E-Mail und auf Wunsch als Mitteilung aufs Handy.</p></details>
+<details><summary>Wo liegen die Daten meiner Kunden?</summary><p>Gespeichert wird in der EU, in Frankfurt am Main. Den Vertrag zur Auftragsverarbeitung nach DSGVO finden Sie im <a href="av-vertrag.html">AV-Vertrag</a>, alles Weitere in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p></details>
+<details><summary>Kann ich clickzauber vorher ausprobieren?</summary><p>Ja. Ein Konto anlegen und Ihr Formular einrichten kostet nichts, bezahlt wird erst beim Live-Schalten. Oder Sie schreiben an <a href="mailto:projekt@clickzauber.de">projekt@clickzauber.de</a> und bekommen eine eigene Demo mit Ihrem Betriebsnamen, sieben Tage lang.</p></details>
+</div>
+</section>
+<section class="inhalt schluss" aria-labelledby="h-sc">
+<div class="schluss-k">
+<div><h2 id="h-sc">Ihr Formular, <em>Ihre Fragen.</em></h2><p>Branche wählen, Leistungen und Preise eintragen, Aussehen festlegen. Live schalten Sie es, wenn alles stimmt.</p></div>
+<div class="schluss-w"><a class="knopf" href="clickzauber-anmelden.html">Konto anlegen</a><a class="knopf zweit" href="mailto:projekt@clickzauber.de">Frage per E-Mail</a></div>
+</div>
+</section>
+<footer><span>© clickzauber</span><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a><a href="barrierefreiheit.html">Barrierefreiheit</a></footer>
+<script>
+(function(){
+  var API='https://clickzauber-api.vercel.app/api', COCKPIT='clickzauber-cockpit-live.html';
+  var q=new URLSearchParams(location.search);
+  function $(id){ return document.getElementById(id); }
+  function hole(k){ try{ return localStorage.getItem(k)||''; }catch(e){ return ''; } }
+  function merke(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+  function weiter(){ var z=hole('cz_ziel'); location.href=z?('clickzauber-anmelden.html?ziel='+encodeURIComponent(z)):COCKPIT; }
+  /* Schon angemeldet: direkt ins Cockpit */
+  if(hole('cz_user_token')&&!q.get('abgemeldet')){ weiter(); return; }
+  var m=hole('cz_user_email'); if(m) $('mail').value=m;
+  (m?$('pw'):$('mail')).focus&&matchMedia('(min-width:860px)').matches&&(m?$('pw'):$('mail')).focus();
+  function meld(t){ $('meld').textContent=t; $('meld').hidden=!t; }
+  $('auge').onclick=function(){ var i=$('pw'); i.type=i.type==='password'?'text':'password'; this.setAttribute('aria-label',i.type==='password'?'Passwort anzeigen':'Passwort verbergen'); };
+  $('vergessen').onclick=function(){ var e=$('mail').value.trim(); if(e) this.href='clickzauber-login.html?vergessen=1&email='+encodeURIComponent(e); };
+  $('f').addEventListener('submit',function(ev){
+    ev.preventDefault(); meld('');
+    var email=$('mail').value.trim().toLowerCase(), pw=$('pw').value;
+    if(!email){ meld('Bitte geben Sie Ihre E-Mail-Adresse ein.'); $('mail').focus(); return; }
+    if(!pw){ meld('Bitte geben Sie Ihr Passwort ein.'); $('pw').focus(); return; }
+    var b=$('los'); b.disabled=true; b.textContent='Wird angemeldet …';
+    fetch(API+'/auth/anmelden',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,passwort:pw})})
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        b.disabled=false; b.textContent='Anmelden';
+        if(j.ok){ merke('cz_user_token',j.token); merke('cz_user_email',j.email); if(j.vorname) merke('cz_user_vorname',j.vorname); weiter(); return; }
+        merke('cz_user_email',email);
+        if(j.nicht_bestaetigt){ meld('Ihre E-Mail-Adresse ist noch nicht bestätigt. Bitte klicken Sie auf den Link in der E-Mail, die wir Ihnen geschickt haben.'); return; }
+        if(j.kein_konto){ meld('Zu dieser Adresse gibt es noch kein Konto. Tippen Sie unten auf „Konto anlegen“.'); $('neu').href='clickzauber-anmelden.html?email='+encodeURIComponent(email); return; }
+        if(j.kein_passwort){ location.href='clickzauber-login.html?vergessen=1&email='+encodeURIComponent(email); return; }
+        meld(j.error||'Anmeldung nicht möglich. Bitte prüfen Sie E-Mail und Passwort.');
+      })
+      .catch(function(){ b.disabled=false; b.textContent='Anmelden'; meld('Keine Verbindung zum Server. Bitte prüfen Sie Ihr Internet und versuchen Sie es noch einmal.'); });
+  });
+})();
+</script>
+</body>
+</html>

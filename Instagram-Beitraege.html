@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Instagram-Beiträge — clickzauber</title>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@300;400;500;600;700&family=Lora:ital,wght@1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{--bg:#f0e9dc;--card:#fff;--card-2:#f6f0e3;--ink:#27241d;--ink-2:rgba(34,31,24,.66);--ink-3:rgba(34,31,24,.46);--line:rgba(34,31,24,.12);--line-2:rgba(34,31,24,.2);--accent:#2f7d59;--accent-2:#4fa87c;--warn:#a8543c;--creme:#f9f6ef;--fd:"Figtree","Segoe UI",system-ui,sans-serif;--fm:"IBM Plex Mono",ui-monospace,monospace;--fs:"Lora",Georgia,serif}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--fd);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}a:hover{color:#245f44}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.024em}
+.accent{font-family:var(--fs);font-style:italic;font-weight:500;letter-spacing:0;color:var(--accent)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+.eyebrow{font-family:var(--fm);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:11px;margin:0 0 16px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--accent)}
+header.top{padding:clamp(40px,6vw,72px) 0 clamp(22px,3vw,32px)}
+header.top h1{font-size:clamp(28px,4.2vw,46px);line-height:1.07;letter-spacing:-.034em;font-weight:700;text-wrap:balance}
+header.top p{color:var(--ink-2);max-width:60ch;margin:18px 0 0;text-wrap:pretty}
+section.blk{border-top:1px solid var(--line);padding:clamp(30px,4.4vw,52px) 0}
+section.blk>.wrap>h2{font-size:clamp(20px,2.6vw,28px);text-wrap:balance}
+section.blk>.wrap>.lead{color:var(--ink-2);max-width:66ch;margin:11px 0 0;font-size:16px;text-wrap:pretty}
+.mlab{font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.karte{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 17px}
+.karte h3{font-size:16px;margin-bottom:6px}
+.karte p{margin:0;font-size:14.5px;color:var(--ink-2);text-wrap:pretty}
+.karte p+p{margin-top:8px}
+.karte.warn{background:color-mix(in srgb,var(--warn) 5%,var(--card));border-color:color-mix(in srgb,var(--warn) 32%,transparent)}
+.karte.warn h3{color:var(--warn)}
+.karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:22px 0 0}
+
+/* Beitragsplan */
+.plan{display:flex;flex-direction:column;gap:2px;margin:22px 0 0}
+.plan .z{display:grid;grid-template-columns:64px 1fr 130px;gap:16px;align-items:start;padding:14px 0;border-bottom:1px solid var(--line)}
+.plan .z:last-child{border:none}
+.plan .nr{font-family:var(--fm);font-size:11px;letter-spacing:.1em;color:var(--accent);padding-top:3px}
+.plan .t b{display:block;font-size:15.5px;font-weight:650;letter-spacing:-.012em}
+.plan .t span{display:block;font-size:14px;color:var(--ink-2);margin-top:3px;text-wrap:pretty}
+.plan .art{font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding-top:4px;text-align:right}
+@media(max-width:620px){.plan .z{grid-template-columns:48px 1fr}.plan .art{grid-column:2;text-align:left;padding-top:6px}}
+
+/* Vorlagen: echte 1080x1440, herunterskaliert dargestellt */
+.vorlagen{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:clamp(14px,2.4vw,26px);margin:26px 0 0}
+.huelle{position:relative;width:100%;aspect-ratio:3/4;border-radius:10px;overflow:hidden;box-shadow:0 16px 40px -28px rgba(34,31,24,.55)}
+.post{position:absolute;top:0;left:0;width:1080px;height:1440px;transform-origin:0 0;background:var(--accent);color:var(--creme);display:flex;flex-direction:column}
+.post .kopf{padding:74px 74px 0;flex:0 0 auto}
+.post .kopf .kl{font-family:var(--fm);font-size:25px;letter-spacing:.18em;text-transform:uppercase;color:rgba(249,246,239,.7);margin-bottom:26px}
+.post .kopf h4{font-size:76px;line-height:1.08;letter-spacing:-.03em;font-weight:700;margin:0;text-wrap:balance}
+.post .kopf p{margin:22px 0 0;font-size:34px;line-height:1.42;color:rgba(249,246,239,.86);text-wrap:pretty}
+.post .bild{flex:1 1 auto;margin:52px 74px 0;position:relative;min-height:0;border-radius:20px;overflow:hidden;background:rgba(12,32,22,.35)}
+.post .fuss{flex:0 0 auto;padding:34px 74px 44px;display:flex;align-items:baseline;gap:18px;font-family:var(--fm);font-size:24px;letter-spacing:.13em;text-transform:uppercase;color:rgba(249,246,239,.62)}
+.post .fuss b{color:var(--creme);font-weight:600;letter-spacing:.06em}
+.post .fuss span{margin-left:auto}
+.post.creme{background:var(--creme);color:var(--ink)}
+.post.creme .kopf .kl{color:var(--accent)}
+.post.creme .kopf p{color:var(--ink-2)}
+.post.creme .bild{background:rgba(34,31,24,.07)}
+.post.creme .fuss{color:var(--ink-3)}
+.post.creme .fuss b{color:var(--accent)}
+.post.dunkel{background:#1a1813}
+.vt{margin:11px 0 0}
+.vt .mlab{display:block;margin-bottom:5px}
+.vt p{margin:0;font-size:14px;color:var(--ink-2);line-height:1.55;text-wrap:pretty}
+image-slot{display:block;width:100%;height:100%}
+.reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;margin:26px 0 0;background:#000;padding:3px;border-radius:12px}
+.reihe .huelle{border-radius:0;box-shadow:none}
+.post.kr{display:block;background:var(--accent)}
+
+/* Karussell */
+.kar{display:flex;gap:12px;overflow-x:auto;padding:24px 0 10px;scroll-snap-type:x mandatory}
+.kar>div{flex:0 0 232px;scroll-snap-align:start}
+.kar .huelle{aspect-ratio:3/4}
+.kar .cap{font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-top:8px}
+
+/* Drehbuch */
+.dreh{display:flex;flex-direction:column;gap:2px;margin:24px 0 0}
+.dreh .z{display:grid;grid-template-columns:88px 1fr;gap:18px;align-items:start;padding:15px 0;border-bottom:1px solid var(--line)}
+.dreh .z:last-child{border:none}
+.dreh .t{font-family:var(--fm);font-size:12px;letter-spacing:.08em;color:var(--accent);padding-top:3px;white-space:nowrap}
+.dreh .w b{display:block;font-size:15.5px;font-weight:650;margin-bottom:4px}
+.dreh .w p{margin:0;font-size:14.5px;color:var(--ink-2);text-wrap:pretty}
+.dreh .w em{font-style:normal;display:block;margin-top:6px;padding-left:13px;border-left:2px solid var(--accent-2);font-size:14.5px;color:var(--ink)}
+ol.schritte{counter-reset:s;list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:2px;max-width:72ch}
+ol.schritte li{counter-increment:s;display:grid;grid-template-columns:auto 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);font-size:15.5px;text-wrap:pretty}
+ol.schritte li:last-child{border:none}
+ol.schritte li::before{content:counter(s);font-family:var(--fm);font-size:12px;color:var(--accent);border:1px solid var(--accent);border-radius:50%;width:28px;height:28px;display:grid;place-items:center}
+ol.schritte b{font-weight:650}
+.feld{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0 0}
+.feld .mlab{display:block;margin-bottom:8px}
+.feld pre{margin:0;font-family:var(--fd);font-size:15px;line-height:1.55;white-space:pre-wrap;text-wrap:pretty}
+.feld .fz{display:flex;align-items:center;gap:12px;margin-top:11px;padding-top:10px;border-top:1px solid var(--line)}
+.feld .fz span{font-family:var(--fm);font-size:11px;letter-spacing:.06em;color:var(--ink-3);margin-right:auto}
+.kop{font:inherit;font-size:12px;font-weight:600;font-family:var(--fm);letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--line-2);border-radius:8px;padding:7px 11px;min-height:34px;color:var(--ink-2);cursor:pointer;white-space:nowrap}
+.kop:hover{border-color:var(--accent);color:var(--accent)}
+footer.end{border-top:1px solid var(--line);padding:clamp(32px,4.4vw,52px) 0 clamp(48px,7vw,84px)}
+footer.end p{color:var(--ink-2);max-width:64ch;text-wrap:pretty}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+<div class="eyebrow">Instagram · Beiträge</div>
+<h1>Acht Beiträge, <span class="accent">ein Video</span>, fertige Vorlagen.</h1>
+<p>Bilder und Videos kann ich nicht erzeugen. Was hier steht, ist die Bühne dafür: Vorlagen in Instagram-Maß, in die Sie echte Bildschirmfotos ziehen, dazu die Texte und ein Drehbuch, das Sie mit dem Telefon abfilmen.</p>
+</div></header>
+
+<section class="blk"><div class="wrap">
+<h2>Der Plan</h2>
+<p class="lead">Reihenfolge von oben nach unten. Nicht alles auf einmal — zwei Beiträge pro Woche reichen, sonst haben Sie in vier Wochen nichts mehr zu zeigen.</p>
+<div class="plan">
+<div class="z"><div class="nr">01</div><div class="t"><b>Das Widget, wie der Gast es sieht</b><span>Bildschirmfoto vom Handy: eine Frage, zwei Antwortmöglichkeiten. Kein ganzer Ablauf, eine Frage.</span></div><div class="art">Einzelbild</div></div>
+<div class="z"><div class="nr">02</div><div class="t"><b>Die Anfrage, die ankommt</b><span>Die Mail im Postfach, alle Felder gefüllt. Daneben die typische Anfrage ohne alles: „Hallo, was kostet eine Hochzeit?“</span></div><div class="art">Zwei Bilder</div></div>
+<div class="z"><div class="nr">03</div><div class="t"><b>Das Cockpit</b><span>Die Anfrageliste. Namen unkenntlich machen, Zahlen stehen lassen.</span></div><div class="art">Einzelbild</div></div>
+<div class="z"><div class="nr">04</div><div class="t"><b>Was das Cockpit kann</b><span>Fünf Bilder hintereinander: Anfrageliste, Anfrage-Blatt, Angebot, Kalender, Zahlen.</span></div><div class="art">Karussell · 5</div></div>
+<div class="z"><div class="nr">05</div><div class="t"><b>Wie es funktioniert</b><span>Vierzig Sekunden vom Klick des Gastes bis zur Anfrage in Ihrem Cockpit. Drehbuch steht unten.</span></div><div class="art">Video</div></div>
+<div class="z"><div class="nr">06</div><div class="t"><b>Die Pilotphase</b><span>Kostenlos für die ersten vier Betriebe. Keine Tabelle, kein Kleingedrucktes.</span></div><div class="art">Einzelbild</div></div>
+<div class="z"><div class="nr">07</div><div class="t"><b>Der Einbau</b><span>Eine Zeile Code auf dem Bildschirm. Darunter: „Das ist alles. Zwei Minuten für Ihren Webbetreuer.“</span></div><div class="art">Einzelbild</div></div>
+<div class="z"><div class="nr">08</div><div class="t"><b>Wer dahinter steht</b><span>Ein Foto von Ihnen. Nicht im Anzug, am Arbeitsplatz. Der Beitrag mit den meisten Nachrichten.</span></div><div class="art">Einzelbild</div></div>
+</div>
+</div></section>
+
+<section class="blk"><div class="wrap">
+<h2>Vorlagen — Bilder hier hineinziehen</h2>
+<p class="lead">Jede Vorlage ist 1080 × 1440 Pixel groß, also genau das Maß, das Instagram im Profil zeigt. Ziehen Sie ein Bildschirmfoto auf die dunkle Fläche. Doppelklick öffnet den Ausschnitt, dann können Sie schieben und zoomen.</p>
+<div class="vorlagen">
+
+<div>
+<div class="huelle"><div class="post" data-p>
+<div class="kopf"><div class="kl">01 · Das Widget</div><h4>So fragt ein Gast bei Ihnen an.</h4><p>Vier Fragen, ein Preis. Ohne dass Sie einmal antworten müssen.</p></div>
+<div class="bild"><image-slot id="ig-widget" src="NICHT-HOCHLADEN/instagram/bilder/widget.png" shape="rounded" radius="20" placeholder="Bildschirmfoto vom Widget auf dem Handy"></image-slot></div>
+<div class="fuss"><b>clickzauber</b><span>clickzauber.de</span></div>
+</div></div>
+<div class="vt"><span class="mlab">Aufnehmen</span><p>Handy, <code>clickzauber.de</code>, zum Widget scrollen. Eine Frage auswählen, sodass eine Antwort grün markiert ist. Bildschirmfoto — nicht die ganze Seite, nur die Widget-Karte.</p></div>
+</div>
+
+<div>
+<div class="huelle"><div class="post creme" data-p>
+<div class="kopf"><div class="kl">02 · Die Anfrage</div><h4>Links: was normalerweise kommt. Rechts: was Sie bekommen.</h4></div>
+<div class="bild"><image-slot id="ig-mail" src="NICHT-HOCHLADEN/instagram/bilder/mail.png" shape="rounded" radius="20" placeholder="Zwei Postfach-Ausschnitte nebeneinander"></image-slot></div>
+<div class="fuss"><b>clickzauber</b><span>clickzauber.de</span></div>
+</div></div>
+<div class="vt"><span class="mlab">Aufnehmen</span><p>Zwei Bildschirmfotos: eine echte Kurzanfrage („Was kostet das?“) und eine clickzauber-Mail mit allen Feldern. In einem Bildbearbeitungsprogramm nebeneinander legen, Namen und Adressen überstreichen.</p></div>
+</div>
+
+<div>
+<div class="huelle"><div class="post dunkel" data-p>
+<div class="kopf"><div class="kl">03 · Das Cockpit</div><h4>Alle Anfragen an einer Stelle.</h4><p>Mit Datum, Gästezahl und Richtwert — bevor Sie zurückschreiben.</p></div>
+<div class="bild"><image-slot id="ig-cockpit" src="NICHT-HOCHLADEN/instagram/bilder/cockpit.png" shape="rounded" radius="20" placeholder="Bildschirmfoto der Anfrageliste"></image-slot></div>
+<div class="fuss"><b>clickzauber</b><span>clickzauber.de</span></div>
+</div></div>
+<div class="vt"><span class="mlab">Aufnehmen</span><p>Cockpit am Rechner, Ansicht <b>Anfragen</b>. Vorher jeden Namen durch einen erfundenen ersetzen — direkt im Browser mit Rechtsklick, <b>Untersuchen</b>, Text überschreiben. Zahlen unverändert lassen, die sind das Argument.</p></div>
+</div>
+
+<div>
+<div class="huelle"><div class="post" data-p>
+<div class="kopf"><div class="kl">06 · Pilotphase</div><h4>Kostenlos für die ersten vier Betriebe.</h4><p>Formular bauen, live schalten, nichts bezahlen.</p></div>
+<div class="bild"><image-slot id="ig-preis" src="NICHT-HOCHLADEN/instagram/bilder/preis.png" shape="rounded" radius="20" placeholder="Optional: Bildschirmfoto der Tarifkarten"></image-slot></div>
+<div class="fuss"><b>clickzauber</b><span>clickzauber.de</span></div>
+</div></div>
+<div class="vt"><span class="mlab">Ohne Bild</span><p>Diese Vorlage funktioniert auch leer — dann ist der untere Teil eine ruhige Fläche. Sagen Sie mir Bescheid, dann nehme ich die Bildfläche raus und mache die Zahl größer.</p></div>
+</div>
+
+</div>
+<div class="karten">
+<div class="karte warn"><h3>Vorher unkenntlich machen</h3><p>Echte Namen, E-Mail-Adressen, Telefonnummern. Auch in der Fußzeile des Postfachs und in der Adresszeile des Browsers. Ein einziger echter Name in einem Beitrag ist ein Datenschutzverstoß, und ausgerechnet Sie verkaufen Verlässlichkeit.</p></div>
+<div class="karte"><h3>Zahlen dürfen bleiben</h3><p>Gästezahlen, Richtwerte, Termine. Das ist der Inhalt, der überzeugt. Nur wenn eine Zahl mit einem echten Namen zusammen steht, muss der Name weg — nicht die Zahl.</p></div>
+<div class="karte"><h3>Fertig? Dann exportiere ich</h3><p>Sind die Bilder eingesetzt, sagen Sie mir das im Chat. Ich mache aus jeder Vorlage eine PNG-Datei in 1080 × 1440 zum Herunterladen — dann müssen Sie nichts abfotografieren.</p></div>
+</div>
+</div></section>
+
+<section class="blk"><div class="wrap">
+<h2>Kopfreihe — drei leere Kacheln</h2>
+<p class="lead">Drei Kacheln nur in clickzauber-Grün, ohne Text. Aus sechs Beiträgen werden neun.</p>
+<div class="reihe">
+<div class="huelle"><div class="post kr" data-p id="kr-1"></div></div>
+<div class="huelle"><div class="post kr" data-p id="kr-2"></div></div>
+<div class="huelle"><div class="post kr" data-p id="kr-3"></div></div>
+</div>
+</div></section>
+
+<section class="blk"><div class="wrap">
+<h2>Karussell — was das Cockpit kann</h2>
+<p class="lead">Fünf Bilder in einem Beitrag. Instagram zeigt das erste im Profil, gewischt wird nach rechts. Die erste Karte muss allein funktionieren, sonst wischt niemand.</p>
+<div class="kar" id="kar"></div>
+<p class="lead" style="margin-top:6px">Beim Hochladen alle fünf auf einmal auswählen, in dieser Reihenfolge. Instagram macht daraus einen Beitrag, keine fünf.</p>
+</div></section>
+
+<section class="blk"><div class="wrap">
+<h2>Video — Drehbuch für vierzig Sekunden</h2>
+<p class="lead">Zwei Aufnahmen, hochkant, mit dem Telefon. Links das Handy mit dem Widget, rechts der Rechner mit dem Cockpit. Kein Schnittprogramm nötig: Instagram schneidet aneinander, was Sie in der Reihenfolge hochladen.</p>
+<div class="dreh">
+<div class="z"><div class="t">0 – 3 s</div><div class="w"><b>Schwarzes Bild, ein Satz</b><p>Text auf dem Bildschirm, keine Stimme.</p><em>„Eine Anfrage. Drei Tage bis zum Angebot.“</em></div></div>
+<div class="z"><div class="t">3 – 12 s</div><div class="w"><b>Handy in der Hand, Widget</b><p>Sie tippen sich durch vier Fragen. Nicht hetzen, jede Antwort kurz stehen lassen. Bildschirm hochkant füllend.</p><em>„So fragt ein Gast bei Ihnen an. Datum, Gäste, Anlass, Budget.“</em></div></div>
+<div class="z"><div class="t">12 – 18 s</div><div class="w"><b>Der Preis erscheint</b><p>Der Moment, auf den alles zuläuft. Bildschirm einen Augenblick ruhig halten.</p><em>„Und er sieht sofort, woran er ist. Nicht in drei Tagen.“</em></div></div>
+<div class="z"><div class="t">18 – 24 s</div><div class="w"><b>Auf „Anfrage senden“ tippen</b><p>Der Finger muss im Bild sein. Danach die Danke-Seite kurz zeigen.</p><em>„Er schickt ab.“</em></div></div>
+<div class="z"><div class="t">24 – 34 s</div><div class="w"><b>Schnitt auf den Rechner</b><p>Cockpit, Anfrageliste. Die neue Anfrage steht oben. Hineinzoomen, sodass die Felder lesbar sind.</p><em>„Bei Ihnen steht sie vollständig. Datum, achtzig Gäste, Budget, Richtwert. Kein Nachfragen.“</em></div></div>
+<div class="z"><div class="t">34 – 40 s</div><div class="w"><b>Ihr Gesicht, ein Satz</b><p>Kamera auf Sie, ruhig sprechen, in die Linse. Dieser Teil entscheidet, ob jemand schreibt.</p><em>„Ich richte das für Ihren Betrieb ein. Schreiben Sie mir, dann zeige ich es Ihnen an Ihren eigenen Preisen.“</em></div></div>
+</div>
+<div class="karten">
+<div class="karte"><h3>Aufnehmen</h3><p>Hochkant, 9:16. Telefon anlehnen oder auf einen Stapel Bücher legen — aus der Hand gefilmt wirkt hektisch. Tageslicht von vorn, nicht von hinten.</p></div>
+<div class="karte"><h3>Ton</h3><p>Sprechen Sie selbst, auch wenn es Ihnen unangenehm ist. Eine echte Stimme mit Akzent überzeugt mehr als eine künstliche. Untertitel setzt Instagram automatisch dazu — einschalten, die meisten schauen ohne Ton.</p></div>
+<div class="karte"><h3>Musik</h3><p>Leise oder gar keine. Bei einem erklärenden Video zieht Musik nur ab. Wenn, dann aus der Instagram-Bibliothek, nicht aus eigenen Dateien — sonst wird es wegen der Rechte gesperrt.</p></div>
+</div>
+</div></section>
+
+<section class="blk"><div class="wrap">
+<h2>Bildunterschriften</h2>
+<p class="lead">Für die vier Vorlagen oben und das Video. Dieselbe Regel wie beim Anschreiben: das Problem des Betriebs zuerst, der Produktname zuletzt oder gar nicht.</p>
+<div id="bu"></div>
+</div></section>
+
+<footer class="end"><div class="wrap">
+<div class="eyebrow">Und jetzt</div>
+<h2>Bildschirmfotos machen, hier hineinziehen.</h2>
+<p>Das ist der ganze Aufwand. Die Bilder bleiben in dieser Datei gespeichert, auch wenn Sie sie schließen. Wenn alles drin ist, exportiere ich die fertigen Kacheln — dann laden Sie nur noch hoch.</p>
+</div></footer>
+
+<script src="image-slot.js"></script>
+<script>
+/* Vorlagen sitzen in einem 1080×1440-Rahmen und werden auf die Anzeigebreite
+   skaliert. Zweiter Durchgang, damit der Maßstab aus der echten Breite kommt. */
+function skalieren(){
+  document.querySelectorAll('.huelle').forEach(function(h){
+    var p=h.querySelector('[data-p],.kpost'); if(!p) return;
+    p.style.transform='scale('+(h.getBoundingClientRect().width/1080)+')';
+  });
+}
+
+/* Karussell — fünf Karten, gleiche Bauart, nur Text und Bildplatz unterschiedlich. */
+var KARTEN=[
+ ['01','Fünf Dinge, die Sie nach dem Einbau haben','Wischen →','kar-1','Erste Karte: kein Bild, nur der Satz. Sie muss allein neugierig machen.',true],
+ ['02','Alle Anfragen an einer Stelle','Mit Datum, Gästen und Richtwert — sortiert nach Termin.','kar-2','Anfrageliste, Namen ersetzt',false],
+ ['03','Jede Anfrage als eigenes Blatt','Alle Antworten, Notizen, Stand der Bearbeitung.','kar-3','Anfrage-Blatt geöffnet',false],
+ ['04','Angebot auf Knopfdruck','Posten und Summe stehen schon drin. Per Mail raus in zwei Klicks.','kar-4','Angebots-PDF',false],
+ ['05','Ich richte es für Sie ein','Ihre Preise, Ihre Aufpreise, Ihre belegten Termine. Sie müssen nichts lernen.','kar-5','Optional: Foto von Ihnen',false]
+];
+document.getElementById('kar').innerHTML=KARTEN.map(function(k,i){
+  var stil=i===0?'dunkel':(i===4?'creme':'');
+  return '<div><div class="huelle"><div class="post '+stil+'" data-p>'
+   +'<div class="kopf"><div class="kl">'+k[0]+' · Cockpit</div><h4>'+k[1]+'</h4>'
+   +(k[5]?'<p style="font-family:var(--fm);font-size:28px;letter-spacing:.14em;text-transform:uppercase;margin-top:38px">'+k[2]+'</p>':'<p>'+k[2]+'</p>')+'</div>'
+   +(k[5]?'<div style="flex:1"></div>':'<div class="bild"><image-slot id="'+k[3]+'" src="NICHT-HOCHLADEN/instagram/bilder/'+k[3]+'.png" shape="rounded" radius="20" placeholder="'+k[4]+'"></image-slot></div>')
+   +'<div class="fuss"><b>clickzauber</b><span>clickzauber.de</span></div>'
+   +'</div></div><div class="cap">'+(k[5]?'Ohne Bild':k[4])+'</div></div>';
+}).join('');
+
+/* Bildunterschriften */
+var TXT=[
+ ['Beitrag 01 · Widget','Ein Paar schreibt abends drei Locations an. Zwei antworten am dritten Tag mit einer Rückfrage. Eine antwortet sofort mit einer Zahl.\n\nSie wissen, welche den Termin bekommt.'],
+ ['Beitrag 02 · Anfrage','„Hallo, was kostet eine Hochzeit bei Ihnen?“\n\nDiese Frage kann niemand beantworten, ohne vorher vier andere zu stellen. Drei Nachrichten hin und her, bevor überhaupt ein Preis im Raum steht — und bis dahin hat das Paar längst woanders zugesagt.'],
+ ['Beitrag 03 · Cockpit','Zehn Anfragen in der Woche, davon werden zwei etwas. Für die anderen acht schreiben Sie trotzdem.\n\nDas sind zwei Stunden pro Woche für nichts. Nicht weil die Anfragen schlecht sind, sondern weil niemand vorher sortiert hat.'],
+ ['Beitrag 04 · Karussell','Was Sie nach dem Einbau haben — wischen Sie durch.\n\nKeine neue Website, kein Umzug, nichts zu lernen. Das Widget läuft auf der Seite, die Sie schon haben.'],
+ ['Beitrag 05 · Video','Vierzig Sekunden: wie aus einem Website-Besucher eine Anfrage wird, die Sie beantworten können.\n\nLinks das Handy des Gastes, rechts Ihr Cockpit. Dazwischen passiert nichts, was Sie tun müssten.'],
+ ['Beitrag 06 · Pilotphase','Die ersten vier Betriebe nutzen clickzauber kostenlos. Ich richte das Formular persönlich mit Ihnen ein, Sie schalten es live und bezahlen nichts.\n\nDafür sagen Sie mir ehrlich, was fehlt. Bevor sich am Preis etwas ändert, sprechen wir miteinander.']
+];
+document.getElementById('bu').innerHTML=TXT.map(function(r,i){
+ return '<div class="feld"><span class="mlab">'+r[0]+'</span><pre>'+r[1].replace(/&/g,'&amp;').replace(/</g,'&lt;')
+  +'</pre><div class="fz"><span>'+r[1].length+' Zeichen</span><button class="kop" data-t="'+i+'">Kopieren</button></div></div>';
+}).join('');
+document.addEventListener('click',function(e){
+ var b=e.target.closest('.kop[data-t]'); if(!b) return;
+ var alt=b.textContent;
+ navigator.clipboard.writeText(TXT[+b.dataset.t][1]).then(function(){b.textContent='Kopiert';setTimeout(function(){b.textContent=alt},1400)})
+ .catch(function(){b.textContent='Bitte von Hand';setTimeout(function(){b.textContent=alt},1800)});
+});
+
+skalieren();
+addEventListener('resize',skalieren);
+document.fonts&&document.fonts.ready.then(skalieren);
+</script>
+</body>
+</html>

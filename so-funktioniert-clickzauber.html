@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>So funktioniert clickzauber — einfach erklärt</title>
+<link rel="canonical" href="https://clickzauber.de/so-funktioniert-clickzauber.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="clickzauber">
+<meta property="og:locale" content="de_DE">
+<meta property="og:url" content="https://clickzauber.de/so-funktioniert-clickzauber.html">
+<meta property="og:title" content="So funktioniert clickzauber — einfach erklärt">
+<meta property="og:description" content="In einfachen Worten: was clickzauber ist, wie der Ablauf für Ihre Gäste aussieht und was Sie dafür tun müssen.">
+<meta property="og:image" content="https://clickzauber.de/assets/og-clickzauber.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="clickzauber — aus Website-Besuchern werden echte Anfragen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="So funktioniert clickzauber — einfach erklärt">
+<meta name="twitter:description" content="In einfachen Worten: was clickzauber ist, wie der Ablauf für Ihre Gäste aussieht und was Sie dafür tun müssen.">
+<meta name="twitter:image" content="https://clickzauber.de/assets/og-clickzauber.jpg">
+<meta name="theme-color" content="#fbf8f3">
+<meta name="description" content="In einfachen Worten und mit Pfeilen erklärt: Was clickzauber ist, wie der Ablauf funktioniert und wie das Ganze auf Ihrer Website aussieht.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="assets/cz-favicon-32.png?v=2"><link rel="apple-touch-icon" sizes="180x180" href="assets/cz-apple-180.png?v=2">
+<template id="__bundler_thumbnail" data-bg-color="#f0e9dc">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#f0e9dc"/><rect x="22" y="22" width="56" height="56" rx="15" fill="#2f7d59"/><g transform="translate(32.5 32.5) scale(1.09)"><circle cx="16" cy="16" r="4.4" fill="#fffdf8"/><path d="M16 5.6a10.4 10.4 0 0 1 10.4 10.4" stroke="#fffdf8" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M16 26.4A10.4 10.4 0 0 1 5.6 16" stroke="#fffdf8" stroke-width="3" stroke-linecap="round" fill="none"/></g></svg>
+</template>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@300;400;500;600;700&family=Lora:ital,wght@1,400;1,500&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#f0e9dc;--bg-2:#f4eede;--card:#fff;--card-2:#f6f0e3;
+  --ink:#27241d;--ink-2:rgba(34,31,24,.66);--ink-3:rgba(34,31,24,.46);
+  --line:rgba(34,31,24,.12);--line-2:rgba(34,31,24,.2);
+  --accent:#2f7d59;--accent-2:#4fa87c;
+  --fd:"Figtree","Helvetica Neue",Helvetica,"Segoe UI",system-ui,sans-serif;
+  --fm:"IBM Plex Mono",ui-monospace,monospace;
+  scroll-behavior:smooth;scroll-padding-top:80px;
+}
+html{overflow-x:clip}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--fd);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+::selection{background:var(--accent);color:#fff}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent-2)}
+img{max-width:100%;display:block}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(20px,5vw,44px)}
+.eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:12px;margin-bottom:18px}
+.eyebrow::before{content:"";width:30px;height:1px;background:var(--accent)}
+.eyebrow.center{justify-content:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 30px;border-radius:999px;font-weight:600;font-size:16px;font-family:var(--fd);cursor:pointer;border:1px solid transparent;transition:transform .2s,box-shadow .2s,background .2s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 34px color-mix(in oklab,var(--accent) 45%,transparent);color:#fff}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px);color:var(--ink)}
+
+/* Grid-Hintergrund */
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:76px 76px;opacity:.45;-webkit-mask-image:radial-gradient(ellipse 120% 90% at 50% 0%,#000 40%,transparent 100%);mask-image:radial-gradient(ellipse 120% 90% at 50% 0%,#000 40%,transparent 100%)}
+.wrap{position:relative;z-index:1}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:color-mix(in srgb,var(--bg) 72%,transparent);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1080px;margin:0 auto;padding:12px clamp(20px,5vw,44px);display:flex;align-items:center;gap:16px}
+.nav-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;letter-spacing:-.02em;color:var(--ink);margin-right:auto}
+.nav-brand img{width:28px;height:28px}
+.nav a.back{font-size:14.5px;color:var(--ink-2)}
+.nav a.back:hover{color:var(--accent)}
+
+/* HERO */
+.hero{padding:calc(80px + 6vh) 0 5vh;text-align:center}
+.hero h1{font-size:clamp(34px,6vw,60px);line-height:1.04;letter-spacing:-.03em;margin:0 auto;max-width:16ch;text-wrap:balance}
+.hero p{color:var(--ink-2);font-size:clamp(17px,2vw,21px);max-width:44ch;margin:20px auto 0;text-wrap:pretty}
+.hero .scroll-hint{margin-top:34px;font-family:var(--fm);font-size:13px;letter-spacing:.05em;color:var(--ink-3);display:flex;flex-direction:column;align-items:center;gap:6px}
+.hero .scroll-hint .arw{font-size:22px;color:var(--accent);animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+section{padding:clamp(48px,8vw,86px) 0;position:relative;z-index:1}
+.sec-head{text-align:center;max-width:40ch;margin:0 auto clamp(34px,5vw,52px)}
+.sec-head h2{font-size:clamp(26px,4vw,40px);letter-spacing:-.025em;line-height:1.1;margin:0;text-wrap:balance}
+.sec-head p{color:var(--ink-2);font-size:17px;margin:14px auto 0;text-wrap:pretty}
+
+/* WAS IST — drei einfache Karten */
+.simple-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.simple-3 .c{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px 24px;text-align:center}
+.simple-3 .ic{width:56px;height:56px;margin:0 auto 16px;border-radius:14px;background:color-mix(in srgb,var(--accent) 12%,var(--card));display:flex;align-items:center;justify-content:center;color:var(--accent)}
+.simple-3 .ic svg{width:28px;height:28px}
+.simple-3 h3{font-size:19px;margin:0 0 6px;letter-spacing:-.01em}
+.simple-3 p{color:var(--ink-2);font-size:15px;line-height:1.55;margin:0}
+@media(max-width:760px){.simple-3{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
+
+/* ABLAUF — Schritte mit Pfeilen */
+.flow{max-width:760px;margin:0 auto;display:flex;flex-direction:column;align-items:stretch;gap:0}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 26px;display:flex;gap:22px;align-items:flex-start;box-shadow:0 10px 30px -18px rgba(90,70,40,.4)}
+.step .num{flex:0 0 auto;width:46px;height:46px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--fm);font-size:19px;font-weight:500;display:flex;align-items:center;justify-content:center}
+.step .body h3{margin:0 0 5px;font-size:20px;letter-spacing:-.01em}
+.step .body p{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.55}
+.step .body .who{display:inline-block;margin-top:10px;font-family:var(--fm);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;padding:4px 11px;border-radius:999px}
+.who.you{background:color-mix(in srgb,var(--accent) 13%,var(--card));color:var(--accent)}
+.who.me{background:var(--card-2);color:var(--ink-2);border:1px solid var(--line)}
+.arrow-v{align-self:center;color:var(--accent);font-size:30px;line-height:1;padding:10px 0}
+.step.final{background:color-mix(in srgb,var(--accent) 9%,var(--card));border-color:color-mix(in srgb,var(--accent) 34%,var(--line))}
+.step.change{border-style:dashed;background:var(--card-2)}
+.step .body h3 .mins{display:inline-block;margin-left:8px;font-family:var(--fm);font-size:11.5px;font-weight:500;letter-spacing:.03em;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--card));padding:3px 10px;border-radius:999px;vertical-align:middle}
+
+/* INTEGRATION — Browser-Mock mit Pfeil aufs Widget */
+.integ{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,48px);align-items:center;max-width:1000px;margin:0 auto}
+@media(max-width:860px){.integ{grid-template-columns:1fr;max-width:520px}}
+.browser{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(90,70,40,.5)}
+.browser .bar{background:var(--card-2);border-bottom:1px solid var(--line);padding:11px 14px;display:flex;align-items:center;gap:7px}
+.browser .bar i{width:11px;height:11px;border-radius:50%;background:var(--line-2)}
+.browser .bar .url{margin-left:12px;font-family:var(--fm);font-size:12px;color:var(--ink-3);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 12px}
+.browser .page{padding:22px}
+.mock-head{height:16px;width:40%;background:var(--line-2);border-radius:5px;margin-bottom:10px}
+.mock-line{height:10px;background:var(--line);border-radius:5px;margin-bottom:8px}
+.mock-line.s{width:70%}.mock-line.xs{width:45%}
+.mock-widget{margin-top:18px;border:2px solid var(--accent);border-radius:14px;padding:16px;background:color-mix(in srgb,var(--accent) 7%,var(--card));position:relative}
+.mock-widget .tag{position:absolute;top:-11px;left:16px;background:var(--accent);color:#fff;font-family:var(--fm);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px}
+.mock-widget .q{font-size:14px;font-weight:600;margin:4px 0 12px}
+.mock-widget .opt{background:var(--card);border:1px solid var(--line-2);border-radius:9px;padding:9px 12px;font-size:13px;color:var(--ink-2);margin-bottom:7px}
+.mock-widget .opt.on{border-color:var(--accent);color:var(--accent);font-weight:600}
+.integ-note{position:relative}
+.integ-note .callout{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 26px}
+.integ-note .callout h3{margin:0 0 10px;font-size:22px;letter-spacing:-.01em}
+.integ-note .callout p{margin:0 0 14px;color:var(--ink-2);font-size:15.5px;line-height:1.6}
+.integ-note ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.integ-note li{display:flex;gap:10px;font-size:15px;color:var(--ink-2);line-height:1.5}
+.integ-note li::before{content:"→";color:var(--accent);font-weight:700;flex:0 0 auto}
+.integ-arrow{text-align:center;font-family:var(--fm);font-size:13px;color:var(--accent);margin-top:14px}
+
+/* SERVICE — was du bekommst */
+.serv{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:860px;margin:0 auto}
+@media(max-width:680px){.serv{grid-template-columns:1fr}}
+.serv .c{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;display:flex;gap:16px;align-items:flex-start}
+.serv .c .chk{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:color-mix(in srgb,var(--accent) 13%,var(--card));color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700}
+.serv .c h3{margin:0 0 4px;font-size:17px}
+.serv .c p{margin:0;color:var(--ink-2);font-size:14.5px;line-height:1.5}
+
+/* CTA */
+.cta{text-align:center}
+.cta h2{font-size:clamp(28px,4.5vw,44px);letter-spacing:-.03em;margin:0 auto;max-width:18ch;line-height:1.06;text-wrap:balance}
+.cta p{color:var(--ink-2);font-size:18px;margin:16px auto 28px;max-width:40ch}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* VS-Tabelle */
+.vs{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vs-head{font-weight:700;font-size:16px;padding:14px 20px;border-radius:12px 12px 0 0;text-align:center}
+.vs-head.old{background:var(--card-2);color:var(--ink-2);border:1px solid var(--line)}
+.vs-head.new{background:var(--accent);color:#fff}
+.vs-cell{padding:16px 20px;border-radius:12px;font-size:15px;line-height:1.45;display:flex;gap:11px;align-items:flex-start}
+.vs-cell.old{background:var(--card);border:1px solid var(--line);color:var(--ink-2)}
+.vs-cell.new{background:color-mix(in srgb,var(--accent) 8%,var(--card));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));color:var(--ink)}
+.vs-cell .x{color:#b3452e;font-weight:700;flex:0 0 auto}
+.vs-cell .c{color:var(--accent);font-weight:700;flex:0 0 auto}
+.vs-merk{max-width:640px;margin:26px auto 0;text-align:center;font-size:16.5px;line-height:1.55;color:var(--ink);font-weight:500;text-wrap:pretty}
+@media(max-width:640px){.vs{grid-template-columns:1fr;gap:8px}.vs-head{border-radius:12px}.vs-head.old{margin-top:10px}}
+footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;font-size:13.5px;color:var(--ink-3);position:relative;z-index:1}
+footer a{color:var(--ink-2)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"HowTo","name":"So funktioniert clickzauber","description":"In vier Schritten von der eigenen Website zur vorqualifizierten Anfrage.","inLanguage":"de-DE","totalTime":"PT15M","publisher":{"@type":"Organization","name":"clickzauber","url":"https://clickzauber.de/"},"step":[
+{"@type":"HowToStep","position":1,"name":"Formular bauen","text":"Im Konfigurator legen Sie Ihre Fragen, Preisrahmen und das Aussehen fest. Ohne Programmierung, im Browser."},
+{"@type":"HowToStep","position":2,"name":"Eine Zeile einbauen","text":"Sie kopieren eine Zeile in Ihre Website. Wer sie betreut, braucht dafür unter einer Minute."},
+{"@type":"HowToStep","position":3,"name":"Gast füllt aus","text":"Der Gast sieht freie Termine und einen Preisrahmen und beantwortet die Fragen, die Sie sonst am Telefon stellen."},
+{"@type":"HowToStep","position":4,"name":"Anfrage kommt fertig an","text":"Sie erhalten die Anfrage mit allen Angaben und einer Einstufung per E-Mail und im Cockpit."}]},
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Startseite","item":"https://clickzauber.de/"},
+{"@type":"ListItem","position":2,"name":"So funktioniert clickzauber","item":"https://clickzauber.de/so-funktioniert-clickzauber.html"}]}
+]}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html"><img src="assets/logo.png" alt="clickzauber">clickzauber</a>
+    <a class="back" href="index.html">← Zur Startseite</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow center">Einfach erklärt</div>
+    <h1>So funktioniert clickzauber.</h1>
+    <p>Kein Fachchinesisch. In wenigen Schritten und mit Pfeilen sehen Sie, was clickzauber ist, wie Sie ihn selbst bauen und wie er auf Ihrer Website aussieht.</p>
+    <div class="scroll-hint">Los geht's<span class="arw">↓</span></div>
+  </div>
+</header>
+
+<!-- 1. WAS IST CLICKZAUBER -->
+<section id="was">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow center">In einem Satz</div>
+      <h2>Ein kleines Formular für Ihre Website — in einer Viertelstunde selbst gebaut.</h2>
+      <p>Dieses Formular stellt Besuchern ein paar einfache Fragen — und macht aus einem anonymen Klick eine echte Anfrage bei Ihnen.</p>
+    </div>
+    <div class="simple-3">
+      <div class="c">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+        <h3>Besucher kommt</h3>
+        <p>Jemand landet auf Ihrer Seite — weiß aber noch nicht, was er braucht.</p>
+      </div>
+      <div class="c">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9h8M8 13h5"/><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3>Formular führt</h3>
+        <p>Das Formular fragt Schritt für Schritt — leicht, wie ein kurzes Gespräch.</p>
+      </div>
+      <div class="c">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></div>
+        <h3>Anfrage kommt</h3>
+        <p>Sie bekommen eine fertige Anfrage — mit allem, was Sie wissen müssen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. ABLAUF — 3 PHASEN -->
+<section id="ablauf" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow center">Der Ablauf</div>
+      <h2>In 3 Schritten fertig.</h2>
+      <p>Kein Technik-Stress, kein Warten. Sie bauen selbst, fügen eine Zeile ein, ernten die Anfragen.</p>
+    </div>
+    <div class="flow">
+      <div class="step">
+        <div class="num">1</div>
+        <div class="body">
+          <h3>Design wählen <span class="mins">2 Minuten</span></h3>
+          <p>Sie klicken sich durch die Vorlagen, wählen Stil und Schrift und sehen sofort, wie Ihr Formular aussieht. Kein Fachbegriff, keine Software.</p>
+          <span class="who you">Im Konfigurator</span>
+        </div>
+      </div>
+      <div class="arrow-v">↓</div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="body">
+          <h3>Fragen und Preise eintragen <span class="mins">5 Minuten</span></h3>
+          <p>Sie übernehmen eine fertige Fragenliste für Hochzeit oder Event und tragen Ihre Preise ein. Was Sie nicht brauchen, schalten Sie ab.</p>
+          <span class="who you">Im Konfigurator</span>
+        </div>
+      </div>
+      <div class="arrow-v">↓</div>
+      <div class="step final">
+        <div class="num">3</div>
+        <div class="body">
+          <h3>Eine Zeile einfügen <span class="mins">2 Minuten</span></h3>
+          <p>Nach dem Speichern bekommen Sie eine Zeile Code und die passende Anleitung für Ihr System. Einfügen, speichern, fertig — ab da läuft Ihr Formular.</p>
+          <span class="who you">Mit Anleitung</span>
+        </div>
+      </div>
+      <div class="arrow-v">↓</div>
+      <div class="step change">
+        <div class="num">+</div>
+        <div class="body">
+          <h3>Später etwas ändern?</h3>
+          <p>Jederzeit und ohne Zusatzkosten. Preise, Fragen, Farben und freie Termine ändern Sie im Cockpit — die Änderung ist sofort live. Der Code auf Ihrer Website bleibt unverändert.</p>
+          <span class="who you">Im Abo enthalten</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. INTEGRATION -->
+<section id="integration">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow center">Wie es aussieht</div>
+      <h2>So sieht das Formular auf Ihrer Website aus.</h2>
+      <p>Er sitzt direkt in Ihrer Seite — passt zu Ihren Farben und wirkt wie ein Teil Ihrer Website, nicht wie ein Fremdkörper.</p>
+    </div>
+    <div class="integ">
+      <div class="browser">
+        <div class="bar"><i></i><i></i><i></i><span class="url">ihre-website.de</span></div>
+        <div class="page">
+          <div class="mock-head"></div>
+          <div class="mock-line"></div>
+          <div class="mock-line s"></div>
+          <div class="mock-line xs"></div>
+          <div class="mock-widget">
+            <span class="tag">Ihr Formular</span>
+            <div class="q">Was brauchen Sie?</div>
+            <div class="opt on">Angebot anfragen</div>
+            <div class="opt">Preis berechnen</div>
+            <div class="opt">Termin finden</div>
+          </div>
+        </div>
+      </div>
+      <div class="integ-note">
+        <div class="callout">
+          <h3>1 Zeile Code. 2 Minuten. Läuft überall.</h3>
+          <p>Egal ob WordPress, Webflow, Wix, Jimdo oder Typo3: Das Formular wird per kurzem Code-Schnipsel eingebunden — zerschießt Ihr Layout nicht und läuft auf allen Geräten, DSGVO-konform.</p>
+          <ul>
+            <li>Passt sich Ihren Farben an</li>
+            <li>Funktioniert sauber am Handy</li>
+            <li>Führt in einfachen Fragen zum Ziel</li>
+            <li>Einbau-Anleitung für jedes System</li>
+          </ul>
+        </div>
+        <div class="integ-arrow">↑ genau dieser Kasten in Ihrer Seite</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3b. HTML-ABLAUF -->
+<section id="technik">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow center">Der Einbau</div>
+      <h2>Eine Zeile — und das Formular steht auf Ihrer Seite.</h2>
+      <p>Sie müssen nichts programmieren und nichts installieren. Kopieren, einfügen, speichern.</p>
+    </div>
+    <div class="flow">
+      <div class="step">
+        <div class="num">1</div>
+        <div class="body">
+          <h3>Code kopieren</h3>
+          <p>Nach dem Speichern zeigt Ihnen der Konfigurator eine einzige Zeile. Ein Klick legt sie in die Zwischenablage.</p>
+          <span class="who you">Im Konfigurator</span>
+        </div>
+      </div>
+      <div class="arrow-v">↓</div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="body">
+          <h3>An der richtigen Stelle einfügen</h3>
+          <p>In WordPress ein Block „Individuelles HTML", in Wix oder Jimdo das Element „Code einbetten", in einer eigenen HTML-Datei direkt vor <code>&lt;/body&gt;</code>. Für jedes System gibt es eine <a href="einbauen.html">Schritt-für-Schritt-Anleitung</a>.</p>
+          <span class="who you">In Ihrem Baukasten</span>
+        </div>
+      </div>
+      <div class="arrow-v">↓</div>
+      <div class="step final">
+        <div class="num">3</div>
+        <div class="body">
+          <h3>Speichern — fertig</h3>
+          <p>Das Formular erscheint genau dort, wo die Zeile steht. Änderungen im Cockpit sind sofort sichtbar, ohne dass Sie den Code noch einmal anfassen.</p>
+          <span class="who you">Erledigt</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. VERGLEICH -->
+<section id="vergleich" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow center">Der Unterschied</div>
+      <h2>Klick-Führung statt Formular-Wüste.</h2>
+      <p>Warum ein clickzauber-Formular mehr bringt als ein normales Kontaktformular.</p>
+    </div>
+    <div class="vs">
+      <div class="vs-head old">Altes Kontaktformular</div>
+      <div class="vs-head new">clickzauber Klick-System</div>
+
+      <div class="vs-cell old"><span class="x">✗</span>Starre Textfelder schrecken Besucher ab</div>
+      <div class="vs-cell new"><span class="c">✓</span>Interaktive Klick-Führung erzeugt Neugier</div>
+
+      <div class="vs-cell old"><span class="x">✗</span>Unpassende Anfragen rauben Ihre Bürozeit</div>
+      <div class="vs-cell new"><span class="c">✓</span>Vorqualifizierung filtert Budgets &amp; Wünsche vorab</div>
+
+      <div class="vs-cell old"><span class="x">✗</span>Aufwendiges Hinterhertelefonieren</div>
+      <div class="vs-cell new"><span class="c">✓</span>Sie erhalten nur Anfragen von kaufbereiten Kunden</div>
+    </div>
+    <p class="vs-merk">clickzauber macht aus Ihrer Website einen digitalen Türsteher — er fängt unpassende Kontakte ab und liefert Ihnen nur die reifen Anfragen ins Büro.</p>
+  </div>
+</section>
+
+<!-- 5. SERVICE -->
+<section id="service">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow center">Was Sie bekommen</div>
+      <h2>Der Service — klar und ohne Kleingedrucktes.</h2>
+    </div>
+    <div class="serv">
+      <div class="c"><div class="chk">✓</div><div><h3>Ein Ansprechpartner</h3><p>Wenn doch etwas klemmt, erreichen Sie mich direkt. Kein Ticketsystem, keine Warteschleife.</p></div></div>
+      <div class="c"><div class="chk">✓</div><div><h3>Fester Monatspreis</h3><p>Sie wissen vorher, was es kostet. Keine Änderungskosten, im Monatstarif monatlich kündbar. Die Einrichtung durch mich ist freiwillig und kostet einmalig extra.</p></div></div>
+      <div class="c"><div class="chk">✓</div><div><h3>In einer Viertelstunde fertig</h3><p>Design wählen, Preise eintragen, Zeile einfügen. Kein Termin, kein Warten.</p></div></div>
+      <div class="c"><div class="chk">✓</div><div><h3>Läuft auf jeder Website</h3><p>WordPress, Wix, Jimdo, Squarespace oder eigene HTML-Datei — überall dieselbe eine Zeile.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. MEHR -->
+<section id="mehr" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow center">Noch mehr drin</div>
+      <h2>Was clickzauber außerdem kann.</h2>
+    </div>
+    <div class="serv">
+      <div class="c"><div class="chk">✓</div><div><h3>Termine mit Uhrzeit</h3><p>Für Friseure, Besichtigungen oder Beratungen: Ihr Kunde wählt Mitarbeiter, Tag und Uhrzeit selbst. Belegte Zeiten kann niemand mehr wählen.</p></div></div>
+      <div class="c"><div class="chk">✓</div><div><h3>Ausgebucht? Weitergeben.</h3><p>Ist ein Tag schon vergeben, geben Sie die Anfrage an einen Partner aus Ihrem Netzwerk weiter. Der Gast hat vorher zugestimmt und muss nichts neu ausfüllen.</p></div></div>
+      <div class="c"><div class="chk">✓</div><div><h3>Abzeichen für schnelle Antworten</h3><p>Wer meist am selben Tag antwortet, bekommt ein Abzeichen im Formular und im Profil. Im Cockpit sehen Sie außerdem, wie oft Ihr Profil besucht wurde.</p></div></div>
+      <div class="c"><div class="chk">✓</div><div><h3>Designs zur Auswahl</h3><p>Hell, dunkel, mit Foto oder schlicht, zum Beispiel „Klar &amp; hell“ oder „Dunkel Minimal“. Farbe und Schrift passen Sie an Ihren Betrieb an.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CTA -->
+<section class="cta" id="start">
+  <div class="wrap">
+    <div class="eyebrow center">Bereit?</div>
+    <h2>Lassen Sie Ihre Website für sich arbeiten.</h2>
+    <p>Bauen und ausprobieren ist kostenlos. Sie zahlen erst, wenn Ihr Formular live geht.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="clickzauber-anmelden.html">Kostenlos bauen →</a>
+      <a class="btn btn-ghost" href="live-demo.html">Live-Demo testen</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">clickzauber · <a href="index.html">Startseite</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>
+</footer>
+
+</body>
+</html>
