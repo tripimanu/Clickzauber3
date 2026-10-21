@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>/* iPhone/iPad: kein automatisches Hineinzoomen beim Antippen eines Eingabefelds. Mit zwei Fingern zoomen bleibt möglich. */(function(){if(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)){var m=document.querySelector("meta[name=viewport]");if(m&&!/maximum-scale/.test(m.content))m.content+=", maximum-scale=1";}})();</script>
+<meta name="description" content="Konto anlegen, Tarif wählen und Ihr Anfrage-Formular in wenigen Minuten live schalten.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="assets/cz-favicon-32.png?v=2">
+<script src="js/cz-kopf.js"></script><!-- seit 15.10.2026: Token und Schlüssel in Kopfzeilen statt in Adressen -->
+<title>clickzauber — Konto erstellen</title>
+<link rel="canonical" href="https://clickzauber.de/clickzauber-anmelden.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="clickzauber">
+<meta property="og:locale" content="de_DE">
+<meta property="og:url" content="https://clickzauber.de/clickzauber-anmelden.html">
+<meta property="og:title" content="Anfrage-Formular einrichten — clickzauber">
+<meta property="og:description" content="In wenigen Minuten eingerichtet: Design wählen, Fragen anpassen, Code einbauen. Monatlich kündbar.">
+<meta property="og:image" content="https://clickzauber.de/assets/og-clickzauber.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="clickzauber — aus Website-Besuchern werden echte Anfragen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anfrage-Formular einrichten — clickzauber">
+<meta name="twitter:description" content="In wenigen Minuten eingerichtet: Design wählen, Fragen anpassen, Code einbauen. Monatlich kündbar.">
+<meta name="twitter:image" content="https://clickzauber.de/assets/og-clickzauber.jpg">
+<meta name="theme-color" content="#f5f2ea">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@300;400;500;600;700&family=Lora:ital,wght@1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* Versteckt heißt versteckt: .zurueck und .btn setzen display und schlagen sonst
+   die eingebaute Regel für [hidden] — dann standen „Andere E-Mail" und
+   „Passwort vergessen?" schon auf dem ersten Schritt da. */
+[hidden]{display:none!important}
+*,*::before,*::after{box-sizing:border-box}
+:root{--bg:#f5f2ea;--ink:#27241d;--ink-2:#615c50;--ink-3:#968f80;--line-2:rgba(33,29,22,.16);--line:#e3dbcd;--panel:#fff;--accent:#2f7d59;--accent-d:#27664a;--fd:"Figtree",system-ui,sans-serif;--fm:"IBM Plex Mono",monospace}
+html,body{margin:0}
+body{font-family:var(--fd);background:var(--bg);background-image:radial-gradient(1100px 560px at 50% -12%,#fff 0,rgba(255,255,255,0) 60%);color:var(--ink);min-height:100dvh;display:flex;flex-direction:column;align-items:center;padding:44px 18px 60px;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+a:hover{color:var(--accent-d)}
+/* Die Anmeldung ist eine leere Fläche: Zeichen oben, eine Frage, ein Feld, ein Knopf.
+   Keine Karte, keine Rahmen, keine Schreibmaschinen-Etiketten. */
+.brand{display:flex;flex-direction:column;align-items:center;gap:12px;font-weight:700;font-size:21px;letter-spacing:-.02em;margin-bottom:40px;text-decoration:none;color:var(--ink)}
+.brand .mk{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#4fa87c,var(--accent));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+/* Stepper — leise */
+.steps{display:flex;gap:6px;max-width:260px;width:100%;margin:0 auto 42px}
+.steps .s{flex:1;height:3px;border-radius:3px;background:rgba(33,29,22,.12)}
+.steps .s.on{background:var(--accent)}
+body .card{background:none;border:none;border-radius:0;box-shadow:none;padding:0;width:100%;max-width:430px}
+body .card.wide{max-width:920px}
+/* Der Konfigurator bekommt seine Hülle zurück — er ist ein Fenster, keine Frage. */
+body #v-editor{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px -30px rgba(60,45,20,.4);overflow:hidden}
+h1{font-size:29px;font-weight:700;margin:0 0 10px;letter-spacing:-.025em;text-align:center;line-height:1.16;text-wrap:pretty}
+.lede{color:var(--ink-2);font-size:15.5px;margin:0 auto 30px;line-height:1.55;text-align:center;max-width:34ch;text-wrap:pretty}
+.lede:empty{display:none}
+label{display:block;font-size:13px;color:var(--ink-2);font-family:var(--fd);margin:18px 0 8px;padding-left:20px}
+label .req{color:#b3563e;font-weight:700}
+/* Auf dem Anmelde-Bildschirm trägt der Platzhalter im Feld die Beschriftung. */
+#v-email label{position:absolute;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.mailzeile{text-align:center;font-size:16px;color:var(--ink-2);margin:-8px 0 26px}
+.pflichtnote{font-family:var(--fd);font-size:12.5px;color:var(--ink-2);margin:18px 0 0;text-align:center}
+.pflichtnote b{color:#b3563e}
+input,textarea{width:100%;background:rgba(255,255,255,.6);border:1.5px solid var(--line-2);border-radius:999px;height:58px;padding:0 22px;font:inherit;font-size:16px;color:var(--ink)}
+input:focus,textarea:focus{outline:none;border-color:var(--accent);background:#fff}
+input::placeholder{color:var(--ink-3)}
+textarea{height:auto;border-radius:20px;padding:16px 20px}
+.feld{position:relative}
+.feld input{padding-right:124px}
+.imfeld{position:absolute;right:20px;top:50%;transform:translateY(-50%);background:none;border:none;font:inherit;font-size:15px;font-weight:600;color:var(--accent);cursor:pointer;padding:6px 0}
+.imfeld:hover{color:var(--accent-d)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.row2{grid-template-columns:1fr}}
+.btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:999px;height:58px;padding:0 22px;font:inherit;font-weight:600;font-size:16.5px;cursor:pointer;margin-top:22px;transition:background .15s}
+.btn:hover{background:var(--accent-d)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn.ghost{background:none;color:var(--accent);border:1.5px solid var(--line-2);margin-top:12px}
+.btn.ghost:hover{background:rgba(255,255,255,.6);color:var(--accent-d);border-color:var(--accent)}
+.err{color:#b3563e;font-size:14px;margin-top:14px;min-height:18px;text-align:center}
+.err:not(:empty){background:#fdf2ee;border:1px solid #f0d6cb;border-radius:16px;padding:13px 15px;line-height:1.5;min-height:0}
+.hint{color:var(--ink-2);font-size:13px;margin:24px auto 0;text-align:center;max-width:36ch;line-height:1.5}
+@media(max-width:600px){body .card h1{font-size:25px}}
+/* Code-Eingabe */
+.code-in{letter-spacing:.5em;text-align:center;font-family:var(--fm);font-size:26px;font-weight:600}
+/* Tarife */
+.cycle{display:flex;gap:6px;background:#f4efe5;border:1px solid var(--line);border-radius:10px;padding:4px;width:max-content;margin:0 auto 22px}
+.cycle button{background:none;border:none;font:inherit;font-size:13.5px;font-weight:500;color:var(--ink-2);padding:8px 16px;border-radius:7px;cursor:pointer;width:auto;height:auto;margin:0}
+.cycle button.on{background:var(--accent);color:#fff}
+.cycle .save{font-family:var(--fm);font-size:10.5px;color:var(--accent);margin-left:4px}
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.plans.eins{grid-template-columns:minmax(0,420px);justify-content:center}
+.stufe-hinweis{text-align:center;font-size:13px;color:var(--ink-3);margin:12px 0 0}
+.einr{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;margin:16px auto 0;max-width:560px;background:#fdfbf6;cursor:pointer;text-align:left}
+.einr input{all:revert;width:20px;height:20px;margin:2px 0 0;flex:0 0 auto;accent-color:var(--accent)}
+.einr span{display:flex;flex-direction:column;gap:3px;font-size:14px;line-height:1.4}.einr small{font-size:12.5px;color:var(--ink-3)}
+@media(max-width:760px){.plans{grid-template-columns:1fr}}
+.plan{border:1.5px solid var(--line);border-radius:14px;padding:20px 18px;cursor:pointer;transition:border-color .15s,box-shadow .15s;position:relative;background:#fdfbf6}
+.plan:hover{border-color:var(--accent)}
+.plan.on{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
+.plan .pn{font-size:15px;font-weight:600}
+.plan .pp{font-size:30px;font-weight:700;letter-spacing:-.02em;margin:8px 0 2px;font-variant-numeric:tabular-nums}
+.plan .pp small{font-size:13px;font-weight:500;color:var(--ink-3)}
+.plan .pc{font-size:12px;color:var(--ink-3);font-family:var(--fm);margin-bottom:12px}
+.plan ul{list-style:none;padding:0;margin:0;font-size:13px;color:var(--ink-2);line-height:1.55}
+.plan li{padding-left:20px;position:relative;margin-bottom:4px}
+.plan li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+.plan .pop{position:absolute;top:-10px;right:14px;background:var(--accent);color:#fff;font-family:var(--fm);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+.pay-note{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;color:var(--ink-3);font-size:12px}
+.pay-note span{border:1px solid var(--line);border-radius:6px;padding:3px 9px;font-family:var(--fm);font-size:11px;background:#fdfbf6}
+.view{display:none}.view.on{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* mobil-pass */
+@media(max-width:600px){
+  html,body{overflow-x:hidden}
+  .card{padding:22px 16px;border-radius:14px}
+  .card h1{font-size:21px}
+  pre,.code,code{overflow-wrap:anywhere;white-space:pre-wrap}
+}
+</style>
+<style>
+#v-editor.on{max-width:1240px;width:100%;padding:0;overflow:hidden;display:flex;flex-direction:column;height:calc(100dvh - 24px);max-height:1100px}
+#v-editor iframe{flex:1 1 auto;min-height:0;width:100%;border:0;display:block;background:#f5f2ea}
+.ed-bar{flex:0 0 auto;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:12px 16px;border-top:1px solid var(--line);background:var(--panel);flex-wrap:wrap}
+.ed-hint{flex:1;min-width:180px;font-size:13px;color:var(--ink-3);line-height:1.45}
+.ed-bar .btn{margin:0;width:auto;padding:12px 22px;font-size:14.5px}
+body.editing{padding:12px 14px}
+body.editing #stepper{display:none}
+body.editing .brand{display:none}
+@media(max-width:720px){
+  body.editing{padding:0}
+  #v-editor.on{height:100dvh;max-height:none}
+  #v-editor.on{width:100%;border-radius:0;border-left:0;border-right:0;border-top:0}
+  .ed-hint{display:none}
+  .ed-bar{padding:10px 14px}
+  .ed-bar .btn{width:100%}
+}
+/* mobil-pass */
+@media(max-width:600px){
+  html,body{overflow-x:hidden}
+  .card{padding:22px 16px;border-radius:14px}
+  .card h1{font-size:21px}
+  pre,.code,code{overflow-wrap:anywhere;white-space:pre-wrap}
+}
+</style>
+<style>a.brand{text-decoration:none;color:inherit}a.brand:hover{color:var(--accent)}/* mobil-pass */
+@media(max-width:600px){
+  html,body{overflow-x:hidden}
+  .card{padding:22px 16px;border-radius:14px}
+  .card h1{font-size:21px}
+  pre,.code,code{overflow-wrap:anywhere;white-space:pre-wrap}
+}
+</style>
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2f7d59">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="clickzauber">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/cz-apple-180.png?v=2">
+<script>
+/* cz-app.js — App-Installation und dauerhaftes Anmelden.
+   Wird direkt in die Seiten eingebettet. */
+(function () {
+  'use strict';
+
+  /* ---------- Service Worker ---------- */
+  /* Nur auf clickzauber.de: In Vorschau- und Testumgebungen fing der Worker sonst Anfragen ab. */
+  if('serviceWorker' in navigator && !/(^|\.)clickzauber\.de$/.test(location.hostname)){ try{ var eigen=new URL('sw.js',location.href).pathname.replace(/^\/_t\/[^\/]+/,''); navigator.serviceWorker.getRegistrations().then(function(rs){ rs.forEach(function(r){ var w=r.active||r.installing||r.waiting; if(w&&new URL(w.scriptURL).pathname.replace(/^\/_t\/[^\/]+/,'')===eigen) r.unregister(); }); }).catch(function(){}); }catch(e){} }
+  if ('serviceWorker' in navigator && /(^|\.)clickzauber\.de$/.test(location.hostname)) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () {});
+    });
+  }
+
+  /* ---------- Umgebung erkennen ---------- */
+  var ua = navigator.userAgent || '';
+  var istIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var istAndroid = /Android/.test(ua);
+  var istMobil = istIOS || istAndroid || window.matchMedia('(max-width:820px)').matches;
+  var alsApp = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+
+  window.czApp = { istIOS: istIOS, istAndroid: istAndroid, istMobil: istMobil, alsApp: alsApp };
+
+  var angebot = null;
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    angebot = e;
+    window.czApp.angebot = e;
+  });
+  window.addEventListener('appinstalled', function () {
+    try { localStorage.setItem('cz_app_installiert', '1'); } catch (e) {}
+    schliessen();
+  });
+
+  var CSS = '.cza-back{position:fixed;inset:0;z-index:9000;background:rgba(28,24,16,.5);backdrop-filter:blur(4px);opacity:0;transition:opacity .3s}'
+    + '.cza-back.on{opacity:1}'
+    + '.cza{position:fixed;left:0;right:0;bottom:0;z-index:9001;background:#fff;border-radius:24px 24px 0 0;padding:24px 22px calc(24px + env(safe-area-inset-bottom));box-shadow:0 -20px 50px -20px rgba(30,25,15,.45);transform:translateY(102%);transition:transform .42s cubic-bezier(.2,.8,.2,1);max-height:92vh;overflow-y:auto;font-family:"Space Grotesk",system-ui,-apple-system,sans-serif;color:#27241d}'
+    + '.cza.on{transform:none}'
+    + '@media(min-width:640px){.cza{left:50%;right:auto;bottom:24px;transform:translate(-50%,120%);width:420px;border-radius:24px}.cza.on{transform:translate(-50%,0)}}'
+    + '.cza-grip{width:38px;height:4px;border-radius:99px;background:#e9e1d4;margin:-8px auto 18px}'
+    + '.cza-ic{width:52px;height:52px;border-radius:14px;background:#2f7d59;color:#fff;display:grid;place-items:center;font-size:26px;font-weight:700;margin-bottom:15px}'
+    + '.cza h3{margin:0 0 8px;font-size:20px;letter-spacing:-.02em;line-height:1.2}'
+    + '.cza .lead{margin:0 0 18px;font-size:14.5px;line-height:1.6;color:#615c50;text-wrap:pretty}'
+    + '.cza ol{margin:0 0 20px;padding:0;list-style:none;display:flex;flex-direction:column;gap:13px}'
+    + '.cza li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;line-height:1.5;color:#27241d}'
+    + '.cza li i{flex:0 0 auto;width:24px;height:24px;border-radius:8px;background:#e9f3ed;color:#2f7d59;font-style:normal;font-size:12px;font-weight:700;display:grid;place-items:center;margin-top:1px}'
+    + '.cza li b{font-weight:600}'
+    + '.cza .gl{display:inline-flex;align-items:center;gap:5px;background:#f2ede1;border-radius:7px;padding:2px 8px;font-size:13px;white-space:nowrap}'
+    + '.cza .gl svg{width:13px;height:13px;stroke:#2f7d59;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}'
+    + '.cza .row{display:flex;flex-direction:column;gap:9px}'
+    + '.cza button{font:inherit;font-size:15px;font-weight:600;border-radius:999px;padding:14px;min-height:50px;cursor:pointer;border:none;width:100%}'
+    + '.cza .prim{background:#2f7d59;color:#fff}'
+    + '.cza .ghost{background:#fff;border:1.5px solid #e9e1d4;color:#615c50}'
+    + '.cza .why{margin:16px 0 0;font-size:12.5px;line-height:1.55;color:#968f80}';
+
+  var back = null, blatt = null;
+
+  function schliessen() {
+    if (!blatt) return;
+    blatt.classList.remove('on');
+    back.classList.remove('on');
+    setTimeout(function () {
+      if (blatt && blatt.parentNode) blatt.parentNode.removeChild(blatt);
+      if (back && back.parentNode) back.parentNode.removeChild(back);
+      blatt = null; back = null;
+    }, 420);
+  }
+
+  function schritteIOS() {
+    return '<li><i>1</i><span>Unten in der Leiste auf <span class="gl"><svg viewBox="0 0 24 24"><path d="M12 16V3M8 7l4-4 4 4"></path><path d="M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"></path></svg>Teilen</span> tippen.</span></li>'
+      + '<li><i>2</i><span>In der Liste nach unten wischen bis <b>„Zum Home-Bildschirm"</b>.</span></li>'
+      + '<li><i>3</i><span>Oben rechts auf <b>Hinzufügen</b> tippen. Fertig.</span></li>';
+  }
+  function schritteAndroid() {
+    return '<li><i>1</i><span>Oben rechts auf <span class="gl">⋮ Menü</span> tippen.</span></li>'
+      + '<li><i>2</i><span><b>„App installieren"</b> oder <b>„Zum Startbildschirm hinzufügen"</b> wählen.</span></li>'
+      + '<li><i>3</i><span>Mit <b>Installieren</b> bestätigen. Fertig.</span></li>';
+  }
+
+  function anleitungZeigen(opt) {
+    opt = opt || {};
+    if (blatt || alsApp) { if (opt.beiSchliessen) opt.beiSchliessen(); return; }
+
+    if (!document.getElementById('cz-app-css')) {
+      var st = document.createElement('style');
+      st.id = 'cz-app-css';
+      st.textContent = CSS;
+      document.head.appendChild(st);
+    }
+
+    back = document.createElement('div');
+    back.className = 'cza-back';
+    blatt = document.createElement('div');
+    blatt.className = 'cza';
+    blatt.setAttribute('role', 'dialog');
+    blatt.setAttribute('aria-label', 'clickzauber als App speichern');
+
+    var schritte = angebot ? '' : (istIOS ? schritteIOS() : schritteAndroid());
+
+    blatt.innerHTML = '<div class="cza-grip"></div>'
+      + '<div class="cza-ic"><svg class="cz-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="4.4" fill="currentColor"></circle><path d="M16 5.6a10.4 10.4 0 0 1 10.4 10.4" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path><path d="M16 26.4A10.4 10.4 0 0 1 5.6 16" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></svg></div>'
+      + '<h3>' + (opt.titel || 'clickzauber als App speichern') + '</h3>'
+      + '<p class="lead">' + (opt.text || 'Legen Sie clickzauber neben Ihre Apps. Dann öffnen Sie Anfragen und Konfigurator mit einem Tipp — ohne Browser, ohne Adresse eintippen.') + '</p>'
+      + (schritte ? '<ol>' + schritte + '</ol>' : '')
+      + '<div class="row">'
+      + (angebot ? '<button class="prim" data-cz-inst>App installieren</button>' : '')
+      + '<button class="' + (angebot ? 'ghost' : 'prim') + '" data-cz-zu>' + (angebot ? 'Später' : 'Verstanden') + '</button>'
+      + '</div>'
+      + '<p class="why">Sie bleiben in der App angemeldet — Ihr Passwort geben Sie nur beim ersten Mal ein.</p>';
+
+    document.body.appendChild(back);
+    document.body.appendChild(blatt);
+    requestAnimationFrame(function () { back.classList.add('on'); blatt.classList.add('on'); });
+
+    function fertig() {
+      try { localStorage.setItem('cz_app_hinweis', String(Date.now())); } catch (e) {}
+      schliessen();
+      if (opt.beiSchliessen) opt.beiSchliessen();
+    }
+    back.onclick = fertig;
+    blatt.querySelector('[data-cz-zu]').onclick = fertig;
+    var inst = blatt.querySelector('[data-cz-inst]');
+    if (inst) {
+      inst.onclick = function () {
+        angebot.prompt();
+        var w = angebot.userChoice;
+        angebot = null;
+        if (w && w.then) w.then(fertig, fertig); else fertig();
+      };
+    }
+  }
+
+  function anleitungVorschlagen(opt) {
+    if (alsApp || !istMobil) return false;
+    var zuletzt = 0;
+    try { zuletzt = +(localStorage.getItem('cz_app_hinweis') || 0); } catch (e) {}
+    if (Date.now() - zuletzt < 14 * 864e5) return false;
+    anleitungZeigen(opt);
+    return true;
+  }
+
+  window.czApp.anleitungZeigen = anleitungZeigen;
+  window.czApp.anleitungVorschlagen = anleitungVorschlagen;
+
+  /* ---------- Angemeldet bleiben ---------- */
+  window.czApp.token = function () {
+    try { return localStorage.getItem('cz_user_token') || ''; } catch (e) { return ''; }
+  };
+  window.czApp.merken = function (token, email) {
+    try {
+      if (token) localStorage.setItem('cz_user_token', token);
+      if (email) localStorage.setItem('cz_user_email', email);
+    } catch (e) {}
+  };
+  window.czApp.email = function () {
+    try { return localStorage.getItem('cz_user_email') || ''; } catch (e) { return ''; }
+  };
+  window.czApp.abmelden = function () {
+    try { localStorage.removeItem('cz_user_token'); } catch (e) {}
+  };
+})();
+
+</script>
+<style>.wt-spin{width:34px;height:34px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent);margin:4px auto 18px;animation:wtsp .8s linear infinite}@keyframes wtsp{to{transform:rotate(360deg)}}#v-warten{text-align:center}#v-warten .btn.ghost{margin-top:8px}/* mobil-pass */
+@media(max-width:600px){
+  html,body{overflow-x:hidden}
+  .card{padding:22px 16px;border-radius:14px}
+  .card h1{font-size:21px}
+  pre,.code,code{overflow-wrap:anywhere;white-space:pre-wrap}
+}
+</style>
+<style>
+.fit-q{margin:0 0 22px}
+.fit-q label{display:block;font-family:var(--fd);font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--ink);margin:0 0 10px;text-wrap:pretty}
+.fit-opts{display:flex;gap:8px;flex-wrap:wrap}
+.fit-opts.col{flex-direction:column}
+.fit-opts button{font:inherit;font-size:14px;background:var(--panel);border:1.5px solid var(--line);border-radius:12px;padding:12px 15px;color:var(--ink-2);cursor:pointer;min-height:46px;text-align:left;transition:border-color .15s,color .15s}
+.fit-opts button:hover{border-color:var(--accent);color:var(--ink)}
+.fit-opts button.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--panel));color:var(--ink);font-weight:600}
+.fit-calc{background:#1a1813;border-radius:16px;padding:20px 22px;margin:0 0 18px;color:#f4efe2}
+.fit-calc .fc-head{font-family:var(--fm);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#4fa87c;margin-bottom:10px}
+.fit-calc .fc-line{margin:0 0 8px;font-size:17px;line-height:1.45;letter-spacing:-.01em;text-wrap:pretty}
+.fit-calc .fc-line b{color:#4fa87c}
+.fit-calc .fc-sub{margin:0;font-size:13.5px;line-height:1.55;color:rgba(244,239,226,.66)}
+.fit-ref{background:var(--panel);border:1.5px solid var(--line);border-radius:16px;padding:19px 21px;margin:0 0 20px}
+.fit-ref .fr-head{font-size:15px;font-weight:600;letter-spacing:-.01em;margin-bottom:8px}
+.fit-ref p{margin:0 0 13px;font-size:14px;line-height:1.6;color:var(--ink-2)}
+.fit-ref .fr-code{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;background:var(--bg);border:1px dashed var(--line-2);border-radius:11px;padding:12px 15px}
+.fit-ref .fr-code span{font-family:var(--fm);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.fit-ref .fr-code b{font-family:var(--fm);font-size:17px;letter-spacing:.06em;color:var(--accent)}
+.fit-ref .fr-note{margin:11px 0 0;font-size:12.5px;color:var(--ink-3)}
+/* mobil-pass */
+@media(max-width:600px){
+  html,body{overflow-x:hidden}
+  .card{padding:22px 16px;border-radius:14px}
+  .card h1{font-size:21px}
+  pre,.code,code{overflow-wrap:anywhere;white-space:pre-wrap}
+}
+</style>
+<style>
+.nav-row{display:flex;align-items:center;gap:10px;margin-top:18px;padding-top:0;border-top:none;justify-content:center}
+.nav-row .sp{display:none}
+.nav-row .schritt{display:none}
+.zurueck{display:inline-flex;align-items:center;gap:7px;background:none;border:none;color:var(--ink-3);font-family:var(--fd);font-size:14.5px;cursor:pointer;padding:10px 6px;min-height:44px;width:auto}
+.zurueck:hover{color:var(--ink)}
+.zurueck svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.nav-row .sp{flex:1}
+.nav-row .schritt{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+#stepper .s{cursor:default}
+#stepper .s.klick{cursor:pointer}
+body.nur-login #stepper{display:none}
+body.nur-login .brand{margin-bottom:30px}
+/* mobil-pass */
+@media(max-width:600px){
+  html,body{overflow-x:hidden}
+  .card{padding:22px 16px;border-radius:14px}
+  .card h1{font-size:21px}
+  pre,.code,code{overflow-wrap:anywhere;white-space:pre-wrap}
+}
+body.editing .gl-btn,body.editing .gl-menu{display:none!important}.anm-spr{position:fixed;top:14px;right:14px;z-index:20}.anm-spr .spr-sel{font:inherit;font-size:14px;padding:8px 30px 8px 12px;border-radius:999px;border:1px solid rgba(34,31,24,.18);background:#fffdf8;color:#27241d;min-height:40px}
+</style>
+<style id="cz-logo">svg.cz-mark{width:62%;height:62%;display:block;flex:0 0 auto}</style></head>
+<body>
+<button id="devNext" hidden title="Test: nächster Schritt" style="position:fixed;bottom:16px;right:16px;z-index:99;background:#27241d;color:#fff;border:none;border-radius:10px;padding:10px 16px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;opacity:.55">Test: weiter →</button>
+<script>if(new URLSearchParams(location.search).get('test')==='1'){document.getElementById('devNext').hidden=false;}</script>
+<a class="brand" href="index.html" title="Zur Startseite"><span class="mk"><svg class="cz-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="4.4" fill="currentColor"></circle><path d="M16 5.6a10.4 10.4 0 0 1 10.4 10.4" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path><path d="M16 26.4A10.4 10.4 0 0 1 5.6 16" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></svg></span>clickzauber</a>
+<div class="steps" id="stepper"><div class="s on"></div><div class="s"></div><div class="s"></div><div class="s"></div></div>
+
+<!-- 0 · ANGEMELDET BLEIBEN -->
+<div class="card view" id="v-warten">
+  <div class="wt-spin" id="wt-spin"></div>
+  <h1>Willkommen zurück</h1>
+  <p class="lede" id="wt-text">Sie sind angemeldet. Einen Moment — wir holen Ihren Stand.</p>
+  <button class="btn" id="btn-nochmal" hidden>Nochmal versuchen</button>
+  <button class="btn ghost" id="btn-anderer">Mit anderer E-Mail anmelden</button>
+</div>
+
+<!-- 1 · E-MAIL & PASSWORT — eine Tür für beides -->
+<div class="card view on" id="v-email">
+  <h1 id="email-titel">Willkommen bei clickzauber</h1>
+  <p class="lede" id="email-lede">Ihre E-Mail-Adresse genügt zum Anfangen. Wir sehen selbst nach, ob Sie schon ein Konto haben.</p>
+  <label for="email">Ihre E-Mail-Adresse <span class="req">*</span></label>
+  <input id="email" type="email" placeholder="name@firma.de" autocomplete="email">
+  <div class="mailzeile" id="mail-zeigen" hidden></div>
+  <div id="pw-wrap" hidden>
+    <label id="pw-label" for="pwort">Passwort <span class="req">*</span></label>
+    <div class="feld"><input id="pwort" type="password" placeholder="Passwort" autocomplete="current-password"><button class="imfeld" id="btn-vergessen" type="button" hidden>Vergessen?</button></div>
+    <div id="pw2-wrap" hidden><label for="pwort2">Passwort wiederholen <span class="req">*</span></label><input id="pwort2" type="password" placeholder="Nochmal eingeben" autocomplete="new-password"></div>
+  </div>
+  <button class="btn" id="btn-email">Weiter</button>
+  <div class="err" id="err-email"></div>
+  <div class="nav-row" id="mail-nav" hidden><button class="zurueck" id="btn-mail-neu"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Andere E-Mail</button></div>
+  <p class="hint" id="email-hint">Danach wählen Sie Ihre Branche und bauen Ihr Formular. Bezahlt wird erst, wenn Sie es live schalten.</p>
+</div>
+
+<!-- 1b · E-MAIL BESTÄTIGEN — nicht mehr im Kaufweg, nur noch vor dem Live-Schalten -->
+<div class="card view" id="v-code">
+  <h1>Bestätigen Sie Ihre E-Mail</h1>
+  <p class="lede">Wir haben eine E-Mail an <b id="code-mail"></b> geschickt. Klicken Sie darin auf den grünen Knopf — damit wissen wir, dass die Adresse Ihnen gehört und Rechnungen sowie Anfragen ankommen.</p>
+  <button class="btn" id="btn-code">Ich habe bestätigt — weiter</button>
+  <div class="nav-row"><button class="zurueck" data-zu="v-email"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Andere E-Mail</button><span class="sp"></span><span class="schritt">Bestätigung</span></div>
+  <button class="btn ghost" id="btn-resend">E-Mail erneut senden</button>
+  <div class="err" id="err-code"></div>
+  <p class="hint">Keine E-Mail nach zwei Minuten? Sehen Sie im Spam-Ordner nach.</p>
+</div>
+
+<!-- 2 · PROFIL -->
+<div class="card view" id="v-profil">
+  <h1>Ihre Angaben</h1>
+  <p class="lede">Wer Sie sind und wie wir Sie erreichen. Die Rechnungsanschrift fragt Stripe beim Bezahlen — hier müssen Sie sie nicht noch einmal eintippen.</p>
+  <div class="row2">
+    <div><label>Vorname <span class="req">*</span></label><input id="vorname" autocomplete="given-name"></div>
+    <div><label>Nachname <span class="req">*</span></label><input id="nachname" autocomplete="family-name"></div>
+  </div>
+  <label>Firmenname <span class="req">*</span></label><input id="firma" autocomplete="organization">
+  <div class="row2">
+    <div><label>Telefon <span class="req">*</span></label><input id="telefon" autocomplete="tel"></div>
+    <div><label>Website</label><input id="website" placeholder="https://"></div>
+  </div>
+  <label>USt-IdNr.</label><input id="ustid">
+  <p class="pflichtnote"><b>*</b> Pflichtfeld. Felder ohne Sternchen können Sie leer lassen.</p>
+  <button class="btn" id="btn-profil">Weiter</button>
+  <div class="nav-row"><button class="zurueck" data-zu="v-email"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Zurück</button><span class="sp"></span><span class="schritt">Schritt 2 von 4</span></div>
+  <p class="hint" id="profil-hint" hidden></p>
+  <div class="err" id="err-profil"></div>
+</div>
+
+<!-- Die Zwischenseite „Jetzt Ihr Formular bauen“ ist entfernt. Sie sagte nur an,
+     was als Nächstes kommt — jetzt kommt es einfach. -->
+
+<!-- 4 · KONFIGURATOR (inline) -->
+<div class="card view" id="v-editor">
+  <iframe id="editorFrame" title="clickzauber Konfigurator"></iframe>
+  <div class="ed-bar">
+    <button class="zurueck" data-zu="v-profil"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Zurück</button>
+    <span class="ed-hint">Speichern und ansehen können Sie im Konfigurator. Zum Live-Schalten geht es hier weiter.</span>
+    <button class="btn" id="btn-editor-done">Live schalten — Tarif wählen →</button>
+  </div>
+</div>
+
+<!-- 5 · TARIF -->
+<div class="card wide view" id="v-plan">
+  <h1 style="text-align:center">Tarif wählen</h1>
+  <p class="lede" style="text-align:center">Die ersten 14 Tage sind kostenlos. Erst danach wird abgebucht. Wer vorher kündigt, zahlt nichts. Monatlich oder jährlich kündbar.</p>
+  <div class="cycle" id="cycle">
+    <button data-c="monthly" class="on">Monatlich</button>
+    <button data-c="yearly">Jährlich <span class="save">2 Monate gratis</span></button>
+  </div>
+  <div class="plans" id="plans"></div>
+  <p class="stufe-hinweis" id="stufeHinweis" hidden>Der Preis richtet sich nach der Branche Ihres Formulars.</p>
+  <label class="einr"><input type="checkbox" id="einr"><span><b>Einrichtung durch mich · 129 € einmalig</b><small>Ich baue Ihr Formular nach Ihren Angaben. Wird sofort berechnet, auch in der Testphase.</small></span></label>
+  <button class="btn" id="btn-pay" disabled>Tarif wählen &amp; 14 Tage kostenlos testen</button>
+  <div class="pay-note">Sichere Zahlung über Stripe <span>Kreditkarte</span><span>PayPal</span></div>
+  <div class="err" id="err-plan" style="text-align:center"></div>
+  <div class="nav-row"><button class="zurueck" id="btn-plan-back"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Zurück</button><span class="sp"></span><span class="schritt">Schritt 4 von 4</span></div>
+</div>
+
+<!-- 6 · FERTIG -->
+<div class="card view" id="v-done">
+  <h1 style="text-align:center">Zahlung erfolgreich</h1>
+  <p class="lede" style="text-align:center" id="done-text">Ihr Tarif ist aktiv. Ihr Formular geht jetzt live. Im Cockpit finden Sie Link, QR-Code und Einbau-Code.</p>
+  <a class="btn" id="done-btn" href="clickzauber-cockpit-live.html?live=1&amp;bezahlt=1" style="text-align:center;display:block;text-decoration:none">Zum Cockpit →</a>
+</div>
+
+<script>
+var API="https://clickzauber-api.vercel.app/api";
+var PLANS={
+  service:{name:"Service",widgets:"Friseur, Kosmetik, Massage, Tattoo, DJ, Foto & Video, Floristik, Torten, Makler, Finanzen & Beratung",monthly:79,yearly:790,features:["1 Formular live, mit Teilen-Link und QR-Code","Cockpit mit Terminen und Anfragen","E-Mail und Push bei jeder Anfrage","Vernetzen mit anderen Betrieben, ohne Provision"]},
+  projekt:{name:"Projekt",widgets:"Food Truck & Catering, Locations, Handwerk & Solar",monthly:199,yearly:1990,features:["1 Formular live, mit Teilen-Link und QR-Code","Richtpreis und Vorprüfung schon im Formular","Anfragen mit geschätztem Auftragswert","Vernetzen mit anderen Betrieben, ohne Provision","Antwort am selben Werktag"]}
+};
+/* Preis nach Branche — dieselbe Liste wie lib/_plans.js. Der Server entscheidet am Ende selbst. */
+var STUFE_SERVICE=["friseur","barbier","kosmetik","nagel","wimpern","massage","tattoo","musik","fotovideo","floristik","deko","konditorei","makler","finanzierung","versicherung","agentur","steuer"];
+function stufeVon(zg){ return STUFE_SERVICE.indexOf(String(zg||"").toLowerCase())>=0?"service":"projekt"; }
+var state={email:"",token:localStorage.getItem("cz_user_token")||"",cycle:"monthly",plan:null,stufe:null,zg:null};
+/* Branche aus dem Entwurf: bestimmt den Preis, solange noch kein Formular gespeichert ist. */
+(function(){ try{ var e=JSON.parse(localStorage.getItem('cz_entwurf')||'null'), zg=e&&e.config&&e.config.zielgruppe; if(zg){ state.zg=zg; state.stufe=stufeVon(zg); } }catch(e){} })();
+/* Vorauswahl von der Startseite (Tarif + Design) */
+(function(){
+  var q=new URLSearchParams(location.search);
+  var pl=q.get('plan'); if(pl&&PLANS[pl]) state.plan=pl;
+  var cy=q.get('cycle'); if(cy==='yearly'||cy==='monthly') state.cycle=cy;
+  var ds=q.get('design');
+  if(ds){ try{ localStorage.setItem('cz_design_pick', JSON.stringify({skin:ds,accent:q.get('accent')||'',font:q.get('fq')||'',fontAnswer:q.get('fa')||''})); }catch(e){} }
+})();
+
+function show(id){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  document.body.classList.toggle('editing', id==='v-editor');
+  var order=['v-email','v-profil','v-editor','v-plan'];
+  var i=order.indexOf(id); if(id==='v-code') i=0; if(id==='v-editor') i=2; if(id==='v-done') i=3;
+  document.querySelectorAll('#stepper .s').forEach(function(s,k){s.classList.toggle('on',k<=i);});
+  window.scrollTo(0,0);
+}
+function post(path,data){
+  return fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+    .then(function(r){
+      return r.json().catch(function(){
+        return {ok:false, error: r.status>=500
+          ? 'Unser Server antwortet gerade nicht. Bitte in einer Minute erneut versuchen.'
+          : 'Unerwartete Antwort vom Server.'};
+      });
+    })
+    .catch(function(){
+      /* Der Aufruf kam nie beim Server an. Fast immer liegt das nicht am Netz des Nutzers,
+         sondern an der Umgebung: in einer Vorschau sind Verbindungen nach außen gesperrt. */
+      return {ok:false, error: istVorschau()
+        ? 'Anmeldung geht nur auf clickzauber.de. Dieses Vorschaufenster darf keine Verbindung zu unserem Server aufbauen — Ihr Netz ist in Ordnung.'
+        : 'Wir erreichen unseren Server nicht. Ihr Netz scheint zu stehen, das Problem liegt bei uns — bitte in einer Minute erneut versuchen.'};
+    });
+}
+/* Läuft die Seite auf der echten Domain oder in einer Vorschau / lokal? */
+function istVorschau(){
+  var h=location.hostname;
+  if(h==='clickzauber.de'||h==='www.clickzauber.de') return false;
+  return true;
+}
+
+/* Rücksprung von Stripe */
+var qs=new URLSearchParams(location.search);
+/* ziel=profil|plan — aus dem Konfigurator, wenn dort auf „Live schalten“ geklickt wurde.
+   Der Weg führt über die Bestätigungsmail und die Anmeldeseite; dabei geht die
+   Adresszeile verloren. Deshalb liegt das Ziel zusätzlich im Browserspeicher —
+   sonst landet man nach seinen Angaben wieder beim Konfigurator statt beim Tarif. */
+var ziel=(qs.get('ziel')||'');
+try{
+  if(ziel) localStorage.setItem('cz_ziel',ziel);
+  else ziel=localStorage.getItem('cz_ziel')||'';
+}catch(e){}
+/* Ein Entwurf auf dem Gerät führt nicht mehr zum Tarif: Den holt der Konfigurator selbst zurück (entwurfHolen).
+   Bezahlt wird nur über den Live-Schalter im Cockpit (js/cz-live.js → ?ziel=plan). */
+function zielFertig(){ try{ localStorage.removeItem('cz_ziel'); }catch(e){} }
+if(qs.get('bezahlt')) zielFertig();
+/* Als App vom Startbildschirm, nach dem Abmelden oder aus dem Cockpit: nur Anmelden, ohne Einrichtungs-Schritte. */
+var nurLogin=(qs.get('login')==='1'||!!qs.get('abgemeldet')||window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true)
+  && !qs.get('ziel') && !qs.get('plan') && !qs.get('werber') && !qs.get('ref');
+function loginModus(){
+  state.direkt=true; state.modus='anmelden'; state.geprueft='';
+  document.body.classList.add('nur-login');
+  document.getElementById('email-titel').textContent='Anmelden';
+  document.getElementById('email-lede').textContent='Mit Ihrer E-Mail-Adresse und Ihrem Passwort.';
+  var em=document.getElementById('email'); em.hidden=false; em.setAttribute('autocomplete','username');
+  document.getElementById('mail-zeigen').hidden=true;
+  document.getElementById('pw-label').innerHTML='Passwort <span class="req">*</span>';
+  var pw=document.getElementById('pwort'); pw.placeholder='Ihr Passwort'; pw.setAttribute('autocomplete','current-password');
+  document.getElementById('pw-wrap').hidden=false;
+  document.getElementById('pw2-wrap').hidden=true;
+  document.getElementById('btn-vergessen').hidden=false;
+  document.getElementById('mail-nav').hidden=true;
+  document.getElementById('btn-email').textContent='Anmelden';
+  document.getElementById('email-hint').innerHTML='<button type="button" class="zurueck" id="btn-neu-konto" style="margin:0 auto">Noch kein Konto? Konto anlegen</button>';
+}
+function loginVerlassen(){ nurLogin=false; state.direkt=false; document.body.classList.remove('nur-login'); }
+document.addEventListener('click',function(ev){ if(ev.target.closest&&ev.target.closest('#btn-neu-konto')){ loginVerlassen(); zurueckZurTuer(); } });
+if(qs.get('schritt')){ show('v-'+qs.get('schritt')); }
+else if(qs.get('bezahlt')){ show('v-done'); nachZahlung(); }
+else if(state.token){ show('v-warten'); resume(); }
+else {
+  show('v-email');
+  var gemerkt=''; try{ gemerkt=localStorage.getItem('cz_user_email')||''; }catch(e){}
+  if(gemerkt) document.getElementById('email').value=gemerkt;
+  if(nurLogin) loginModus();
+  setTimeout(function(){ document.getElementById(nurLogin&&gemerkt?'pwort':'email').focus(); },80);
+}
+
+/* Wer mit einem unveröffentlichten Entwurf bezahlt hat, ist noch nicht live —
+   der letzte Schritt gehört dem Konfigurator, dort liegt der Entwurf. */
+function nachZahlung(){
+  /* Seit 02.10.2026 liegt der Entwurf auf dem Server. Nach der Zahlung schaltet ihn der Stripe-Webhook live,
+     sonst der Schalter im Cockpit (js/cz-live.js). Der Knopf führt deshalb immer ins Cockpit. */
+}
+
+/* Wer schon ein Konto hat, will ins Cockpit — nicht durch die Einrichtung.
+   Der Trichter hier ist nur für Neuanmeldungen. */
+function insCockpit(live){ zielFertig(); location.replace('clickzauber-cockpit-live.html'+(live?'?live=1':'')); }
+/* Nach der Anmeldung: erst die Branche, dann das Formular. Der Konfigurator öffnet mit der Branchen-Auswahl. */
+function zumKonfigurator(){ zielFertig(); try{ fitSenden(); }catch(e){} setTimeout(function(){ location.replace('clickzauber-editor.html?start=1'); },250); }
+
+/* Server nicht erreichbar: die Anmeldung bleibt bestehen. Niemand wird auf
+   „Willkommen bei clickzauber“ zurückgeworfen, nur weil die Leitung klemmt. */
+function serverStreikt(){
+  var s=document.getElementById('wt-spin'), t=document.getElementById('wt-text'), b=document.getElementById('btn-nochmal');
+  if(s) s.style.display='none';
+  if(t) t.textContent='Der Server antwortet gerade nicht. Ihre Anmeldung bleibt bestehen — bitte in einem Moment nochmal versuchen.';
+  if(b){ b.hidden=false; b.onclick=function(){ b.hidden=true; if(s) s.style.display=''; if(t) t.textContent='Einen Moment — wir holen Ihren Stand.'; resume(); }; }
+  show('v-warten');
+}
+function resume(){
+  fetch(API+'/profile?token='+encodeURIComponent(state.token)).then(function(r){
+    /* Nur ein abgelehnter Token meldet ab — ein Serverfehler nicht. */
+    if(r.status===401||r.status===403) return {abgelehnt:true};
+    if(!r.ok) throw new Error('server');
+    return r.json();
+  }).then(function(j){
+    if(j&&j.abgelehnt){ localStorage.removeItem('cz_user_token'); state.token=''; zurueckZurTuer(); return; }
+    if(!j||!j.ok) throw new Error('server');
+    var u=j.user; state.email=u.email;
+    /* Gespeichertes Formular schlägt den Entwurf: dessen Branche bestimmt den Preis. */
+    if(u.stufe) state.stufe=u.stufe;
+    state.pilot=!!u.pilot;
+    state.bezahlt=(u.plan_status==='aktiv'||u.plan_status==='gekündigt');
+    state.hatFormular=!!(j.widgets||[]).length;
+    state.admin=!!j.admin;
+    /* Rechnungsanschrift kommt aus dem Bezahlfenster — hier nicht mehr verlangt. */
+    var vollstaendig = !!(u.vorname&&u.nachname&&u.firma&&u.telefon);
+    /* Betreiber: immer ins Cockpit. */
+    if(state.admin){ insCockpit(); return; }
+    /* Ein Hinweis „zum Tarif“ oder „zu den Angaben“ zählt nur, wenn das Formular schon auf dem Server liegt.
+       Sonst zuerst bauen — der Konfigurator holt einen Entwurf vom Gerät selbst zurück. */
+    if(ziel && !state.hatFormular){ zumKonfigurator(); return; }
+    if(ziel && vollstaendig && (state.pilot||state.bezahlt)){ insCockpit(true); return; }
+    /* Wer zum Live-Schalten hergeschickt wurde, geht diesen Weg — auch als
+       Bestandskunde. Sonst landet er im Cockpit und sucht den Tarif selbst. */
+    if(ziel){
+      if(!vollstaendig){ fillProfil(u); show('v-profil'); return; }
+      preiseLaden(renderPlans); show('v-plan'); return;
+    }
+    if(qs.get('abbruch')){ preiseLaden(renderPlans); show('v-plan'); return; }
+    /* Neuer Weg: Konto → Branche und Formular im Konfigurator → Cockpit. Angaben und Zahlung folgen erst beim Live-Schalten. */
+    if(state.hatFormular || state.bezahlt){ insCockpit(); return; }
+    zumKonfigurator();
+  }).catch(function(){ serverStreikt(); });
+}
+
+document.getElementById('btn-anderer').onclick=function(){
+  if(window.czApp) czApp.abmelden(); else { try{ localStorage.removeItem('cz_user_token'); }catch(e){} }
+  state.token=''; state.email='';
+  zurueckZurTuer();
+};
+
+/* Die vier Fragen stehen nur noch auf der Startseite. Hier werden die Antworten
+   von dort gelesen und mitgeschickt — abgefragt wird vor dem Bezahlen nichts mehr. */
+var fit = {};
+try{ fit = JSON.parse(localStorage.getItem('cz_fit')||'{}'); }catch(e){ fit = {}; }
+
+/* Persönlicher Code, stabil aus der E-Mail abgeleitet: CLICKZBR-4712 */
+function empfehlungscode(){
+  var q = (state.email || '').toLowerCase();
+  if(!q) return 'CLICKZBR-••••';
+  var h = 0;
+  for(var i=0;i<q.length;i++){ h = (h*33 + q.charCodeAt(i)) % 9000; }
+  return 'CLICKZBR-' + (1000 + h);
+}
+
+/* Vom Widget direkt zum Tarif — ein Schritt weniger vor der Zahlung. */
+function zumTarif(){
+  fitSenden();
+  /* Pilotplatz: kostenlos, kein Tarif nötig — direkt ins Cockpit. */
+  if(state.pilot){ insCockpit(true); return; }
+  preiseLaden(renderPlans);
+  renderPlans();
+  show('v-plan');
+  /* „Dauerhaft" auf der Startseite gewählt → Jahresansicht vorbelegen, besserer Preis. */
+  if(fit.dauer && fit.dauer.jahr){
+    var y=document.querySelector('#cycle [data-c="yearly"]');
+    if(y && !y.classList.contains('on')) y.click();
+  }
+}
+
+function fitSenden(){
+  if(!Object.keys(fit).length) return;
+  var daten = {
+    token: state.token || null,
+    email: state.email || null,
+    anfragen: fit.anfragen ? fit.anfragen.text : null,
+    wert: fit.wert ? fit.wert.text : null,
+    wert_zahl: fit.wert ? fit.wert.zahl : null,
+    erfolg: fit.erfolg ? fit.erfolg.text : null,
+    dauer: fit.dauer ? fit.dauer.text : null,
+    code: empfehlungscode(),
+    geworben_von: (function(){ try{ return localStorage.getItem('cz_ref')||null; }catch(e){ return null; } })()
+  };
+  fetch(API+'/interesse',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(daten)}).catch(function(){});
+}
+
+/* Empfehlungscode aus der Adresse merken: ?ref=CODE */
+(function(){
+  var r=new URLSearchParams(location.search).get('ref');
+  if(r){ try{ localStorage.setItem('cz_ref', r.toUpperCase()); }catch(e){} }
+})();
+
+/* Vor und zurück: eine Verkabelung für alle Zurück-Knöpfe. */
+document.addEventListener('click', function(e){
+  var b=e.target.closest('[data-zu]');
+  if(b) show(b.getAttribute('data-zu'));
+});
+
+/* Stepper: bereits erreichte Schritte sind anklickbar. */
+(function(){
+  var ziele=['v-email','v-profil','v-editor','v-plan'];
+  var weit=0;
+  var echt=show;
+  window.show=function(id){
+    var i=ziele.indexOf(id);
+    if(id==='v-editor') i=2;
+    if(id==='v-done') i=3;
+    if(i>weit) weit=i;
+    echt(id);
+    document.querySelectorAll('#stepper .s').forEach(function(s,k){
+      s.classList.toggle('klick', k<=weit);
+      s.onclick = k<=weit ? function(){ window.show(ziele[k]); } : null;
+      s.title = k<=weit ? 'Zu Schritt '+(k+1) : '';
+    });
+  };
+})();
+
+/* 1 Eine Tür: erst die Adresse, dann fragt der Server, ob es das Konto gibt.
+   Vorher musste der Kunde selbst zwischen „Konto anlegen“ und „Ich habe schon
+   ein Konto“ wählen — wer sich da vergriff, landete in einer Fehlermeldung. */
+state.modus='';
+state.geprueft='';
+function zurueckZurTuer(){
+  state.modus=''; state.geprueft='';
+  document.getElementById('pw-wrap').hidden=true;
+  document.getElementById('pwort').value='';
+  document.getElementById('pwort2').value='';
+  document.getElementById('btn-mail-neu').hidden=true;
+  document.getElementById('btn-vergessen').hidden=true;
+  document.getElementById('mail-nav').hidden=true;
+  document.getElementById('email').hidden=false;
+  document.getElementById('mail-zeigen').hidden=true;
+  document.getElementById('btn-email').textContent='Weiter';
+  document.getElementById('email-titel').textContent='Willkommen bei clickzauber';
+  document.getElementById('email-lede').textContent='Ihre E-Mail-Adresse genügt zum Anfangen. Wir sehen selbst nach, ob Sie schon ein Konto haben.';
+  document.getElementById('email-hint').textContent='Ein Konto brauchen Sie, damit Ihr Formular später Ihnen gehört — und damit Anfragen bei Ihnen landen.';
+  document.getElementById('err-email').textContent='';
+  show('v-email');
+  var g=''; try{ g=localStorage.getItem('cz_user_email')||''; }catch(e){}
+  if(g) document.getElementById('email').value=g;
+  if(nurLogin) loginModus();
+  setTimeout(function(){ document.getElementById(nurLogin&&g?'pwort':'email').focus(); },80);
+}
+/* Wer schon einmal da war, wird beim Namen begrüßt — die Adresse steht darunter. */
+function gruss(){
+  var v=''; try{ v=localStorage.getItem('cz_user_vorname')||''; }catch(e){}
+  var h=new Date().getHours();
+  var t = h<11 ? 'Guten Morgen' : (h<18 ? 'Guten Tag' : 'Guten Abend');
+  return v ? t+', '+v : 'Willkommen zurück';
+}
+function wegSetzen(m){
+  if(m==='neu') loginVerlassen();
+  state.modus=m;
+  var neu=(m==='neu');
+  document.getElementById('email-titel').textContent = neu ? 'Konto anlegen' : gruss();
+  document.getElementById('email-lede').textContent = neu
+    ? 'Diese Adresse kennen wir noch nicht. Denken Sie sich ein Passwort aus — damit melden Sie sich künftig an.'
+    : '';
+  document.getElementById('pw-label').innerHTML = (neu ? 'Passwort ausdenken' : 'Ihr Passwort') + ' <span class="req">*</span>';
+  document.getElementById('pwort').placeholder = neu ? 'Passwort ausdenken — mind. 8 Zeichen' : 'Ihr Passwort';
+  document.getElementById('pwort').setAttribute('autocomplete', neu ? 'new-password' : 'current-password');
+  document.getElementById('pw-wrap').hidden = false;
+  document.getElementById('pw2-wrap').hidden = !neu;
+  document.getElementById('btn-mail-neu').hidden = false;
+  document.getElementById('btn-vergessen').hidden = neu;
+  document.getElementById('mail-nav').hidden = false;
+  /* Die Adresse steht jetzt als Zeile da, nicht mehr als Feld — sie ist beantwortet. */
+  var mz=document.getElementById('mail-zeigen');
+  mz.textContent=document.getElementById('email').value.trim();
+  mz.hidden=false;
+  document.getElementById('email').hidden=true;
+  document.getElementById('btn-email').textContent = neu ? 'Konto anlegen' : 'Anmelden';
+  document.getElementById('email-hint').textContent = neu
+    ? 'Das Passwort brauchen Sie bei jeder Anmeldung — auch in der App auf dem Startbildschirm.'
+    : 'Passwort vergessen? Der Knopf oben schickt Ihnen einen neuen Link.';
+  document.getElementById('err-email').textContent='';
+  show('v-email');
+  setTimeout(function(){ document.getElementById('pwort').focus(); },80);
+}
+document.getElementById('btn-mail-neu').onclick=zurueckZurTuer;
+/* Adresse nachträglich geändert: dann gilt die Prüfung nicht mehr. */
+document.getElementById('email').addEventListener('input',function(){
+  if(state.geprueft && this.value.trim().toLowerCase()!==state.geprueft){
+    state.modus=''; state.geprueft='';
+    document.getElementById('pw-wrap').hidden=true;
+    document.getElementById('btn-vergessen').hidden=true;
+    document.getElementById('mail-nav').hidden=true;
+    document.getElementById('btn-mail-neu').hidden=true;
+    document.getElementById('btn-email').textContent='Weiter';
+  }
+});
+
+/* 2 Registrieren oder anmelden — beides mit demselben Knopf. */
+function nachAnmeldung(j){
+  state.token=j.token;
+  state.pilot=!!j.pilot;
+  /* Anderes Konto als zuletzt auf diesem Gerät: die Formular-Liste des alten Kontos nicht mitnehmen. */
+  try{ var vorher=(localStorage.getItem('cz_user_email')||'').toLowerCase(); if(vorher && state.email && vorher!==String(state.email).toLowerCase()) localStorage.removeItem('cz_widgets'); }catch(e){}
+  if(window.czApp) czApp.merken(j.token, state.email);
+  else { try{ localStorage.setItem('cz_user_token',j.token); localStorage.setItem('cz_user_email',state.email); }catch(e){} }
+  if(j.vorname){ try{ localStorage.setItem('cz_user_vorname', j.vorname); }catch(e){} }
+  if(window.czApp) czApp.anleitungVorschlagen({titel:'Gleich als App speichern?',text:'Damit öffnen Sie Konfigurator und Anfragen später mit einem Tipp — und bleiben angemeldet.'});
+  /* Noch nicht bestätigt? Hält niemanden auf — nur ein Hinweis auf dem nächsten
+     Bildschirm. Verlangt wird die Bestätigung erst vor dem Live-Schalten. */
+  if(j.bestaetigt===false){
+    var ph=document.getElementById('profil-hint');
+    if(ph){
+      ph.hidden=false;
+      ph.innerHTML = j.mail_raus===false
+        ? 'Die Bestätigungs-E-Mail ließ sich gerade nicht senden. Sie können weitermachen — wir versuchen es später erneut.'
+        : 'Eine Bestätigungs-E-Mail ist unterwegs an <b>'+state.email+'</b>. Bestätigen können Sie jederzeit — gebraucht wird es erst, wenn Ihr Formular live geht.';
+    }
+  }
+  /* Wer zum Live-Schalten hergeschickt wurde, geht diesen Weg zu Ende. */
+  if(ziel){ resume(); return; }
+  if(j.plan_status==='aktiv'){ insCockpit(); return; }
+  resume();
+}
+document.getElementById('btn-email').onclick=function(){
+  var e=document.getElementById('email').value.trim().toLowerCase();
+  var pw=document.getElementById('pwort').value;
+  var err=document.getElementById('err-email'); err.textContent='';
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)){ err.textContent='Bitte eine gültige E-Mail eingeben.'; return; }
+
+  /* Schritt 1: nachsehen, ob es zu dieser Adresse schon ein Konto gibt. Danach
+     fragt die Seite entweder nach dem Passwort oder lässt eines anlegen. */
+  if(!state.direkt && (!state.modus || state.geprueft!==e)){
+    var pb=this, palt=pb.textContent;
+    pb.disabled=true; pb.textContent='Einen Moment …';
+    post('/auth/pruefen',{email:e}).then(function(j){
+      pb.disabled=false; pb.textContent=palt;
+      if(!j||!j.ok){ err.textContent=(j&&j.error)||'Fehler.'; return; }
+      state.geprueft=e;
+      wegSetzen(j.konto ? 'anmelden' : 'neu');
+    }).catch(function(){
+      pb.disabled=false; pb.textContent=palt;
+      err.textContent='Verbindung fehlgeschlagen. Bitte in einem Moment erneut versuchen.';
+    });
+    return;
+  }
+
+  var neu=(state.modus==='neu');
+  if(neu){
+    if(pw.length<8){ err.textContent='Das Passwort braucht mindestens 8 Zeichen.'; return; }
+    if(pw!==document.getElementById('pwort2').value){ err.textContent='Die beiden Passwörter sind nicht gleich.'; return; }
+  } else if(!pw){ err.textContent='Bitte Ihr Passwort eingeben.'; return; }
+
+  var b=this, alt=b.textContent;
+  b.disabled=true; b.textContent= neu ? 'Konto wird angelegt …' : 'Prüfe …';
+  state.email=e; state.pw=pw;
+
+  function anderenWegAnbieten(text, modus){
+    err.textContent=text;
+    var x=document.createElement('button');
+    x.className='btn ghost'; x.style.marginTop='10px';
+    x.textContent= modus==='neu' ? 'Konto anlegen' : 'Stattdessen anmelden';
+    x.onclick=function(){ state.geprueft=e; wegSetzen(modus); document.getElementById('email').value=e; };
+    err.appendChild(document.createElement('br'));
+    err.appendChild(x);
+  }
+
+  var fertig=function(){ b.disabled=false; b.textContent=alt; };
+
+  if(neu){
+    post('/auth/registrieren',{email:e,passwort:pw,werber:(function(){try{var w=new URLSearchParams(location.search).get('werber');if(w)localStorage.setItem('cz_werber',w);return w||localStorage.getItem('cz_werber')||'';}catch(x){return '';}})()}).then(function(j){
+      fertig();
+      if(!j.ok){
+        if(j.konto_da) anderenWegAnbieten(j.error, 'anmelden');
+        else err.textContent=j.error||'Fehler.';
+        return;
+      }
+      if(j.bestaetigt && !j.token){
+        // Altes Konto, Adresse war schon bestätigt: direkt anmelden.
+        post('/auth/anmelden',{email:e,passwort:pw}).then(function(k){
+          if(k.ok) nachAnmeldung(k); else err.textContent=k.error||'Anmeldung fehlgeschlagen.';
+        });
+        return;
+      }
+      /* Der Server meldet jetzt sofort an — die Bestätigung steht nicht mehr im
+         Kaufweg. Kommt kein Token zurück, läuft noch die alte Fassung: dann wie
+         früher auf die Bestätigung warten. */
+      if(j.token){ nachAnmeldung(j); return; }
+      document.getElementById('code-mail').textContent=e;
+      show('v-code');
+    }).catch(function(){ fertig(); err.textContent='Verbindung fehlgeschlagen.'; });
+    return;
+  }
+
+  post('/auth/anmelden',{email:e,passwort:pw}).then(function(j){
+    fertig();
+    if(j.ok){ nachAnmeldung(j); return; }
+    if(j.kein_konto){ anderenWegAnbieten(j.error, 'neu'); return; }
+    if(j.kein_passwort){ anderenWegAnbieten(j.error, 'neu'); return; }
+    if(j.nicht_bestaetigt){ document.getElementById('code-mail').textContent=e; show('v-code'); return; }
+    err.textContent=j.error||'Anmeldung fehlgeschlagen.';
+  }).catch(function(){ fertig(); err.textContent='Verbindung fehlgeschlagen.'; });
+};
+document.getElementById('email').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('pwort').focus();});
+document.getElementById('pwort').addEventListener('keydown',function(e){if(e.key==='Enter'&&document.getElementById('pw2-wrap').hidden)document.getElementById('btn-email').click();});
+document.getElementById('pwort2').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('btn-email').click();});
+document.getElementById('btn-vergessen').onclick=function(){
+  var e=document.getElementById('email').value.trim().toLowerCase();
+  location.href='clickzauber-login.html?vergessen=1'+(e?'&email='+encodeURIComponent(e):'');
+};
+
+/* 2b Bestätigung — der Nutzer kommt aus dem Postfach zurück. */
+document.getElementById('btn-code').onclick=function(){
+  var err=document.getElementById('err-code'); err.textContent='';
+  var b=this; b.disabled=true; b.textContent='Prüfe …';
+  post('/auth/anmelden',{email:state.email,passwort:state.pw||''}).then(function(j){
+    b.disabled=false; b.textContent='Ich habe bestätigt — weiter';
+    if(j.ok){ nachAnmeldung(j); return; }
+    if(j.nicht_bestaetigt){ err.textContent='Die Bestätigung ist noch nicht bei uns angekommen. Klicken Sie den Link in der E-Mail und versuchen Sie es dann erneut.'; return; }
+    err.textContent=j.error||'Anmeldung fehlgeschlagen.';
+  }).catch(function(){ b.disabled=false; b.textContent='Ich habe bestätigt — weiter'; err.textContent='Verbindung fehlgeschlagen.'; });
+};
+document.getElementById('btn-resend').onclick=function(){
+  var b=this; b.disabled=true; b.textContent='Sende …';
+  post('/auth/bestaetigung-neu',{email:state.email}).then(function(){ b.disabled=false; b.textContent='E-Mail erneut senden'; })
+    .catch(function(){ b.disabled=false; b.textContent='E-Mail erneut senden'; });
+};
+
+/* 3 Profil */
+var PF=['vorname','nachname','firma','telefon','ustid','website'];
+/* Der Knopf sagt, wo es hingeht — wer aus dem Konfigurator kommt, geht von hier
+   direkt zum Tarif. */
+function profilKnopf(){ return ziel && !state.pilot ? 'Weiter zur Tarifwahl' : 'Weiter'; }
+function fillProfil(u){
+  PF.forEach(function(f){ if(u[f]) document.getElementById(f).value=u[f]; });
+  document.getElementById('btn-profil').textContent=profilKnopf();
+}
+document.getElementById('btn-profil').onclick=function(){
+  var err=document.getElementById('err-profil'); err.textContent='';
+  var data={token:state.token};
+  PF.forEach(function(f){ data[f]=document.getElementById(f).value.trim(); });
+  if(!data.vorname||!data.nachname||!data.firma||!data.telefon){ err.textContent='Bitte die Felder mit Sternchen ausfüllen.'; return; }
+  var b=this; b.disabled=true; b.textContent='Speichere …';
+  post('/profile',data).then(function(j){
+    b.disabled=false; b.textContent=profilKnopf();
+    if(!j.ok){ err.textContent=j.error||'Fehler.'; return; }
+    if(state.modus==='anmelden'&&!ziel){ insCockpit(); return; }
+    /* Wer zum Live-Schalten hergeschickt wurde, geht jetzt direkt zum Tarif. */
+    if(ziel && state.hatFormular===false){ zumKonfigurator(); return; }
+    if(ziel && (state.pilot||state.bezahlt)){ insCockpit(true); return; }
+    if(ziel){ preiseLaden(renderPlans); show('v-plan'); return; }
+    resume();
+  }).catch(function(){ b.disabled=false; b.textContent=profilKnopf(); err.textContent='Verbindung fehlgeschlagen.'; });
+};
+
+/* 4 Konfigurator — direkt, ohne Zwischenseite */
+function oeffneEditor(){
+  if(state.pilot){
+    document.getElementById('btn-editor-done').textContent='Fertig — zum Cockpit →';
+    var h=document.querySelector('#v-editor .ed-hint'); if(h) h.textContent='Ihr Formular läuft kostenlos, ohne Tarif.';
+  }
+  var f=document.getElementById('editorFrame');
+  if(!f.src) f.src='clickzauber-editor.html?embed=1&t='+encodeURIComponent(state.token||'');
+  show('v-editor');
+}
+document.getElementById('btn-editor-done').onclick=zumTarif;
+document.getElementById('btn-plan-back').onclick=function(){ insCockpit(); };
+
+/* 5 Tarif */
+function euro(n){ return n.toLocaleString('de-DE',{minimumFractionDigits:n<1?2:0,maximumFractionDigits:2}); }
+
+/* Ausgehandelte Preise. Der Listenpreis oben in PLANS ist der Wunschpreis;
+   wurde mit diesem Betrieb etwas anderes vereinbart, gilt das. Die Zahlen holt
+   der Server — im Browser stehen sie nur zur Anzeige, abgerechnet wird ohnehin
+   mit dem Wert, den der Server beim Bezahlen selbst bestimmt. */
+var PREISE=null;
+function preiseLaden(danach){
+  if(!state.token){ if(danach) danach(); return; }
+  fetch(API+'/sonderpreis?token='+encodeURIComponent(state.token))
+    .then(function(r){ return r.ok?r.json():null; })
+    .then(function(j){ if(j&&j.ok&&j.tarife) PREISE=j.tarife; })
+    .catch(function(){})
+    .then(function(){ if(danach) danach(); });
+}
+function preisVon(id){
+  var s=PREISE&&PREISE[id];
+  if(s) return {monthly:s.monthly, yearly:s.yearly, sonder:!!s.sonder};
+  var p=PLANS[id];
+  return {monthly:p.monthly, yearly:p.yearly, sonder:false};
+}
+
+function renderPlans(){
+  var box=document.getElementById('plans'); box.innerHTML='';
+  var zeigeVersteckt = false; // Pilot abgeschaltet
+  /* Steht die Branche fest (Formular oder Entwurf), gibt es nur einen Preis. */
+  if(state.stufe&&PLANS[state.stufe]) state.plan=state.stufe;
+  box.classList.toggle('eins', !!state.stufe);
+  var sh=document.getElementById('stufeHinweis'); if(sh) sh.hidden=!state.stufe;
+  var h1=document.querySelector('#v-plan h1'); if(h1) h1.textContent=state.stufe?'Ihr Preis':'Tarif wählen';
+  document.querySelectorAll('#cycle button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-c')===state.cycle); });
+  var pay=document.getElementById('btn-pay'); if(pay) pay.disabled=!state.plan;
+  Object.keys(PLANS).forEach(function(id){
+    var p=PLANS[id];
+    if(p.versteckt && !zeigeVersteckt) return;
+    if(state.stufe && id!==state.stufe) return;
+    var pr=preisVon(id);
+    var price=state.cycle==='yearly'?pr.yearly:pr.monthly;
+    var unit=state.cycle==='yearly'?'/Jahr':'/Monat';
+    var el=document.createElement('div'); el.className='plan'+(state.plan===id?' on':'');
+    el.innerHTML=(pr.sonder?'<span class="pop">Ihr Preis</span>':(p.pop?'<span class="pop">Beliebt</span>':''))+
+      '<div class="pn">'+p.name+'</div>'+
+      '<div class="pp">'+euro(price)+' €<small> '+unit+'</small></div>'+
+      '<div class="pc">'+(pr.sonder?'Ihr vereinbarter Preis · ':'')+p.widgets+' · zzgl. MwSt.</div>'+
+      '<ul>'+p.features.map(function(f){return '<li>'+f+'</li>';}).join('')+'</ul>';
+    el.onclick=function(){ state.plan=id; renderPlans(); document.getElementById('btn-pay').disabled=false; };
+    box.appendChild(el);
+  });
+}
+document.getElementById('cycle').addEventListener('click',function(e){
+  if(e.target.tagName!=='BUTTON'&&!e.target.closest('button'))return;
+  var btn=e.target.closest('button'); state.cycle=btn.getAttribute('data-c');
+  this.querySelectorAll('button').forEach(function(b){b.classList.remove('on');}); btn.classList.add('on');
+  renderPlans();
+});
+document.getElementById('btn-pay').onclick=function(){
+  if(!state.plan)return;
+  var err=document.getElementById('err-plan'); err.textContent='';
+  var b=this; b.disabled=true; b.textContent='Weiter zur Zahlung …';
+  post('/checkout',{token:state.token,plan:state.plan,cycle:state.cycle,zg:state.zg,einrichtung:!!(document.getElementById('einr')||{}).checked}).then(function(j){
+    if(j.ok&&j.url){ location.href=j.url; return; }
+    b.disabled=false; b.textContent='Tarif auswählen & bezahlen'; err.textContent=j.error||'Zahlung konnte nicht gestartet werden.';
+  }).catch(function(){ b.disabled=false; b.textContent='Tarif auswählen & bezahlen'; err.textContent='Verbindung fehlgeschlagen.'; });
+};
+renderPlans();
+/* Sobald ein Token vorliegt, die für diesen Betrieb geltenden Preise nachladen. */
+preiseLaden(renderPlans);
+
+/* Test-Shortcut: springt Schritt für Schritt vor und füllt Demo-Daten. */
+document.getElementById('devNext').onclick=function(){
+  var cur=(document.querySelector('.view.on')||{}).id;
+  if(cur==='v-email'){ document.getElementById('email').value=state.email||'test@clickzauber.de'; state.email=document.getElementById('email').value; document.getElementById('code-mail').textContent=state.email; show('v-code'); }
+  else if(cur==='v-code'){ show('v-profil'); }
+  else if(cur==='v-profil'){ var d={vorname:'Test',nachname:'Nutzer',firma:'Test GmbH',strasse:'Musterstr. 1',plz_ort:'10115 Berlin',telefon:'030 123456'}; PF.forEach(function(f){ if(d[f]) document.getElementById(f).value=d[f]; }); oeffneEditor(); }
+  else if(cur==='v-editor'){ zumTarif(); }
+  else if(cur==='v-plan'){ show('v-done'); }
+};
+</script>
+<script src="js/cz-sprache.js?v=20260927g"></script>
+<script src="js/cz-globus.js?v=20260927b" data-ohne-zahnrad></script>
+<script>/* Freunde werben: ?werber=CODE merken, falls die Anmeldung später passiert */try{var cw=new URLSearchParams(location.search).get('werber');if(cw)localStorage.setItem('cz_werber',cw);}catch(e){}</script>
+<script>/* Immer der neueste Stand – ohne Versionsnummern von Hand.
+   Das iPhone hält eine App vom Home-Bildschirm tagelang im Speicher und lädt sie beim Zurückholen nicht neu.
+   Deshalb fragt die Seite beim Zurückholen (und alle 5 Minuten) den Server, ob sich die Seite oder eines ihrer
+   Skripte geändert hat (ETag / Last-Modified, nur Kopfzeilen, wenige Bytes). Wenn ja: neu laden.
+   Tippt man gerade oder ist ein Fenster offen, erscheint stattdessen ein Hinweis zum Antippen. */
+(function(){
+  if(!window.fetch||/[?&]demo=1/.test(location.search)) return;
+  var STAND=null, NEU=null, LAEUFT=false, ZULETZT=0;
+  function dateien(){
+    var l=[location.pathname];
+    Array.prototype.forEach.call(document.scripts,function(s){ if(s.src&&s.src.indexOf(location.origin)===0) l.push(s.src.split('?')[0].replace(location.origin,'')); });
+    return l.filter(function(x,i,a){ return a.indexOf(x)===i; }).slice(0,30);
+  }
+  function messen(){
+    return Promise.all(dateien().map(function(p){
+      return fetch(p+(p.indexOf('?')<0?'?':'&')+'_s='+Date.now(),{method:'HEAD',cache:'no-store',credentials:'same-origin'})
+        .then(function(r){ return r.ok?p+'='+(r.headers.get('etag')||r.headers.get('last-modified')||''):p+'=?'; })
+        .catch(function(){ return null; });
+    })).then(function(l){ return l.indexOf(null)>=0?null:l.join('|'); });
+  }
+  function beschaeftigt(){
+    var a=document.activeElement;
+    if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return true;
+    return ['sa','sz','er','sal-neu-bl'].some(function(id){ var x=document.getElementById(id); return x&&!x.hidden; });
+  }
+  function hinweis(){
+    if(document.getElementById('cz-neu-da')) return;
+    var b=document.createElement('button'); b.id='cz-neu-da'; b.type='button';
+    b.textContent='Neue Version bereit · Tippen zum Laden';
+    b.style.cssText='position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:99999;min-height:48px;padding:0 20px;border:0;border-radius:99px;background:#241f19;color:#fffdf8;font:600 15px/1 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.25);cursor:pointer';
+    b.onclick=function(){ location.reload(); };
+    document.body.appendChild(b);
+  }
+  function pruefen(){
+    if(LAEUFT||document.hidden||Date.now()-ZULETZT<20000) return;
+    LAEUFT=true; ZULETZT=Date.now();
+    messen().then(function(s){
+      LAEUFT=false; if(!s) return;
+      if(STAND===null){ STAND=s; return; }
+      if(s===STAND){ NEU=null; return; }
+      /* Erst übernehmen, wenn der neue Stand eine Minute gleich bleibt: Beim Hochladen kommen die Dateien nacheinander an. */
+      if(s!==NEU){ NEU=s; setTimeout(function(){ ZULETZT=0; pruefen(); },60000); return; }
+      if(beschaeftigt()) hinweis(); else location.reload();
+    });
+  }
+  window.addEventListener('load',function(){ setTimeout(function(){ ZULETZT=0; pruefen(); },1500); });
+  document.addEventListener('visibilitychange',function(){ if(!document.hidden) pruefen(); });
+  window.addEventListener('pageshow',function(ev){ if(ev.persisted) location.reload(); });
+  window.addEventListener('focus',pruefen);
+  setInterval(pruefen,300000);
+})();</script>
+<script src="js/cz-native.js?v=20261006c" defer></script>
+</body>
+</html>

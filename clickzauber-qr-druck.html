@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR-Code drucken — clickzauber</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/cz-favicon-32.png?v=2">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@400;500;600;700&family=Lora:ital,wght@1,500&display=swap" rel="stylesheet">
+<script src="js/qrcode.js?v=20261010a"></script>
+<style>
+doc-page:not(:defined){visibility:hidden}
+:root{--ink:#1c1a14;--ink-2:#5b564b;--paper:#f6f1e7;--accent:#2f7d59;--fd:"Figtree",system-ui,sans-serif;--fs:"Lora",Georgia,serif}
+a{color:var(--accent)}a:hover{color:#17503a}
+.page{font-family:var(--fd);color:var(--ink);background:var(--paper);box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.qr svg{display:block;width:100%;height:100%}
+.qr{background:#fff;box-sizing:border-box}
+.logo{display:flex;align-items:center;gap:1.6mm;font-weight:700;letter-spacing:-.01em}
+.logo img{display:block;border-radius:22%}
+/* Visitenkarte 85 × 55 mm */
+.vk{padding:5mm 5.5mm;display:flex;flex-direction:column;justify-content:space-between}
+.vk .logo{font-size:9.5pt}.vk .logo img{width:5.2mm;height:5.2mm}
+.vk-name{font-size:13pt;font-weight:700;letter-spacing:-.015em;line-height:1.1;margin:0}
+.vk-rolle{font-family:var(--fs);font-style:italic;font-size:8.5pt;color:var(--ink-2);margin:.6mm 0 0}
+.vk-kontakt{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.5mm 3mm;font-size:7pt;line-height:1.35;margin:0}
+.vk-kontakt dt{color:var(--ink-2)}.vk-kontakt dd{margin:0;font-weight:500}
+.vk-r{display:grid;grid-template-columns:30mm minmax(0,1fr);gap:4.5mm;align-items:center;padding:5mm 5.5mm}
+.vk-r .qr{width:30mm;height:30mm;padding:1.6mm;border-radius:1.6mm}
+.vk-r h2{font-size:11pt;line-height:1.15;letter-spacing:-.015em;margin:0 0 1.6mm;text-wrap:balance}
+.vk-r p{font-size:7pt;line-height:1.4;color:var(--ink-2);margin:0 0 2mm;text-wrap:pretty}
+.vk-r .url{font-size:7pt;font-weight:600;color:var(--ink);margin:0}
+/* Flyer A6 105 × 148 mm */
+.fl{padding:9mm 9mm 8mm;display:flex;flex-direction:column}
+.fl .logo{font-size:11pt}.fl .logo img{width:6.5mm;height:6.5mm}
+.fl h1{font-size:21pt;line-height:1.08;letter-spacing:-.025em;margin:9mm 0 3mm;text-wrap:balance}
+.fl h1 em{font-family:var(--fs);font-weight:500}
+.fl .lead{font-size:9.5pt;line-height:1.45;color:var(--ink-2);margin:0;text-wrap:pretty}
+.fl-qr{margin:auto 0 0;display:grid;grid-template-columns:38mm minmax(0,1fr);gap:5mm;align-items:end}
+.fl-qr .qr{width:38mm;height:38mm;padding:2mm;border-radius:2mm}
+.fl-qr ol{margin:0;padding:0 0 0 4mm;font-size:8.5pt;line-height:1.5}
+.fl-qr .url{font-size:8.5pt;font-weight:700;margin:2mm 0 0}
+.fl-fuss{margin:6mm 0 0;padding:3mm 0 0;border-top:.3mm solid rgba(28,26,20,.18);display:flex;justify-content:space-between;gap:3mm;font-size:7.5pt;color:var(--ink-2)}
+.fl-fuss b{color:var(--ink)}
+.nr{font-size:6pt;color:var(--ink-2);letter-spacing:.04em}
+.fehler{font-family:var(--fd);padding:40px;max-width:520px;margin:0 auto;font-size:16px;line-height:1.5}
+</style>
+</head>
+<body>
+<script>
+/* clickzauber — QR-Code zum Drucken: Visitenkarte (85 × 55 mm, Vorder- und Rückseite) oder Flyer A6.
+   Aufruf von der Vertrieb-Seite: clickzauber-qr-druck.html?nr=1005&art=karte|flyer */
+(function () {
+  var q = new URLSearchParams(location.search), nr = String(q.get('nr') || '').replace(/\D/g, ''), art = q.get('art') === 'flyer' ? 'flyer' : 'karte';
+  if (!nr) { document.write('<p class="fehler">Kein QR-Code gewählt. Bitte über die Vertrieb-Seite öffnen.</p>'); return; }
+  var url = 'https://clickzauber.de/q/' + nr, kurz = 'clickzauber.de/q/' + nr;
+  function svg() {
+    if (!window.qrcode) return '';
+    var c = qrcode(0, 'M'); c.addData(url); c.make();
+    var n = c.getModuleCount(), d = '';
+    for (var r = 0; r < n; r++) for (var k = 0; k < n; k++) if (c.isDark(r, k)) d += 'M' + k + ' ' + r + 'h1v1h-1z';
+    return '<svg viewBox="0 0 ' + n + ' ' + n + '" shape-rendering="crispEdges" role="img" aria-label="QR-Code ' + kurz + '"><path d="' + d + '" fill="#111"></path></svg>';
+  }
+  var logo = '<div class="logo"><img src="assets/cz-icon-192.png" alt=""><span>clickzauber</span></div>';
+  var html;
+  if (art === 'karte') {
+    document.title = 'Visitenkarte QR ' + nr + ' — clickzauber';
+    html = '<doc-page width="85mm" height="55mm">'
+      + '<section class="page vk" data-screen-label="Vorderseite">' + logo
+      + '<div><p class="vk-name">Manuel Tripi</p><p class="vk-rolle">Gründer &amp; CEO</p></div>'
+      + '<dl class="vk-kontakt"><dt>Telefon</dt><dd>+49 176 61398922</dd><dt>E-Mail</dt><dd>projekt@clickzauber.de</dd><dt>Web</dt><dd>clickzauber.de</dd><dt>Adresse</dt><dd>Auenstraße 13, 88131 Lindau (Bodensee)</dd></dl>'
+      + '</section>'
+      + '<section class="page vk-r" data-screen-label="Rückseite"><div class="qr">' + svg() + '</div>'
+      + '<div><h2>7 Tage kostenlos ausprobieren</h2><p>Code scannen, Branche wählen und die eigene Demo starten.</p><p class="url">' + kurz + '</p></div>'
+      + '</section></doc-page>';
+  } else {
+    document.title = 'Flyer A6 QR ' + nr + ' — clickzauber';
+    html = '<doc-page width="105mm" height="148mm">'
+      + '<section class="page fl" data-screen-label="Flyer">' + logo
+      + '<h1>clickzauber <em>7 Tage kostenlos</em> ausprobieren</h1>'
+      + '<p class="lead">Ihre eigene Demo: Formular bauen, eine Anfrage an sich selbst schicken und den Termin im Cockpit annehmen.</p>'
+      + '<div class="fl-qr"><div class="qr">' + svg() + '</div><div><ol><li>Code scannen</li><li>Branche wählen</li><li>Demo starten</li></ol><p class="url">' + kurz + '</p></div></div>'
+      + '<div class="fl-fuss"><span><b>Manuel Tripi</b> · Gründer &amp; CEO</span><span>+49 176 61398922</span></div>'
+      + '</section></doc-page>';
+  }
+  document.write(html);
+})();
+</script>
+<script src="doc-page.js"></script>
+</body>
+</html>

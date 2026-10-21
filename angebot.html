@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* iPhone/iPad: kein automatisches Hineinzoomen beim Antippen eines Eingabefelds. Mit zwei Fingern zoomen bleibt möglich. */(function(){if(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)){var m=document.querySelector("meta[name=viewport]");if(m&&!/maximum-scale/.test(m.content))m.content+=", maximum-scale=1";}})();</script>
+<script src="js/cz-kopf.js"></script><!-- seit 15.10.2026: Token und Schlüssel in Kopfzeilen statt in Adressen -->
+<title>Angebot — clickzauber</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+doc-page:not(:defined){visibility:hidden}
+:root{--ink:#211d16;--ink-2:#5f584a;--ink-3:#8a8270;--line:#e6ddca;--accent:#1f6d4a;--fd:"Space Grotesk",system-ui,sans-serif;--fm:"IBM Plex Mono",monospace}
+doc-page{font-family:var(--fd);color:var(--ink);font-size:11pt;line-height:1.6}
+.kopf{display:flex;justify-content:space-between;align-items:flex-start;gap:24pt;border-bottom:1.5pt solid var(--ink);padding-bottom:14pt;margin-bottom:26pt}
+.kopf .abs b{display:block;font-size:15pt;letter-spacing:-.01em;margin-bottom:3pt}
+.kopf .abs span{display:block;font-size:9.5pt;color:var(--ink-2);line-height:1.5}
+.kopf .meta{text-align:right;font-family:var(--fm);font-size:9pt;color:var(--ink-2);white-space:nowrap;line-height:1.7}
+.kopf .meta b{color:var(--ink)}
+h1{font-size:19pt;letter-spacing:-.02em;margin:0 0 4pt;text-wrap:balance}
+.unter{font-size:10.5pt;color:var(--ink-2);margin:0 0 24pt}
+.an{margin:0 0 26pt;font-size:10.5pt;line-height:1.65}
+.an b{display:block;font-family:var(--fm);font-size:8.5pt;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5pt;font-weight:400}
+.anschreiben{margin:0 0 24pt;font-size:10.5pt;line-height:1.7}
+.anschreiben p{margin:0 0 10pt}
+table.posten{width:100%;border-collapse:collapse;margin:0 0 6pt}
+table.posten th{text-align:left;font-family:var(--fm);font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:400;padding:0 0 7pt;border-bottom:1pt solid var(--ink)}
+table.posten th.r{text-align:right}
+table.posten td{padding:9pt 0;border-bottom:.5pt solid var(--line);font-size:10.5pt;vertical-align:top}
+table.posten td.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:14pt;font-weight:600}
+table.posten tr.summe td{border-bottom:none;border-top:1.5pt solid var(--ink);padding-top:11pt;font-size:13pt;font-weight:700}
+table.posten tr.summe td.r{color:var(--accent)}
+.hinweis{font-size:9pt;color:var(--ink-3);line-height:1.6;margin:0 0 26pt}
+.wunsch{background:#f7f4ec;border-radius:6pt;padding:14pt 16pt;margin:0 0 24pt}
+.wunsch b{display:block;font-family:var(--fm);font-size:8.5pt;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8pt;font-weight:400}
+.wunsch dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5pt 16pt;font-size:10pt}
+.wunsch dt{color:var(--ink-2)}
+.wunsch dd{margin:0;font-weight:600}
+h2{font-size:12pt;letter-spacing:-.01em;margin:0 0 8pt;padding-top:6pt}
+.weiter{margin:0 0 24pt;padding-left:0;list-style:none;counter-reset:s}
+.weiter li{counter-increment:s;display:flex;gap:11pt;align-items:baseline;font-size:10.5pt;line-height:1.6;margin-bottom:8pt;break-inside:avoid}
+.weiter li::before{content:counter(s);flex:0 0 auto;width:16pt;height:16pt;border-radius:50%;background:var(--accent);color:#fff;font-size:8pt;font-weight:700;display:grid;place-items:center;font-family:var(--fm)}
+.fuss{border-top:.5pt solid var(--line);padding-top:12pt;margin-top:8pt;font-size:8.5pt;color:var(--ink-3);line-height:1.65;display:flex;justify-content:space-between;gap:20pt}
+.fuss div:last-child{text-align:right;white-space:nowrap}
+/* Werkzeugleiste — nicht im Druck */
+.bar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:12px;padding:11px 18px;background:rgba(250,247,240,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);font-family:var(--fd)}
+.bar b{font-size:14px}
+.bar .sp{flex:1}
+.bar button,.bar a{font:inherit;font-size:13.5px;border-radius:999px;padding:9px 18px;min-height:42px;cursor:pointer;border:1.5px solid var(--line);background:#fff;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center}
+.bar .prim{background:var(--accent);color:#fff;border-color:var(--accent)}
+body{padding-top:64px}
+.lade{max-width:420px;margin:18vh auto;text-align:center;font-family:var(--fd);color:var(--ink-2);font-size:14.5px;line-height:1.6}
+@media print{.bar{display:none}body{padding-top:0}.annahme{display:none!important}}
+.annahme{max-width:640px;margin:22px auto 60px;padding:22px 24px;border:1px solid var(--line,#e6ddca);border-radius:16px;background:#fff;font-family:var(--fd);color:var(--ink,#211d16)}
+.annahme h2{font-size:18px;margin:0 0 6px}.annahme p{font-size:14.5px;line-height:1.6;margin:0 0 12px;color:var(--ink-2,#5f584a)}
+.annahme input[type=text]{width:100%;box-sizing:border-box;font:inherit;font-size:15px;padding:12px 14px;border:1.5px solid rgba(0,0,0,.18);border-radius:10px;min-height:46px}
+.annahme label{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5;margin:12px 0;color:var(--ink-2,#5f584a)}
+.annahme label input{margin-top:3px;width:18px;height:18px;flex:0 0 auto}
+.annahme button{font:inherit;font-weight:600;font-size:15px;background:#2f7d59;color:#fff;border:none;border-radius:10px;padding:13px 22px;min-height:48px;cursor:pointer}
+.annahme button:hover{background:#255f45}.annahme button:disabled{opacity:.6}
+.annahme .msg{font-size:14px;margin-top:10px;color:#b8452f}.annahme.fertig{border-color:#2f7d59}
+</style>
+</head>
+<body>
+
+<div class="bar" id="bar">
+  <b>Angebot</b>
+  <span class="sp"></span>
+  <button id="btn-print" class="prim">Drucken oder als PDF speichern</button>
+  <a href="clickzauber-cockpit-live.html">Zurück zum Cockpit</a>
+</div>
+
+<div class="lade" id="lade">Angebot wird erstellt …</div>
+
+<doc-page margin="0.85in" hidden id="blatt">
+  <div class="kopf">
+    <div class="abs">
+      <b id="a-firma">Ihre Location</b>
+      <span id="a-adresse"></span>
+    </div>
+    <div class="meta">
+      <div>Angebot <b id="a-nr">—</b></div>
+      <div id="a-datum"></div>
+      <div id="a-gueltig"></div>
+    </div>
+  </div>
+
+  <h1 id="a-titel">Angebot für Ihre Feier</h1>
+  <p class="unter" id="a-unter"></p>
+
+  <div class="an">
+    <b>An</b>
+    <span id="a-gast"></span>
+  </div>
+
+  <div class="anschreiben" id="a-text"></div>
+
+  <div class="wunsch" id="a-wunsch" hidden>
+    <b>Ihre Angaben</b>
+    <dl id="a-wunsch-liste"></dl>
+  </div>
+
+  <table class="posten">
+    <thead><tr><th>Leistung</th><th class="r">Betrag</th></tr></thead>
+    <tbody id="a-posten"></tbody>
+  </table>
+  <p class="hinweis" id="a-hinweis"></p>
+
+  <h2>Wie es weitergeht</h2>
+  <ol class="weiter">
+    <li>Sie prüfen dieses Angebot in Ruhe. Fragen beantworten wir jederzeit — auch telefonisch.</li>
+    <li>Passt etwas nicht, ändern wir es. Menü, Getränke und Zusatzleistungen lassen sich einzeln anpassen.</li>
+    <li>Sind Sie einverstanden, halten wir den Termin verbindlich für Sie fest und schicken Ihnen den Vertrag.</li>
+  </ol>
+
+  <div class="fuss">
+    <div id="a-fuss-links"></div>
+    <div id="a-fuss-rechts"></div>
+  </div>
+</doc-page>
+
+<div class="annahme" id="annahme" hidden>
+  <h2 id="an-titel">Angebot annehmen</h2>
+  <p id="an-text">Passt alles? Dann nehmen Sie das Angebot hier mit Ihrem Namen an. Wir bestätigen Ihnen den Termin danach schriftlich.</p>
+  <div id="an-form">
+    <input type="text" id="an-name" autocomplete="name" placeholder="Ihr vollständiger Name">
+    <label><input type="checkbox" id="an-ok"><span>Ich nehme dieses Angebot verbindlich an.</span></label>
+    <button type="button" id="an-senden">Angebot annehmen</button>
+    <div class="msg" id="an-msg"></div>
+  </div>
+</div>
+
+<script src="doc-page.js"></script>
+<script>
+(function(){
+  var API='https://clickzauber-api.vercel.app/api';
+  var q=new URLSearchParams(location.search);
+  var annahme=q.get('annahme');
+  var id=q.get('id'), token=q.get('token')||(function(){ try{ return localStorage.getItem('cz_user_token')||''; }catch(e){ return ''; } })();
+  var TAGE=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+  var LABEL={termin:'Wunschtermin',ausweich:'Ausweichtermin',gaeste:'Gäste',stil:'Stil',trauung:'Trauung',
+    menue:'Menü',getraenke:'Getränke',deko:'Blumen & Deko',musik:'Musik & Unterhaltung',foto:'Foto & Video',
+    extras:'Zusatzleistungen',budget:'Budgetrahmen',anlass:'Anlass'};
+
+  function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function eur(n){ return Number(n).toLocaleString('de-DE')+' €'; }
+  function datum(s){
+    var m=String(s||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if(!m) return '';
+    var d=new Date(+m[1],+m[2]-1,+m[3]);
+    return TAGE[d.getDay()]+', '+m[3]+'.'+m[2]+'.'+m[1];
+  }
+  function kurz(s){
+    var m=String(s||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    return m? m[3]+'.'+m[2]+'.'+m[1] : '';
+  }
+  function fehler(t){ document.getElementById('lade').textContent=t; }
+
+  function annahmeZeigen(j){
+    var box=document.getElementById('annahme'); box.hidden=false;
+    if(j.angenommen_am){
+      box.classList.add('fertig');
+      document.getElementById('an-titel').textContent='Angebot angenommen';
+      document.getElementById('an-text').textContent='Angenommen von '+(j.angenommen_von||'')+' am '+new Date(j.angenommen_am).toLocaleString('de-DE')+' Uhr. Wir melden uns mit der Bestätigung.';
+      document.getElementById('an-form').hidden=true; return;
+    }
+    if(j.zurueckgezogen){
+      document.getElementById('an-titel').textContent='Dieses Angebot gilt nicht mehr';
+      document.getElementById('an-text').textContent='Bitte melden Sie sich direkt beim Betrieb, wenn Sie den Termin noch möchten.';
+      document.getElementById('an-form').hidden=true; return;
+    }
+    if(j.gast&&j.gast.name) document.getElementById('an-name').value=j.gast.name;
+  }
+  if(annahme){
+    var bar=document.querySelector('.bar a[href="clickzauber-cockpit-live.html"]'); if(bar) bar.remove();
+    document.getElementById('lade').textContent='Angebot wird geladen …';
+    fetch(API+'/angebot?annahme='+encodeURIComponent(annahme))
+      .then(function(r){ return r.json().then(function(j){ if(!r.ok) throw new Error(j.error||'Dieses Angebot ist nicht verfügbar.'); return j; }); })
+      .then(function(j){ zeichnen(j); annahmeZeigen(j); })
+      .catch(function(e){ fehler(e.message); });
+    document.getElementById('an-senden').onclick=function(){
+      var b=this, m=document.getElementById('an-msg'), name=document.getElementById('an-name').value.trim();
+      if(name.length<3){ m.textContent='Bitte Ihren vollständigen Namen eintragen.'; return; }
+      if(!document.getElementById('an-ok').checked){ m.textContent='Bitte das Häkchen setzen.'; return; }
+      b.disabled=true; b.textContent='Wird gesendet …'; m.textContent='';
+      fetch(API+'/angebot',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({annahme:annahme,name:name,ok:true})})
+        .then(function(r){ return r.json(); })
+        .then(function(j){ if(!j.ok){ m.textContent=j.error||'Das hat nicht geklappt.'; b.disabled=false; b.textContent='Angebot annehmen'; return; }
+          annahmeZeigen({angenommen_am:j.angenommen_am, angenommen_von:name}); })
+        .catch(function(){ m.textContent='Keine Verbindung. Bitte erneut versuchen.'; b.disabled=false; b.textContent='Angebot annehmen'; });
+    };
+    document.getElementById('btn-print').onclick=function(){ window.print(); };
+    return;
+  }
+
+  if(!id){ fehler('Keine Anfrage angegeben. Öffnen Sie das Angebot aus dem Cockpit.'); return; }
+  if(!token){ fehler('Bitte zuerst im Cockpit anmelden.'); return; }
+
+  fetch(API+'/angebot?id='+encodeURIComponent(id)+'&token='+encodeURIComponent(token))
+    .then(function(r){
+      if(r.status===404) throw new Error('Diese Anfrage wurde nicht gefunden.');
+      if(r.status===401) throw new Error('Bitte im Cockpit neu anmelden.');
+      if(!r.ok) throw new Error('Das Angebot konnte nicht erstellt werden.');
+      return r.json();
+    })
+    .then(function(j){ zeichnen(j); })
+    .catch(function(e){ fehler(e.message||'Das hat nicht geklappt.'); });
+
+  function zeichnen(j){
+    var b=j.betrieb||{}, g=j.gast||{};
+    document.title='Angebot '+j.nummer+(g.name?' · '+g.name:'');
+    document.getElementById('a-firma').textContent=b.name||'Ihre Location';
+    document.getElementById('a-adresse').textContent=[b.adresse,b.telefon,b.email].filter(Boolean).join(' · ');
+    document.getElementById('a-nr').textContent=j.nummer;
+    document.getElementById('a-datum').textContent='vom '+kurz(j.datum);
+    document.getElementById('a-gueltig').textContent='gültig bis '+kurz(j.gueltig_bis);
+
+    document.getElementById('a-titel').textContent = j.termin
+      ? 'Angebot für Ihre Feier am '+kurz(j.termin)
+      : 'Angebot für Ihre Feier';
+    document.getElementById('a-unter').textContent = j.termin
+      ? datum(j.termin)+(j.antworten.gaeste?' · '+j.antworten.gaeste+' Gäste':'')
+      : (j.antworten.gaeste?j.antworten.gaeste+' Gäste':'');
+
+    document.getElementById('a-gast').innerHTML=[
+      g.name?'<b style="display:block;font-family:var(--fd);font-size:10.5pt;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:600;margin:0">'+esc(g.name)+'</b>':'',
+      g.email?esc(g.email):'', g.telefon?esc(g.telefon):''
+    ].filter(Boolean).join('<br>');
+
+    var vorname = g.name ? String(g.name).split(/\s+/)[0] : '';
+    document.getElementById('a-text').innerHTML=
+      '<p>Guten Tag'+(vorname?' '+esc(vorname):'')+', vielen Dank für Ihre Anfrage'
+      +(j.termin?' für den '+esc(datum(j.termin)):'')+'. Wir freuen uns sehr darüber.</p>'
+      +'<p>Auf Grundlage Ihrer Angaben haben wir Ihnen die folgenden Leistungen zusammengestellt.'
+      +' Alle Posten lassen sich einzeln anpassen — sprechen Sie uns gern an.</p>';
+
+    /* Angaben des Gastes */
+    var eintraege=Object.keys(j.antworten||{})
+      .filter(function(k){ return k!=='text' && j.antworten[k]; })
+      .map(function(k){ return [LABEL[k]||k, k==='termin'||k==='ausweich' ? datum(j.antworten[k]) || j.antworten[k] : j.antworten[k]]; });
+    if(eintraege.length){
+      document.getElementById('a-wunsch-liste').innerHTML=eintraege
+        .map(function(r){ return '<dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd>'; }).join('');
+      document.getElementById('a-wunsch').hidden=false;
+    }
+
+    /* Posten */
+    var reihen=(j.posten||[]).map(function(p){
+      return '<tr><td>'+esc(p.text)+'</td><td class="r">'+eur(p.betrag)+'</td></tr>';
+    }).join('');
+    if(j.summe) reihen+='<tr class="summe"><td>Gesamt</td><td class="r">'+eur(j.summe)+'</td></tr>';
+    document.getElementById('a-posten').innerHTML=reihen
+      || '<tr><td colspan="2" style="color:var(--ink-3)">Die Leistungen stimmen wir persönlich mit Ihnen ab.</td></tr>';
+
+    document.getElementById('a-hinweis').textContent=
+      'Alle Beträge in Euro'+(b.ustid?', zzgl. gesetzlicher Umsatzsteuer':' inkl. gesetzlicher Umsatzsteuer')
+      +'. Dieses Angebot ist bis zum '+kurz(j.gueltig_bis)+' gültig.'
+      +(annahme?' Nehmen Sie es unten an, reservieren wir den Termin für Sie und bestätigen ihn schriftlich.':' Der Termin ist erst mit unserer schriftlichen Bestätigung verbindlich reserviert.');
+
+    document.getElementById('a-fuss-links').innerHTML=[b.name?esc(b.name):'', b.adresse?esc(b.adresse):''].filter(Boolean).join('<br>');
+    document.getElementById('a-fuss-rechts').innerHTML=[
+      b.telefon?esc(b.telefon):'', b.email?esc(b.email):'', b.website?esc(b.website):'',
+      b.ustid?'USt-IdNr. '+esc(b.ustid):''
+    ].filter(Boolean).join('<br>');
+
+    document.getElementById('lade').hidden=true;
+    document.getElementById('blatt').hidden=false;
+  }
+
+  document.getElementById('btn-print').onclick=function(){ window.print(); };
+})();
+</script>
+</body>
+</html>

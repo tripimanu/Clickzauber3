@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script>/* iPhone/iPad: kein automatisches Hineinzoomen beim Antippen eines Eingabefelds. Mit zwei Fingern zoomen bleibt möglich. */(function(){if(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)){var m=document.querySelector("meta[name=viewport]");if(m&&!/maximum-scale/.test(m.content))m.content+=", maximum-scale=1";}})();</script>
+<meta name="robots" content="noindex, nofollow">
+<title>clickzauber — anmelden</title>
+<meta name="description" content="Melden Sie sich mit E-Mail und Passwort in Ihrem clickzauber-Cockpit an.">
+<meta name="theme-color" content="#f5f2ea">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="clickzauber">
+<link rel="manifest" href="site.webmanifest">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="assets/cz-favicon-32.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/cz-apple-180.png?v=2">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@300;400;500;600;700&family=Lora:ital,wght@1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{--bg:#f5f2ea;--bg-2:#efebe1;--card:#fffdf8;--line:rgba(36,31,25,.16);--ink:#241f19;--ink-2:rgba(36,31,25,.68);--ink-3:rgba(36,31,25,.5);--accent:#2f7d59;--accent-2:#255f45;--bad:#a8442f;--fd:"Figtree",system-ui,sans-serif;--fm:"IBM Plex Mono",ui-monospace,monospace;--fs:"Lora",Georgia,serif}
+html,body{margin:0;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-family:var(--fd);background:var(--bg);color:var(--ink);min-height:100dvh;display:flex;flex-direction:column;align-items:center;padding:calc(env(safe-area-inset-top) + 34px) 22px calc(env(safe-area-inset-bottom) + 28px)}
+a{color:var(--accent-2)}
+a:hover{color:var(--accent)}
+.wrap{width:100%;max-width:420px;margin:auto;display:flex;flex-direction:column;position:relative}
+.mark{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:44px}
+.mark .glyph{width:60px;height:60px;border-radius:19px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;color:#fff;letter-spacing:-.04em}
+.mark .name{font-size:15px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+h1{font-size:27px;font-weight:500;letter-spacing:-.015em;margin:0;text-align:center;text-wrap:pretty}
+h1 em{font-family:var(--fs);font-style:italic;font-weight:400}
+.sub{margin:10px 0 0;text-align:center;color:var(--ink-2);font-size:15px;line-height:1.55;text-wrap:pretty}
+.sub.mail{font-family:var(--fm);font-size:14px;color:var(--ink-2);word-break:break-all}
+form{display:flex;flex-direction:column;gap:14px;margin-top:34px}
+.field{position:relative;display:flex;align-items:center}
+input{width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:21px 24px;font:inherit;font-size:16px;color:var(--ink);transition:border-color .18s}
+input::placeholder{color:var(--ink-3)}
+input:focus{outline:none;border-color:var(--accent)}
+.field.pw input{padding-right:60px}
+.eye{position:absolute;right:8px;width:46px;height:46px;border:none;background:none;border-radius:50%;color:var(--ink-2);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.eye:hover{color:var(--ink)}
+.eye svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7}
+.btn{border:none;border-radius:999px;background:var(--accent);color:#fff;font-family:var(--fd);font-size:16.5px;font-weight:600;padding:21px 24px;cursor:pointer;min-height:60px;transition:background .16s,transform .12s}
+.btn:hover{background:var(--accent-2)}
+.btn:active{transform:scale(.985)}
+.btn[disabled]{background:transparent;border:1.5px solid var(--line);color:var(--accent-2);cursor:default}
+.btn.ghost{background:var(--card);border:1.5px solid var(--line);color:var(--ink)}
+.btn.ghost:hover{border-color:rgba(36,31,25,.3);background:var(--card)}
+.links{display:flex;flex-direction:column;gap:16px;align-items:center;margin-top:30px}
+.links button{background:none;border:none;font-family:var(--fd);font-size:14.5px;color:var(--ink-2);cursor:pointer;padding:6px 4px;min-height:36px;white-space:nowrap}
+.links button:hover{color:var(--ink)}
+.links button b{color:var(--accent-2);font-weight:600}
+.msg{border-radius:16px;padding:15px 18px;font-size:14.5px;line-height:1.55;text-wrap:pretty}
+.msg.err{background:rgba(168,68,47,.07);border:1px solid rgba(168,68,47,.28);color:#8e3a27}
+.msg.ok{background:#e3efe8;border:1px solid rgba(47,125,89,.28);color:var(--accent-2)}
+.hint{font-size:13px;color:var(--ink-3);line-height:1.55;margin:-2px 4px 0;text-wrap:pretty}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;color:var(--ink-2);line-height:1.5;padding:2px 4px}
+.check input{width:22px;height:22px;flex:none;border-radius:7px;accent-color:var(--accent);margin:1px 0 0;padding:0}
+.post{width:74px;height:74px;border-radius:24px;background:#e3efe8;display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
+.post svg{width:36px;height:36px;stroke:var(--accent);fill:none;stroke-width:1.6}
+.post[hidden],form[hidden]{display:none}
+.foot{margin-top:44px;text-align:center;font-family:var(--fm);font-size:11.5px;color:var(--ink-3);line-height:1.9}
+.foot a{color:var(--ink-3);text-decoration:none}
+.foot a:hover{color:var(--ink-2)}
+.screen[hidden]{display:none}
+.install{margin-top:26px;border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;background:var(--card)}
+.install p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.55}
+.install b{color:var(--ink);font-weight:600;display:block;font-size:14.5px;margin-bottom:3px}
+.install .x{background:none;border:none;color:var(--ink-3);font-size:20px;line-height:1;cursor:pointer;padding:2px 4px}
+.strength{display:flex;gap:5px;margin:-4px 6px 0}
+.strength i{height:4px;flex:1;border-radius:2px;background:rgba(36,31,25,.1)}
+.strength i.on{background:var(--accent)}
+</style>
+<style id="cz-logo">svg.cz-mark{width:62%;height:62%;display:block;flex:0 0 auto}</style></head>
+<body>
+<div class="wrap">
+  <div class="mark"><div class="glyph"><svg class="cz-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="4.4" fill="currentColor"></circle><path d="M16 5.6a10.4 10.4 0 0 1 10.4 10.4" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path><path d="M16 26.4A10.4 10.4 0 0 1 5.6 16" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></svg></div><div class="name">clickzauber</div></div>
+
+  <!-- Anmelden: bekannte Adresse, nur Passwort -->
+  <section class="screen" id="s-login" hidden>
+    <h1 id="gruss">Willkommen zurück</h1>
+    <p class="sub mail" id="login-mail"></p>
+    <div class="msg err" id="login-err" hidden></div>
+    <div class="msg ok" id="login-ok" hidden></div>
+    <form id="f-login" autocomplete="on">
+      <input type="email" id="login-email" name="email" autocomplete="username" placeholder="E-Mail-Adresse" hidden>
+      <div class="field pw">
+        <input type="password" id="login-pw" name="password" autocomplete="current-password" placeholder="Passwort" required>
+        <button type="button" class="eye" data-fuer="login-pw" aria-label="Passwort anzeigen"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+      </div>
+      <button type="submit" class="btn" id="login-btn">Anmelden</button>
+    </form>
+    <div class="links">
+      <button type="button" id="zu-vergessen">Passwort vergessen?</button>
+      <button type="button" id="andere-mail">Andere E-Mail-Adresse verwenden</button>
+      <button type="button" id="zu-neu">Noch kein Konto? <b>Konto anlegen</b></button>
+    </div>
+  </section>
+
+  <!-- Konto anlegen -->
+  <section class="screen" id="s-neu" hidden>
+    <h1>Konto anlegen</h1>
+    <p class="sub">E-Mail-Adresse und ein Passwort, das Sie sich selbst ausdenken. Danach bestätigen Sie die Adresse mit einem Klick.</p>
+    <div class="msg err" id="neu-err" hidden></div>
+    <form id="f-neu">
+      <input type="email" id="neu-email" autocomplete="email" placeholder="E-Mail-Adresse" required>
+      <div class="field pw">
+        <input type="password" id="neu-pw" autocomplete="new-password" placeholder="Passwort ausdenken" required minlength="8">
+        <button type="button" class="eye" data-fuer="neu-pw" aria-label="Passwort anzeigen"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+      </div>
+      <div class="strength" id="neu-str"><i></i><i></i><i></i><i></i></div>
+      <p class="hint">Mindestens 8 Zeichen. Nehmen Sie etwas, das Sie sich merken können — Sie brauchen es bei jeder Anmeldung.</p>
+      <div class="field pw">
+        <input type="password" id="neu-pw2" autocomplete="new-password" placeholder="Passwort wiederholen" required>
+        <button type="button" class="eye" data-fuer="neu-pw2" aria-label="Passwort anzeigen"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+      </div>
+      <label class="check"><input type="checkbox" id="neu-agb" required><span>Ich habe die <a href="agb.html" target="_blank" rel="noopener">AGB</a> und die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen.</span></label>
+      <button type="submit" class="btn" id="neu-btn">Konto anlegen</button>
+    </form>
+    <div class="links"><button type="button" class="zu-login">Ich habe schon ein Konto — <b>anmelden</b></button></div>
+  </section>
+
+  <!-- Postfach prüfen -->
+  <section class="screen" id="s-post" hidden>
+    <div class="post"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M3 7l9 6 9-6"/></svg></div>
+    <h1>Prüfen Sie Ihr Postfach</h1>
+    <p class="sub">Wir haben eine E-Mail an <b id="post-mail"></b> geschickt. Klicken Sie darin auf den Bestätigungslink — dann ist Ihr Konto fertig und Sie melden sich hier mit Ihrem Passwort an.</p>
+    <div class="msg ok" id="post-ok" hidden>Die E-Mail ist erneut unterwegs.</div>
+    <form id="f-post">
+      <button type="submit" class="btn ghost" id="post-btn">E-Mail erneut senden</button>
+    </form>
+    <div class="links"><button type="button" class="zu-login">Zur Anmeldung</button></div>
+    <p class="hint" style="margin-top:22px;text-align:center">Keine E-Mail nach zwei Minuten? Sehen Sie im Spam-Ordner nach.</p>
+  </section>
+
+  <!-- E-Mail bestätigen (Link aus der Mail) -->
+  <section class="screen" id="s-best" hidden>
+    <div class="post" id="best-icon" hidden><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.4l3.1 3.1 6-6.4"/></svg></div>
+    <h1 id="best-titel">E-Mail wird bestätigt …</h1>
+    <p class="sub" id="best-text" hidden></p>
+    <p class="sub mail" id="best-mail" hidden></p>
+    <form id="f-best" hidden><button type="submit" class="btn" id="best-btn">Weiter</button></form>
+  </section>
+
+  <!-- Passwort vergessen -->
+  <section class="screen" id="s-vergessen" hidden>
+    <h1>Passwort vergessen</h1>
+    <p class="sub">Wir schicken Ihnen einen Link, mit dem Sie ein neues Passwort setzen.</p>
+    <div class="msg ok" id="verg-ok" hidden>Wenn zu dieser Adresse ein Konto besteht, ist die E-Mail unterwegs. Der Link gilt zwei Stunden.</div>
+    <form id="f-vergessen">
+      <input type="email" id="verg-email" autocomplete="email" placeholder="E-Mail-Adresse" required>
+      <button type="submit" class="btn" id="verg-btn">Link senden</button>
+    </form>
+    <div class="links"><button type="button" class="zu-login">Zurück zur Anmeldung</button></div>
+  </section>
+
+  <!-- Neues Passwort setzen (Link aus der E-Mail) -->
+  <section class="screen" id="s-reset" hidden>
+    <h1>Neues Passwort setzen</h1>
+    <p class="sub">Danach sind Sie direkt angemeldet. Andere Geräte werden abgemeldet.</p>
+    <div class="msg err" id="reset-err" hidden></div>
+    <form id="f-reset">
+      <div class="field pw">
+        <input type="password" id="reset-pw" autocomplete="new-password" placeholder="Neues Passwort" required minlength="8">
+        <button type="button" class="eye" data-fuer="reset-pw" aria-label="Passwort anzeigen"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+      </div>
+      <div class="field pw">
+        <input type="password" id="reset-pw2" autocomplete="new-password" placeholder="Wiederholen" required>
+        <button type="button" class="eye" data-fuer="reset-pw2" aria-label="Passwort anzeigen"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+      </div>
+      <button type="submit" class="btn" id="reset-btn">Passwort speichern</button>
+    </form>
+  </section>
+
+  <div class="install" id="install" hidden>
+    <div>
+      <b>clickzauber auf den Startbildschirm</b>
+      <p id="install-text">So öffnen Sie Ihr Cockpit mit einem Tipp — ohne Umweg über die Website.</p>
+    </div>
+    <button class="x" id="install-x" aria-label="Hinweis schließen">×</button>
+  </div>
+
+  <p class="foot"><a href="index.html">clickzauber.de</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
+</div>
+
+<script>
+var API = "https://clickzauber-api.vercel.app/api";
+var COCKPIT = "clickzauber-cockpit-live.html";
+/* Wer aus dem Konfigurator kommt, hat dort ein Ziel hinterlassen: erst die
+   Angaben, dann der Tarif. Nach der Anmeldung geht es genau dorthin weiter —
+   sonst landet man im Cockpit und muss den Weg von vorn suchen. */
+function weiterNachAnmeldung(){
+  var z = hole('cz_ziel');
+  location.href = z ? ('clickzauber-anmelden.html?ziel=' + encodeURIComponent(z)) : COCKPIT;
+}
+var q = new URLSearchParams(location.search);
+
+function el(id){ return document.getElementById(id); }
+function hole(k){ try { return localStorage.getItem(k) || ''; } catch(e){ return ''; } }
+function merke(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+
+/* ── Bildschirme ── */
+var SCREENS = ['s-login','s-neu','s-post','s-best','s-vergessen','s-reset'];
+function zeige(id){
+  SCREENS.forEach(function(s){ el(s).hidden = (s !== id); });
+  var fokus = el(id).querySelector('input:not([hidden])');
+  if (fokus && matchMedia('(min-width:700px)').matches) fokus.focus();
+}
+
+/* ── Gruß nach Tageszeit, wie in einer App ── */
+function gruss(){
+  var h = new Date().getHours();
+  var t = h < 5 ? 'Gute Nacht' : h < 11 ? 'Guten Morgen' : h < 18 ? 'Guten Tag' : 'Guten Abend';
+  var name = hole('cz_user_vorname');
+  el('gruss').innerHTML = name ? t + ', <em>' + name.replace(/[<>&]/g,'') + '</em>' : t;
+}
+
+/* ── Passwort sichtbar machen ── */
+document.querySelectorAll('.eye').forEach(function(b){
+  b.addEventListener('click', function(){
+    var i = el(b.dataset.fuer);
+    i.type = i.type === 'password' ? 'text' : 'password';
+    b.setAttribute('aria-label', i.type === 'password' ? 'Passwort anzeigen' : 'Passwort verbergen');
+  });
+});
+
+/* ── Stärke-Anzeige: ruhig, ohne Belehrung ── */
+el('neu-pw').addEventListener('input', function(){
+  var s = this.value, n = 0;
+  if (s.length >= 8) n++;
+  if (s.length >= 12) n++;
+  if (/[a-zA-Z]/.test(s) && /[0-9]/.test(s)) n++;
+  if (/[^a-zA-Z0-9]/.test(s)) n++;
+  el('neu-str').querySelectorAll('i').forEach(function(i,idx){ i.classList.toggle('on', idx < n); });
+});
+
+/* ── Netz ── */
+function post(pfad, daten){
+  return fetch(API + pfad, {
+    method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(daten)
+  }).then(function(r){ return r.json().then(function(j){ j._status = r.status; return j; }); });
+}
+function laedt(btn, an, text){
+  btn.disabled = an;
+  if (an) { btn.dataset.alt = btn.textContent; btn.textContent = text || 'Wird geladen…'; }
+  else if (btn.dataset.alt) btn.textContent = btn.dataset.alt;
+}
+function fehler(box, text){ box.textContent = text; box.hidden = false; }
+function netzFehler(){
+  return 'Keine Verbindung zum Server. In einer Vorschau ist das normal — auf clickzauber.de klappt die Anmeldung.';
+}
+
+/* ── Anmelden ── */
+el('f-login').addEventListener('submit', function(e){
+  e.preventDefault();
+  el('login-err').hidden = true;
+  var email = (el('login-email').value || hole('cz_user_email')).trim().toLowerCase();
+  if (!email) { el('login-email').hidden = false; el('login-email').focus(); return; }
+  var btn = el('login-btn');
+  laedt(btn, true);
+  post('/auth/anmelden', { email: email, passwort: el('login-pw').value })
+    .then(function(j){
+      laedt(btn, false);
+      if (j.ok) {
+        merke('cz_user_token', j.token);
+        merke('cz_user_email', j.email);
+        if (j.vorname) merke('cz_user_vorname', j.vorname);
+        weiterNachAnmeldung();
+        return;
+      }
+      if (j.nicht_bestaetigt) { el('post-mail').textContent = email; merke('cz_user_email', email); zeige('s-post'); return; }
+      if (j.kein_konto) { el('neu-email').value = email; zeige('s-neu'); fehler(el('neu-err'), 'Zu dieser Adresse gibt es noch kein Konto. Legen Sie hier eines an.'); return; }
+      if (j.kein_passwort) { el('verg-email').value = email; zeige('s-vergessen'); return; }
+      fehler(el('login-err'), j.error || 'Anmeldung nicht möglich.');
+    })
+    .catch(function(){ laedt(btn, false); fehler(el('login-err'), netzFehler()); });
+});
+
+/* ── Konto anlegen ── */
+el('f-neu').addEventListener('submit', function(e){
+  e.preventDefault();
+  el('neu-err').hidden = true;
+  var email = el('neu-email').value.trim().toLowerCase();
+  var pw = el('neu-pw').value, pw2 = el('neu-pw2').value;
+  if (pw !== pw2) { fehler(el('neu-err'), 'Die beiden Passwörter sind nicht gleich.'); return; }
+  if (pw.length < 8) { fehler(el('neu-err'), 'Das Passwort braucht mindestens 8 Zeichen.'); return; }
+  var btn = el('neu-btn');
+  laedt(btn, true, 'Konto wird angelegt…');
+  post('/auth/registrieren', { email: email, passwort: pw })
+    .then(function(j){
+      laedt(btn, false);
+      if (!j.ok) {
+        if (j.konto_da) { merke('cz_user_email', email); starteLogin(email); fehler(el('login-err'), j.error); return; }
+        fehler(el('neu-err'), j.error || 'Konto ließ sich nicht anlegen.');
+        return;
+      }
+      merke('cz_user_email', email);
+      if (j.bestaetigt) { starteLogin(email); el('login-ok').textContent = 'Passwort gesetzt. Melden Sie sich jetzt damit an.'; el('login-ok').hidden = false; return; }
+      el('post-mail').textContent = email;
+      zeige('s-post');
+    })
+    .catch(function(){ laedt(btn, false); fehler(el('neu-err'), netzFehler()); });
+});
+
+/* ── Bestätigungsmail erneut ── */
+el('f-post').addEventListener('submit', function(e){
+  e.preventDefault();
+  var btn = el('post-btn');
+  laedt(btn, true, 'Wird gesendet…');
+  post('/auth/bestaetigung-neu', { email: el('post-mail').textContent })
+    .then(function(){ laedt(btn, false); el('post-ok').hidden = false; })
+    .catch(function(){ laedt(btn, false); el('post-ok').hidden = false; });
+});
+
+/* ── Passwort vergessen ── */
+el('f-vergessen').addEventListener('submit', function(e){
+  e.preventDefault();
+  var btn = el('verg-btn');
+  laedt(btn, true, 'Wird gesendet…');
+  post('/auth/passwort-vergessen', { email: el('verg-email').value.trim().toLowerCase() })
+    .then(function(){ laedt(btn, false); el('verg-ok').hidden = false; })
+    .catch(function(){ laedt(btn, false); el('verg-ok').hidden = false; });
+});
+
+/* ── Neues Passwort setzen ── */
+el('f-reset').addEventListener('submit', function(e){
+  e.preventDefault();
+  el('reset-err').hidden = true;
+  if (el('reset-pw').value !== el('reset-pw2').value) { fehler(el('reset-err'), 'Die beiden Passwörter sind nicht gleich.'); return; }
+  var btn = el('reset-btn');
+  laedt(btn, true, 'Wird gespeichert…');
+  post('/auth/passwort-setzen', { t: q.get('reset'), passwort: el('reset-pw').value })
+    .then(function(j){
+      laedt(btn, false);
+      if (!j.ok) { fehler(el('reset-err'), j.error || 'Fehlgeschlagen.'); return; }
+      merke('cz_user_token', j.token);
+      merke('cz_user_email', j.email);
+      if (j.vorname) merke('cz_user_vorname', j.vorname);
+      weiterNachAnmeldung();
+    })
+    .catch(function(){ laedt(btn, false); fehler(el('reset-err'), netzFehler()); });
+});
+
+/* ── Wechsel-Knöpfe ── */
+el('zu-neu').addEventListener('click', function(){ zeige('s-neu'); });
+el('zu-vergessen').addEventListener('click', function(){
+  el('verg-email').value = el('login-email').value || hole('cz_user_email');
+  zeige('s-vergessen');
+});
+el('andere-mail').addEventListener('click', function(){
+  try { localStorage.removeItem('cz_user_email'); localStorage.removeItem('cz_user_vorname'); } catch(e){}
+  el('login-mail').textContent = '';
+  el('login-email').hidden = false;
+  el('login-email').value = '';
+  el('gruss').textContent = 'Anmelden';
+  el('login-email').focus();
+});
+document.querySelectorAll('.zu-login').forEach(function(b){
+  b.addEventListener('click', function(){ starteLogin(hole('cz_user_email')); });
+});
+
+function starteLogin(email){
+  if (email) {
+    el('login-mail').textContent = email;
+    el('login-email').value = email;
+    el('login-email').hidden = true;
+    gruss();
+  } else {
+    el('login-mail').textContent = '';
+    el('login-email').hidden = false;
+    el('gruss').textContent = 'Anmelden';
+  }
+  el('login-pw').value = '';
+  zeige('s-login');
+}
+
+/* ── E-Mail bestätigen ──
+   Seit 04.10.2026 führt der Link in der Mail direkt hierher (?bestaetigen=…), wie beim
+   Passwort-Link. Vorher lief er über die Vercel-Adresse und eine Weiterleitung. */
+var bestModus = '', bestT = '', bestMail = '';
+function bestZeige(titel, text, knopf, modus, ok){
+  el('best-titel').textContent = titel;
+  el('best-text').textContent = text || '';
+  el('best-text').hidden = !text;
+  el('best-mail').textContent = ok ? bestMail : '';
+  el('best-mail').hidden = !(ok && bestMail);
+  el('best-icon').hidden = !ok;
+  bestModus = modus || '';
+  el('f-best').hidden = !knopf;
+  if (knopf) { el('best-btn').textContent = knopf; el('best-btn').disabled = false; }
+  zeige('s-best');
+}
+function bestaetigen(t){
+  bestT = t;
+  bestZeige('E-Mail wird bestätigt …');
+  post('/auth/bestaetigen', { t: t }).then(function(j){
+    if (!j || !j.ok) { bestZeige('Das hat nicht geklappt', (j && j.error) || 'Bitte versuchen Sie es gleich noch einmal.', 'Noch einmal versuchen', 'nochmal'); return; }
+    bestMail = j.email || '';
+    var tok = hole('cz_user_token'), em = hole('cz_user_email');
+    if (j.bestaetigt) {
+      /* Ein Cockpit in einem anderen Tab, das beim Live schalten wartet, geht davon von selbst weiter (js/cz-live.js). */
+      merke('cz_bestaetigt', String(Date.now()));
+      /* Auf diesem Gerät schon angemeldet: kein zweites Passwort. Der Knopf führt dorthin, wo der Weg weitergeht. */
+      if (tok && (!bestMail || !em || em === bestMail)) {
+        var w = hole('cz_live_wartet') === '1' ? ['Jetzt geht es mit dem Live-Schalten weiter.', 'Weiter zum Live-Schalten']
+          : hole('cz_ziel') ? ['Ihr Konto ist fertig.', 'Weiter']
+          : hole('cz_entwurf') ? ['Bauen Sie Ihr Formular in Ruhe fertig.', 'Zurück zum Formular']
+          : ['Ihr Konto ist fertig.', 'Weiter zum Cockpit'];
+        bestZeige('E-Mail-Adresse bestätigt', w[0], w[1], 'weiter', true); return;
+      }
+      bestZeige('E-Mail-Adresse bestätigt', 'Machen Sie in dem Fenster weiter, in dem Sie clickzauber eingerichtet haben. Oder melden Sie sich hier an.', 'Hier anmelden', 'login', true);
+      return;
+    }
+    if (bestMail) { bestZeige('Dieser Link gilt nicht mehr', 'Er ist abgelaufen oder wurde schon benutzt. Wir schicken Ihnen gern einen neuen.', 'Neuen Link senden', 'neu'); return; }
+    bestZeige('Dieser Link ist ungültig', 'Bitte nehmen Sie den Link aus der neuesten E-Mail von clickzauber.', 'Zur Anmeldung', 'login');
+  }).catch(function(){ bestZeige('Keine Verbindung', 'Bitte prüfen Sie die Internetverbindung und versuchen Sie es noch einmal.', 'Noch einmal versuchen', 'nochmal'); });
+}
+function nachBestaetigung(){
+  if (hole('cz_live_wartet') === '1') { try { localStorage.removeItem('cz_live_wartet'); } catch(e){} location.href = COCKPIT + '?live=1'; return; }
+  if (hole('cz_ziel')) { weiterNachAnmeldung(); return; }
+  if (hole('cz_entwurf')) { location.href = 'clickzauber-editor.html?start=1'; return; }
+  location.href = COCKPIT;
+}
+el('f-best').addEventListener('submit', function(e){
+  e.preventDefault();
+  if (bestModus === 'weiter') { nachBestaetigung(); return; }
+  if (bestModus === 'nochmal') { bestaetigen(bestT); return; }
+  if (bestModus === 'login') { starteLogin(bestMail || hole('cz_user_email')); return; }
+  if (bestModus === 'neu') {
+    var btn = el('best-btn');
+    laedt(btn, true, 'Wird gesendet…');
+    post('/auth/bestaetigung-neu', { email: bestMail })
+      .then(function(){ laedt(btn, false); bestZeige('Ein neuer Link ist unterwegs', 'Sehen Sie in Ihrem Postfach nach, notfalls im Spam-Ordner. Der Link gilt 48 Stunden.'); })
+      .catch(function(){ laedt(btn, false); bestZeige('Keine Verbindung', 'Bitte versuchen Sie es gleich noch einmal.', 'Neuen Link senden', 'neu'); });
+  }
+});
+
+/* ── Start: welcher Bildschirm? ── */
+(function(){
+  if (q.get('bestaetigen')) { bestaetigen(q.get('bestaetigen')); return; }
+  if (q.get('reset')) {
+    if (q.get('willkommen') === '1') {
+      var sr = el('s-reset');
+      sr.querySelector('h1').textContent = 'Willkommen bei clickzauber';
+      sr.querySelector('.sub').textContent = 'Ihr Formular ist schon eingerichtet. Legen Sie jetzt Ihr eigenes Passwort fest, danach sind Sie direkt in Ihrem Cockpit.';
+      el('reset-btn').textContent = 'Passwort festlegen';
+      try { localStorage.removeItem('cz_ziel'); } catch (e) {}
+    }
+    zeige('s-reset'); return;
+  }
+  if (q.get('bestaetigt') === '1') {
+    var m = q.get('email') || hole('cz_user_email');
+    if (m) merke('cz_user_email', m);
+    starteLogin(m);
+    el('login-ok').textContent = 'E-Mail bestätigt. Ihr Konto ist fertig — melden Sie sich mit Ihrem Passwort an.';
+    el('login-ok').hidden = false;
+    return;
+  }
+  if (q.get('bestaetigt') === '0') {
+    starteLogin(hole('cz_user_email'));
+    fehler(el('login-err'), 'Dieser Bestätigungslink ist abgelaufen oder schon benutzt. Melden Sie sich an — falls es nicht klappt, senden wir eine neue E-Mail.');
+    return;
+  }
+  if (q.get('vergessen') === '1') {
+    el('verg-email').value = q.get('email') || hole('cz_user_email');
+    zeige('s-vergessen'); return;
+  }
+  if (q.get('neu') === '1') {
+    el('neu-email').value = q.get('email') || '';
+    zeige('s-neu'); return;
+  }
+  // Schon angemeldet? Dann direkt ins Cockpit — oder zurück in den Weg zum Tarif.
+  if (hole('cz_user_token') && !q.get('abgemeldet')) {
+    var z = hole('cz_ziel');
+    location.replace(z ? ('clickzauber-anmelden.html?ziel=' + encodeURIComponent(z)) : COCKPIT);
+    return;
+  }
+  // Eine Tür: das Anmelden selbst läuft über clickzauber-anmelden.html. Hier
+  // bleiben nur die Wege, die aus einer E-Mail hierher führen — Bestätigung und
+  // neues Passwort. Alles andere geht zur Tür, damit niemand zwei Anmeldeseiten
+  // vor sich hat und auf der falschen sucht.
+  var zurTuer = hole('cz_ziel');
+  location.replace('clickzauber-anmelden.html' + (zurTuer ? '?ziel=' + encodeURIComponent(zurTuer) : ''));
+})();
+
+/* ── App auf den Startbildschirm ── */
+/* Nur auf clickzauber.de: In Vorschau- und Testumgebungen fing der Worker sonst Anfragen ab. */
+if('serviceWorker' in navigator && !/(^|\.)clickzauber\.de$/.test(location.hostname)){ try{ var eigen=new URL('sw.js',location.href).pathname.replace(/^\/_t\/[^\/]+/,''); navigator.serviceWorker.getRegistrations().then(function(rs){ rs.forEach(function(r){ var w=r.active||r.installing||r.waiting; if(w&&new URL(w.scriptURL).pathname.replace(/^\/_t\/[^\/]+/,'')===eigen) r.unregister(); }); }).catch(function(){}); }catch(e){} }
+if ('serviceWorker' in navigator && /(^|\.)clickzauber\.de$/.test(location.hostname)) {
+  navigator.serviceWorker.register('sw.js').catch(function(){});
+}
+(function(){
+  var alsApp = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  if (alsApp || hole('cz_install_weg')) return;
+  var ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  var box = el('install');
+  var prompt = null;
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault(); prompt = e;
+    el('install-text').innerHTML = 'Ein Tipp genügt und Sie sind im Cockpit — ohne Umweg über die Website. <button type="button" id="install-go" style="background:none;border:none;padding:0;font:inherit;color:var(--accent-2);font-weight:600;cursor:pointer;text-decoration:underline">Jetzt hinzufügen</button>';
+    box.hidden = false;
+    el('install-go').onclick = function(){ prompt.prompt(); };
+  });
+  if (ios) {
+    el('install-text').textContent = 'Tippen Sie unten auf „Teilen“ und dann auf „Zum Home-Bildschirm“. Danach öffnen Sie das Cockpit wie eine App.';
+    box.hidden = false;
+  }
+  el('install-x').addEventListener('click', function(){ merke('cz_install_weg','1'); box.hidden = true; });
+})();
+</script>
+<script src="js/cz-sprache.js?v=20260927g"></script>
+<script src="js/cz-globus.js?v=20260927b" data-ohne-zahnrad></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ausweichtermin wählen</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f2ea;--card:#fffdf8;--ink:#241f19;--ink-2:#5c544a;--line:rgba(36,31,25,.14);--accent:#2f7d59}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}a:hover{color:#255f45}
+main{max-width:520px;margin:0 auto;padding:40px 20px 60px}
+h1{font-size:28px;line-height:1.2;letter-spacing:-.02em;margin:0 0 10px}
+p{margin:0 0 18px;color:var(--ink-2);text-wrap:pretty}
+.tage{display:flex;flex-direction:column;gap:12px}
+.tage button{min-height:68px;border-radius:16px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:20px;font-weight:700;color:var(--ink);cursor:pointer}
+.tage button:hover{border-color:var(--accent)}
+.tage button:disabled{opacity:.6;cursor:default}
+.ok{background:var(--card);border:1.5px solid var(--accent);border-radius:16px;padding:20px}
+.ok p{margin:0;color:var(--ink)}
+.keiner{margin-top:22px;border-top:1px solid var(--line);padding-top:18px}
+.keiner>button,.kf button{width:100%;min-height:56px;border-radius:14px;border:1.5px solid var(--line);background:none;font:inherit;font-size:17px;font-weight:600;color:var(--ink);cursor:pointer}
+.kf{display:flex;flex-direction:column;gap:10px}.kf[hidden]{display:none}
+.kf label{display:flex;flex-direction:column;gap:5px;font-size:15px;font-weight:600;color:var(--ink-2)}
+.kf input{min-height:54px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:17px;padding:0 14px;color:var(--ink)}
+.kf button{background:var(--ink);color:var(--card);border-color:var(--ink)}
+</style>
+</head>
+<body>
+<main id="m"><p>Wird geladen …</p></main>
+<script>
+(function(){
+  var API='https://clickzauber-api.vercel.app/api', q=new URLSearchParams(location.search), l=q.get('l')||'', k=q.get('k')||'', m=document.getElementById('m');
+  var WT=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+  function e(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function tag(s){ var d=new Date(s+'T12:00:00'); return WT[d.getDay()]+', '+d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(); }
+  function fehler(t){ m.innerHTML='<h1>Das hat nicht geklappt</h1><p>'+e(t||'Dieser Link ist ungültig oder abgelaufen. Bitte melden Sie sich direkt beim Betrieb.')+'</p>'; }
+  function fertig(d, wer){ m.innerHTML='<h1>Danke!</h1><div class="ok"><p>Sie haben <b>'+e(tag(d))+'</b> gewählt. '+e(wer||'Der Betrieb')+' bestätigt Ihnen den Termin in Kürze.</p></div>'; }
+  function keinerFertig(wer){ m.innerHTML='<h1>Danke für Ihre Rückmeldung</h1><div class="ok"><p>'+e(wer||'Der Betrieb')+' weiß jetzt, dass keiner der Tage passt, und meldet sich bei Ihnen.</p></div>'; }
+  function senden(d, ok){
+    return fetch(API+'/auftrag',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({aktion:'ausweich-wahl',l:l,k:k},d))})
+      .then(function(r){ return r.json(); }).then(function(x){ if(x&&x.ok) ok(x); else fehler(x&&x.error); })
+      .catch(function(){ fehler('Gerade nicht erreichbar. Bitte in einem Moment noch einmal versuchen.'); });
+  }
+  if(!l||!k){ fehler(); return; }
+  fetch(API+'/auftrag?aktion=ausweich&l='+encodeURIComponent(l)+'&k='+encodeURIComponent(k)).then(function(r){ return r.json(); }).then(function(j){
+    if(!j||!j.ok){ fehler(j&&j.error); return; }
+    if(j.gewaehlt){ fertig(j.gewaehlt, j.betrieb); return; }
+    if(j.vorbei){ m.innerHTML='<h1>'+(j.vorbei==='zu'?'Dieser Vorschlag gilt nicht mehr':'Ihr Termin steht schon fest')+'</h1><p>Bei Fragen melden Sie sich bitte direkt bei '+e(j.betrieb||'dem Betrieb')+'.</p>'; return; }
+    if(j.keiner){ keinerFertig(j.betrieb); return; }
+    var heute=new Date(); heute=heute.getFullYear()+'-'+String(heute.getMonth()+1).padStart(2,'0')+'-'+String(heute.getDate()).padStart(2,'0');
+    m.innerHTML='<h1>'+(j.name?'Hallo '+e(j.name)+', welcher':'Welcher')+' Tag passt Ihnen?</h1><p>'+e(j.betrieb||'Wir')+(j.termin?' '+(j.betrieb?'ist':'sind')+' am '+e(tag(String(j.termin).slice(0,10)))+' leider schon ausgebucht. Diese Tage sind noch frei:':' schlägt Ihnen diese Tage vor:')+'</p><div class="tage">'
+      +(j.tage||[]).map(function(t){ return '<button type="button" data-t="'+e(t)+'">'+e(tag(t))+'</button>'; }).join('')+'</div>'
+      +'<div class="keiner"><button type="button" id="kb">Keiner dieser Tage passt</button>'
+      +'<div class="kf" id="kf" hidden><label>Welcher Tag würde passen? (freiwillig)<input type="date" id="kw" min="'+heute+'"></label><label>Nachricht (freiwillig)<input id="kt" maxlength="300" placeholder="z. B. nur am Wochenende"></label><button type="button" id="ks">Absenden</button></div></div>';
+    m.addEventListener('click',function(ev){
+      if(ev.target.id==='kb'){ document.getElementById('kb').hidden=true; document.getElementById('kf').hidden=false; return; }
+      if(ev.target.id==='ks'){ ev.target.disabled=true; senden({tag:'keiner',wunsch:document.getElementById('kw').value,text:document.getElementById('kt').value}, function(){ keinerFertig(j.betrieb); }); return; }
+      var b=ev.target.closest('[data-t]'); if(!b) return;
+      Array.prototype.forEach.call(m.querySelectorAll('[data-t]'),function(x){ x.disabled=true; });
+      senden({tag:b.getAttribute('data-t')}, function(x){ fertig(x.gewaehlt, j.betrieb); });
+    });
+  }).catch(function(){ fehler('Gerade nicht erreichbar. Bitte in einem Moment neu laden.'); });
+})();
+</script>
+</body>
+</html>

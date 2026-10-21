@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Handbuch für Betriebe · clickzauber</title>
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="doc-page.js"></script>
+<style>
+doc-page:not(:defined){visibility:hidden}
+:root{--ink:#211d16;--ink-2:#5f584a;--ink-3:#7a7262;--line:#e6ddca;--accent:#1f6d4a;--soft:#f4f0e6;--fd:"Space Grotesk",system-ui,sans-serif;--fm:"IBM Plex Mono",monospace}
+a{color:var(--accent)}a:hover{color:#17503a}
+doc-page{font-family:var(--fd);color:var(--ink);font-size:11pt;line-height:1.62;hyphens:auto}
+.kl{font-family:var(--fm);font-size:8.5pt;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:30pt;line-height:1.08;letter-spacing:-.03em;margin:10pt 0 12pt;text-wrap:balance}
+.lead{font-size:12.5pt;line-height:1.55;color:var(--ink-2);max-width:34em;margin:0 0 20pt;text-wrap:pretty}
+.meta{display:flex;gap:22pt;flex-wrap:wrap;font-family:var(--fm);font-size:8.5pt;color:var(--ink-3);border-top:.5pt solid var(--line);padding-top:10pt;margin-bottom:26pt}
+h2{font-size:17pt;letter-spacing:-.02em;line-height:1.2;margin:0 0 10pt;padding-top:4pt;break-before:page}
+h2 .n{font-family:var(--fm);font-size:10pt;color:var(--accent);font-weight:500;margin-right:8pt}
+h3{font-size:12.5pt;letter-spacing:-.01em;margin:18pt 0 5pt}
+p{margin:0 0 9pt;text-wrap:pretty;orphans:3;widows:3}
+ul,ol{margin:0 0 10pt;padding-left:16pt}li{margin-bottom:4pt}
+.wo{display:block;font-family:var(--fm);font-size:8.8pt;color:var(--accent);background:#e8f1eb;border-radius:4pt;padding:5pt 8pt;margin:0 0 9pt;break-inside:avoid}
+.tipp{background:var(--soft);border-radius:6pt;padding:10pt 13pt;margin:4pt 0 12pt;font-size:10.3pt;break-inside:avoid}
+.tipp b{font-family:var(--fm);font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:500;display:block;margin-bottom:3pt}
+.nur{display:inline-block;font-family:var(--fm);font-size:7.8pt;letter-spacing:.08em;text-transform:uppercase;border:.6pt solid var(--ink-3);color:var(--ink-2);border-radius:999px;padding:1pt 6pt;margin-left:5pt;vertical-align:2pt;font-weight:400}
+table{width:100%;border-collapse:collapse;margin:4pt 0 14pt;font-size:10pt}
+th{text-align:left;font-family:var(--fm);font-size:8pt;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:400;padding:0 8pt 6pt 0;border-bottom:1pt solid var(--ink)}
+td{padding:6pt 8pt 6pt 0;border-bottom:.5pt solid var(--line);vertical-align:top}
+td:first-child{font-weight:600;white-space:nowrap}
+.schritte{list-style:none;padding:0;counter-reset:s;margin:6pt 0 14pt}
+.schritte li{counter-increment:s;display:flex;gap:10pt;align-items:baseline;margin-bottom:7pt;break-inside:avoid}
+.schritte li::before{content:counter(s);flex:0 0 auto;width:16pt;height:16pt;border-radius:50%;background:var(--accent);color:#fff;font-size:8pt;font-weight:700;display:grid;place-items:center;font-family:var(--fm)}
+.inhalt{list-style:none;padding:0;margin:0;column-count:2;column-gap:26pt}
+.inhalt li{display:flex;gap:8pt;padding:5pt 0;border-bottom:.5pt solid var(--line);break-inside:avoid;margin:0}
+.inhalt .n{font-family:var(--fm);font-size:9pt;color:var(--accent);width:18pt;flex:0 0 auto;padding-top:1pt}
+.inhalt a{color:var(--ink);text-decoration:none}.inhalt a:hover{color:var(--accent)}
+.inhalt small{display:block;color:var(--ink-3);font-size:8.8pt;line-height:1.4}
+.fuss{font-family:var(--fm);font-size:7.8pt;color:var(--ink-3);display:flex;justify-content:space-between}
+@media screen and (max-width:760px){
+doc-page{min-width:0!important;padding:0!important;background:#fff!important;--doc-page-w:100%!important;--doc-page-margin:20px!important;font-size:16px;line-height:1.6}
+h1{font-size:30px}.lead{font-size:17px}h2{font-size:23px;margin-top:34px}h3{font-size:18px}
+.kl,.meta,.wo,.fuss{font-size:12.5px}.tipp{font-size:15px}.nur{font-size:10.5px}
+.inhalt{column-count:1}.inhalt .n{font-size:12.5px;width:24px}.inhalt small{font-size:13px}.inhalt li{padding:10px 0}
+table,thead,tbody,tr,td{display:block;width:100%}thead{display:none}
+tr{border-bottom:.5pt solid var(--line);padding:8px 0}td{border:0;padding:2px 0;font-size:15px}td:first-child{white-space:normal}
+.schritte li::before{width:22px;height:22px;font-size:11px}
+}
+</style>
+</head>
+<body>
+<doc-page size="a4" margin="18mm">
+<div slot="footer" class="fuss"><span>clickzauber · Handbuch für Betriebe</span><span>Stand 01.10.2026</span></div>
+
+<div class="kl">clickzauber · Handbuch für Betriebe</div>
+<h1>So arbeiten Sie mit clickzauber</h1>
+<p class="lead">Dieses Handbuch beschreibt alle Funktionen von clickzauber. Bei jeder Funktion steht, was sie tut, wo Sie sie finden und wie Sie sie einstellen. Die Pfade beziehen sich auf das Cockpit, die Seite, auf der Sie Ihre Anfragen bearbeiten, und auf den Konfigurator, in dem Sie Ihr Formular bauen.</p>
+<div class="meta"><span>Stand 01.10.2026</span><span>clickzauber.de</span><span>projekt@clickzauber.de · +49 176 61398922</span></div>
+
+<h3 style="margin-top:0">Inhalt</h3>
+<ol class="inhalt">
+<li><span class="n">01</span><a href="#k1">So funktioniert clickzauber<small>Der Ablauf in vier Schritten</small></a></li>
+<li><span class="n">02</span><a href="#k2">Erste Schritte<small>Konto, Vorlage, veröffentlichen</small></a></li>
+<li><span class="n">03</span><a href="#k3">Der Konfigurator<small>Fragen, Aussehen, Sprachen</small></a></li>
+<li><span class="n">04</span><a href="#k4">Formular einbauen und teilen<small>Website, Link, QR-Code</small></a></li>
+<li><span class="n">05</span><a href="#k5">Das Cockpit im Überblick<small>Alle Menüpunkte</small></a></li>
+<li><span class="n">06</span><a href="#k6">Anfragen bearbeiten<small>Stand, Antworten, Angebot</small></a></li>
+<li><span class="n">07</span><a href="#k7">Termine für Friseur &amp; Co.<small>Einrichten und täglich nutzen</small></a></li>
+<li><span class="n">08</span><a href="#k8">Kalender und Belegung<small>Tage sperren, eigener Kalender</small></a></li>
+<li><span class="n">09</span><a href="#k9">Nachrichten aufs Handy<small>Push-Nachrichten und App</small></a></li>
+<li><span class="n">10</span><a href="#k10">Auswertung<small>Zahlen, Herkunft, Vergleich</small></a></li>
+<li><span class="n">11</span><a href="#k11">Partner-Netz<small>Vernetzen und empfehlen</small></a></li>
+<li><span class="n">12</span><a href="#k12">Missionen und Rangliste<small>Vertrauenspunkte, Stufen</small></a></li>
+<li><span class="n">13</span><a href="#k13">Konto und Datenschutz<small>Abo, Recht</small></a></li>
+<li><span class="n">14</span><a href="#k14">Häufige Fragen<small>Kurz beantwortet</small></a></li>
+</ol>
+
+<h2 id="k1"><span class="n">01</span>So funktioniert clickzauber</h2>
+<p>clickzauber ist ein Anfrage-Formular für Ihre Website, Ihre Instagram-Seite oder einen QR-Code. Ihre Kunden beantworten darin Schritt für Schritt alles, was Sie für eine Antwort brauchen. Die Anfrage kommt vollständig bei Ihnen an, ohne Hin und Her.</p>
+<ol class="schritte">
+<li><span><b>Kunde fragt an.</b> Er wählt im Formular zum Beispiel Datum, Gästezahl oder Leistung und Uhrzeit und trägt seinen Kontakt ein.</span></li>
+<li><span><b>Sie bekommen Bescheid.</b> Sofort per Push-Nachricht aufs Handy und per E-Mail.</span></li>
+<li><span><b>Sie entscheiden.</b> Im Cockpit nehmen Sie an, lehnen ab oder schlagen eine andere Zeit vor. Nichts ist fest, bevor Sie es bestätigen.</span></li>
+<li><span><b>Kunde erfährt es.</b> Per WhatsApp-Nachricht, die clickzauber für Sie vorbereitet, und per E-Mail, wenn er eine Adresse angegeben hat.</span></li>
+</ol>
+<p>clickzauber stellt sich auf Ihre Branche ein. Im Cockpit gibt es drei Arten von Formularen:</p>
+<table>
+<thead><tr><th>Art</th><th>Für wen</th><th>Was im Cockpit dazukommt</th></tr></thead>
+<tbody>
+<tr><td>Termine</td><td>Friseur, Nagelstudio, Wimpern, Kosmetik, Barbier</td><td>Uhrzeiten, Mitarbeiter, Annehmen und Ablehnen, früher Schluss</td></tr>
+<tr><td>Aufträge</td><td>Catering, Food Truck, Foto &amp; Video</td><td>Angebot schreiben, Anzahlung</td></tr>
+<tr><td>Veranstaltungen</td><td>Hochzeitslocations, Tagungshäuser</td><td>Belegte Tage, Räume, Warteliste, Angebot</td></tr>
+</tbody>
+</table>
+<p>Funktionen, die nur für eine Art gelten, sind in diesem Handbuch mit <span class="nur">nur Termine</span> oder ähnlich markiert.</p>
+
+<h2 id="k2"><span class="n">02</span>Erste Schritte</h2>
+<ol class="schritte">
+<li><span><b>Konto anlegen.</b> Auf clickzauber.de auf „Kostenlos starten“ tippen, E-Mail und Passwort eintragen. Haben wir Ihr Konto für Sie eingerichtet, bekommen Sie einen Link per E-Mail und legen nur Ihr Passwort fest.</span></li>
+<li><span><b>Vorlage wählen.</b> Der Konfigurator öffnet sich mit einer Vorlage für Ihre Branche. Fragen lassen sich danach jederzeit ändern.</span></li>
+<li><span><b>Anpassen.</b> Fragen, Farben und Texte so einstellen, wie es zu Ihrem Betrieb passt. Die Vorschau zeigt das Formular so, wie Ihre Kunden es sehen.</span></li>
+<li><span><b>Veröffentlichen.</b> Ein Klick auf „Veröffentlichen“. Ab dann nimmt das Formular Anfragen an.</span></li>
+<li><span><b>Einbauen oder teilen.</b> Den Code auf Ihrer Website einfügen oder den Link in Ihre Instagram-Bio setzen. Siehe Kapitel 4.</span></li>
+<li><span><b>Nachrichten einschalten.</b> Im Cockpit „Nachrichten einschalten“ antippen, damit neue Anfragen sofort aufs Handy kommen. Siehe Kapitel 9.</span></li>
+</ol>
+<div class="tipp"><b>Tipp</b>Im Cockpit führen Sie die Missionen unter „Übersicht“ Schritt für Schritt durch die Einrichtung. Erklärungen wie Datenschutz und Auftragsverarbeitung lesen Sie dort und bestätigen sie ganz unten mit einem Haken. Erst dann gilt die Mission als erledigt.</div>
+
+<h2 id="k3"><span class="n">03</span>Der Konfigurator</h2>
+<p>Im Konfigurator bauen Sie Ihr Formular. Sie brauchen dafür keine Programmierkenntnisse.</p>
+<span class="wo">Cockpit → Bauen &amp; bearbeiten</span>
+<h3>Fragen</h3>
+<p>Jede Frage hat einen Typ: Datum, Zahl, Auswahl, Ja/Nein, Ort oder freier Text. Sie können Fragen ändern, löschen, ergänzen und per Ziehen verschieben. Pflichtfragen sind für Ihre Kunden markiert, freiwillige lassen sich überspringen. Name, Kontakt und die Einwilligung zum Datenschutz stehen immer am Ende.</p>
+<h3>Aussehen</h3>
+<p>Wählen Sie ein fertiges Design, zum Beispiel „Klar &amp; hell“ oder „Dunkel Minimal“, oder legen Sie im eigenen Design Ihre Farben fest. Mit „Farben aus einem Foto“ fotografieren Sie zum Beispiel Ihr Schild oder Ihren Truck, und die kräftigste Farbe wird zur Knopffarbe. Das Foto bleibt auf Ihrem Gerät.</p>
+<h3>Sprachen</h3>
+<p>Das Formular gibt es auf Deutsch, Englisch, Albanisch, Französisch, Italienisch, Spanisch und Türkisch. Es stellt sich nach der Sprache des Handys Ihres Kunden ein. Ihre eigenen Fragen übersetzen Sie unter „Übersetzungen“.</p>
+<h3>Mitarbeiter und Leistungen <span class="nur">nur Termine</span></h3>
+<p>Bei Termin-Formularen tragen Sie hier die Namen Ihrer Mitarbeiter und Ihre Leistungen ein. Arbeitszeiten, Dauer und Preise stellen Sie danach im Cockpit ein (Kapitel 7).</p>
+<h3>Speichern und veröffentlichen</h3>
+<p>Jede Änderung wird als Entwurf gesichert. Ihre Kunden sehen sie erst, wenn Sie auf „Veröffentlichen“ klicken. So können Sie in Ruhe ausprobieren.</p>
+
+<h2 id="k4"><span class="n">04</span>Formular einbauen und teilen</h2>
+<span class="wo">Cockpit → Einbauen &amp; teilen</span>
+<p>Es gibt drei Wege. Einer genügt, Sie können aber auch alle nutzen.</p>
+<table>
+<thead><tr><th>Weg</th><th>So geht es</th></tr></thead>
+<tbody>
+<tr><td>Auf Ihrer Website</td><td>„Zeile zum Einbauen holen“ antippen, die Zeile kopieren und auf Ihrer Seite einfügen. Funktioniert mit WordPress, Wix, Jimdo und anderen. Mit „Einbau prüfen“ sehen Sie, ob es geklappt hat.</td></tr>
+<tr><td>Ohne Website</td><td>Sie bekommen eine eigene Seite unter clickzauber.de/ihr-name. Den Link setzen Sie zum Beispiel in Ihre Instagram-Bio oder schicken ihn per WhatsApp.</td></tr>
+<tr><td>Vor Ort</td><td>Den QR-Code herunterladen und auf Theke, Flyer, Visitenkarte oder Truck drucken.</td></tr>
+</tbody>
+</table>
+<p>Tragen Sie im selben Bereich den Link zu Ihrer eigenen Datenschutzerklärung ein. Er erscheint im Formular bei der Einwilligung.</p>
+
+<h2 id="k5"><span class="n">05</span>Das Cockpit im Überblick</h2>
+<p>Das Cockpit läuft im Browser auf Handy, Tablet und Rechner. Oben links wählen Sie das Formular, mit dem Sie gerade arbeiten. Das Cockpit zeigt dann die Bereiche, die zu dieser Art passen.</p>
+<table>
+<thead><tr><th>Menüpunkt</th><th>Wofür</th></tr></thead>
+<tbody>
+<tr><td>Übersicht</td><td>Das Wichtigste auf einen Blick, Missionen, neue Anfragen</td></tr>
+<tr><td>Anfragen</td><td>Alle Anfragen mit Stand, Notizen und Verlauf (Kapitel 6)</td></tr>
+<tr><td>Uhrzeit-Termine</td><td>Terminliste, Mitarbeiter, Arbeitszeiten, Leistungen (Kapitel 7)</td></tr>
+<tr><td>Termine · Tage</td><td>Gesperrte Tage, Kalender-Verbindung, Warteliste (Kapitel 8)</td></tr>
+<tr><td>Freie Tage &amp; Räume</td><td>Belegung nach Räumen, Fahrzeugen oder Zeitfenstern</td></tr>
+<tr><td>Antwort-Vorlagen</td><td>Fertige Texte für Zusage, Rückfrage und Absage</td></tr>
+<tr><td>Preise &amp; Leistungen</td><td>Ihre Preisliste für Angebote</td></tr>
+<tr><td>Umsatz</td><td>Offene Anfragen, Prognose, was liegen bleibt</td></tr>
+<tr><td>Auswertung</td><td>Anfragen über die Zeit, Herkunft, Ausstiege (Kapitel 10)</td></tr>
+<tr><td>Vergleich</td><td>Zwei Fassungen eines Formulars gegeneinander testen</td></tr>
+<tr><td>Bauen &amp; bearbeiten</td><td>Öffnet den Konfigurator (Kapitel 3)</td></tr>
+<tr><td>Einbauen &amp; teilen</td><td>Code, Link, QR-Code (Kapitel 4)</td></tr>
+<tr><td>Vernetzen, Nachrichten, Mein Profil, Partner im Formular</td><td>Das Partner-Netz (Kapitel 11)</td></tr>
+<tr><td>Rangliste</td><td>Vertrauenspunkte und Stufen (Kapitel 12)</td></tr>
+<tr><td>Andere Vorlagen</td><td>Vorlagen zum Ausprobieren, zum Beispiel Rechner. Eine gewählte Vorlage ersetzt Ihr Formular.</td></tr>
+<tr><td>Konto &amp; Abo</td><td>Tarif, Benachrichtigungen, Kontakt, Konto löschen</td></tr>
+<tr><td>Rechtliches</td><td>Vertrag zur Auftragsverarbeitung, Datenschutz</td></tr>
+</tbody>
+</table>
+<div class="tipp"><b>Tipp</b>Am Handy legen Sie das Cockpit wie eine App auf den Home-Bildschirm: im Browser „Teilen“ und dann „Zum Home-Bildschirm“ wählen.</div>
+
+<h2 id="k6"><span class="n">06</span>Anfragen bearbeiten</h2>
+<span class="wo">Cockpit → Anfragen</span>
+<p>Jede Anfrage hat einen Stand: <b>neu</b>, <b>Kontakt aufgenommen</b>, <b>gebucht</b> oder <b>verloren</b>. Den Stand ändern Sie mit einem Tipp. Ein Tipp auf eine Anfrage öffnet das Anfrage-Blatt mit allen Antworten Ihres Kunden, Telefonnummer, E-Mail, Ihren Notizen und dem Verlauf.</p>
+<h3>Antworten</h3>
+<p>Unter „Antwort-Vorlagen“ legen Sie fertige Texte an. Platzhalter wie Vorname oder Termin füllt clickzauber selbst aus. Im Anfrage-Blatt wählen Sie die passende Vorlage und schicken sie ab.</p>
+<h3>Angebot und Anzahlung <span class="nur">Aufträge, Veranstaltungen</span></h3>
+<p>Aus Ihrer Preisliste unter „Preise &amp; Leistungen“ stellen Sie ein Angebot zusammen. Der Kunde bekommt es als Link, sieht alle Posten und kann es online annehmen. Auf Wunsch fordern Sie eine Anzahlung an. Bei Termin-Formularen sind diese Teile ausgeblendet.</p>
+<h3>Erinnerung</h3>
+<p>Bleibt eine Anfrage liegen, erinnert clickzauber Sie. Nach wie vielen Tagen, stellen Sie unter „Konto &amp; Abo“ bei „Nachfassen“ ein.</p>
+<h3>Herunterladen</h3>
+<p>Alle Anfragen lassen sich als Tabelle (CSV) herunterladen, zum Beispiel für Excel.</p>
+
+<h2 id="k7"><span class="n">07</span>Termine für Friseur &amp; Co. <span class="nur">nur Termine</span></h2>
+<p>Ihre Kunden wählen Leistung, Mitarbeiter, Tag und eine freie Uhrzeit. Der Termin ist erst fest, wenn Sie ihn annehmen. Die gewählte Zeit ist bis dahin für andere gesperrt, damit nichts doppelt vergeben wird.</p>
+<h3>Einrichten</h3>
+<span class="wo">Cockpit → Uhrzeit-Termine → unten auf der Seite</span>
+<table>
+<thead><tr><th>Einstellung</th><th>Was sie bewirkt</th></tr></thead>
+<tbody>
+<tr><td>Mitarbeiter</td><td>Name und Arbeitszeiten je Wochentag, auch mit Pause (zum Beispiel 9–13 und 14–18 Uhr)</td></tr>
+<tr><td>Leistungen</td><td>Name, Dauer und Preis. Der Preis erscheint im Formular.</td></tr>
+<tr><td>Extra-Zeit je Haarlänge</td><td>Bei einer Leistung „Länger bei langem oder dickem Haar“ öffnen und Minuten für mittel, lang und sehr dick eintragen. Das Formular fragt dann nach der Haarlänge und plant die Zeit ein.</td></tr>
+<tr><td>Nur nach Beratung</td><td>Haken an der Leistung, zum Beispiel für Blondierung oder Silber. Der Kunde wählt dann keine Uhrzeit, sondern schickt bis zu drei Fotos und einen Wunschtag.</td></tr>
+<tr><td>Raster</td><td>In welchen Schritten Uhrzeiten angeboten werden, zum Beispiel alle 15 Minuten</td></tr>
+<tr><td>Vorlauf</td><td>Wie kurzfristig gebucht werden darf, zum Beispiel frühestens 2 Stunden vorher</td></tr>
+<tr><td>Tage im Voraus</td><td>Wie weit im Voraus gebucht werden darf</td></tr>
+<tr><td>Frist zum Absagen</td><td>Bis wann Kunden selbst absagen oder umbuchen dürfen, voreingestellt 1 Stunde vorher</td></tr>
+</tbody>
+</table>
+<h3>Terminwunsch annehmen, ablehnen oder verschieben</h3>
+<p>Ein Tipp auf die Push-Nachricht öffnet den Wunsch direkt. Sie haben drei Knöpfe:</p>
+<ul>
+<li><b>Annehmen:</b> Der Termin ist fest und steht in Ihrem Kalender.</li>
+<li><b>Ablehnen:</b> clickzauber fragt zur Sicherheit nach. Danach ist die Zeit wieder frei.</li>
+<li><b>Andere Zeit vorschlagen:</b> Sie tippen eine freie Zeit an. Der Kunde bestätigt sie mit einem Tipp oder wählt selbst eine andere freie Zeit.</li>
+</ul>
+<p>Nach jeder Entscheidung öffnet sich WhatsApp mit einem fertigen Text an Ihren Kunden. Sie tippen nur noch auf Senden. Hat der Kunde eine E-Mail-Adresse angegeben, bekommt er zusätzlich eine Mail.</p>
+<span class="wo">Auch erreichbar: Uhrzeit-Termine → Terminliste → Bestätigen / Ablehnen</span>
+<h3>Was Ihr Kunde bekommt</h3>
+<p>In jeder Nachricht steht ein persönlicher Link. Darüber sieht der Kunde seinen Termin, kann ihn bestätigen, umbuchen oder absagen. Nach Ablauf der Frist zum Absagen stehen dort nur noch Ihre Telefonnummer und ein WhatsApp-Knopf. Sagt ein Kunde ab oder bucht er um, bekommen Sie sofort eine Push-Nachricht.</p>
+<h3>Früher Schluss oder spontan frei</h3>
+<span class="wo">Uhrzeit-Termine → Früher Schluss · Frei</span>
+<p>Wählen Sie den Tag, ab welcher Uhrzeit Schluss ist (oder „ganzer Tag“) und für welchen Mitarbeiter. clickzauber zeigt vorher, welche Kunden betroffen sind, und sucht für jeden die nächste freie Zeit. Nach dem Bestätigen ist die Zeit gesperrt, und jeder betroffene Kunde bekommt seinen neuen Vorschlag per WhatsApp-Knopf oder Mail. Dieselbe Funktion finden Sie auch im Fenster, das sich beim Tipp auf eine Push-Nachricht öffnet, unter „Spontan frei?“.</p>
+<h3>Wenn es länger dauert</h3>
+<span class="wo">Uhrzeit-Termine → am Termin „Länger · Notiz“ → Dauert länger?</span>
+<p>Tippen Sie auf +15, +30, +60 oder +90 Minuten. clickzauber zeigt, welche Kunden danach später drankommen, zum Beispiel „14:00 → 14:30 Uhr“. Nach dem Bestätigen rücken die Termine nach, und jeder Betroffene bekommt Bescheid.</p>
+<h3>Am Vortag erinnern</h3>
+<span class="wo">Uhrzeit-Termine → Morgen erinnern</span>
+<p>Zeigt alle bestätigten Termine von morgen. Mit einem Tipp je Kunde schicken Sie eine Erinnerung per WhatsApp.</p>
+<h3>Kunde ruft an</h3>
+<span class="wo">Uhrzeit-Termine → Kunde ruft an? Termin eintragen</span>
+<p>Termine, die Sie am Telefon oder vor Ort ausmachen, tragen Sie hier ein. Sie sind sofort im Formular belegt.</p>
+<h3>Kunden merken</h3>
+<span class="wo">Am Termin „Länger · Notiz“ → Notiz zum Kunden</span>
+<p>Schreiben Sie zum Beispiel „sehr dickes Haar“ und wählen Sie „+30 Min.“. Ihr Kunde sieht die Notiz nicht. Bucht er wieder, plant clickzauber die Minuten automatisch ein. Erkannt wird er an E-Mail oder Telefonnummer.</p>
+<p>Ist ein Kunde nicht gekommen, tippen Sie nach dem Termin auf <b>Nicht erschienen</b>. Bei seiner nächsten Buchung sehen Sie einen Hinweis.</p>
+<h3>Beratung zuerst</h3>
+<p>Bei Leistungen mit „Nur nach Beratung“ kommt eine Anfrage mit Fotos, Wunschtag und Tageszeit. Im Fenster zur Anfrage sehen Sie die Fotos, wählen Mitarbeiter, Dauer und eine freie Zeit und schicken den Vorschlag ab. Die Fotos sind nicht öffentlich und werden mit der Anfrage gelöscht.</p>
+
+<h2 id="k8"><span class="n">08</span>Kalender und Belegung</h2>
+<h3>Tage sperren</h3>
+<span class="wo">Cockpit → Termine → Tage</span>
+<p>Tippen Sie einen Tag an, um ihn zu sperren. Unter „Grundsätzlich geschlossen“ wählen Sie Wochentage, an denen nie gebucht werden kann. Gesperrte und schon gebuchte Tage sieht Ihr Kunde im Formular als vergeben.</p>
+<h3>Räume, Fahrzeuge oder Zeitfenster <span class="nur">Veranstaltungen, Aufträge</span></h3>
+<span class="wo">Cockpit → Freie Tage &amp; Räume</span>
+<p>Haben Sie mehrere Säle, Trucks oder Zeitfenster, legen Sie sie hier an. Jeder hat dann einen eigenen Kalender.</p>
+<h3>Sofort im eigenen Kalender</h3>
+<span class="wo">Cockpit → Termine → Sofort im Kalender</span>
+<p>Verbinden Sie Google, Outlook oder iCloud. clickzauber schreibt danach jede Änderung wenige Sekunden später in Ihren Kalender. Offene Anfragen stehen dort mit „Anfrage:“ davor, bestätigte Termine ohne. Für iCloud brauchen Sie ein App-Passwort von Apple. Wie Sie es bekommen, steht direkt im Cockpit.</p>
+<h3>Kalender-Abo</h3>
+<p>Als zweiter Weg gibt es eine Abo-Adresse für Ihren Kalender. Ein Probe-Termin „clickzauber ist verbunden“ zeigt, dass es klappt. Wie oft das Abo neu lädt, bestimmt Ihr Kalender. Bei Apple kann das einige Minuten dauern, deshalb ist die direkte Verbindung schneller.</p>
+<h3>Umgekehrt: Ihr bestehender Kalender</h3>
+<p>Tragen Sie die Adresse Ihres eigenen Kalenders ein. Termine daraus gelten in clickzauber als belegt. So entstehen keine Anfragen für Zeiten, an denen Sie privat verplant sind.</p>
+<h3>Warteliste <span class="nur">Veranstaltungen</span></h3>
+<p>Ist ein Wunschtag belegt, kann sich Ihr Kunde auf die Warteliste setzen. Wird der Tag frei, bekommt er Bescheid.</p>
+
+<h2 id="k9"><span class="n">09</span>Nachrichten aufs Handy</h2>
+<span class="wo">Cockpit → Übersicht → Nachrichten einschalten</span>
+<p>Tippen Sie auf „Nachrichten einschalten“ und erlauben Sie die Mitteilungen. Ab dann kommt jede neue Anfrage als Push-Nachricht, auch auf die Apple Watch. Ein Tipp darauf öffnet die Anfrage direkt mit allen Knöpfen.</p>
+<p>Beim iPhone funktionieren Push-Nachrichten nur, wenn das Cockpit auf dem Home-Bildschirm liegt (siehe Tipp in Kapitel 5). Unter „Konto &amp; Abo → Benachrichtigungen“ stellen Sie ein, worüber Sie zusätzlich per E-Mail informiert werden.</p>
+
+<h2 id="k10"><span class="n">10</span>Auswertung</h2>
+<span class="wo">Cockpit → Auswertung · Umsatz · Vergleich</span>
+<ul>
+<li><b>Anfragen über die Zeit:</b> wie viele Anfragen in 7 Tagen, 30 Tagen oder einem Jahr kamen, im Vergleich zum Zeitraum davor.</li>
+<li><b>Herkunft:</b> ob die Anfragen von Ihrer Website, von Instagram, Google oder dem QR-Code kommen.</li>
+<li><b>Ausstiege:</b> bei welcher Frage Besucher das Formular verlassen. So sehen Sie, welche Frage Sie vereinfachen sollten.</li>
+<li><b>Häufigste Antworten:</b> zum Beispiel welche Leistung am meisten gewählt wird.</li>
+<li><b>Umsatz:</b> Wert der offenen Anfragen, Prognose für diesen Monat und was liegen bleibt.</li>
+<li><b>Vergleich:</b> zwei Fassungen eines Formulars laufen gleichzeitig. clickzauber zeigt, welche mehr Anfragen bringt.</li>
+</ul>
+
+<h2 id="k11"><span class="n">11</span>Partner-Netz</h2>
+<p>Im Partner-Netz finden sich Betriebe, die zusammenarbeiten, zum Beispiel Location, Catering und Fotograf.</p>
+<table>
+<thead><tr><th>Bereich</th><th>Was Sie dort tun</th></tr></thead>
+<tbody>
+<tr><td>Mein Profil</td><td>Titelbild, Foto, Branche, Ort, Umkreis und kurzer Text</td></tr>
+<tr><td>Vernetzen</td><td>Betriebe nach Branche und Region suchen und eine Anfrage zum Vernetzen schicken</td></tr>
+<tr><td>Nachrichten</td><td>Mit vernetzten Betrieben direkt im Cockpit schreiben</td></tr>
+<tr><td>Partner im Formular</td><td>Ausgewählte Partner erscheinen nach dem Absenden auf der Danke-Seite. Bis zu drei gemeinsame Pakete lassen sich im Formular wählen.</td></tr>
+</tbody>
+</table>
+<p>Ist ein Tag bei Ihnen ausgebucht, zeigt das Cockpit, welche Partner frei sind. Hat Ihr Kunde zugestimmt, geben Sie die Anfrage mit einem Tipp weiter. Ein Zähler zeigt, wie viele Kunden Sie bekommen und weitergegeben haben.</p>
+
+<h2 id="k12"><span class="n">12</span>Missionen und Rangliste</h2>
+<span class="wo">Cockpit → Übersicht → Missionen · Cockpit → Rangliste</span>
+<p><b>Missionen</b> führen durch die Einrichtung, zum Beispiel „Formular einbauen“, „Kalender verbinden“ oder „Datenschutzerklärung bestätigen“. Anfragen und Buchungen zählt clickzauber selbst. Erklärungen und Einrichtungs-Schritte bestätigen Sie ganz unten mit einem Haken, erst dann gibt es die Punkte.</p>
+<p><b>Vertrauenspunkte</b> sammeln Sie zum Beispiel für schnelle Antworten und echte Buchungen. Es gibt neun Stufen von Bronze bis Löwenkristall. Jede Stufe bringt einen Rabatt auf Ihr Abo. Das Siegel Ihrer Stufe können Sie auf Ihrer Website zeigen.</p>
+
+<h2 id="k13"><span class="n">13</span>Konto und Datenschutz</h2>
+<h3>Konto &amp; Abo</h3>
+<span class="wo">Cockpit → Konto &amp; Abo</span>
+<ul>
+<li>Tarif ansehen oder kündigen. Der Preis richtet sich nach der Branche Ihres Formulars. Bezahlt wird sicher über Stripe.</li>
+<li>Kontakt für Ihre Kunden: Telefonnummer und Antwortadresse, die in Nachrichten an Ihre Kunden stehen.</li>
+<li>Monatsbericht per E-Mail und Bitte um eine Bewertung nach dem Termin.</li>
+<li>Formular vorübergehend abschalten, zum Beispiel im Urlaub.</li>
+<li>Konto löschen: entfernt alle Daten vollständig.</li>
+</ul>
+<h3>Datenschutz</h3>
+<span class="wo">Cockpit → Rechtliches</span>
+<p>Hier schließen Sie den Vertrag zur Auftragsverarbeitung ab: vollständig lesen, ganz unten den Haken setzen und Ihren Namen eintragen. Er regelt, dass clickzauber die Daten Ihrer Kunden nur in Ihrem Auftrag speichert. Die Daten liegen in der EU. Alte Anfragen werden nach der Löschfrist automatisch gelöscht. Die Frist stellen Sie unter „Konto &amp; Abo“ ein.</p>
+
+<h2 id="k14"><span class="n">14</span>Häufige Fragen</h2>
+<h3>Ist clickzauber ein Online-Buchungssystem?</h3>
+<p>Nicht ganz. Bei einem Buchungssystem ist ein Termin sofort fest. Bei clickzauber schickt Ihr Kunde einen Wunsch, und fest wird er erst, wenn Sie ihn annehmen. Wollen Sie spontan früher gehen, sperren Sie mit „Früher Schluss · Frei“ die Zeit, und Ihre Kunden bekommen einen neuen Vorschlag.</p>
+<h3>Kann ein Termin doppelt vergeben werden?</h3>
+<p>Nein. Eine Zeit kann bei einem Mitarbeiter nur einmal belegt werden, auch wenn zwei Kunden im selben Moment buchen.</p>
+<h3>Wie erfährt mein Kunde von meiner Antwort?</h3>
+<p>Per WhatsApp-Nachricht, die clickzauber vorbereitet und Sie mit einem Tipp senden. Hat er eine E-Mail-Adresse angegeben, zusätzlich per Mail. Die Fertig-Seite im Formular zeigt ihm, an welche Nummer die Antwort kommt.</p>
+<h3>Was passiert bei einer Wartung?</h3>
+<p>Ihr Formular nimmt weiter Anfragen an. Im Cockpit erscheint oben ein Hinweis, und Speichern ist für wenige Minuten gesperrt.</p>
+<h3>Brauche ich eine eigene Website?</h3>
+<p>Nein. Mit der eigenen Seite unter clickzauber.de und dem QR-Code funktioniert clickzauber auch ohne Website.</p>
+<h3>Wo bekomme ich Hilfe?</h3>
+<p>Schreiben Sie an <a href="mailto:projekt@clickzauber.de">projekt@clickzauber.de</a> oder rufen Sie an: <a href="tel:+4917661398922">+49 176 61398922</a>.</p>
+</doc-page>
+</body>
+</html>

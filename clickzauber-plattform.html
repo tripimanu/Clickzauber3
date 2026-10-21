@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<script>/* Nur in der Vorschau bei Claude (NICHT-HOCHLADEN/Test-Cockpit.html): Dort braucht jede Projektdatei das Zeichen t aus der Adresse.
+   Hängt es an Skripte und Abrufe derselben Adresse an. Auf clickzauber.de und in der App passiert hier nichts. */
+(function(){
+  var q=location.search.match(/[?&]t=([^&#]+)/);
+  if(!q||/(^|\.)clickzauber\.de$/.test(location.hostname)) return;
+  function mit(u){ try{ var x=new URL(u,location.href); if(x.origin!==location.origin||/[?&]t=/.test(x.search)) return u; x.search+=(x.search?'&':'?')+'t='+q[1]; return x.href; }catch(e){ return u; } }
+  var d=Object.getOwnPropertyDescriptor(HTMLScriptElement.prototype,'src');
+  if(d&&d.set) Object.defineProperty(HTMLScriptElement.prototype,'src',{configurable:true,enumerable:d.enumerable,get:d.get,set:function(v){ d.set.call(this,mit(String(v))); }});
+  var f=window.fetch; if(f) window.fetch=function(r,o){ return f.call(this,typeof r==='string'?mit(r):r,o); };
+  window.addEventListener('error',function(e){ var s=e.target; if(!s||s.tagName!=='SCRIPT'||!s.src||s._czV||s.hasAttribute('onerror')) return; var u=mit(s.src); if(u===s.src) return; var n=document.createElement('script'); n._czV=1; n.src=u; (s.parentNode||document.head).insertBefore(n,s.nextSibling); },true);
+})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* iPhone/iPad: kein automatisches Hineinzoomen beim Antippen eines Eingabefelds. Mit zwei Fingern zoomen bleibt möglich. */(function(){if(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)){var m=document.querySelector("meta[name=viewport]");if(m&&!/maximum-scale/.test(m.content))m.content+=", maximum-scale=1";}})();</script>
+<script src="js/cz-kopf.js"></script><!-- seit 15.10.2026: Token und Schlüssel in Kopfzeilen statt in Adressen -->
+<title>Plattform &amp; Vertrieb · clickzauber</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="assets/cz-favicon-32.png?v=2"><link rel="apple-touch-icon" sizes="180x180" href="assets/cz-apple-180.png?v=2">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@300;400;500;600;700&family=Lora:ital,wght@1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+:root{--bg:#1a1813;--panel:#241f19;--panel-2:#2b261f;--ink:#f4efe2;--ink-2:rgba(244,239,226,.62);--ink-3:rgba(244,239,226,.62);--line:rgba(244,239,226,.1);--line-2:rgba(244,239,226,.16);--accent:#4fa87c;--warn:#e0a54b;--bad:#d9694e;--fd:"Figtree",system-ui,sans-serif;--fm:"IBM Plex Mono",monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fd);-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}a:hover{color:#4ac48f}
+.bar{display:flex;align-items:center;gap:12px;padding:13px clamp(14px,3vw,26px);border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(20,20,15,.94);backdrop-filter:blur(10px);z-index:20;flex-wrap:wrap}
+.bar .mk{width:26px;height:26px;border-radius:8px;background:var(--accent);color:#1a1813;display:grid;place-items:center;font-weight:700;font-size:14px;flex:0 0 auto}
+.bar b{font-size:15px;letter-spacing:-.01em;white-space:nowrap}
+.bar .sp{flex:1}
+.bar .lk{background:none;border:0;color:var(--ink-2);font:inherit;font-size:13.5px;cursor:pointer;min-height:40px;padding:0 4px;white-space:nowrap}.bar .lk:hover{color:var(--ink)}
+.rng{display:flex;gap:5px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:3px}
+.rng button{background:none;border:none;color:var(--ink-3);font:inherit;font-size:12.5px;padding:7px 12px;border-radius:7px;cursor:pointer;min-height:38px;white-space:nowrap}
+.rng button.on{background:var(--panel-2);color:var(--ink)}
+.neu-top{background:var(--accent);color:#1a1813;border:none;border-radius:10px;padding:9px 15px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;min-height:40px;white-space:nowrap}
+.wrap{max-width:1500px;margin:0 auto;padding:clamp(16px,2.6vw,26px)}
+h1{font-size:clamp(20px,2.6vw,26px);letter-spacing:-.025em;margin:0 0 4px}
+.sub{color:var(--ink-2);font-size:14px;margin:0 0 22px;text-wrap:pretty}
+.gate{max-width:380px;margin:14vh auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px 26px;text-align:center}
+.gate .mk{width:44px;height:44px;border-radius:13px;background:var(--accent);color:#1a1813;display:grid;place-items:center;font-size:22px;font-weight:700;margin:0 auto 15px}
+.gate h2{margin:0 0 6px;font-size:19px;letter-spacing:-.02em}
+.gate p{margin:0 0 17px;font-size:13.5px;color:var(--ink-2);line-height:1.55}
+.gate input{width:100%;background:var(--panel-2);border:1.5px solid var(--line-2);border-radius:11px;padding:13px;font:inherit;font-size:15px;color:var(--ink);text-align:center;font-family:var(--fm);min-height:48px}
+.gate input:focus{outline:none;border-color:var(--accent)}
+.gate button{width:100%;margin-top:11px;background:var(--accent);color:#1a1813;border:none;border-radius:11px;padding:14px;font:inherit;font-size:15px;font-weight:600;cursor:pointer;min-height:48px}
+.gate .err{color:var(--bad);font-size:13px;margin-top:11px;min-height:18px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin-bottom:22px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:14px 16px}
+.kpi .l{font-size:12px;color:var(--ink-2);line-height:1.3}
+.kpi .v{font-size:26px;font-weight:700;letter-spacing:-.025em;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.kpi .d{font-family:var(--fm);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.kpi.gut .v{color:var(--accent)}
+.kpi.warn .v{color:var(--warn)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+@media(min-width:1080px){.grid{grid-template-columns:minmax(0,1fr) 340px}#buchCard{grid-column:2;grid-row:1}#refCard{grid-column:2;grid-row:2}#kontakteCard{grid-column:1;grid-row:1/span 2}}
+@media(max-width:1079px){#buchCard{order:-1}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px 18px;min-width:0}
+.card h2{margin:0;font-size:15px;letter-spacing:-.01em}
+.card .cs{margin:3px 0 15px;font-size:12.5px;color:var(--ink-2)}
+.tw{overflow-x:auto;margin:0 -18px;padding:0 18px}
+table{width:100%;border-collapse:collapse;min-width:760px}
+th{text-align:left;font-family:var(--fm);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);font-weight:400;padding:0 11px 9px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:12px 11px 12px 0;border-bottom:1px solid var(--line);font-size:13px;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr.klick{cursor:pointer}
+tr.klick:hover td{background:rgba(244,239,226,.03)}
+td .nm{font-weight:600;display:block}
+td .s{display:block;color:var(--ink-3);font-size:11.5px;font-family:var(--fm);margin-top:2px}
+td.seg{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-flex;align-items:center;font-family:var(--fm);font-size:10.5px;letter-spacing:.06em;padding:4px 9px;border-radius:999px;background:var(--panel-2);color:var(--ink-2);white-space:nowrap}
+.pill.kunde{background:color-mix(in srgb,var(--accent) 20%,transparent);color:var(--accent)}
+.pill.gebaut{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.pill.qual{background:rgba(244,239,226,.1);color:var(--ink-2)}
+.pill.offen{background:color-mix(in srgb,var(--bad) 20%,transparent);color:#eda292}
+.leer{color:var(--ink-3);font-size:13.5px;padding:22px 0;text-align:center}
+.ref{display:flex;flex-direction:column;gap:9px}
+.ref-row{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:12px 13px}
+.ref-row .code{font-family:var(--fm);font-size:13px;color:var(--accent);letter-spacing:.05em}
+.ref-row .zn{display:flex;justify-content:space-between;gap:10px;margin-top:6px;font-size:12.5px;color:var(--ink-2)}
+.ref-row .zn b{color:var(--ink)}
+.bal{display:flex;gap:3px;margin-top:8px}
+.bal i{height:5px;flex:1;border-radius:99px;background:var(--line-2)}
+.bal i.on{background:var(--accent)}
+.fil{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.fil button{background:var(--panel-2);border:1px solid var(--line);color:var(--ink-3);font:inherit;font-size:12.5px;padding:8px 13px;border-radius:9px;cursor:pointer;min-height:40px}
+.fil button.on{border-color:var(--accent);color:var(--accent)}
+.det{background:var(--panel-2);border-top:1px solid var(--line)}
+.det td{padding:15px 11px}
+.dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}
+.dl div span{display:block;font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
+.dl div b{font-size:13.5px;font-weight:500;line-height:1.45;display:block;text-wrap:pretty}
+.dl div a{font-size:13.5px}
+.zit{grid-column:1/-1;border-left:2px solid var(--accent);padding-left:13px;margin-top:4px}
+.zit span{color:var(--accent)!important}
+.err-top{background:color-mix(in srgb,var(--bad) 16%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);color:#eda292;border-radius:12px;padding:12px 15px;font-size:13.5px;margin-bottom:18px}
+.lade{color:var(--ink-3);font-family:var(--fm);font-size:12.5px;padding:26px 0;text-align:center}
+.gate button.ghost{background:var(--panel-2);border:1.5px solid var(--line-2);color:var(--ink-2)}
+.gate .gate-note{margin:13px 0 0;font-size:12px;line-height:1.5;color:var(--ink-3)}
+/* KONTAKTBUCH */
+#buchCard{border-color:var(--line-2)}
+#buchCard h2{display:flex;align-items:baseline;gap:8px}
+.zn-anz{font-family:var(--fm);font-size:11px;color:var(--ink-3);font-weight:400}
+.add{width:100%;background:var(--panel-2);border:1.5px dashed var(--line-2);color:var(--ink-2);font:inherit;font-size:13.5px;border-radius:12px;padding:13px;cursor:pointer;min-height:46px;margin-bottom:13px}
+.add:hover{border-color:var(--accent);color:var(--accent)}
+.buch{display:flex;flex-direction:column;gap:8px}
+.bk{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:12px 13px;cursor:pointer;transition:border-color .15s}
+.bk:hover{border-color:var(--line-2)}
+.bk .t{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.bk .t b{font-size:13.5px;letter-spacing:-.01em}
+.bk .t .pill{margin-left:auto}
+.bk .l2{font-size:12px;color:var(--ink-2);margin-top:4px;font-family:var(--fm)}
+.bk .nx{font-size:12.5px;color:var(--warn);margin-top:6px;display:flex;gap:6px;align-items:baseline}
+.bk .nx::before{content:"→";flex:0 0 auto}
+.bk .nt{font-size:12.5px;color:var(--ink-2);margin-top:6px;line-height:1.5;border-left:2px solid var(--line-2);padding-left:9px}
+.pill.demo{background:rgba(53,179,126,.14);color:#7ed0a8}
+.pill.termin{background:color-mix(in srgb,var(--accent) 24%,transparent);color:#a6e3c3}
+.pill.angebot{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.pill.abgesagt{background:rgba(244,239,226,.08);color:var(--ink-3)}
+/* BLATT */
+.sheet{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-end;justify-content:center}
+.sheet[hidden]{display:none}
+@media(min-width:640px){.sheet{align-items:center}}
+.sh-back{position:absolute;inset:0;background:rgba(10,10,7,.66);backdrop-filter:blur(3px)}
+.sh-card{position:relative;background:var(--panel);border:1px solid var(--line-2);border-radius:22px 22px 0 0;padding:22px 20px calc(22px + env(safe-area-inset-bottom));width:100%;max-width:560px;max-height:92vh;overflow-y:auto}
+@media(min-width:640px){.sh-card{border-radius:20px}}
+.sh-grip{width:38px;height:4px;border-radius:99px;background:var(--line-2);margin:-8px auto 16px}
+.sh-card h2{margin:0 0 16px;font-size:18px;letter-spacing:-.02em}
+.sh-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+@media(max-width:520px){.sh-grid{grid-template-columns:1fr}}
+.sh-grid label{display:flex;flex-direction:column;gap:5px;font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.sh-grid label.voll{grid-column:1/-1}
+.sh-grid input,.sh-grid select,.sh-grid textarea{background:var(--panel-2);border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;font-family:var(--fd);font-size:14.5px;color:var(--ink);min-height:44px;text-transform:none;letter-spacing:normal}
+.sh-grid textarea{min-height:74px;resize:vertical;line-height:1.5}
+.sh-grid input:focus,.sh-grid select:focus,.sh-grid textarea:focus{outline:none;border-color:var(--accent)}
+.preis-zeile{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.preis-zeile input{flex:0 0 120px;min-width:100px}
+.preis-eur{font-family:var(--fd);font-size:14px;text-transform:none;letter-spacing:0;color:var(--ink-2)}
+.preis-zeile button{margin-left:auto;font:inherit;font-size:13.5px;font-weight:600;border:1.5px solid var(--line);background:var(--panel-2);color:var(--ink);border-radius:10px;padding:10px 15px;cursor:pointer;min-height:44px}
+.preis-zeile button:hover{border-color:var(--accent);color:var(--accent)}
+.preis-zeile button:disabled{opacity:.5;cursor:default}
+.preis-hint{font-family:var(--fd);font-size:13px;line-height:1.5;text-transform:none;letter-spacing:0;color:var(--ink-3);margin-top:7px;text-wrap:pretty}
+.preis-hint.ok{color:var(--accent)}
+.preis-hint.bad{color:var(--bad,#e88a7d)}
+.sh-row{display:flex;gap:9px;margin-top:17px;flex-wrap:wrap}
+.verw{grid-column:1/-1;border-top:1px solid var(--line);padding-top:14px;margin-top:4px;display:flex;flex-direction:column;gap:10px}
+.verw h4{margin:0;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.verw .zl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.verw select{background:var(--panel-2);border:1.5px solid var(--line);border-radius:9px;padding:9px 10px;color:var(--ink);font:inherit;font-size:13.5px;min-height:44px}
+.verw button{font:inherit;font-size:13.5px;font-weight:600;border:1.5px solid var(--line);background:var(--panel-2);color:var(--ink);border-radius:9px;padding:9px 14px;cursor:pointer;min-height:44px}
+.verw button:hover{border-color:var(--accent);color:var(--accent)}
+.verw button.warn{border-color:color-mix(in srgb,var(--warn) 50%,transparent);color:var(--warn)}
+.verw button.del{border-color:color-mix(in srgb,var(--bad,#e88a7d) 45%,transparent);color:#eda292}
+.verw .msg{font-size:13px;color:var(--ink-3);line-height:1.5}
+.verw .msg.bad{color:#eda292}.verw .msg.ok{color:var(--accent)}
+.verw input{background:var(--panel-2);border:1.5px solid var(--line);border-radius:9px;padding:9px 10px;color:var(--ink);font:inherit;font-size:13.5px;min-height:44px;min-width:0}
+.verw input[type=email]{flex:1 1 220px}.verw select[data-v=sprache]{background:var(--panel-2);border:1.5px solid var(--line);border-radius:9px;padding:9px 10px;color:var(--ink);font:inherit;font-size:13.5px;min-height:44px}
+.verw .trenn{border-top:1px dashed var(--line);margin:4px 0 0}
+.pill.gesperrt{background:color-mix(in srgb,var(--bad,#e88a7d) 18%,transparent);color:#eda292}
+.sh-row button{flex:1;min-width:120px;font:inherit;font-size:14.5px;font-weight:600;border:none;border-radius:11px;padding:13px;cursor:pointer;min-height:48px}
+.sh-row .prim{background:var(--accent);color:#1a1813}
+.sh-row .ghost{background:var(--panel-2);border:1.5px solid var(--line-2);color:var(--ink-2);font-weight:500}
+.sh-row .ghost#shDel{color:#eda292;border-color:color-mix(in srgb,var(--bad) 40%,transparent)}
+.vb-dlg{border:1px solid var(--line-2);border-radius:18px;background:var(--panel);color:var(--ink);padding:0;width:min(540px,calc(100vw - 24px));max-height:calc(100dvh - 24px)}.vb-dlg::backdrop{background:rgba(0,0,0,.6)}.vb-dlg form{display:flex;flex-direction:column;gap:12px;padding:20px}.vb-dlg h3{margin:0;font-size:19px}.vb-dlg p{margin:0;color:var(--ink-2);font-size:14px;line-height:1.5}.vb-dlg .msg:empty{display:none}.vb-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.vb-g label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--ink-2)}.vb-g label.b{grid-column:1/-1}.vb-g input{font:inherit;font-size:15px;min-height:44px;padding:0 12px;border-radius:10px;border:1px solid var(--line-2);background:var(--panel-2);color:var(--ink)}.vb-k{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.vb-k button{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--ink);font:inherit;font-weight:600;cursor:pointer}.vb-k button.h{background:var(--accent);border-color:var(--accent);color:var(--bg)}.vb-k button:disabled{opacity:.6}@media(max-width:520px){.vb-g{grid-template-columns:minmax(0,1fr)}}
+</style>
+<style id="cz-logo">svg.cz-mark{width:62%;height:62%;display:block;flex:0 0 auto}</style></head>
+<body>
+
+<div class="gate" id="gate">
+  <div class="mk"><svg class="cz-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="4.4" fill="currentColor"></circle><path d="M16 5.6a10.4 10.4 0 0 1 10.4 10.4" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path><path d="M16 26.4A10.4 10.4 0 0 1 5.6 16" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></svg></div>
+  <h2>Plattform &amp; Vertrieb</h2>
+  <p>Zugangsschlüssel eingeben. Das ist Ihr <code>ADMIN_TOKEN</code> aus den Vercel-Einstellungen. Er bleibt danach auf diesem Gerät gespeichert.</p>
+  <input type="password" id="key" placeholder="Zugangsschlüssel" autocomplete="current-password">
+  <button id="btn-open">Öffnen</button>
+  <button id="btn-skip" class="ghost">Ohne Schlüssel öffnen</button>
+  <p class="gate-note">Ohne Schlüssel sehen Sie Ihr Kontaktbuch und die Zahlen, die auf diesem Gerät liegen — noch keine Live-Daten vom Server.</p>
+  <div class="err" id="gate-err"></div>
+</div>
+
+<div id="app" style="display:none">
+  <div class="bar">
+    <span class="mk"><svg class="cz-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="4.4" fill="currentColor"></circle><path d="M16 5.6a10.4 10.4 0 0 1 10.4 10.4" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path><path d="M16 26.4A10.4 10.4 0 0 1 5.6 16" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></svg></span><b>Plattform &amp; Vertrieb</b>
+    <span class="sp"></span>
+    <div class="rng" id="rng">
+      <button data-t="30">30 Tage</button>
+      <button data-t="90" class="on">90 Tage</button>
+      <button data-t="365">Jahr</button>
+      <button data-t="730">Alles</button>
+    </div>
+    <button class="neu-top" id="btn-neu-top">+ Kontakt</button>
+    <button class="lk" id="btn-vorbauen" type="button">+ Konto vorbauen</button>
+    <button class="lk" id="btn-akt" type="button" title="Zahlen und Konten neu vom Server holen">Aktualisieren</button>
+    <button class="lk" id="btn-stand" type="button" title="Nach dem Hochladen: Seite mit allen Dateien frisch laden">Neuen Stand laden</button>
+    <button class="lk" id="btn-aus" type="button">Abmelden</button>
+    <a href="clickzauber-cockpit-live.html" style="font-size:13px;text-decoration:none;white-space:nowrap">Kunden-Cockpit →</a>
+  </div>
+
+  <div class="wrap">
+    <h1>Wer gebaut hat und wer zahlt</h1>
+    <p class="sub" id="stand">…</p>
+
+    <div id="fehler"></div>
+    <div class="kpis" id="kpis"></div>
+
+    <div class="grid">
+      <div class="card" id="kontakteCard">
+        <h2>Alle Kontakte vom Server</h2>
+        <p class="cs">Zeile antippen für Funnel-Antworten und die Widgets des Kunden.</p>
+        <input id="vsuche" type="search" autocomplete="off" placeholder="Suchen: Name, Nachname, Firma, E-Mail, Telefon" aria-label="Kunden suchen" style="width:100%;background:var(--panel-2);border:1.5px solid var(--line-2);border-radius:11px;padding:11px 13px;font:inherit;font-size:14.5px;color:var(--ink);margin:0 0 10px">
+        <div class="fil" id="fil">
+          <button data-f="alle" class="on">Alle</button>
+          <button data-f="kunde">Kunden</button>
+          <button data-f="gebaut">Gebaut, nicht gekauft</button>
+          <button data-f="qualifiziert">Nur Funnel</button>
+          <button data-f="offen">Zahlung offen</button>
+          <button data-f="gesperrt">Gesperrt</button>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Kontakt</th><th>Stufe</th><th>Tarif</th><th class="seg">MRR</th><th class="seg">Widgets</th><th class="seg">Anfragen</th><th>Seit</th></tr></thead>
+            <tbody id="rows"><tr><td colspan="7" class="lade">lade …</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card" id="buchCard">
+        <h2>Kontaktbuch <span class="zn-anz" id="buchAnz"></span></h2>
+        <p class="cs">Wen Sie unterwegs ansprechen — von Hand eingetragen, auf allen Ihren Geräten verfügbar.</p>
+        <button class="add" id="btn-neu">+ Kontakt anlegen</button>
+        <div class="buch" id="buch"></div>
+      </div>
+
+      <div class="card" id="refCard">
+        <h2>Empfehlungen</h2>
+        <p class="cs">10 % pro Abschluss, höchstens 40 % — freigeschaltet ab 30 Tagen eigener Nutzung.</p>
+        <div class="ref" id="refs"><p class="leer">Noch keine Empfehlungen.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Kontakt anlegen / bearbeiten -->
+<div class="sheet" id="sheet" hidden>
+  <div class="sh-back" id="shBack"></div>
+  <div class="sh-card">
+    <div class="sh-grip"></div>
+    <h2 id="shTitel">Kontakt anlegen</h2>
+    <div class="sh-grid">
+      <label>Betrieb<input id="f-firma" placeholder="Gut Seerose"></label>
+      <label>Ansprechpartner<input id="f-name" placeholder="Anna Berger"></label>
+      <label>E-Mail<input id="f-email" type="email" placeholder="info@gut-seerose.de"></label>
+      <label>Telefon<input id="f-telefon" type="tel" placeholder="+49 …"></label>
+      <label>Ort<input id="f-ort" placeholder="Bodensee"></label>
+      <label>Stufe
+        <select id="f-stufe">
+          <option value="notiz">Notiz — nur gemerkt</option>
+          <option value="angesprochen">Angesprochen</option>
+          <option value="termin">Termin vereinbart</option>
+          <option value="demo">Demo gezeigt</option>
+          <option value="angebot">Angebot draußen</option>
+          <option value="kunde">Kunde — zahlt</option>
+          <option value="abgesagt">Abgesagt</option>
+        </select>
+      </label>
+      <label>Tarif
+        <select id="f-plan">
+          <option value="">— noch keiner —</option>
+          <option value="pilot" disabled>Pilot (abgeschaltet)</option>
+          <option value="service">Service · 79 €</option>
+          <option value="projekt">Projekt · 199 €</option>
+        </select>
+      </label>
+      <label>Abrechnung
+        <select id="f-cycle">
+          <option value="monthly">Monatlich</option>
+          <option value="yearly">Jährlich</option>
+        </select>
+      </label>
+      <label class="voll">Ausgehandelter Preis
+        <div class="preis-zeile">
+          <input id="f-preis" inputmode="decimal" placeholder="leer = Listenpreis">
+          <span class="preis-eur">€ im Monat</span>
+          <button type="button" class="ghost" id="preisSetzen">Hinterlegen</button>
+        </div>
+        <small class="preis-hint" id="preisHint">Tragen Sie ein, worauf Sie sich geeinigt haben. Der Betrieb sieht beim Anmelden genau diesen Preis — den Listenpreis bekommt er nie zu Gesicht. Braucht E-Mail und Tarif.</small>
+      </label>
+      <label>Auftragswert einer Feier<input id="f-wert" placeholder="z. B. 18.000 €"></label>
+      <label>Nächster Schritt<input id="f-next" placeholder="Freitag anrufen"></label>
+      <label class="voll">Was ist ihm wichtig?<textarea id="f-notiz" rows="3" placeholder="Hat zwei Standorte, ärgert sich über Telefonate am Wochenende."></textarea></label>
+    </div>
+    <div class="sh-row">
+      <button class="prim" id="shSave">Speichern</button>
+      <button class="ghost" id="shDel" hidden>Löschen</button>
+      <button class="ghost" id="shZu">Abbrechen</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var API = "https://clickzauber-api.vercel.app/api";
+var key = "", daten = null, tage = 90, filter = "alle", offen = null, vq = "";
+
+try { key = localStorage.getItem('cz_admin_key') || ''; } catch (e) {}
+
+document.getElementById('btn-open').onclick = oeffnen;
+document.getElementById('vsuche').addEventListener('input', function () { vq = this.value.trim(); offen = null; if (daten) zeichnen(); });
+document.getElementById('btn-skip').onclick = function () {
+  key = '';
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  daten = { tage: tage, summe: leerSumme(), personen: [], empfehlungen: [] };
+  document.getElementById('fehler').innerHTML =
+    '<div class="err-top" style="background:rgba(244,239,226,.06);border-color:var(--line-2);color:var(--ink-2)">'
+    + 'Ohne Zugangsschlüssel — Sie sehen nur Ihr Kontaktbuch. '
+    + '<button id="btn-key" style="background:none;border:none;color:var(--accent);font:inherit;text-decoration:underline;cursor:pointer;padding:0">Schlüssel eingeben</button></div>';
+  document.getElementById('btn-key').onclick = function () {
+    document.getElementById('gate').style.display = 'block';
+    document.getElementById('app').style.display = 'none';
+  };
+  zeichnen();
+};
+function leerSumme(){ return {personen:0,kunden:0,mrr:0,arr:0,gebaut:0,funnel:0,zahlung_offen:0,widgets_live:0,anfragen:0}; }
+/* Konto-Aktionen (lib/konto-admin.js). Global, weil js/cz-funktionen.js (Fenster „Funktionen“) und js/cz-plattform.js sie nutzen. */
+function kontoAktion(akt, daten) {
+  return fetch(API + '/konto-admin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ key: key, aktion: akt }, daten)) })
+    .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+    .then(function (j) { if (!j.ok) throw new Error(j.error || 'Fehlgeschlagen'); return j; });
+}
+window.kontoAktion = kontoAktion;
+document.getElementById('btn-akt').onclick = function () { laden(false); if (window.czPfToast) window.czPfToast('Aktualisiert'); };
+/* Seit 13.10.2026: Plattform selbst aktualisieren. Holt Seite, Skripte und Stile am Browser-Speicher vorbei frisch vom Server
+   (cache:'reload' überschreibt auch den gespeicherten Stand), leert den Speicher des Service-Workers und lädt neu. */
+document.getElementById('btn-stand').onclick = function () {
+  var b = this; b.disabled = true; b.textContent = 'Lädt …';
+  var urls = [location.pathname].concat([].slice.call(document.querySelectorAll('script[src],link[rel="stylesheet"][href]')).map(function (e) { return e.src || e.href; })
+    .filter(function (u) { return u && u.indexOf(location.origin) === 0; }));
+  var weg = window.caches ? caches.keys().then(function (k) { return Promise.all(k.map(function (n) { return caches.delete(n); })); }).catch(function () {}) : Promise.resolve();
+  Promise.all([weg].concat(urls.map(function (u) { return fetch(u, { cache: 'reload' }).catch(function () {}); }))).then(function () {
+    try { sessionStorage.setItem('cz_pf_stand', '1'); } catch (e) {}
+    location.reload();
+  });
+};
+try { if (sessionStorage.getItem('cz_pf_stand')) { sessionStorage.removeItem('cz_pf_stand'); setTimeout(function () { if (window.czPfToast) window.czPfToast('Neuer Stand geladen'); }, 1200); } } catch (e) {}
+document.getElementById('btn-aus').onclick = function () { try { localStorage.removeItem('cz_admin_key'); } catch (e) {} key = ''; location.reload(); };
+/* Zeitraum setzen, ohne zu klicken. „In allen Konten suchen“ und Sprung aus dem Überblick nutzen das. */
+function rngSetzen(t) { tage = t; document.querySelectorAll('#rng button').forEach(function (x) { x.classList.toggle('on', +x.getAttribute('data-t') === t); }); }
+var AUTO_AUF = false;
+/* Aus dem Überblick (js/cz-plattform.js): Konto unter „Kunden & Zahlen“ suchen und aufklappen */
+window.czKundeSuchen = function (q) {
+  var s = document.getElementById('vsuche'); if (s) s.value = q; vq = String(q || '').trim(); offen = null; AUTO_AUF = true;
+  filter = 'alle'; document.querySelectorAll('#fil button').forEach(function (x) { x.classList.toggle('on', x.getAttribute('data-f') === 'alle'); });
+  if (window.czVtReiter) window.czVtReiter('kunden');
+  if (tage < 730 && key) { rngSetzen(730); laden(false); } else zeichnen();
+};
+document.getElementById('key').addEventListener('keydown', function (e) { if (e.key === 'Enter') oeffnen(); });
+
+function oeffnen() {
+  var k = document.getElementById('key').value.trim();
+  if (!k) { document.getElementById('gate-err').textContent = 'Bitte Schlüssel eingeben.'; return; }
+  key = k;
+  laden(true);
+}
+
+if (key) laden(true);
+
+document.getElementById('rng').onclick = function (e) {
+  var b = e.target.closest('button'); if (!b) return;
+  this.querySelectorAll('button').forEach(function (x) { x.classList.remove('on'); });
+  b.classList.add('on');
+  tage = +b.getAttribute('data-t');
+  laden(false);
+};
+document.getElementById('fil').onclick = function (e) {
+  var b = e.target.closest('button'); if (!b) return;
+  this.querySelectorAll('button').forEach(function (x) { x.classList.remove('on'); });
+  b.classList.add('on');
+  filter = b.getAttribute('data-f');
+  offen = null;
+  zeichnen();
+};
+
+function laden(erstmals, danach) {
+  fetch(API + '/admin?key=' + encodeURIComponent(key) + '&tage=' + tage)
+    .then(function (r) {
+      if (r.status === 401) throw new Error('schluessel');
+      if (!r.ok) throw new Error('server');
+      return r.json();
+    })
+    .then(function (j) {
+      daten = j;
+      try { localStorage.setItem('cz_admin_key', key); } catch (e) {}
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      document.getElementById('fehler').innerHTML = '';
+      zeichnen();
+      buchHolen();
+      if (window.czPfLaden) window.czPfLaden();
+      if (window.czAkteLaden) window.czAkteLaden();
+      if (danach) danach();
+    })
+    .catch(function (err) {
+      if (err.message === 'schluessel') {
+        document.getElementById('gate-err').textContent = 'Schlüssel stimmt nicht.';
+        try { localStorage.removeItem('cz_admin_key'); } catch (e) {}
+        return;
+      }
+      if (erstmals) {
+        document.getElementById('gate-err').textContent = 'Verbindung fehlgeschlagen. Läuft die API schon?';
+      } else {
+        document.getElementById('fehler').innerHTML = '<div class="err-top">Aktualisieren fehlgeschlagen — angezeigt werden die letzten geladenen Zahlen.</div>';
+      }
+    });
+}
+
+/* ===== KONTAKTBUCH — von Hand gepflegt, liegt auf dem Server ===== */
+/* Lokal bleibt eine Kopie, damit es ohne Netz weitergeht. Mit Schlüssel gilt der Server. */
+var PREIS = { service: 79, projekt: 199, pilot: 0.10, start: 199, duo: 349, unlim: 599 };
+var STUFEN = {
+  notiz:        ['qual', 'Notiz'],
+  angesprochen: ['qual', 'Angesprochen'],
+  termin:       ['termin', 'Termin steht'],
+  demo:         ['demo', 'Demo gezeigt'],
+  angebot:      ['angebot', 'Angebot draußen'],
+  kunde:        ['kunde', 'Kunde'],
+  abgesagt:     ['abgesagt', 'Abgesagt']
+};
+
+function buchLesen() { try { return JSON.parse(localStorage.getItem('cz_kontakte') || '[]'); } catch (e) { return []; } }
+function buchSchreiben(l) { try { localStorage.setItem('cz_kontakte', JSON.stringify(l)); } catch (e) {} }
+
+/* Vom Server holen und die lokale Kopie auffrischen. */
+function buchHolen() {
+  if (!key) return;
+  fetch(API + '/kontakte?key=' + encodeURIComponent(key))
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) {
+      if (!j || !j.kontakte) return;
+      // Server gewinnt, lokale Einträge ohne Server-Gegenstück werden nachgereicht.
+      var vomServer = j.kontakte.map(function (k) {
+        return { id: k.id, firma: k.firma, name: k.name, email: k.email, telefon: k.telefon,
+                 ort: k.ort, stufe: k.stufe || 'notiz', notiz: k.notiz,
+                 wert: k.wert, next: k.naechster, plan: k.plan, cycle: k.cycle,
+                 angelegt: Date.parse(k.angelegt) || undefined,
+                 ts: Date.parse(k.updated_at) || Date.now() };
+      });
+      var ids = {}; vomServer.forEach(function (k) { ids[k.id] = 1; });
+      var nurLokal = buchLesen().filter(function (k) { return !ids[k.id]; });
+      buchSchreiben(vomServer.concat(nurLokal));
+      buchZeichnen();
+      // Lokale Nachzügler hochschieben, damit nichts liegen bleibt.
+      nurLokal.forEach(function (k) { buchSenden(k, true); });
+    })
+    .catch(function () { /* offline: lokale Kopie bleibt */ });
+}
+
+/* Einen Eintrag zum Server schicken. */
+function buchSenden(k, still) {
+  if (!key) return;
+  fetch(API + '/kontakte', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ key: key, kontakt: k })
+  })
+    .then(function (r) {
+      if (r.ok || still) return;
+      buchHinweis('Auf diesem Gerät gespeichert — der Server war nicht erreichbar.');
+    })
+    .catch(function () { if (!still) buchHinweis('Auf diesem Gerät gespeichert — der Server war nicht erreichbar.'); });
+}
+
+function buchLoeschenServer(id) {
+  if (!key) return;
+  fetch(API + '/kontakte', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ key: key, loeschen: id })
+  }).catch(function () {});
+}
+
+function buchHinweis(text) {
+  var el = document.getElementById('buchAnz');
+  if (!el) return;
+  el.textContent = text;
+  setTimeout(function () { buchZeichnen(); }, 4000);
+}
+
+var bearbeite = null;
+
+function buchZeichnen() {
+  var l = buchLesen();
+  // Nächster Schritt zuerst, dann Kunden, dann der Rest
+  var rang = { termin: 0, angebot: 1, demo: 2, angesprochen: 3, kunde: 4, notiz: 5, abgesagt: 6 };
+  l.sort(function (a, b) { return (rang[a.stufe] ?? 9) - (rang[b.stufe] ?? 9); });
+
+  var anz = document.getElementById('buchAnz');
+  if (anz) anz.textContent = l.length ? l.length + (l.length === 1 ? ' Eintrag' : ' Einträge') : '';
+  var box = document.getElementById('buch');
+  if (!l.length) {
+    box.innerHTML = '<p class="leer">Noch keine Einträge. Legen Sie den ersten an, sobald Sie jemanden angesprochen haben.</p>';
+    return;
+  }
+  box.innerHTML = l.map(function (k) {
+    var st = STUFEN[k.stufe] || ['qual', k.stufe];
+    var zeile2 = [k.ort, k.telefon, k.email].filter(Boolean).join(' · ');
+    return '<div class="bk" data-id="' + esc(k.id) + '">'
+      + '<div class="t"><b>' + esc(k.firma || k.name || 'Ohne Namen') + '</b>'
+      + (k.plan ? '<span class="s" style="font-family:var(--fm);font-size:11.5px;color:var(--ink-3)">' + esc(k.plan) + (k.cycle === 'yearly' ? ' · jährl.' : '') + '</span>' : '')
+      + '<span class="pill ' + st[0] + '">' + st[1] + '</span></div>'
+      + (zeile2 ? '<div class="l2">' + esc(zeile2) + '</div>' : '')
+      + (k.next ? '<div class="nx">' + esc(k.next) + '</div>' : '')
+      + (k.notiz ? '<div class="nt">' + esc(k.notiz) + '</div>' : '')
+      + '</div>';
+  }).join('');
+  box.querySelectorAll('.bk').forEach(function (el) {
+    el.onclick = function () { blattOeffnen(this.getAttribute('data-id')); };
+  });
+}
+
+function blattOeffnen(id) {
+  bearbeite = id || null;
+  var k = id ? buchLesen().filter(function (x) { return x.id === id; })[0] : null;
+  document.getElementById('shTitel').textContent = k ? 'Kontakt bearbeiten' : 'Kontakt anlegen';
+  ['firma', 'name', 'email', 'telefon', 'ort', 'wert', 'next', 'notiz'].forEach(function (f) {
+    document.getElementById('f-' + f).value = k ? (k[f] || '') : '';
+  });
+  document.getElementById('f-stufe').value = k ? (k.stufe || 'notiz') : 'notiz';
+  document.getElementById('f-plan').value = k ? (k.plan || '') : '';
+  document.getElementById('f-cycle').value = k ? (k.cycle || 'monthly') : 'monthly';
+  preisLaden(k ? (k.email || '') : '');
+  document.getElementById('shDel').hidden = !k;
+  document.getElementById('sheet').hidden = false;
+  setTimeout(function () { document.getElementById('f-firma').focus(); }, 60);
+}
+function blattZu() { document.getElementById('sheet').hidden = true; bearbeite = null; }
+
+document.getElementById('btn-neu').onclick = function () { blattOeffnen(null); };
+document.getElementById('btn-neu-top').onclick = function () { blattOeffnen(null); };
+document.getElementById('shZu').onclick = blattZu;
+document.getElementById('shBack').onclick = blattZu;
+document.getElementById('shSave').onclick = function () {
+  var e = {};
+  ['firma', 'name', 'email', 'telefon', 'ort', 'wert', 'next', 'notiz'].forEach(function (f) {
+    e[f] = document.getElementById('f-' + f).value.trim();
+  });
+  if (!e.firma && !e.name) { document.getElementById('f-firma').focus(); return; }
+  e.stufe = document.getElementById('f-stufe').value;
+  e.plan = document.getElementById('f-plan').value;
+  e.cycle = document.getElementById('f-cycle').value;
+  var l = buchLesen();
+  if (bearbeite) {
+    l = l.map(function (x) { return x.id === bearbeite ? Object.assign(x, e, { ts: Date.now() }) : x; });
+  } else {
+    e.id = 'k' + Date.now().toString(36);
+    e.angelegt = Date.now();
+    e.ts = Date.now();
+    l.unshift(e);
+  }
+  buchSchreiben(l);
+  var gesichert = bearbeite ? l.filter(function (x) { return x.id === bearbeite; })[0] : e;
+  if (gesichert) buchSenden(gesichert);
+  blattZu();
+  zeichnen();
+};
+/* ══ AUSGEHANDELTE PREISE ═════════════════════════════════════════════
+   Der Listenpreis ist der Wunsch. Einigt man sich im Gespräch auf weniger,
+   wird das hier hinterlegt — an der E-Mail-Adresse, nicht am Konto. Meldet
+   sich diese Adresse später an, gilt der Preis von selbst. Der Betrieb sieht
+   dann nur seinen Preis; der Listenpreis taucht bei ihm nirgends auf.      */
+function preisHinweis(text, art) {
+  var el = document.getElementById('preisHint');
+  if (!el) return;
+  el.textContent = text;
+  el.className = 'preis-hint' + (art ? ' ' + art : '');
+}
+
+function preisLaden(email) {
+  var feld = document.getElementById('f-preis');
+  if (feld) feld.value = '';
+  preisHinweis('Tragen Sie ein, worauf Sie sich geeinigt haben. Der Betrieb sieht beim Anmelden genau diesen Preis — den Listenpreis bekommt er nie zu Gesicht. Braucht E-Mail und Tarif.');
+  if (!email || !key) return;
+  fetch(API + '/sonderpreis?key=' + encodeURIComponent(key) + '&email=' + encodeURIComponent(email))
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) {
+      if (!j || !j.ok || !j.preis) return;
+      if (feld) feld.value = String(j.preis.monat).replace('.', ',');
+      preisHinweis('Hinterlegt: ' + String(j.preis.monat).replace('.', ',') + ' € im Monat für '
+        + (j.preis.plan || '—') + '. Feld leeren und hinterlegen hebt den Sonderpreis auf.', 'ok');
+    })
+    .catch(function () {});
+}
+
+document.getElementById('preisSetzen').onclick = function () {
+  var email = document.getElementById('f-email').value.trim();
+  var plan = document.getElementById('f-plan').value;
+  var betrag = document.getElementById('f-preis').value.trim();
+  var btn = this;
+
+  if (!email) { preisHinweis('Ohne E-Mail-Adresse geht es nicht — daran hängt der Preis.', 'bad'); document.getElementById('f-email').focus(); return; }
+
+  btn.disabled = true;
+  // Leeres Feld = Sonderpreis aufheben, danach gilt wieder die Liste.
+  var last = betrag
+    ? { key: key, email: email, plan: plan, monat: betrag, notiz: document.getElementById('f-notiz').value.trim().slice(0, 200) }
+    : { key: key, email: email, aktion: 'weg' };
+
+  if (betrag && !plan) { btn.disabled = false; preisHinweis('Bitte erst den Tarif wählen — der Preis gilt für genau einen.', 'bad'); return; }
+
+  fetch(API + '/sonderpreis', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(last) })
+    .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+    .then(function (j) {
+      btn.disabled = false;
+      if (!j || !j.ok) { preisHinweis((j && j.error) || 'Das hat nicht geklappt.', 'bad'); return; }
+      if (j.entfernt) { preisHinweis('Sonderpreis aufgehoben — es gilt wieder der Listenpreis.', 'ok'); return; }
+      preisHinweis('Hinterlegt: ' + String(j.monat).replace('.', ',') + ' € im Monat (Liste: '
+        + j.listenpreis + ' €). Jahrespreis ' + String(j.jahr).replace('.', ',') + ' €. Gilt, sobald sich '
+        + email + ' anmeldet.', 'ok');
+    })
+    .catch(function () { btn.disabled = false; preisHinweis('Keine Verbindung.', 'bad'); });
+};
+
+document.getElementById('shDel').onclick = function () {
+  if (!bearbeite) return;
+  buchLoeschenServer(bearbeite);
+  buchSchreiben(buchLesen().filter(function (x) { return x.id !== bearbeite; }));
+  blattZu();
+  zeichnen();
+};
+
+/* Umsatz aus dem Kontaktbuch — zählt in die Kennzahlen mit hinein. */
+function buchMrr() {
+  return buchLesen().filter(function (k) { return k.stufe === 'kunde' && k.plan; })
+    .reduce(function (s, k) {
+      var p = PREIS[k.plan] || 0;
+      return s + (k.cycle === 'yearly' ? p * 10 / 12 : p);
+    }, 0);
+}
+function buchKunden() { return buchLesen().filter(function (k) { return k.stufe === 'kunde'; }).length; }
+
+function eur(n) { return (Math.round(n) || 0).toLocaleString('de-DE') + ' €'; }
+function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+function datum(s) {
+  if (!s) return '—';
+  var d = new Date(s), t = Math.floor((Date.now() - d) / 864e5);
+  if (t === 0) return 'heute';
+  if (t === 1) return 'gestern';
+  if (t < 30) return 'vor ' + t + ' Tagen';
+  return d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: '2-digit' });
+}
+
+var STUFE = {
+  kunde:        ['kunde', 'Kunde'],
+  gebaut:       ['gebaut', 'Gebaut'],
+  qualifiziert: ['qual', 'Qualifiziert'],
+  konto:        ['qual', 'Konto'],
+  unbestaetigt: ['qual', 'Unbestätigt'],
+  'nur Funnel': ['qual', 'Nur Funnel']
+};
+
+function zeichnen() {
+  if (!daten) return;
+  var s = daten.summe;
+  buchZeichnen();
+  var bM = buchMrr(), bK = buchKunden(), bN = buchLesen().length;
+  function zahl(n, ein, viele) { return n + ' ' + (n === 1 ? ein : viele); }
+  document.getElementById('stand').textContent =
+    zahl(s.personen + bN, 'Kontakt', 'Kontakte') + ' · ' + (s.kunden + bK) + ' zahlen · ' +
+    zahl(s.widgets_live, 'Widget live', 'Widgets live') + ' · Stand ' +
+    new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+
+  document.getElementById('kpis').innerHTML =
+    (s.konten_gesamt != null ? kpi('Angemeldete Konten', s.konten_gesamt, 'insgesamt, ' + (s.zahlend_gesamt || 0) + ' zahlen' + (s.gesperrt ? ' · ' + s.gesperrt + ' gesperrt' : ''), s.gesperrt ? 'warn' : '') : '') +
+    kpi('Monatlich wiederkehrend', eur(s.mrr + bM), bM ? 'davon ' + eur(bM) + ' aus dem Buch' : 'MRR', 'gut') +
+    kpi('Aufs Jahr gerechnet', eur((s.mrr + bM) * 12), 'ARR', 'gut') +
+    kpi('Zahlende Kunden', s.kunden + bK, 'von ' + (s.personen + bN) + ' Kontakten') +
+    kpi('Aktiviert', s.aktiviert || 0, (s.kunden_ohne_live ? s.kunden_ohne_live + ' zahlen ohne Widget live' : 'zahlt + Widget live'), (s.kunden_ohne_live ? 'warn' : 'gut')) +
+    kpi('Haben gebaut', s.gebaut, 'noch nicht gekauft: ' + Math.max(0, s.gebaut - s.kunden)) +
+    kpi('Funnel ausgefüllt', s.funnel, 'mit Antworten') +
+    kpi('Anfragen bei Kunden', s.anfragen, 'im Zeitraum') +
+    (s.zahlung_offen ? kpi('Zahlung offen', s.zahlung_offen, 'nachfassen', 'warn') : '');
+
+  var liste = daten.personen.slice();
+  if (filter === 'kunde') liste = liste.filter(function (p) { return p.stufe === 'kunde'; });
+  else if (filter === 'gebaut') liste = liste.filter(function (p) { return p.widgets > 0 && p.stufe !== 'kunde'; });
+  else if (filter === 'qualifiziert') liste = liste.filter(function (p) { return p.erfolgskriterium && p.stufe !== 'kunde'; });
+  else if (filter === 'offen') liste = liste.filter(function (p) { return p.status === 'zahlung offen'; });
+  else if (filter === 'gesperrt') liste = liste.filter(function (p) { return p.gesperrt; });
+  if (vq) { var w = vq.toLowerCase().split(/\s+/).filter(Boolean); liste = liste.filter(function (p) { var t = [p.name, p.firma, p.email, p.telefon].join(' ').toLowerCase(); return w.every(function (x) { return t.indexOf(x) >= 0; }); }); }
+
+  // Kunden zuerst, dann nach Auftragswert — die interessantesten oben.
+  liste.sort(function (a, b) {
+    if ((a.stufe === 'kunde') !== (b.stufe === 'kunde')) return a.stufe === 'kunde' ? -1 : 1;
+    return (b.auftragswert_zahl || 0) - (a.auftragswert_zahl || 0);
+  });
+
+  if (AUTO_AUF) { AUTO_AUF = false; if (liste.length === 1) offen = 0; }
+  var tb = document.getElementById('rows');
+  if (!liste.length) {
+    tb.innerHTML = '<tr><td colspan="7" class="leer">Keine Kontakte in dieser Auswahl.' + (vq && key && tage < 730 ? ' <button type="button" data-alle style="background:none;border:0;color:var(--accent);font:inherit;font-weight:600;cursor:pointer;text-decoration:underline;padding:0">In allen Konten suchen</button>' : '') + '</td></tr>';
+  } else {
+    tb.innerHTML = liste.map(function (p, i) {
+      var st = STUFE[p.stufe] || ['qual', p.stufe];
+      var pill = p.gesperrt ? '<span class="pill gesperrt">Gesperrt</span>' : p.status === 'zahlung offen' ? '<span class="pill offen">Zahlung offen</span>'
+        : p.gratis ? '<span class="pill kunde">Kostenlos bis ' + tagKurz(p.kostenlos_bis) + '</span>'
+        : '<span class="pill ' + st[0] + '">' + st[1] + '</span>';
+      var zeile = '<tr class="klick" data-i="' + i + '">'
+        + '<td><span class="nm">' + esc(p.firma || p.name || p.email.split('@')[0]) + '</span><span class="s">' + esc(p.email) + '</span></td>'
+        + '<td>' + pill + '</td>'
+        + '<td>' + (p.plan ? esc(p.plan) + (p.cycle === 'yearly' ? ' · jährl.' : '') : '—') + '</td>'
+        + '<td class="seg">' + (p.mrr ? eur(p.mrr) : '—') + '</td>'
+        + '<td class="seg">' + (p.widgets || '—') + (p.live ? ' <span class="s" style="display:inline">(' + p.live + ' live)</span>' : '') + '</td>'
+        + '<td class="seg">' + (p.anfragen || '—') + '</td>'
+        + '<td class="s" style="font-family:var(--fm);font-size:11.5px">' + datum(p.seit) + '</td>'
+        + '</tr>';
+      if (offen === i) zeile += detail(p);
+      return zeile;
+    }).join('');
+    tb.querySelectorAll('tr.klick').forEach(function (tr) {
+      tr.onclick = function () {
+        var i = +this.getAttribute('data-i');
+        offen = (offen === i) ? null : i;
+        zeichnen();
+      };
+    });
+  }
+
+  var refs = daten.empfehlungen || [];
+  document.getElementById('refs').innerHTML = refs.length
+    ? refs.map(function (r) {
+        var punkte = '';
+        for (var k = 0; k < 4; k++) punkte += '<i class="' + (k < r.abgeschlossen ? 'on' : '') + '"></i>';
+        var rab = r.freigeschaltet
+          ? '<b style="color:var(--accent)">' + r.rabatt + ' %</b>'
+          : '<b style="color:var(--ink-3)">' + (r.verdient || 0) + ' % gesperrt</b>';
+        return '<div class="ref-row"><div class="code">' + esc(r.code) + '</div>'
+          + '<div class="zn"><span>' + r.geworben + ' geworben</span><b>' + r.abgeschlossen + ' abgeschlossen</b></div>'
+          + '<div class="zn"><span>Rabatt</span>' + rab + '</div>'
+          + (r.grund ? '<div class="zn"><span style="color:var(--warn)">' + esc(r.grund) + '</span></div>' : '')
+          + '<div class="bal">' + punkte + '</div></div>';
+      }).join('')
+    : '<p class="leer">Noch keine Empfehlungen.</p>';
+}
+
+function kpi(l, v, d, cls) {
+  return '<div class="kpi ' + (cls || '') + '"><div class="l">' + l + '</div><div class="v">' + v + '</div><div class="d">' + d + '</div></div>';
+}
+
+function detail(p) {
+  var f = [];
+  if (p.telefon) f.push(['Telefon', '<a href="tel:' + esc(p.telefon).replace(/\s/g, '') + '">' + esc(p.telefon) + '</a>']);
+  f.push(['E-Mail', '<a href="mailto:' + esc(p.email) + '">' + esc(p.email) + '</a>']);
+  if (p.name) f.push(['Name', esc(p.name)]);
+  if (p.anfragen_monat) f.push(['Anfragen im Monat', esc(p.anfragen_monat)]);
+  if (p.auftragswert) f.push(['Auftragswert', esc(p.auftragswert)]);
+  if (p.nutzungsdauer) f.push(['Nutzungsdauer', esc(p.nutzungsdauer)]);
+  if (p.empfehlungscode) f.push(['Eigener Code', '<span style="font-family:var(--fm)">' + esc(p.empfehlungscode) + '</span>']);
+  if (p.geworben_von) f.push(['Geworben über', '<span style="font-family:var(--fm)">' + esc(p.geworben_von) + '</span>']);
+
+  var html = '<tr class="det"><td colspan="7"><div class="dl">'
+    + f.map(function (r) { return '<div><span>' + r[0] + '</span><b>' + r[1] + '</b></div>'; }).join('');
+  if (p.slugs && p.slugs.length) {
+    var liste = p.slugs.map(function (w) {
+      var live = w.status === 'live';
+      return '<a href="clickzauber-cockpit-live.html?admin=1&widget=' + encodeURIComponent(w.slug) + '"'
+        + ' style="display:inline-flex;align-items:center;gap:7px;background:var(--panel-2);border:1px solid ' + (live ? 'color-mix(in srgb,var(--accent) 40%,transparent)' : 'var(--line)')
+        + ';border-radius:9px;padding:7px 11px;margin:0 6px 6px 0;text-decoration:none;font-size:12.5px;color:' + (live ? 'var(--accent)' : 'var(--ink-2)') + '">'
+        + esc(w.name || w.slug) + (live ? ' · live' : ' · Entwurf')
+        + (w.anfragen ? ' · ' + w.anfragen + (w.anfragen === 1 ? ' Anfrage' : ' Anfragen') : '')
+        + '</a>';
+    }).join('');
+    html += '<div class="zit" style="border-color:var(--line-2)"><span style="color:var(--ink-3)!important">Widgets — anklicken öffnet das Cockpit des Kunden</span><b style="margin-top:7px">' + liste + '</b></div>';
+  }
+  if (p.stufe === 'kunde' && (!p.slugs || !p.slugs.some(function (w) { return w.status === 'live'; }))) {
+    html += '<div class="zit" style="border-color:var(--warn)"><span style="color:var(--warn)!important">Zahlt, aber kein Widget live</span><b>Hier lohnt ein Anruf — der Kunde zahlt und hat noch keinen Nutzen.</b></div>';
+  }
+  if (p.erfolgskriterium) {
+    html += '<div class="zit"><span>Erfolg ist für ihn</span><b>„' + esc(p.erfolgskriterium) + '"</b></div>';
+  }
+  if (!p.erfolgskriterium && p.stufe !== 'kunde') {
+    html += '<div class="zit" style="border-color:var(--ink-3)"><span style="color:var(--ink-3)!important">Hinweis</span><b>Funnel nicht ausgefüllt — Sie wissen nicht, was diesem Kontakt wichtig ist.</b></div>';
+  }
+  if (p.konto && key) html += verwaltung(p);
+  html += '</div></td></tr>';
+  return html;
+}
+
+var STATUS_TXT = { aktiv: 'Aktiv — zahlt', 'zahlung offen': 'Zahlung offen', 'gekündigt': 'Gekündigt (läuft aus)', inaktiv: 'Inaktiv' };
+function tagKurz(s) { var t = String(s || '').slice(0, 10).split('-'); return t.length === 3 ? t[2] + '.' + t[1] + '.' + t[0] : '—'; }
+function inDreiMonaten() { var d = new Date(); d.setMonth(d.getMonth() + 3); return d.toLocaleDateString('sv-SE'); }
+function gratisTeil(p, e) {
+  var bis = p.kostenlos_bis ? String(p.kostenlos_bis).slice(0, 10) : inDreiMonaten();
+  var stand = p.gratis
+    ? '<div class="msg ok">Kostenlos bis ' + tagKurz(p.kostenlos_bis) + '. Zwei Wochen vorher bekommt der Kunde eine Erinnerung, danach wird das Formular ausgeblendet, falls er keinen Tarif bucht.</div>'
+    : (p.kostenlos_bis ? '<div class="msg">Kostenlose Zeit lief bis ' + tagKurz(p.kostenlos_bis) + (p.abo ? ', danach Abo gebucht.' : '.') + '</div>'
+      : '<div class="msg">Für Erstkunden: Das Formular läuft ohne Abo bis zu diesem Tag. Bucht der Kunde vorher einen Tarif, wird erst danach abgebucht.</div>');
+  return '<div class="trenn"></div><h4>Kostenlos für Erstkunden</h4>' + stand
+    + '<div class="zl"><input type="date" data-v="bis" value="' + esc(bis) + '"><button data-akt="kostenlos" data-mail="' + e + '">' + (p.gratis ? 'Datum ändern' : 'Kostenlos bis dahin') + '</button>'
+    + (p.gratis ? '<button class="warn" data-akt="kostenlos-weg" data-mail="' + e + '">Aufheben</button>' : '') + '</div>';
+}
+/* Einladungs-Link und Testzugang (sql/67, lib/einladung.js) */
+function einladungTeil(p, e) {
+  if (!p.einladung_code && !p.test_bis) return '';
+  var t = '<div class="trenn"></div><h4>Einladung &amp; Testzugang</h4>', d = function (x) { return new Date(x).toLocaleDateString('de-DE'); };
+  if (p.einladung_code && !p.eingeloest_am) t += '<div class="msg">Vorgebaut, noch nicht angenommen. Erst bauen und selbst testen, dann den Link an den Kunden schicken. Er legt dort E-Mail und Passwort an, ab dann laufen 14 Tage Test. Live schaltet er selbst.</div>'
+    + '<div class="zl"><button data-akt="oeffnen" data-mail="' + e + '">Konto öffnen (zum Bauen)</button><button data-akt="einladung" data-mail="' + e + '" data-name="' + esc(p.firma || '') + '">Einladungs-Link</button></div>';
+  if (p.eingeloest_am) t += '<div class="msg ok">Angenommen am ' + d(p.eingeloest_am) + ' mit ' + e + '.' + (p.test_bis ? '' : ' Kein Testzugang mehr, das Konto läuft normal weiter' + (p.pilot_seit ? ', als Pilotbetrieb.' : '.')) + '</div>';
+  if (p.test_bis) {
+    var rest = Math.ceil((Date.parse(p.test_bis) - Date.now()) / 864e5);
+    t += '<div class="msg' + (rest > 0 ? '' : ' bad') + '">' + (rest > 0 ? 'Test läuft noch ' + rest + (rest === 1 ? ' Tag' : ' Tage') + ', bis ' + d(p.test_bis) + '.' : 'Test abgelaufen am ' + d(p.test_bis) + '. Sein Formular ist auf seiner Website aus, das Cockpit bleibt offen.') + '</div>'
+      + '<div class="zl"><button data-akt="ueberfuehren" data-mail="' + e + '">In echtes Konto überführen</button><button data-akt="test" data-tage="14" data-mail="' + e + '">+ 14 Tage</button></div>';
+  }
+  if (p.einladung_code && p.eingeloest_am) t += '<div class="zl"><button class="warn" data-akt="zuruecksetzen" data-mail="' + e + '" title="Nach Ihrem eigenen Test">Einladung zurücksetzen</button></div>';
+  return t + '<div data-einl></div>';
+}
+function einladungZeigen(box, j, name) {
+  var z = box.querySelector('[data-einl]'); if (!z) return;
+  var wa = 'https://wa.me/?text=' + encodeURIComponent('Hallo, ich habe dir deine Online-Terminanfrage gebaut. Hier geht es los, dauert 2 Minuten: ' + j.link);
+  z.innerHTML = '<div class="zl"><input type="text" readonly value="' + esc(j.link) + '" onclick="this.select()"><button data-kopie="' + esc(j.link) + '">Kopieren</button><a href="' + wa + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:40px">Per WhatsApp</a></div>'
+    + (j.eingeloest ? '<div class="msg">Schon angenommen. Der Link zeigt jetzt nur noch Formular und Anmelden.</div>' : '');
+}
+document.addEventListener('click', function (ev) {
+  var k = ev.target.closest('[data-kopie]'); if (!k) return;
+  ev.stopPropagation();
+  var v = k.getAttribute('data-kopie');
+  (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(function () { k.textContent = 'Kopiert'; }, function () { prompt('Link kopieren:', v); });
+}, true);
+var VB_F = [['firma', 'Betriebsname', 1], ['vorname', 'Vorname'], ['nachname', 'Nachname'], ['telefon', 'Telefon'], ['website', 'Website'], ['strasse', 'Straße und Nr.'], ['plz_ort', 'PLZ und Ort'], ['datenschutz_url', 'Datenschutz-Link (https://… oder „clickzauber“)', 1]];
+function vorbauenDialog(vor) {
+  if (!key) { alert('Dafür braucht die Seite den Zugangsschlüssel.'); return; }
+  vor = vor || {};
+  var d = document.getElementById('vb-dlg');
+  if (!d) { d = document.createElement('dialog'); d.id = 'vb-dlg'; d.className = 'vb-dlg'; document.body.appendChild(d); }
+  d.innerHTML = '<form novalidate><h3>Konto vorbauen</h3><p>Für einen Kunden, der per Einladungs-Link übernimmt. Zum Live schalten braucht er Vorname, Nachname, Telefon und den Datenschutz-Link seiner Website. Ohne Website „clickzauber“ eintragen: Dann gilt unsere Datenschutzerklärung für Betriebe, mit ihm als Verantwortlichem. Was fehlt, tragen Sie später im Cockpit unter Einstellungen nach.</p><div class="vb-g">'
+    + VB_F.map(function (f) { return '<label' + (f[2] ? ' class="b"' : '') + '><span>' + f[1] + '</span><input name="' + f[0] + '"' + (f[0] === 'telefon' ? ' type="tel"' : '') + ' value="' + esc(vor[f[0]] || '') + '"></label>'; }).join('')
+    + '</div><p class="msg" id="vb-msg"></p><div class="vb-k"><button type="button" data-vb="zu">Abbrechen</button><button type="submit" class="h">Anlegen</button></div></form>';
+  var F = d.querySelector('form'), M = d.querySelector('#vb-msg');
+  d.onclick = function (ev) {
+    var b = ev.target.closest('[data-vb]'); if (!b) return;
+    if (b.getAttribute('data-vb') === 'zu') d.close();
+    else { b.disabled = true; b.textContent = 'Wird geöffnet …'; kontoOeffnen(b.getAttribute('data-mail')); }
+  };
+  F.onsubmit = function (ev) {
+    ev.preventDefault();
+    var dat = { key: key, aktion: 'vorbauen' };
+    VB_F.forEach(function (f) { dat[f[0]] = F.elements[f[0]].value.trim(); });
+    if (!dat.firma) { M.className = 'msg bad'; M.textContent = 'Bitte den Betriebsnamen eintragen.'; F.elements.firma.focus(); return; }
+    var s = F.querySelector('[type=submit]'); s.disabled = true; M.className = 'msg'; M.textContent = 'Wird angelegt …';
+    fetch(API + '/konto-admin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dat) })
+      .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+      .then(function (j) {
+        s.disabled = false;
+        if (!j.ok) { M.className = 'msg bad'; M.textContent = j.error || 'Das hat nicht geklappt.'; return; }
+        var fehlt = [];
+        if (j.angaben_fehlen) fehlt.push('Vorname, Nachname, Telefon');
+        if (j.datenschutz_fehlt) fehlt.push('Datenschutz-Link');
+        F.innerHTML = '<h3>„' + esc(dat.firma) + '“ ist angelegt</h3><p>Jetzt öffnen und bauen: Branche und Vorlage wählen, Leistungen anpassen, speichern. Auf diesem Gerät sind Sie danach im Cockpit als dieser Betrieb angemeldet. Den Einladungs-Link finden Sie unter Kunden &amp; Zahlen beim Konto.</p>'
+          + (fehlt.length ? '<p class="msg bad">Noch nachtragen (Cockpit → Einstellungen): ' + fehlt.join(', ') + '.</p>' : '')
+          + '<div class="vb-k"><button type="button" data-vb="zu">Später</button><button type="button" class="h" data-vb="oeffnen" data-mail="' + esc(j.email) + '">Jetzt öffnen</button></div>';
+        laden(false);
+      })
+      .catch(function () { s.disabled = false; M.className = 'msg bad'; M.textContent = 'Server nicht erreichbar.'; });
+  };
+  d.showModal();
+  setTimeout(function () { F.elements.firma.focus(); }, 50);
+}
+document.getElementById('btn-vorbauen').addEventListener('click', function () { vorbauenDialog(); });
+/* Aus der Kundenakte: clickzauber-plattform.html#vorbauen={JSON} öffnet das Fenster vorausgefüllt. */
+(function () {
+  var m = /^#vorbauen=(.+)$/.exec(location.hash || ''); if (!m) return;
+  var vor = {}; try { vor = JSON.parse(decodeURIComponent(m[1])); } catch (e) {}
+  history.replaceState(null, '', location.pathname + location.search);
+  setTimeout(function () { vorbauenDialog(vor); }, 400);
+})();
+/* Vorgebautes Konto zum Bauen öffnen: Anmeldung auf diesem Gerät wechselt zu diesem Betrieb, Cockpit im selben Tab. */
+function kontoOeffnen(email, msg) {
+  fetch(API + '/konto-admin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: key, email: email, aktion: 'oeffnen' }) })
+    .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+    .then(function (j) {
+      if (!j.ok) { if (msg) { msg.className = 'msg bad'; msg.textContent = j.error || 'Öffnen fehlgeschlagen.'; } else alert(j.error || 'Öffnen fehlgeschlagen.'); return; }
+      try { localStorage.setItem('cz_user_token', j.token); localStorage.setItem('cz_user_email', j.email); } catch (e) {}
+      location.href = 'clickzauber-cockpit-live.html';
+    })
+    .catch(function () { alert('Server nicht erreichbar.'); });
+}
+function uebergabeTeil(p, e) {
+  return '<div class="trenn"></div><h4>An den Kunden übergeben</h4>'
+    + '<div class="msg">Für vorgebaute Formulare. Das Konto bekommt die Adresse des Kunden, er legt per Link sein eigenes Passwort fest. Ihr Passwort für dieses Konto gilt danach nicht mehr. Formular, Anfragen und Einstellungen bleiben.</div>'
+    + '<div class="zl"><input type="email" data-v="neu" placeholder="E-Mail-Adresse des Kunden" autocomplete="off" value=""><select data-v="sprache" aria-label="Sprache des Kunden"><option value="de">Deutsch</option><option value="sq">Albanisch</option><option value="en">Englisch</option><option value="fr">Französisch</option><option value="it">Italienisch</option><option value="es">Spanisch</option><option value="tr">Türkisch</option></select><button data-akt="uebergeben" data-mail="' + e + '">Übergeben</button></div>'
+    + '<div class="msg">Die Sprache gilt für die Willkommens-Mail und für sein Cockpit. Sein Formular bleibt, wie Sie es gebaut haben.</div>'
+    + '<div class="zl"><button data-akt="link-neu" data-mail="' + e + '">Link erneut an ' + e + ' schicken</button></div>';
+}
+function verwaltung(p) {
+  var e = esc(p.email);
+  var tarif = '<select data-v="plan"><option value="">— kein Tarif —</option>'
+    + ['service', 'projekt', 'start', 'duo', 'unlim'].map(function (t) { return '<option value="' + t + '"' + (p.plan === t ? ' selected' : '') + '>' + t + '</option>'; }).join('') + '</select>';
+  var status = '<select data-v="status">'
+    + Object.keys(STATUS_TXT).map(function (k) { return '<option value="' + k + '"' + (p.status === k ? ' selected' : '') + '>' + STATUS_TXT[k] + '</option>'; }).join('') + '</select>';
+  var sperre = p.gesperrt
+    ? '<div class="msg bad">' + (p.komplett ? 'Komplett gesperrt ' : 'Widget gesperrt ') + datum(p.gesperrt_am) + (p.gesperrt_grund ? ' — ' + esc(p.gesperrt_grund) : '') + '. ' + (p.komplett ? 'Der Kunde kann sich nicht anmelden, das Widget ist aus.' : 'Das Widget ist bei seinen Gästen ausgeblendet, das Cockpit bleibt nutzbar.') + ' Alle Daten sind noch da.</div>'
+      + '<div class="zl"><button data-akt="entsperren" data-mail="' + e + '">Wieder freigeben</button>' + (p.komplett ? '' : '<button class="warn" data-akt="komplett_sperren" data-mail="' + e + '">Komplett sperren</button>') + '</div>'
+    : '<div class="zl"><button class="warn" data-akt="sperren" data-mail="' + e + '">Widget sperren</button><span class="msg">Blendet das Widget aus (spätestens nach 30 Sekunden). Cockpit und Daten bleiben, z. B. bei offener Zahlung.</span></div>'
+      + '<div class="zl"><button class="warn" data-akt="komplett_sperren" data-mail="' + e + '">Komplett sperren</button><span class="msg">Meldet auf allen Geräten ab, keine Anmeldung mehr, Widget und Netzwerk aus. Daten bleiben.</span></div>';
+  sperre += '<div class="zl"><button data-akt="mail" data-mail="' + e + '" data-name="' + esc(p.firma || p.name || '') + '">E-Mail schreiben</button></div>';
+  /* Aus der früheren Plattform-Seite: Funktionen, Pilotplatz, Netzwerk und Notiz */
+  var mehr = '<div class="trenn"></div><h4>Funktionen, Pilotplatz, Netzwerk</h4>'
+    + '<div class="zl"><button data-akt="funktionen" data-mail="' + e + '" data-name="' + esc(p.firma || p.name || p.email) + '">Funktionen</button>'
+    + (p.pilot_seit ? '<button class="warn" data-akt="pilot" data-an="0" data-mail="' + e + '">Pilotplatz entziehen</button>' : '<button data-akt="pilot" data-an="1" data-mail="' + e + '">Pilotplatz vergeben</button>')
+    + (p.netz ? (p.netz.gesperrt ? '<button data-akt="netz_frei" data-mail="' + e + '">Netzwerk freigeben</button>' : '<button class="warn" data-akt="netz_sperren" data-mail="' + e + '">Netzwerk sperren</button>') : '')
+    + '<button data-akt="notiz" data-mail="' + e + '" data-notiz="' + esc(p.notiz || '') + '">' + (p.notiz ? 'Notiz ändern' : 'Notiz') + '</button></div>'
+    + (p.pilot_seit ? '<div class="msg ok">Pilotbetrieb seit ' + datum(p.pilot_seit) + '. Kostenlos, solange die Zahlung aus ist.</div>' : '')
+    + (p.netz && p.netz.gesperrt ? '<div class="msg bad">Netzwerk gesperrt: Profil unsichtbar, kein Vernetzen und keine Nachrichten. Widget und Cockpit laufen.</div>' : '')
+    + (p.notiz ? '<div class="msg">Notiz: ' + esc(p.notiz) + '</div>' : '');
+  return '<div class="verw" data-verw="' + e + '">'
+    + '<h4>Konto verwalten</h4>' + sperre + mehr
+    + '<div class="trenn"></div><h4>Tarif</h4><div class="zl">' + tarif + status + '<button data-akt="tarif" data-mail="' + e + '">Übernehmen</button></div>'
+    + '<div class="msg">Von Hand setzen, z. B. wenn per Überweisung gezahlt wird. Stripe überschreibt den Status bei der nächsten Zahlung.</div>'
+    + einladungTeil(p, e) + gratisTeil(p, e) + uebergabeTeil(p, e) + '<div class="trenn"></div>'
+    + '<div class="zl"><button class="del" data-akt="loeschen" data-mail="' + e + '">Konto endgültig löschen</button><span class="msg">Löscht Konto, Team-Zugänge, Formulare, Anfragen, Termine, Einstellungen und Netzwerk-Profil und beendet ein laufendes Stripe-Abo. Lässt sich nicht rückgängig machen.</span></div>'
+    + '<div class="msg" data-msg></div></div>';
+}
+
+document.getElementById('rows').addEventListener('click', function (ev) {
+  var al = ev.target.closest('[data-alle]'); if (al) { ev.stopPropagation(); AUTO_AUF = true; rngSetzen(730); laden(false); return; }
+  var b = ev.target.closest('button[data-akt]'); if (!b) return;
+  ev.stopPropagation();
+  var box = b.closest('[data-verw]'), msg = box.querySelector('[data-msg]');
+  var email = b.getAttribute('data-mail'), akt = b.getAttribute('data-akt');
+  var daten2 = { key: key, email: email, aktion: akt };
+  if (akt === 'sperren' || akt === 'komplett_sperren') {
+    var g = prompt(akt === 'sperren' ? 'Widget sperren. Cockpit bleibt nutzbar.\nGrund (nur für Sie sichtbar):' : 'Komplett sperren. Der Kunde wird sofort abgemeldet.\nGrund (nur für Sie sichtbar):', akt === 'sperren' ? 'Zahlung offen' : 'Verstoß gegen die AGB');
+    if (g === null) return;
+    if (akt === 'komplett_sperren' && !confirm('Wirklich komplett sperren? ' + email + ' kann sich danach nicht mehr anmelden.')) return;
+    daten2.grund = g;
+  } else if (akt === 'mail') {
+    if (window.czPfMail) window.czPfMail(email, b.getAttribute('data-name')); return;
+  } else if (akt === 'funktionen') {
+    if (window.czFxPlattform) window.czFxPlattform(email, b.getAttribute('data-name')); else alert('js/cz-funktionen.js fehlt.');
+    return;
+  } else if (akt === 'oeffnen') {
+    if (!confirm('Konto zum Bauen öffnen?\n\nAuf diesem Gerät sind Sie im Cockpit danach als dieser Betrieb angemeldet. Für Ihr eigenes Konto melden Sie sich später wieder an.')) return;
+    kontoOeffnen(email, msg); return;
+  } else if (akt === 'test') {
+    daten2.tage = +b.getAttribute('data-tage');
+    if (!daten2.tage && !confirm('Test aufheben? Dann läuft sein Formular ohne Ablaufdatum weiter.')) return;
+  } else if (akt === 'ueberfuehren') {
+    if (!confirm('Testphase beenden und in ein echtes Konto überführen?\n\nDer Countdown verschwindet, das Formular bleibt eingeschaltet. Der Betrieb bekommt einen Pilotplatz: kostenlos bis zum Verkaufsstart, danach 40 % Rabatt. Im Cockpit erscheint einmal „Ihr Konto ist freigeschaltet“.')) return;
+  } else if (akt === 'zuruecksetzen') {
+    var zz = prompt('Einladung zurücksetzen, nur nach Ihrem eigenen Test!\n\nFormular, Angaben und Einstellungen bleiben. Gelöscht werden: der Zugang ' + email + ', alle Anmeldungen, der Test, die Mitteilungs-Geräte, ALLE Anfragen und Termine, der AV-Vertrag und der Pilotplatz. Das Formular ist danach wieder aus, der alte Link gilt nicht mehr.\n\nZur Bestätigung ZURÜCKSETZEN eintippen:');
+    if (!zz || zz.trim().toUpperCase() !== 'ZURÜCKSETZEN') return;
+  } else if (akt === 'pilot') {
+    daten2.an = b.getAttribute('data-an') === '1';
+    if (!confirm(daten2.an ? 'Pilotplatz an ' + email + ' vergeben? Der Betrieb nutzt clickzauber dann kostenlos, solange die Zahlung aus ist.' : 'Pilotplatz von ' + email + ' entziehen? Ohne Tarif geht sein Formular dann offline.')) return;
+  } else if (akt === 'notiz') {
+    var n2 = prompt('Interne Notiz zu ' + email + ' (sieht nur der Betreiber):', b.getAttribute('data-notiz') || '');
+    if (n2 === null) return;
+    daten2.text = n2;
+  } else if (akt === 'netz_sperren') {
+    var g3 = prompt('Netzwerk sperren. Profil verschwindet, Vernetzen und Nachrichten gehen nicht mehr. Widget und Cockpit laufen weiter.\nGrund (nur für Sie):', 'Verstoß gegen § 1j Abs. 4 der AGB');
+    if (g3 === null) return;
+    daten2.grund = g3;
+  } else if (akt === 'netz_frei') {
+    if (!confirm('Netzwerk für ' + email + ' wieder freigeben?')) return;
+  } else if (akt === 'loeschen') {
+    var best = prompt('Endgültig löschen: Konto, Team-Zugänge, Formulare, Anfragen und Termine.\nZur Bestätigung die E-Mail-Adresse eintippen:\n' + email);
+    if (best === null) return;
+    daten2.bestaetigung = best;
+  } else if (akt === 'tarif') {
+    daten2.plan = box.querySelector('[data-v="plan"]').value;
+    daten2.status = box.querySelector('[data-v="status"]').value;
+  } else if (akt === 'kostenlos') {
+    daten2.bis = box.querySelector('[data-v="bis"]').value;
+    daten2.plan = box.querySelector('[data-v="plan"]').value;
+    if (!daten2.bis) { msg.className = 'msg bad'; msg.textContent = 'Bitte ein Datum wählen.'; return; }
+  } else if (akt === 'kostenlos-weg') {
+    if (!confirm('Kostenlose Zeit aufheben? Ohne Abo wird das Formular dann sofort ausgeblendet.')) return;
+    daten2.aktion = 'kostenlos'; daten2.bis = '';
+  } else if (akt === 'uebergeben' || akt === 'link-neu') {
+    daten2.aktion = 'uebergeben';
+    daten2.neu = akt === 'link-neu' ? email : box.querySelector('[data-v="neu"]').value.trim().toLowerCase();
+    if (akt === 'uebergeben') daten2.sprache = box.querySelector('[data-v="sprache"]').value;
+    if (akt === 'uebergeben') {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(daten2.neu)) { msg.className = 'msg bad'; msg.textContent = 'Bitte die E-Mail-Adresse des Kunden eintragen.'; return; }
+      if (!confirm('Konto an ' + daten2.neu + ' übergeben?\n\nDer Kunde bekommt einen Link zum Passwort-Festlegen. Sie selbst kommen danach nur noch über die Betreiber-Ansicht in dieses Konto.')) return;
+    }
+  }
+  b.disabled = true; msg.className = 'msg'; msg.textContent = 'Wird gespeichert …';
+  fetch(API + '/konto-admin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(daten2) })
+    .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+    .then(function (j) {
+      b.disabled = false;
+      if (!j.ok) { msg.className = 'msg bad'; msg.textContent = j.error || 'Hat nicht geklappt.'; return; }
+      if (akt === 'loeschen') offen = null;
+      if (daten2.aktion === 'einladung') { msg.textContent = ''; einladungZeigen(box, j, b.getAttribute('data-name')); return; }
+      if (daten2.aktion === 'zuruecksetzen' && j.link) prompt('Zurückgesetzt. Neuer Einladungs-Link (der alte gilt nicht mehr):', j.link);
+      if (window.czPfToast) window.czPfToast(akt === 'loeschen' ? 'Konto gelöscht' : 'Gespeichert');
+      if (daten2.aktion === 'uebergeben') {
+        prompt((j.mail ? 'E-Mail ist raus an ' + j.email + '.' : 'Die E-Mail konnte nicht verschickt werden.') + '\nDiesen Link können Sie dem Kunden auch per WhatsApp schicken (gilt 7 Tage):', j.link);
+      }
+      laden(false);
+      if (j.hinweis) alert(j.hinweis);
+    })
+    .catch(function () { b.disabled = false; msg.className = 'msg bad'; msg.textContent = 'Server nicht erreichbar.'; });
+});
+</script>
+<script src="js/cz-potenzial.js?v=20260929a"></script>
+<script src="js/qrcode.js?v=20261010a"></script>
+<script src="js/cz-vertrieb-kennzahlen.js?v=20261009a"></script>
+<script src="js/cz-vertrieb-demos.js?v=20261007b"></script>
+<script src="js/cz-vertrieb-termine.js?v=20261007b"></script>
+<script src="js/cz-plattform.js?v=20261020a"></script>
+<script src="js/cz-funktionen.js?v=20261008a"></script>
+<script>document.write('<script src="kunden/akten.js?v=' + Date.now() + '"><\/script>');</script>
+<script src="js/cz-kundenakte.js?v=20261021a"></script>
+<script src="js/cz-ziehen.js?v=20261020a" defer></script>
+</body>
+</html>

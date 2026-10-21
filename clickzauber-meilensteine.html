@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>/* iPhone/iPad: kein automatisches Hineinzoomen beim Antippen eines Eingabefelds. Mit zwei Fingern zoomen bleibt möglich. */(function(){if(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)){var m=document.querySelector("meta[name=viewport]");if(m&&!/maximum-scale/.test(m.content))m.content+=", maximum-scale=1";}})();</script>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="assets/cz-favicon-32.png?v=2">
+<title>clickzauber Meilensteine</title>
+<meta name="description" content="Meilenstein-Kalender für clickzauber: Ziele bis Ende 2026, Mitte 2027 und Ende 2027 — bearbeitbar und abhakbar.">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#f5f2ea;--panel:#fffdf8;--panel-2:#efebe1;--card:#fffdf8;
+  --ink:#241f19;--ink-2:rgba(36,31,25,.66);--ink-3:rgba(36,31,25,.48);
+  --line:rgba(36,31,25,.085);--line-2:rgba(36,31,25,.15);
+  --accent:#2f7d59;--accent-d:#255f45;--warn:#a9741d;--bad:#bc5138;
+  --on-accent:#fffdf8;--kopf-bg:rgba(245,242,234,.88);
+  --k-produkt:#2f7d59;--k-technik:#2f6f7d;--k-kunden:#a9741d;--k-marketing:#8a5470;--k-recht:#5b6560;--k-finanzen:#bc5138;
+  --schatten:0 1px 2px rgba(36,31,25,.045),0 8px 22px rgba(36,31,25,.05);
+  --fd:"Figtree","Segoe UI",system-ui,sans-serif;--fm:"IBM Plex Mono",ui-monospace,monospace;
+}
+[data-theme=dunkel]{
+  --bg:#1a1813;--panel:#241f19;--panel-2:#2b261f;--card:#241f19;
+  --ink:#f4efe2;--ink-2:rgba(244,239,226,.66);--ink-3:rgba(244,239,226,.5);
+  --line:rgba(244,239,226,.1);--line-2:rgba(244,239,226,.16);
+  --accent:#4fa87c;--accent-d:#2f7d59;--warn:#e0a54b;--bad:#d9694e;
+  --on-accent:#16150f;--kopf-bg:rgba(26,24,19,.9);
+  --k-produkt:#4fa87c;--k-technik:#5d9fb0;--k-kunden:#e0a54b;--k-marketing:#c088a4;--k-recht:#93a099;--k-finanzen:#d9694e;
+  --schatten:none;
+}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--fd);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:var(--on-accent)}
+a{color:var(--accent);text-decoration:none}a:hover{color:var(--accent-d)}
+.wrap{max-width:1080px;margin:0 auto;padding:26px clamp(16px,3vw,34px) 90px}
+
+.top{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;letter-spacing:-.02em;margin-bottom:14px}
+.brand .mk{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--accent-d));display:flex;align-items:center;justify-content:center;color:var(--on-accent);font-weight:700;font-size:16px}
+.top h1{font-size:clamp(22px,3.4vw,29px);letter-spacing:-.025em;margin:0;text-wrap:pretty}
+.top .sub{color:var(--ink-2);font-size:14px;margin-top:5px;max-width:54ch;text-wrap:pretty}
+.ikon{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{-webkit-appearance:none;appearance:none;font-family:var(--fd);font-size:13.5px;font-weight:600;border-radius:10px;padding:9px 14px;cursor:pointer;border:1px solid var(--line-2);background:var(--panel);color:var(--ink);transition:background .15s,border-color .15s}
+.btn:hover{background:var(--panel-2)}
+.btn.p{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.p:hover{background:var(--accent-d);border-color:var(--accent-d)}
+.btn.q{border:none;background:none;color:var(--ink-3);font-weight:500;padding:8px 10px}
+.btn.q:hover{color:var(--ink);background:var(--panel-2)}
+.btn.gef{color:var(--bad)}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}
+.kpi{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--schatten)}
+.kpi .l{font-size:12.5px;color:var(--ink-2)}
+.kpi .v{font-size:30px;font-weight:700;letter-spacing:-.025em;margin:6px 0 2px;font-variant-numeric:tabular-nums;line-height:1}
+.kpi .d{font-family:var(--fm);font-size:11.5px;color:var(--ink-3)}
+.kpi.ring{display:flex;align-items:center;gap:14px}
+.ring svg{width:58px;height:58px;flex:0 0 auto;transform:rotate(-90deg)}
+.ring .tr{fill:none;stroke:var(--panel-2);stroke-width:7}
+.ring .pr{fill:none;stroke:var(--accent);stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset .5s}
+
+.leiste{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:20px 0 18px;padding:10px;background:var(--panel);border:1px solid var(--line);border-radius:14px;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px)}
+.seg{display:flex;gap:4px;background:var(--panel-2);border-radius:9px;padding:3px}
+.seg button{background:none;border:none;color:var(--ink-2);font-family:var(--fd);font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:7px;cursor:pointer}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.chip{-webkit-appearance:none;appearance:none;font-family:var(--fd);font-size:12px;font-weight:600;border-radius:999px;padding:6px 11px;cursor:pointer;border:1px solid var(--line-2);background:none;color:var(--ink-2);display:inline-flex;align-items:center;gap:6px}
+.chip i{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block}
+.chip.on{background:color-mix(in srgb,currentColor 14%,transparent);border-color:color-mix(in srgb,currentColor 40%,transparent)}
+.chip.aus{opacity:.42}
+.leiste .sp{flex:1;min-width:8px}
+
+.phase{margin:0 0 34px}
+.phase>.ph{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:0 2px 12px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.phase .num{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.phase h2{font-size:18px;letter-spacing:-.02em;margin:0}
+.phase .pz{font-size:13px;color:var(--ink-2)}
+.phase .fort{margin-left:auto;display:flex;align-items:center;gap:9px;font-family:var(--fm);font-size:11.5px;color:var(--ink-3)}
+.phase .fort .tr{width:96px;height:6px;border-radius:4px;background:var(--panel-2);overflow:hidden}
+.phase .fort .tr i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent-d),var(--accent));transition:width .4s}
+
+.mon{padding:16px 0 4px}
+.mon>.mh{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.mon .mn{font-family:var(--fm);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.mon .mh .ml{flex:1;height:1px;background:var(--line)}
+.mon .mh .plus{-webkit-appearance:none;appearance:none;background:none;border:1px dashed var(--line-2);color:var(--ink-3);width:24px;height:24px;border-radius:8px;cursor:pointer;font-size:15px;line-height:1;padding:0;flex:0 0 auto}
+.mon .mh .plus:hover{color:var(--accent);border-color:var(--accent);border-style:solid}
+.mon.jetzt .mn{color:var(--accent)}
+.liste{display:flex;flex-direction:column;gap:7px}
+
+.ms{display:flex;align-items:flex-start;gap:12px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--kf,var(--line-2));border-radius:12px;padding:12px 14px;box-shadow:var(--schatten);cursor:pointer;transition:border-color .15s,transform .12s}
+.ms:hover{border-color:var(--line-2);transform:translateX(2px)}
+.ms .box{-webkit-appearance:none;appearance:none;flex:0 0 auto;width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line-2);background:var(--panel);cursor:pointer;margin-top:1px;display:flex;align-items:center;justify-content:center;padding:0}
+.ms .box:hover{border-color:var(--accent)}
+.ms .box svg{width:13px;height:13px;color:var(--on-accent);opacity:0}
+.ms.ok .box{background:var(--accent);border-color:var(--accent)}
+.ms.ok .box svg{opacity:1}
+.ms .tx{min-width:0;flex:1}
+.ms .ti{font-size:14.5px;font-weight:600;letter-spacing:-.01em;text-wrap:pretty}
+.ms.ok .ti{text-decoration:line-through;text-decoration-color:var(--ink-3);color:var(--ink-2)}
+.ms .no{font-size:13px;color:var(--ink-2);margin-top:3px;text-wrap:pretty}
+.ms .ez{margin-top:8px;padding-left:11px;border-left:1px solid var(--line-2);font-size:12.5px;line-height:1.6;color:var(--ink-2);text-wrap:pretty}
+.ms .ez b{display:block;font-family:var(--fm);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:3px}
+.ms .me{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:7px}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:color-mix(in srgb,var(--kf) 15%,transparent);color:var(--kf)}
+.dat{font-family:var(--fm);font-size:11.5px;color:var(--ink-3)}
+.spat{font-family:var(--fm);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+.stern{color:var(--warn);font-size:13px}
+.ms .zi{font-family:var(--fm);font-size:12px;font-weight:500;color:var(--ink);background:var(--panel-2);border-radius:7px;padding:4px 9px;flex:0 0 auto;align-self:center;white-space:nowrap}
+
+.dep{display:flex;flex-wrap:wrap;gap:6px 10px;margin-top:8px;font-size:12.5px;color:var(--ink-3)}
+.dep b{font-weight:600;color:var(--ink-2)}
+.dep .kon{color:var(--bad);font-weight:600}
+.dep .traegt{font-family:var(--fm);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--warn)}
+.teil{display:flex;flex-direction:column;gap:2px;margin-top:9px;padding-top:8px;border-top:1px dashed var(--line-2)}
+.teil .tz{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2);cursor:pointer;padding:2px 0}
+.teil .tz input{width:15px;height:15px;accent-color:var(--accent);flex:0 0 auto;margin:0}
+.teil .tz.ok span{text-decoration:line-through;color:var(--ink-3)}
+.teil .tc{font-family:var(--fm);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
+.zi .bar{display:block;height:4px;border-radius:3px;background:var(--line-2);overflow:hidden;margin-top:5px}
+.zi .bar s{display:block;height:100%;background:var(--accent);border-radius:3px}
+.zi b{font-size:14px}
+.zi.hat{text-align:right;line-height:1.3}
+.vsch{display:flex;gap:6px;margin:-6px 0 13px;flex-wrap:wrap}
+.vsch button{-webkit-appearance:none;appearance:none;font-family:var(--fm);font-size:11.5px;border:1px solid var(--line-2);background:var(--card);color:var(--ink-2);border-radius:8px;padding:5px 9px;cursor:pointer}
+.vsch button:hover{border-color:var(--accent);color:var(--accent)}
+.f select[multiple]{padding:6px;font-size:13px}
+.f select[multiple] option{padding:4px 6px;border-radius:6px}
+.leer{text-align:center;padding:44px 20px;color:var(--ink-3);font-size:14px;border:1px dashed var(--line-2);border-radius:14px}
+.zgp{display:inline-flex;align-items:center;gap:5px;font-family:var(--fm);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-3)}
+.zgsel{-webkit-appearance:none;appearance:none;font-family:var(--fd);font-size:12.5px;font-weight:600;color:var(--ink);background:var(--panel-2);border:none;border-radius:9px;padding:8px 30px 8px 11px;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);background-position:calc(100% - 15px) 55%,calc(100% - 10px) 55%;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+
+/* ZIELGRUPPEN */
+.zgw{display:grid;gap:14px}
+.zgw .hinw{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:14px;padding:16px 18px;font-size:14px;color:var(--ink-2);text-wrap:pretty;max-width:78ch}
+.zgw .hinw b{color:var(--ink);font-weight:600}
+.zgk{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--schatten);cursor:pointer;transition:border-color .15s}
+.zgk:hover{border-color:var(--accent)}
+.zgk .zk{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.zgk h3{font-size:17px;margin:0;letter-spacing:-.02em}
+.zgk .rang{font-family:var(--fm);font-size:11px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase}
+.zgk .emp{font-family:var(--fm);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--accent)}
+.zgk .emp.warte{background:color-mix(in srgb,var(--ink) 8%,transparent);color:var(--ink-3)}
+.zgk .zf{margin-left:auto;display:flex;align-items:center;gap:9px;font-family:var(--fm);font-size:11.5px;color:var(--ink-3)}
+.zgk .zf .tr{width:80px;height:6px;border-radius:4px;background:var(--panel-2);overflow:hidden}
+.zgk .zf .tr i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent-d),var(--accent))}
+.zgk dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0;font-size:13.5px}
+.zgk dt{font-family:var(--fm);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);padding-top:3px;white-space:nowrap}
+.zgk dd{margin:0;color:var(--ink-2);text-wrap:pretty}
+.zgk dd b{color:var(--ink);font-weight:600}
+@media(max-width:640px){.zgk dl{grid-template-columns:1fr;gap:1px 0}.zgk dt{margin-top:9px}}
+
+/* KALENDER */
+.kal .kh{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.kal .kh h2{font-size:19px;margin:0;letter-spacing:-.02em;min-width:190px}
+.kal .nav{display:flex;gap:6px;margin-left:auto}
+.kal .nav button{-webkit-appearance:none;appearance:none;width:34px;height:34px;border-radius:9px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink);cursor:pointer;font-size:15px;line-height:1}
+.kal .nav button:hover{background:var(--panel-2)}
+.wd{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:6px}
+.wd span{font-family:var(--fm);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:center}
+.gitter{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.tag-z{min-height:92px;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:7px 8px;cursor:pointer;display:flex;flex-direction:column;gap:4px;transition:border-color .15s}
+.tag-z:hover{border-color:var(--accent)}
+.tag-z.aus{background:none;border-color:transparent;cursor:default}
+.tag-z.aus:hover{border-color:transparent}
+.tag-z .dn{font-family:var(--fm);font-size:11.5px;color:var(--ink-3)}
+.tag-z.heute{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.tag-z.heute .dn{color:var(--accent);font-weight:600}
+.tag-z .kev{font-size:11.5px;font-weight:600;line-height:1.25;border-radius:6px;padding:3px 6px;background:color-mix(in srgb,var(--kf) 16%,transparent);color:var(--kf);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.tag-z .kev.ok{opacity:.5;text-decoration:line-through}
+@media(max-width:720px){.tag-z{min-height:62px;padding:5px}.tag-z .kev{font-size:10px;-webkit-line-clamp:1}}
+
+/* SHEET */
+.hg{position:fixed;inset:0;background:rgba(20,17,13,.42);backdrop-filter:blur(3px);z-index:60;display:none;align-items:center;justify-content:center;padding:18px}
+.hg.on{display:flex}
+.sheet{width:100%;max-width:440px;max-height:88vh;overflow-y:auto;background:var(--panel);border:1px solid var(--line-2);border-radius:18px;padding:22px;box-shadow:0 20px 60px rgba(20,17,13,.28)}
+.sheet h3{font-size:17px;margin:0 0 16px;letter-spacing:-.02em}
+.f{margin-bottom:13px}
+.f label{display:block;font-family:var(--fm);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}
+.f input[type=text],.f input[type=date],.f select,.f textarea{width:100%;font-family:var(--fd);font-size:14px;color:var(--ink);background:var(--card);border:1px solid var(--line-2);border-radius:10px;padding:10px 12px;-webkit-appearance:none;appearance:none}
+.f textarea{min-height:66px;resize:vertical;line-height:1.45}
+.f input:focus,.f select:focus,.f textarea:focus{outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:1px;border-color:var(--accent)}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.schalt{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--ink-2);cursor:pointer;padding:7px 0}
+.schalt input{width:17px;height:17px;accent-color:var(--accent)}
+.sf{display:flex;gap:8px;align-items:center;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.sf .sp{flex:1}
+.hin{font-family:var(--fm);font-size:11px;color:var(--ink-3);margin-top:-6px;margin-bottom:12px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(18px);background:var(--ink);color:var(--bg);font-size:13.5px;font-weight:500;padding:11px 18px;border-radius:11px;z-index:80;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.woche{--wakz:#4fa87c;--wsub:rgba(244,239,226,.72);display:flex;align-items:center;gap:clamp(12px,2vw,20px);flex-wrap:wrap;background:var(--ink);color:var(--bg);border-radius:16px;padding:15px 18px;margin-bottom:14px;box-shadow:var(--schatten)}
+[data-theme=dunkel] .woche{--wakz:#255f45;--wsub:rgba(36,31,25,.66)}
+.woche .wtx{flex:1 1 240px;min-width:0}
+.woche .wl{font-family:var(--fm);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--wakz);display:block;margin-bottom:6px}
+.woche .wt{font-size:17px;font-weight:650;letter-spacing:-.022em;line-height:1.25;text-wrap:pretty}
+.woche .wm{font-family:var(--fm);font-size:11px;letter-spacing:.04em;line-height:1.6;color:var(--wsub);margin-top:6px}
+.woche .wa{display:flex;gap:8px;flex-wrap:wrap}
+.woche button{font-family:var(--fd);font-size:12.5px;font-weight:600;border-radius:9px;padding:9px 15px;min-height:38px;cursor:pointer;background:transparent;color:inherit;border:1px solid var(--wsub)}
+.woche button:hover{background:var(--wakz);border-color:var(--wakz);color:var(--ink)}
+@media print{.leiste,.ikon,.mon .mh .plus,.woche .wa{display:none}.ms{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <div class="brand"><span class="mk">c</span>clickzauber</div>
+    <h1>Meilenstein-Kalender</h1>
+    <div class="sub">Der Fahrplan von heute bis Ende 2027, sortiert nach Zielgruppe. Abhaken, verschieben, umschreiben, ergänzen — Ihre Änderungen bleiben in diesem Browser. Diese Seite ist nur für Sie und wird nicht hochgeladen.</div>
+  </div>
+  <div class="ikon">
+    <button class="btn q" id="btn-thema" title="Hell/Dunkel">◐</button>
+    <button class="btn" id="btn-export">Sichern</button>
+    <button class="btn p" id="btn-neu">+ Meilenstein</button>
+  </div>
+</header>
+
+<div class="woche" id="woche" hidden></div>
+
+<div class="kpis">
+  <div class="kpi ring">
+    <svg viewBox="0 0 60 60"><circle class="tr" cx="30" cy="30" r="24"></circle><circle class="pr" id="ring" cx="30" cy="30" r="24" stroke-dasharray="150.8" stroke-dashoffset="150.8"></circle></svg>
+    <div><div class="l">Gesamt erledigt</div><div class="v" id="k-pct">0%</div></div>
+  </div>
+  <div class="kpi"><div class="l">Meilensteine</div><div class="v" id="k-alle">0</div><div class="d" id="k-offen">0 offen</div></div>
+  <div class="kpi"><div class="l">Als Nächstes</div><div class="v" id="k-next-d" style="font-size:18px;margin-top:9px">—</div><div class="d" id="k-next-t">—</div></div>
+  <div class="kpi"><div class="l">Überfällig</div><div class="v" id="k-spat">0</div><div class="d" id="k-kon">Termin verstrichen</div></div>
+</div>
+
+<div class="leiste">
+  <div class="seg" id="seg-ansicht"><button data-a="zeit" class="on">Zeitstrahl</button><button data-a="kal">Kalender</button><button data-a="zg">Zielgruppen</button></div>
+  <div class="seg" id="seg-status"><button data-s="alle" class="on">Alle</button><button data-s="offen">Offen</button><button data-s="fertig">Erledigt</button></div>
+  <select class="zgsel" id="sel-zg" aria-label="Zielgruppe"></select>
+  <div class="chips" id="chips"></div>
+  <div class="sp"></div>
+  <button class="btn q" id="btn-import">Laden</button>
+  <button class="btn q" id="btn-reset">Zurücksetzen</button>
+</div>
+
+<div id="v-zeit"></div>
+<div id="v-zg" class="zgw" style="display:none"></div>
+<div id="v-kal" class="kal" style="display:none">
+  <div class="kh"><h2 id="kal-titel">—</h2><div class="nav"><button id="kal-heute" style="width:auto;padding:0 12px;font-size:13px;font-weight:600">Heute</button><button id="kal-vor">‹</button><button id="kal-zur">›</button></div></div>
+  <div class="wd"><span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span></div>
+  <div class="gitter" id="kal-gitter"></div>
+</div>
+</div>
+
+<div class="hg" id="hg">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <h3 id="sh-titel">Meilenstein</h3>
+    <div class="f"><label for="fi-titel">Titel</label><input type="text" id="fi-titel" placeholder="Was soll erreicht sein?"></div>
+    <div class="f2">
+      <div class="f"><label for="fi-datum">Termin</label><input type="date" id="fi-datum"></div>
+      <div class="f"><label for="fi-kat">Bereich</label><select id="fi-kat"></select></div>
+    </div>
+    <div class="vsch"><button data-v="-7">− 1 Woche</button><button data-v="7">+ 1 Woche</button><button data-v="30">+ 1 Monat</button><button data-v="91">+ 3 Monate</button></div>
+    <div class="f"><label for="fi-zg">Zielgruppe</label><select id="fi-zg"></select></div>
+    <div class="f2">
+      <div class="f"><label for="fi-ziel">Zielwert</label><input type="text" id="fi-ziel" placeholder="z. B. 25 Betriebe"></div>
+      <div class="f"><label for="fi-ist">Stand heute</label><input type="text" id="fi-ist" placeholder="z. B. 8"></div>
+    </div>
+    <div class="f"><label for="fi-dep">Hängt ab von <span style="text-transform:none;letter-spacing:0">(mehrere mit Strg / cmd)</span></label><select id="fi-dep" multiple size="4"></select></div>
+    <div class="f"><label for="fi-teil">Teilaufgaben <span style="text-transform:none;letter-spacing:0">(eine pro Zeile)</span></label><textarea id="fi-teil" placeholder="AGB prüfen lassen&#10;AV-Vertrag einholen"></textarea></div>
+    <div class="f"><label for="fi-notiz">Notiz</label><textarea id="fi-notiz" placeholder="Woran erkennen Sie, dass es erledigt ist?"></textarea></div>
+    <label class="schalt"><input type="checkbox" id="fi-wichtig"> Als Hauptziel markieren</label>
+    <label class="schalt"><input type="checkbox" id="fi-fertig"> Erledigt</label>
+    <div class="sf"><button class="btn q gef" id="sh-loeschen">Löschen</button><div class="sp"></div><button class="btn" id="sh-abbruch">Abbrechen</button><button class="btn p" id="sh-speichern">Speichern</button></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<input type="file" id="datei" accept="application/json" style="display:none">
+
+<script>
+const SCHL='cz-meilensteine-v1';const DV=14;const AUTOSCHL='cz-meilensteine-auto';
+const KAT={produkt:'Produkt',technik:'Technik',kunden:'Kunden',marketing:'Marketing',recht:'Recht',finanzen:'Finanzen'};
+const MON=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+const PHASEN=[
+ {num:'Phase 1',h:'Fundament & erste zahlende Betriebe',z:'heute bis 31.12.2026',bis:'2026-12-31'},
+ {num:'Phase 2',h:'Wiederholbar verkaufen',z:'01.01. bis 30.06.2027',bis:'2027-06-30'},
+ {num:'Phase 3',h:'Skalieren',z:'01.07. bis 31.12.2027',bis:'2027-12-31'}
+];
+const ZG={alle:'Alle Zielgruppen',hochzeit:'Hochzeitslocations',foodtruck:'Food Trucks',foto:'Fotografen & Videografen',tagung:'Tagungshäuser',agentur:'Agenturen & Webdesigner',friseur:'Friseure & Termin-Betriebe'};
+const ZGK={alle:'Alle',hochzeit:'Hochzeit',foodtruck:'Food Truck',foto:'Foto & Video',tagung:'Tagung',agentur:'Agentur',friseur:'Friseur'};
+const RAUS=['Zweite Branche testen','Dritte Zielgruppe testen: Tagungshäuser','Partner-Netz Stufe 3: offenes Verzeichnis mit Nachrichten','Partner-Netz: Entdecken und vernetzen im Cockpit'];
+/* Was Manuel im Chat als erledigt gemeldet hat. Wird genau einmal abgehakt;
+   danach steht der Titel in AUTOSCHL und ein von Hand entfernter Haken bleibt weg. */
+const AUTO_FERTIG=[{t:'Betriebs-Trennung & Server-Widgets live',am:'2026-09-13'},{t:'Preis für Food Trucks festgelegt',am:'2026-10-02'}];
+/* Erklärung in einfacher Sprache je Meilenstein — Schlüssel ist der Titel. */
+const EINFACH={
+'Bezahlen mit Stripe einschalten':'Stripe ist die Kasse im Internet. Damit zahlen Betriebe ihren Monatsbeitrag mit Karte, ohne dass Sie Rechnungen schreiben müssen. Ohne Kasse verdient clickzauber kein Geld.',
+'App für iPhone und Android in den Stores':'Die App ist das clickzauber-Symbol auf dem Handy. Betriebe finden sie im App Store und bei Google Play und bekommen neue Anfragen sofort als Mitteilung. Ohne App wirkt es weniger fertig.',
+'Erklärvideo zu den Funktionen':'Ein kurzer Film, der zeigt, wie man das Cockpit benutzt. Dann müssen Sie nicht jedem Kunden alles einzeln erklären.',
+'Verkaufsvideo für Social Media: kurz, mittel, lang':'Ein Film, der zeigt, warum ein Betrieb clickzauber braucht. Die kurze Fassung fällt beim Wischen auf, die lange erklärt alles. Ohne Video glaubt man es weniger.',
+'Funnel mit den drei Videos':'Ein Funnel ist ein Trichter: oben sehen viele das kurze Video, ein Teil schaut das mittlere, wenige das lange, und die probieren aus. So kommen Interessenten Schritt für Schritt näher, ohne dass Sie jeden anrufen.',
+'Reziprozität: erst geben, dann fragen':'Reziprozität heißt Gegenseitigkeit: Wer etwas geschenkt bekommt, möchte etwas zurückgeben. Wenn ein Betrieb erst etwas Nützliches von Ihnen bekommt, sagt er eher Ja zu clickzauber.',
+'Marketing starten':'Jetzt sollen viele Betriebe von clickzauber erfahren, über Werbung und Gruppen. Das lohnt sich erst, wenn Bezahlen, App und Videos fertig sind.',
+'Geführter Start: Branche, Formular, Cockpit, live':'Wer sich neu anmeldet, wählt zuerst seine Branche und füllt dann die Seiten seines Formulars aus. Danach sieht er das fertige Formular groß und sucht sich das Aussehen aus: schlicht in Weiß oder mit Farben und einer von sechs Schriften. Im Cockpit tippt er oben rechts auf den grünen Schalter „Live schalten“. Erst dann geht das Formular raus, und erst dann zahlt er.',
+'Fünf Branchen, drei Cockpits':'Jede Branche arbeitet anders. Ein Friseur braucht Uhrzeiten, eine Location braucht Datum und Gäste, ein Solarbetrieb muss erst prüfen, ob sich die Anfahrt lohnt. Deshalb gibt es jetzt 25 fertige Vorlagen in fünf Gruppen, und das Cockpit stellt sich auf die passende Art ein.',
+'Seiten zu Vercel umziehen':'Heute liegen die Seiten bei IONOS und der Server bei Vercel. Bei jedem Update muss man an zwei Stellen hochladen, und wenn man eine Datei vergisst, sehen Kunden einen alten Stand. Liegt alles an einem Ort, reicht ein einziges Hochladen, und alle bekommen sofort das Neue.',
+'Push-Nachricht „Update verfügbar“':'Nach einem großen Update bekommen alle Kunden eine kurze Nachricht aufs Handy. Ein Tipp darauf öffnet clickzauber frisch mit allem Neuen. So hängt niemand auf einem alten Stand fest, auch wer die App tagelang nicht geschlossen hat.',
+'Eigene Adresse für Kundenlinks':'Ein Link mit fremdem Namen wirkt verdächtig, und manche klicken ihn nicht an. Mit unserem eigenen Namen im Link vertrauen die Kunden ihm eher.',
+'Passt nicht: gleich andere Zeit wählen':'Wenn ein Vorschlag nicht passt, soll der Kunde nicht von vorn anfangen müssen. Er tippt einfach eine andere freie Zeit an.',
+'Frist zum Absagen':'Kurz vor dem Termin soll niemand still absagen. Dann ruft der Kunde an, und der Friseur weiß sofort Bescheid.',
+'Nicht erschienen merken':'Manche Kunden kommen einfach nicht. Wer das einmal markiert, sieht es beim nächsten Mal sofort und kann vorher nachfragen.',
+'Fertig-Seite zeigt die Handynummer':'So sieht der Kunde gleich, ob seine Nummer stimmt. Sonst wartet er vielleicht vergeblich auf eine Antwort.',
+'Erinnerung am Vortag per WhatsApp':'Wer am Tag vorher erinnert wird, vergisst seinen Termin seltener. Ein Tipp pro Kunde genügt, der Text ist schon fertig. Ohne das bleiben öfter Plätze leer.',
+'Kunde bucht selbst um':'Manchmal passt dem Kunden die Zeit doch nicht. Er sucht sich selbst eine neue aus, und der Friseur sagt nur Ja oder Nein. So muss niemand telefonieren, und der Friseur behält die Kontrolle.',
+'Warnung bei geänderten Arbeitszeiten':'Wenn jemand seine Arbeitszeit ändert, können schon gebuchte Termine plötzlich außerhalb liegen. Das Cockpit zeigt sie sofort an, damit kein Kunde vor verschlossener Tür steht.',
+'Doppelte Anfragen verhindern':'Wenn das Internet hängt, tippen Leute zweimal auf Senden. Dann soll trotzdem nur eine Anfrage ankommen.',
+'Kundentexte in allen Formularsprachen':'Wer das Formular auf Türkisch ausfüllt, soll auch die Antwort auf Türkisch bekommen. Sonst versteht er vielleicht nicht, dass sein Termin abgesagt wurde.',
+'Termin-Abläufe ohne Lücken':'Bei einem Termin kann vieles passieren: annehmen, ablehnen, verschieben, absagen, zu spät antworten. Für jeden Fall ist jetzt klar, wer was erfährt und was im Kalender steht. Ohne das bleiben Kunden ohne Antwort oder Zeiten blockiert.',
+'SMS an Kunden bei Zusage, Absage und neuer Uhrzeit':'Wenn der Friseur einen Termin ablehnt, muss der Kunde das sofort erfahren. Fast jeder hat eine Handynummer angegeben, deshalb bekommt er eine SMS. Vorher fragt das Handy noch einmal nach, damit niemand aus Versehen absagt.',
+'Food Trucks: Mischung aus Anfrage und Termin':'Ein Food Truck bekommt Anfragen für Feiern, aber auch schnelle Zu- und Absagen sind wichtig. Er braucht deshalb eine eigene Mischung. Die planen wir später gesondert.',
+'Früher Schluss und spontan frei':'Manchmal will man spontan früher gehen oder einen Tag frei nehmen. Ein Tipp sperrt die Zeit, und wer schon gebucht hat, bekommt gleich einen neuen Termin vorgeschlagen. Ohne das muss man jeden Kunden einzeln anrufen und vergisst leicht jemanden.',
+'Wartungsmodus für die Plattform':'Wenn wir etwas Großes verbessern, soll niemand gleichzeitig etwas ändern, das dabei kaputtgehen könnte. Mit einem Knopf sagen wir allen Kunden Bescheid und halten kurz an. Die Formulare für die Gäste laufen trotzdem weiter.',
+'Immer die neueste Version':'Das Handy merkt sich Teile von clickzauber, damit es schneller lädt. Dabei konnte noch eine alte Version laufen, obwohl schon eine neue da war. Jetzt fragt es jedes Mal kurz nach, ob es etwas Neues gibt.',
+'Mitarbeiter-Namen aus dem Konfigurator':'Wer im Konfigurator „Kate“ und „Maria“ einträgt, will diese Namen auch im Formular sehen. Bisher blieben dort manchmal „Mitarbeiter 1“ und „Mitarbeiter 2“ stehen. Jetzt werden die Namen beim Speichern übernommen.',
+'Terminwunsch: nur Zusage, Absage oder andere Zeit':'Ein Friseur schreibt keine Angebote. Er will nur sagen: Ja, Nein oder lieber um drei. Deshalb zeigt das Cockpit ihm genau diese drei Knöpfe. Ohne das sucht er zwischen Feldern, die er nie braucht.',
+'Tipp auf Push öffnet die Anfrage':'Kommt eine Anfrage, meldet sich das Handy. Ein Tipp auf die Nachricht zeigt sofort, wer was will, und darunter Ja, Nein oder eine andere Uhrzeit. Ohne das muss man erst das Cockpit öffnen und die Anfrage suchen.',
+'Echtzeit-Kalender: Google, Outlook, iCloud':'Bisher holt sich der Kalender die Termine selbst ab, und das dauert: bei Apple bis 15 Minuten, bei Google bis zu einem Tag. Jetzt schreibt clickzauber jeden Termin sofort hinein. Ohne das fehlt ein neuer Termin noch im Kalender, obwohl der Kunde schon gebucht hat.',
+'Cockpit passt sich der Formular-Art an':'Ein Friseur braucht andere Knöpfe als eine Hochzeitslocation. Das Cockpit erkennt, welches Formular gewählt ist, und zeigt nur, was dazu passt. Ohne das sucht ein Friseur zwischen Räumen und Angeboten, die er nie braucht.',
+'Beispiel-Cockpit mit drei Formular-Arten':'Wer die Startseite besucht, soll sehen, dass clickzauber nicht nur für Hochzeiten passt. Man wählt oben links zum Beispiel den Friseur, und das Cockpit sieht sofort anders aus. Ohne das denken Friseure, das Programm sei nichts für sie.',
+'Ein Kalender-Abo für alle Formulare':'Früher brauchte jedes Formular eine eigene Kalender-Verbindung. Jetzt reicht eine für alles, auch für Formulare, die später dazukommen. Ohne das fehlen Termine aus einem neuen Formular im Kalender.',
+'Nagelstudio und Wimpern als Vorlagen':'Nagelstudios und Wimpern-Studios arbeiten wie Friseure mit festen Uhrzeiten. Mit einer fertigen Vorlage sind sie in wenigen Minuten startklar. Ohne das müssten sie alles selbst zusammenbauen.',
+'Potenzielle Kunden im Vertrieb':'Eine Liste von Betrieben aus der Gegend, die clickzauber brauchen könnten. So weiß man, wen man als Nächstes anruft. Ohne das fängt man jeden Tag wieder bei null an.',
+'Missionen und Trophäen':'Kleine Aufgaben zeigen Schritt für Schritt, was noch fehlt, und belohnen jeden Schritt. So bleibt niemand halb eingerichtet stehen. Ohne das wissen neue Kunden oft nicht, was als Nächstes zu tun ist.',
+'Vertrauenspunkte, Abzeichen und Rangliste':'Wer schnell und zuverlässig antwortet, bekommt Punkte und ein Abzeichen. Andere Betriebe und Gäste sehen so, wem sie vertrauen können. Ohne das sieht ein guter Betrieb genauso aus wie ein schlechter.',
+'Belohnungen zu den Abzeichen':'Ein höheres Abzeichen spart Geld beim Abo, und das Siegel auf der eigenen Website zeigt Kunden, dass der Betrieb zuverlässig ist. Das macht Lust, gut zu arbeiten. Ohne Belohnung wären die Punkte nur Zahlen.',
+'Pilotphase: vier kostenlose Plätze':'Die ersten vier Betriebe dürfen clickzauber kostenlos ausprobieren und helfen dafür, es besser zu machen. So lernen wir von echten Kunden, bevor Geld fließt. Ohne Pilotbetriebe fehlen ehrliche Rückmeldungen.',
+'Neue Formular-Designs':'Jeder Betrieb will, dass das Formular zu seiner Website passt. Zwei neue Looks geben mehr Auswahl. Ohne das wirkt das Formular auf manchen Seiten fremd.',
+'Friseure: Termine, die länger dauern':'Manche Kunden brauchen viel mehr Zeit als geplant, zum Beispiel bei sehr dickem Haar oder schwieriger Farbe. Dann verschiebt sich der ganze Tag. Jetzt kann der Friseur die Zeit verlängern, sich Kunden merken und bei schwierigen Fällen erst Fotos ansehen. Ohne das warten Kunden, und der Plan stimmt nicht mehr.',
+'Danke-Seite: Gast wählt Partner selbst':'Nach dem Absenden sieht der Gast die Partner des Betriebs, zum Beispiel einen Caterer oder Floristen. Er hakt selbst an, wer seine Anfrage auch bekommen darf. So muss er nichts zweimal ausfüllen, und ohne sein Häkchen geht nichts weiter.',
+'Einführungs-Touren: Cockpit und Vernetzen':'Früher kamen beim ersten Besuch im Cockpit ein paar Hinweise nacheinander. Auf dem Handy haben sie aber genau das verdeckt, was sie zeigen sollten. Deshalb sind sie weg. Jetzt führt der Weg selbst: Branche wählen, Formular bauen, Aussehen wählen, im Cockpit live schalten. Die Missionen unten rechts zeigen, was noch fehlt.',
+'Partner-Netz: Empfehlen statt absagen':'Wenn ein Betrieb an einem Tag schon voll ist, zeigt sein Formular dem Gast andere Betriebe, die an dem Tag noch frei sind. So geht der Gast nicht verloren, und der Partner schickt beim nächsten Mal zurück. Dazu sieht jeder, wie oft sein Profil besucht wurde, wie schnell er antwortet und wer im Monat am meisten empfohlen hat. Ohne das ist das Netzwerk nur eine Liste von Namen.',
+'Privat-Zugang für Gäste':'Auch Privatleute, zum Beispiel ein Brautpaar, bekommen einen eigenen Zugang. Sie können sich die Hochzeitslocations, Food Trucks und Blumenläden ansehen und sie direkt anfragen. Damit kommen mehr Gäste zu den Betrieben, und die Betriebe haben einen Grund mehr, bei clickzauber zu bleiben.',
+'Aushilfe-Börse: Personal kurzfristig finden':'Wenn in einem Betrieb plötzlich jemand fehlt, zum Beispiel der Koch, findet man über clickzauber schnell Ersatz. Andere Betriebe oder Aushilfen bieten dort ihre Hilfe an. Ohne das muss man herumtelefonieren und findet oft niemanden.',
+'Partner-Netz: Betriebsprofil mit Bildern':'Jeder Betrieb bekommt eine eigene Profilseite, so wie bei Facebook oder LinkedIn. Oben ein großes Bild, zum Beispiel vom Food Truck, davor ein Foto vom Inhaber. Andere Betriebe können auf „Gefällt mir“ drücken, schreiben darunter aber nichts. So bleibt es freundlich und es entsteht kein Streit.',
+'Partner-Netz: Vernetzen im Cockpit':'Im Cockpit gibt es einen Bereich „Vernetzen“. Dort findet eine Hochzeitslocation zum Beispiel Food Trucks aus ihrer Gegend und kann sich mit ihnen verbinden, so wie man sich mit Freunden verbindet. Das kostet nichts extra, es ist im Monatspreis enthalten.',
+'Partner-Netz: frei oder belegt beim Weiterleiten':'Bevor man eine Anfrage an einen Partner schickt, sieht man, ob er an dem Tag überhaupt Zeit hat. Das steht in seinem Kalender. So schickt niemand Anfragen an jemanden, der schon ausgebucht ist.',
+'Partner-Netz: Empfehlungs-Zähler':'Im Cockpit steht, wie viele Gäste ein Betrieb dieses Jahr von seinen Partnern bekommen hat. So sieht jeder schwarz auf weiß, was ihm das Netzwerk bringt. Wer das sieht, bleibt eher Kunde.',
+'Partner-Netz: gemeinsame Pakete':'Eine Location, ein Food Truck und ein Blumenladen bieten zusammen ein Paket an. Der Gast kreuzt es im Formular an und fragt nur einmal. Alle drei bekommen die Anfrage automatisch.',
+'App im App Store und Google Play':'clickzauber soll es als richtige App auf dem Handy geben, die man im App Store und bei Google Play findet. Das wirkt vertrauenswürdiger, und die App kann sofort Bescheid geben, wenn eine neue Anfrage oder Nachricht kommt. Ohne App müssen die Betriebe selbst nachschauen.',
+'Entdecken: weitere Rechner im Cockpit':'Im Cockpit gibt es einen Bereich „Entdecken“. Dort kann man einen Solar-Rechner und einen Terrassen-Rechner ausprobieren, als wäre man der Kunde. Gefällt einer, macht man daraus mit einem Klick ein eigenes Formular.',
+'Partner-Netz: Nachrichten zwischen Betrieben':'Wer sich gefunden hat, kann sich direkt im Cockpit schreiben. Man braucht keine fremde Telefonnummer und keine E-Mail-Adresse. Alles bleibt an einem Ort, und niemand muss eine andere App benutzen.',
+'Partner-Netz Stufe 1: Partner-Empfehlungen':'Eine Hochzeitslocation kennt gute Food Trucks, Floristen und Fotografen. Auf ihrer Anfrageseite zeigt sie diese Partner mit einem Klick an. So findet das Brautpaar alles an einem Ort, und die Partner bekommen neue Kunden.',
+'Partner-Netz Stufe 2: Anfrage an Partner weiterleiten':'Manchmal fragt ein Gast nach etwas, das die Location nicht selbst anbietet, zum Beispiel Essen. Dann schickt die Location die Anfrage mit einem Klick an ihren Partner weiter. Der Gast muss nichts doppelt ausfüllen, und niemand geht leer aus.',
+'Partner-Netz Stufe 3: offenes Verzeichnis mit Nachrichten':'Später können sich alle Betriebe auf clickzauber gegenseitig suchen, anschreiben und buchen, auch wenn sie sich noch nicht kennen. Das lohnt sich erst, wenn in einer Gegend genug Betriebe mitmachen. Sonst sucht man und findet niemanden.',
+'Friseure: Uhrzeit-Termine mit Mitarbeiterwahl':'Ein Friseur bekommt jeden Tag Nachrichten: „Hast du noch was frei?“ Mit dieser Funktion schickt er nur einen Link. Der Kunde sucht sich selbst aus, bei wem und wann. Ohne das müsste der Friseur jeden Termin von Hand ausmachen.',
+'Doppelbuchung technisch ausgeschlossen':'Wenn zwei Leute in derselben Sekunde denselben Termin wollen, darf nur einer ihn bekommen. Sonst stehen zwei Kunden gleichzeitig im Laden oder zwei Hochzeiten am selben Tag.',
+'Cookie-Frage geklärt und aufgeschrieben':'Viele Kunden fragen: Brauche ich wegen clickzauber ein Cookie-Banner? Wir schauen nach und schreiben die Antwort auf. Ohne Antwort wirken wir unsicher.',
+'Support-Zusage festgelegt':'Kunden wollen wissen, wie schnell Sie helfen. Eine feste Zusage beruhigt. Ohne Zusage fragen sie jedes Mal nach.',
+'Statusseite: läuft clickzauber gerade?':'Wenn etwas kaputt ist, sehen es alle auf einer Seite. Und Sie bekommen sofort Bescheid. Sonst merken Sie es erst, wenn ein Kunde sich beschwert.',
+'Barrierefreiheit geprüft':'Auch Menschen, die schlecht sehen oder keine Maus nutzen, sollen das Formular ausfüllen können. Das verlangt seit 2025 auch ein Gesetz.',
+'Testphase statt Pilot-Tarif':'Neue Kunden wollen erst ausprobieren. Eine kurze Gratis-Zeit macht das Ja leichter.',
+'Mehrere Zugänge pro Betrieb':'In vielen Betrieben arbeiten mehrere Leute. Jeder soll sich selbst anmelden können, ohne das Passwort vom Chef.',
+'Automatische Antwort an den Gast':'Der Gast bekommt sofort eine nette Nachricht: Danke, wir melden uns. So weiß er, dass alles angekommen ist.',
+'Englische Fassung des Formulars':'Manche Gäste sprechen kein Deutsch. Dann sehen sie das Formular auf Englisch.',
+'Warteliste bei belegtem Termin':'Ist ein Tag schon weg, kann sich das Paar anstellen. Sagt jemand ab, bekommt es Bescheid. Das gibt es nur bei Locations und ähnlichen Häusern, weil dort ein Tag viel Geld wert ist. Beim Friseur sucht man sich einfach eine andere Uhrzeit.',
+'Kalender in beide Richtungen':'Wer schon einen Kalender hat, will nichts doppelt eintragen. Was dort steht, ist dann auch im Formular belegt.',
+'Zugang an den Kunden übergeben':'Sie bauen das Formular für den Kunden fertig. Dann bekommt er eine E-Mail und legt sein eigenes Passwort fest. Ab da gehört der Zugang ihm, und Sie müssen sein Passwort nie kennen.',
+'Kostenlos bis … für die ersten Kunden':'Die ersten Kunden dürfen drei Monate umsonst testen. Danach läuft das Formular nur weiter, wenn sie einen Tarif wählen. Zwei Wochen vorher bekommen sie eine Erinnerung, damit niemand überrascht wird.',
+'Farben aus einem Foto':'Sie fotografieren den Foodtruck oder den Laden. clickzauber sucht die wichtigsten Farben heraus und färbt das Formular damit ein. So sieht es sofort nach dem Kunden aus, ohne dass jemand Farbcodes kennen muss.',
+'Zeitfenster und mehrere Einsätze pro Tag':'Ein Foodtruck kann mittags und abends arbeiten, eine Location hat vielleicht zwei Räume. Dann soll nicht gleich der ganze Tag blockiert sein.',
+'Preis-Schätzung im Formular':'Der Gast sieht gleich, was es ungefähr kostet. Wer zu wenig Geld hat, fragt gar nicht erst. Das spart Ihren Kunden viel Zeit.',
+'Besichtigungstermin buchen':'Bevor ein Paar bucht, will es die Location sehen. Den Termin dafür sucht es sich selbst aus.',
+'Anzahlung online kassieren':'Wer eine Anzahlung leistet, sagt seltener ab. Und der Betrieb muss keinem Geld hinterherlaufen.',
+'Angebot und Vertrag online unterschreiben':'Statt Papier ausdrucken und zurückschicken unterschreibt der Gast am Handy. Das geht schneller und nichts geht verloren.',
+'Pakete zur Auswahl mit Preis':'Der Gast sieht, was es gibt und was es kostet, und tippt einfach an. Dann muss niemand erst lange erklären.',
+'Nach der Feier um Bewertung bitten':'Zufriedene Gäste schreiben selten von selbst eine Bewertung. Eine freundliche Erinnerung hilft. Mehr Sterne bringen mehr neue Kunden.',
+'Fragen zum Veranstaltungsort (Strom, Wasser, Stellfläche)':'Ein Foodtruck braucht Strom und Platz. Wenn das vorher gefragt wird, gibt es am Tag keine böse Überraschung.',
+'Berufshaftpflicht geklärt':'Wenn durch einen Fehler etwas schiefgeht, zahlt die Versicherung. Ohne sie müssten Sie selbst zahlen.',
+'Betriebs-Trennung & Server-Widgets live':'Jeder Betrieb bekommt seinen eigenen abgeschlossenen Platz auf dem Server, damit niemand die Anfragen eines anderen sehen kann. Und die Widgets liegen jetzt auf dem Server statt nur im Browser — so geht nichts verloren, wenn ein Kunde seinen Verlauf löscht.',
+'Zahlungs-Rücksprung sauber getestet':'Der Kunde speichert seinen Entwurf, bezahlt bei Stripe und kommt danach auf die Seite zurück. Sein Widget muss dann von selbst veröffentlicht sein — sonst hat er Geld bezahlt und sieht nichts.',
+'Preis und Angebot festgelegt':'Es gibt zwei Preise: 79 € im Monat für Friseure, DJs, Fotografen, Makler und Berater, 199 € für Betriebe mit großen Aufträgen wie Food Trucks, Locations oder Solarfirmen. Jeder Betrieb hat genau ein Formular, das hält alles einfach. Wer sein Formular nicht selbst bauen will, zahlt einmal 129 € und Sie richten es ein.',
+'Drei Hochzeitslocations als Erstkunden':'Drei echte Locations, die Sie selbst einrichten und persönlich betreuen. Nicht wegen des Geldes, sondern damit Sie sehen, was die Leute im Cockpit wirklich anklicken.',
+'Konfigurator: Felder frei zusammenstellbar':'Heute sind die Fragen im Widget fest eingebaut. Danach wählen Sie sie aus wie Bausteine: Datum, Zahl, Auswahl, Ja/Nein, Ort, Text. Dann ist ein Widget für eine neue Branche eine halbe Stunde Arbeit statt einer Woche.',
+'Anmeldung ohne Ihre Hilfe schaffbar':'Eine fremde Person soll sich anmelden, das Widget einbauen und eine Anfrage bekommen — ohne Sie einmal zu fragen. Solange Sie helfen müssen, können Sie nicht mehr Kunden annehmen als Sie Stunden haben.',
+'Food-Truck-Widget: Anfrageformular steht':'Ein Truck braucht andere Fragen als eine Location: Portionen statt Gästezahl, Anfahrt, Strom, Stellfläche. Dieses Formular ist der Kern der ganzen Zielgruppe.',
+'Einbau-Anleitung für WordPress, Wix und Jimdo':'Je eine Seite mit Bildern, die zeigt, wo der Code hinkommt. Hier steigen die meisten aus — nicht weil es schwer ist, sondern weil sie nicht wissen, wo sie klicken sollen.',
+'Food Trucks: Anfrage-Seite ohne eigene Website':'Viele Trucks haben nur ein Instagram-Profil. Sie bekommen eine fertige Seite bei clickzauber, deren Link in die Profilbeschreibung passt — dann ist kein Einbau nötig.',
+'Onboarding-Mails stehen (3 Mails)':'Drei Mails, die von selbst rausgehen: Willkommen, Erinnerung an den Einbau nach zwei Tagen, Glückwunsch zur ersten Anfrage. Sie müssen dafür nichts tippen.',
+'Fünf Food Trucks als Testkunden':'Fünf Trucks nutzen es kostenlos und erzählen Ihnen dafür, was sich geändert hat. Die wichtigste Zahl: wie viele Anfragen kamen vorher per Nachricht, wie viele jetzt über das Widget.',
+'10 zahlende Betriebe':'Zehn Betriebe, die wirklich Geld überweisen. Ab hier wissen Sie: nicht nur die Technik läuft, sondern das Angebot stimmt.',
+'Food Trucks: belegte Termine sperren':'Ein Truck kann an einem Tag nur an einem Ort stehen. Belegte Tage werden im Widget grau — das spart mehr Rückfragen als jede andere Funktion.',
+'Widget-Vorlagen für drei Anlässe':'Dasselbe Widget, aber andere Fragen und andere Wörter für Hochzeit, Firmenfeier und Tagung. Der Kunde wählt die Vorlage und ist fast fertig.',
+'Anfahrtspauschale automatisch rechnen':'Aus der Postleitzahl wird die Entfernung, daraus der Preis für die Anfahrt. Genau darüber wird im ersten Telefonat am meisten diskutiert, und kein Mitbewerber löst es.',
+'Cockpit: Anfragen exportieren und Notizen':'Anfragen als Tabelle herunterladen und bei jeder Anfrage etwas dazuschreiben können. Beides wird am häufigsten gewünscht.',
+'Kundenportal für Sie selbst':'Eine geschützte Seite nur für Sie: wer hat sich angemeldet, wie viele Widgets und Anfragen hat er, bezahlt er. Vor allem sehen Sie, wer sich angemeldet und nichts eingebaut hat — genau diese Betriebe kündigen im zweiten Monat, wenn sich niemand meldet.',
+'Preis für Food Trucks festgelegt':'Ein Food Truck zahlt 199 € im Monat, so viel wie eine Location. Ein einziger Auftrag bringt meist ein Vielfaches davon ein, deshalb lohnt es sich für ihn trotzdem.',
+'25 zahlende Betriebe':'Die nächste Stufe nach zehn. Wenn das klappt, wächst es auch ohne dass Sie jeden Kunden persönlich kennen.',
+'Foto & Video: Vorlage im Konfigurator':'Fotografen brauchen Stundenumfang, Zweitfotograf, Bildanzahl und Liefertermin. Weil der Konfigurator dann Bausteine hat, ist das eine Vorlage und kein neues Formular von Hand.',
+'Präsenz in drei Food-Truck-Gruppen':'Die Szene hängt in Facebook- und WhatsApp-Gruppen und redet miteinander. Ein zufriedener Truck bringt fünf weitere — günstiger geht Werbung nicht.',
+'Recht abgeschlossen':'AGB, Datenschutzerklärung und AV-Vertrag einmal von einem Anwalt prüfen lassen. Vor dem größeren Verkauf, weil ein Fehler später viel teurer wird.',
+'Kündigungsquote unter 5 % im Monat':'Von hundert Kunden dürfen höchstens fünf im Monat gehen. Das ist wichtiger als neue Kunden: aus einem Eimer mit Loch wird nie ein voller Eimer.',
+'Drei Fotografen als Testkunden':'Am besten Fotografen, die schon in Ihren Locations arbeiten. Dann empfehlen sich beide Seiten gegenseitig, ohne dass Sie etwas tun müssen.',
+'Jahresabschluss 2026: 40 Betriebe':'Einmal alles zusammenrechnen: wie viele Kunden, welche Mischung, was hat Geld gebracht. Und drei Dinge festlegen, die 2027 anders laufen.',
+'Food Trucks: Menü mit Preisen im Widget':'Pakete pro Person statt freier Preisverhandlung. Der Gast sieht sofort, was achtzig Portionen kosten.',
+'Empfehlungsprogramm für Betriebe':'Wer jemanden vermittelt, zahlt einen Monat nicht. So werben Kunden Kunden, und Sie zahlen kein Werbegeld.',
+'Foto & Video: Paketrechner':'Stunden mal Leistungen ergibt einen sichtbaren Preis. Fotografen verlieren die meisten Anfragen an der Frage „was kostet das denn ungefähr“ — hier liegt ihr Grund zu zahlen.',
+'Zwei Fallbeispiele mit echten Zahlen':'Eine Location und ein Truck erzählen mit echten Zahlen, was sich geändert hat. Ein solches Beispiel überzeugt mehr als zehn Funktionen.',
+'Veranstalter finden Trucks über clickzauber':'Die umgekehrte Richtung: Stadtfeste und Firmen schreiben aus, Trucks bewerben sich. Dann ist clickzauber ein Netz und nicht nur ein Formular.',
+'Empfehlungskreis Location ↔ Fotograf':'Die Location empfiehlt den Fotografen, der Fotograf die Location, beide sparen einen Monat. Wachstum, das ohne Ihr Zutun läuft.',
+'Anbindung an einen Belegungskalender':'Das Widget liest den Kalender des Betriebs. Dann kommen keine Anfragen mehr für Tage, die längst vergeben sind.',
+'Anfragen auf dem Handy beantworten':'Trucks stehen am Grill, nicht am Schreibtisch. Zusage oder Absage in zwei Klicks, Hinweis direkt aufs Telefon.',
+'Widget auf Englisch':'Ein Umschalter im Editor, alle Fragen auf Englisch. Für Locations mit Gästen aus dem Ausland.',
+'Partnerschaft mit einer Hochzeitsmesse':'Ein Nachmittag, dreißig Locations in einem Raum. Stand oder kurzer Vortrag, danach Termine.',
+'Street-Food-Festival als Partner':'Dreißig Trucks an einem Wochenende, alle mit demselben Problem. Vor Ort einrichten statt Flyer verteilen.',
+'Automatische Nachfass-Mails für Anfragen':'Nach drei Tagen ohne Antwort erinnert clickzauber den Betrieb an die Anfrage. Jede gerettete Anfrage ist Geld, das sonst weg wäre.',
+'Foto & Video: Videofelder ergänzen':'Filmlänge, Drohne, Rohmaterial und Liefertermin für den Schnitt. Videografen zahlen mehr und werden seltener umworben als Fotografen.',
+'Erste Aushilfe für Einrichtung und Support':'Zehn Stunden Hilfe pro Woche. Das kauft Ihnen die Zeit für Produkt und Verkauf zurück.',
+'Halbjahresziel: 120 Betriebe':'Bis Mitte 2027 sollen hundertzwanzig Betriebe zahlen. Dann kommt Wachstum aus Empfehlung, Messe und Website — nicht mehr aus Einzelgesprächen.',
+'Vierte Zielgruppe testen: Tagungshäuser':'Fünf Tagungshäuser zum Ausprobieren, gleiches Produkt, andere Felder. Erst starten, wenn Locations, Trucks und Fotografen von selbst laufen.',
+'Selbstbedienung komplett':'Konto anlegen, bezahlen, einbauen, kündigen — alles ohne eine einzige Mail an Sie.',
+'Truck-Flotten und Caterer mit mehreren Fahrzeugen':'Mehrere Trucks in einem Konto, getrennte Kalender, ein Ansprechpartner. Die größeren Betreiber sind das lukrativere Ende der Zielgruppe.',
+'Agentur- und Wiederverkäufer-Modell':'Webdesigner verwalten viele Betriebe in einem Konto. Ein Vertrag bringt zehn Kunden.',
+'Auswertung für Betriebe verbessern':'Anfragen nach Saison, Anlass und Gästezahl sortiert. Das ist der Grund, warum ein Betrieb später für ein größeres Paket zahlt.',
+'Zweites Preispaket veröffentlicht':'Ein größeres Paket für größere Betriebe: mehrere Plätze, Auswertung, Kalender.',
+'Jahresziel 2027: 300 Betriebe':'Mit dreihundert Betrieben trägt sich das Geschäft selbst — Ihre Arbeit und die Aushilfe sind daraus bezahlt.'};
+let _autoNeu=false;
+/* Erklärungen ergänzen und Gemeldetes abhaken — läuft bei jedem Laden. */
+function anreichern(l){
+  l.forEach(x=>{ if(EINFACH[x.titel]) x.einfach=EINFACH[x.titel]; });
+  let schon=[];try{schon=JSON.parse(localStorage.getItem(AUTOSCHL)||'[]')}catch(e){}
+  AUTO_FERTIG.forEach(a=>{
+    if(schon.indexOf(a.t)>=0)return;
+    const m=l.find(x=>x.titel===a.t);if(!m)return;
+    m.fertig=true;(m.teil||[]).forEach(t=>t.ok=true);
+    schon.push(a.t);_autoNeu=true;
+  });
+  if(_autoNeu)try{localStorage.setItem(AUTOSCHL,JSON.stringify(schon))}catch(e){}
+  return l;
+}
+const ZGINFO=[
+ {k:'foodtruck',rang:'Zielgruppe 1',emp:'Menge & Weiterempfehlung',
+  wer:'Rund 3.000 Trucks in Deutschland, meist ein bis zwei Personen, oft ohne eigene Website.',
+  warum:'Sie werden täglich gefragt — per Instagram-Nachricht, WhatsApp und Anruf. Immer dieselben vier Fragen: <b>Habt ihr am Termin frei? Kommt ihr bis zu uns? Was kostet das? Reicht es für so viele Leute?</b> Bisher beantwortet das jeder Truck einzeln am Handy, zwischen zwei Schichten.',
+  widget:'Termin mit belegten Tagen, Ort mit Anfahrt in Kilometern, Portionen, Anlass, Strom vorhanden, Stellfläche, Menü-Paket, Budget.',
+  gegen:'Kleineres Budget als eine Location, Saison von April bis Oktober, viele brauchen eine Anfrage-Seite statt eines Einbau-Codes.',
+  preis:'Projekt: 199 € im Monat oder 1.990 € im Jahr. Einrichtung auf Wunsch 129 €.'},
+ {k:'hochzeit',rang:'Zielgruppe 2',emp:'Umsatz',
+  wer:'Gutshöfe, Scheunen, Eventlocations, Hotels mit Saal.',
+  warum:'Eine einzige Buchung ist vier- bis fünfstellig. Das Widget zahlt sich nach der ersten gewonnenen Anfrage aus, entsprechend leicht fällt die Zahlungsbereitschaft. Hier liegt Ihr fertiger Stand — drei Erstkunden sind in Arbeit.',
+  widget:'Steht bereits: Termin, Gästezahl, Anlass, Budget, Rückrufwunsch.',
+  gegen:'Langsame Entscheidungen, häufig sitzt ein externer Webdesigner zwischen Ihnen und der Website.',
+  preis:'Projekt: 199 € im Monat oder 1.990 € im Jahr.'},
+ {k:'foto',rang:'Zielgruppe 3',emp:'Empfehlung in beide Richtungen',
+  wer:'Hochzeits- und Eventfotografen, Videografen, meist Einzelunternehmer mit Instagram als Schaufenster.',
+  warum:'Sie bekommen dieselben vier Fragen wie ein Truck: <b>Bist du am Termin frei? Wie lange bleibst du? Was ist im Paket? Wann bekommen wir die Bilder?</b> Der eigentliche Grund für diese Zielgruppe ist aber die Nähe zu Zielgruppe 2 — Fotograf und Location stehen bei derselben Hochzeit und empfehlen einander seit Jahren. Wer beide Seiten im Cockpit hat, wächst über deren Empfehlungen statt über Werbung.',
+  widget:'Termin mit Verfügbarkeit, Art des Auftrags, Stundenumfang, Ort und Anfahrt, Zweitfotograf, Lieferumfang (Bildanzahl, Galerie, Album), bei Video Länge, Drohne und Rohmaterial, Liefertermin, Budget.',
+  gegen:'Saison und Wochenendgeschäft, viele arbeiten allein und rechnen knapp. Einige nutzen schon Galerie-Werkzeuge und wollen kein zweites Werkzeug — das Widget muss die Anfrage lösen, nicht die Bildablage.',
+  preis:'Service: 79 € im Monat oder 790 € im Jahr.'},
+ {k:'tagung',rang:'Zielgruppe 4',emp:'ab Mitte 2027',warte:1,
+  wer:'Tagungshäuser, Seminarhotels, Restaurants mit Nebenräumen.',
+  warum:'Höhere Beträge und ganzjährige Nachfrage statt Saison. Braucht aber mehrere Räume, Technik-Felder und Verpflegungsstufen — also echten Produktausbau.',
+  widget:'Raumauswahl, Bestuhlung, Technik, Tagespauschale, Übernachtung.',
+  gegen:'Längere Verkaufswege, oft mehrere Entscheider. Zu früh gestartet kostet es Zeit, die Zielgruppe 1 und 2 brauchen.',
+  preis:'Projekt: 199 € im Monat oder 1.990 € im Jahr.'},
+ {k:'friseur',rang:'Zielgruppe 5',emp:'Menge & tägliche Nutzung',
+  wer:'Friseure, Barbiere, Kosmetik- und Nagelstudios. Meist zwei bis sechs Leute, Termine kommen über WhatsApp und Instagram.',
+  warum:'Jeden Tag dieselbe Nachricht: <b>Hast du noch was frei?</b> Statt hin und her zu schreiben, schickt der Friseur einen Link. Der Kunde wählt Friseur, Tag und Uhrzeit selbst. Wer das einmal nutzt, nutzt es jeden Tag.',
+  widget:'Friseur auswählen, Leistung mit Dauer, freie Uhrzeiten, Anzahl Personen, sofort reserviert.',
+  gegen:'Starke Konkurrenz durch fertige Buchungs-Apps. clickzauber punktet mit einfach, ohne App, ohne Provision pro Termin.',
+  preis:'Service: 79 € im Monat, egal wie viele Mitarbeiter.'},
+ {k:'agentur',rang:'Hebel',emp:'kein eigener Markt',warte:1,
+  wer:'Webdesigner und Agenturen, die Websites für Locations und Gastronomie bauen.',
+  warum:'Ein Vertrag, zehn Betriebe. Der Einbau passiert ohnehin durch sie — besser als Partner denn als Hindernis.',
+  widget:'Mehrere Betriebe in einem Konto, Abrechnung gesammelt.',
+  gegen:'Setzt voraus, dass Einrichtung, Abrechnung und Ihr Kundenportal ohne Sie laufen. Vorher nicht sinnvoll.',
+  preis:'Mengenrabatt statt Einzelpreis.'}
+];
+const VORGABE=[
+ {t:'Bezahlen mit Stripe einschalten',d:'2026-10-24',k:'technik',g:'alle',w:1,n:'Stripe ist eingebaut, aber ausgeschaltet (ZAHLUNG_AKTIV). Testkauf, Pilot-Rabatt 40 %, dann einschalten. Geht Stripe nicht, Ersatzweg wählen (z. B. Rechnung oder anderer Anbieter).',
+  s:['Stripe-Konto und Steuerangaben prüfen','Testkauf im Testmodus, Rücksprung und Webhook','Gutschein 40 % für Pilotbetriebe anlegen','Pilotbetrieben Tarif oder „kostenlos bis“ geben','ZAHLUNG_AKTIV auf 1','Ersatzweg festlegen, falls Stripe nicht geht']},
+ {t:'App für iPhone und Android in den Stores',d:'2026-11-07',k:'technik',g:'alle',w:1,p:['Bezahlen mit Stripe einschalten'],n:'Capacitor-App aus NICHT-HOCHLADEN/app/. In der App keine Preise und kein Bezahlen (Apple-Regel 3.1.3(f)).',
+  s:['Apple-Entwicklerkonto','Google-Play-Konto','Mitteilungen auf beiden Geräten testen','Bilder und Texte für die Stores','Zur Prüfung einreichen']},
+ {t:'Erklärvideo zu den Funktionen',d:'2026-11-14',k:'marketing',g:'alle',n:'Zeigt Betrieben, die schon Kunde sind oder kurz davor, wie das Cockpit im Alltag funktioniert.',
+  s:['Ablauf festlegen: Formular, Anfrage, Cockpit, Termin','Aufnahmen vom Handy','Schnitt mit Untertiteln']},
+ {t:'Verkaufsvideo für Social Media: kurz, mittel, lang',d:'2026-11-21',k:'marketing',g:'alle',w:1,n:'Ein Video in drei Längen: kurz für Reels, mittel für Facebook-Gruppen, lang für die Seite im Funnel.',
+  s:['Kurz (15 bis 30 Sekunden)','Mittel (etwa 1 Minute)','Lang (2 bis 4 Minuten)','Hochformat und Querformat']},
+ {t:'Funnel mit den drei Videos',d:'2026-11-28',k:'marketing',g:'alle',w:1,p:['Verkaufsvideo für Social Media: kurz, mittel, lang'],n:'Kurzes Video weckt Neugier, mittleres erklärt, langes überzeugt. Am Ende steht die 7-Tage-Demo oder ein Termin mit Manuel.',
+  s:['Stufen festlegen: sehen, verstehen, ausprobieren','Seite für das lange Video','Übergang in 7-Tage-Demo oder Termin-Link','Zählen, wer wie weit kommt']},
+ {t:'Reziprozität: erst geben, dann fragen',d:'2026-12-05',k:'marketing',g:'alle',n:'Betriebe bekommen zuerst etwas geschenkt (z. B. ein fertig gebautes Formular zum Testen). Wer etwas bekommen hat, sagt eher Ja.',
+  s:['Festlegen, was verschenkt wird','In Funnel und Ansprache einbauen']},
+ {t:'Marketing starten',d:'2026-12-12',k:'marketing',g:'alle',w:1,p:['Funnel mit den drei Videos'],n:'Werbung schalten und Gruppen bespielen, sobald Bezahlen, App und Funnel stehen.',
+  s:['Budget und Kanäle festlegen','Erste Anzeigen mit dem kurzen Video','Nach zwei Wochen auswerten']},
+ {t:'Geführter Start: Branche, Formular, Cockpit, live',d:'2026-10-02',k:'produkt',g:'alle',w:1,n:'Anmelden → Branche wählen → Seiten ausfüllen (weißes Formular) → Speichern → Aussehen (Weiß oder 7 Stimmungen, 7 Farben, 6 Schriften) → Speichern (Entwurf) → Cockpit der Branche → grüner Schalter „Live schalten“ oben rechts (Angaben, Datenschutz-Link, Zahlung oder Pilotplatz). Links daneben Sprache und Zahnrad, Punkte und Missionen unten rechts.',
+  s:['GitHub: lib/save.js (Entwurf, aktion live), api/stripe-webhook.js, public/w.js (Stil Weiß)','IONOS: Anmelden, Konfigurator, Cockpit, js/cz-design.js, js/cz-live.js, js/cz-globus.js, js/cz-missionen.js, sw.js','Test: neues Konto bis zum Live-Schalten durchspielen','Test: Aussehen wählen und im echten Formular prüfen','Test: Pilotkonto schaltet ohne Zahlung live','Test: Zahlung mit Rücksprung ins Cockpit','Test: Kopfzeile am Handy (Schalter, Sprache, Zahnrad)']},
+ {t:'Fünf Branchen, drei Cockpits',d:'2026-10-02',k:'produkt',g:'alle',w:1,n:'Vorlagen in vier Kategorien (KFZ entfernt am 02.10.). Cockpit-Typ: Termin (Beauty), Projekt (Event), Pipeline (Handwerk, Finanzen) mit Tafel.',
+  s:['js/cz-branchen.js mit allen Vorlagen','Vorlagen-Auswahl nach Kategorien','Pipeline-Tafel im Cockpit','Server ordnet neue Branchen zu (profile.js)','Je eine Vorlage pro Kategorie am Handy durchklicken']},
+ {t:'Seiten zu Vercel umziehen',d:'2026-10-08',k:'technik',g:'alle',w:1,n:'Höchste Priorität. Alle Seiten, Skripte und Bilder von IONOS zu Vercel, unter clickzauber.de. Ein Hochladen über GitHub, danach läuft überall sofort der neue Stand.',
+  s:['Seiten und js/ in den GitHub-Ordner public/ übernehmen','Domain clickzauber.de bei Vercel eintragen, DNS bei IONOS umstellen','.htaccess-Regeln (HTTPS, Zwischenspeicher, Sperren) in vercel.json übertragen','robots.txt und Sperrliste prüfen','Test: Startseite, Anmeldung, Cockpit, Formular auf iPhone und Android','IONOS-Webspace danach leeren']},
+ {t:'Push-Nachricht „Update verfügbar“',d:'2026-10-09',k:'technik',g:'alle',w:1,n:'Höchste Priorität. Knopf auf der Plattform-Seite: schickt allen Konten mit Push eine Nachricht. Ein Tipp öffnet das Cockpit frisch.',
+  s:['Knopf auf der Plattform-Seite mit kurzem Text','Server: Push an alle Konten mit Push-Abo','Tipp auf die Nachricht lädt das Cockpit neu','Mit einem iPhone vom Home-Bildschirm testen']},
+ {t:'Betriebs-Trennung & Server-Widgets live',d:'2026-09-18',k:'technik',g:'alle',w:1,n:'w.js und save.js auf GitHub, SQL in Supabase, drei Seiten auf IONOS. Danach eine Test-Anfrage von Anfang bis Ende durchspielen.',
+  s:['Supabase: 22-betriebe-zusammenfuehren.sql','Supabase: 15-betriebsname.sql + Name setzen','GitHub: public/w.js und lib/save.js','Vercel-Deployment abwarten','IONOS: Editor, Anmelden, Cockpit','Test-Anfrage von Anfang bis Ende']},
+ {t:'Zahlungs-Rücksprung sauber getestet',d:'2026-09-22',k:'technik',g:'alle',n:'Entwurf speichern, bezahlen, Rücksprung mit ?bezahlt=1 — das Widget muss ohne Zutun veröffentlicht sein. Auch der Fall ohne Entwurf.'},
+ {t:'Preis und Angebot festgelegt',d:'2026-09-25',k:'finanzen',g:'alle',z:'2 Preise',n:'Service 79 € (Beauty, DJ, Foto, Floristik, Torten, Makler, Finanzen & Beratung), Projekt 199 € (Food Truck & Catering, Locations, Handwerk & Solar), Einrichtung 129 € einmalig. Ein Formular pro Konto. Startseite, Anmeldung, Cockpit und Verkaufsfolien zeigen dieselben Zahlen.',
+  s:['Preise festlegen: 79 € und 199 €','Jahrespreise: 790 € und 1.990 €','Einrichtung: 129 € einmalig','Ein Formular pro Konto','Länge der Testphase','Startseite, Anmeldung, Cockpit und Verkaufsfolien angleichen','Stripe-Test: Bezahlen mit Einrichtung']},
+ {t:'Drei Hochzeitslocations als Erstkunden',d:'2026-09-30',k:'kunden',g:'hochzeit',z:'3 Betriebe',i:'1',w:1,p:['Betriebs-Trennung & Server-Widgets live'],n:'Persönlich betreut, Widget von Ihnen eingebaut. Ziel ist nicht Umsatz, sondern echtes Verhalten im Cockpit.'},
+ {t:'Konfigurator: Felder frei zusammenstellbar',d:'2026-10-02',k:'produkt',g:'alle',w:1,n:'Die Grundlage für jede weitere Zielgruppe. Feldtypen werden gewählt statt fest verdrahtet: Datum, Zahl, Auswahl, Ja/Nein, Ort, Text. Danach ist ein Food-Truck-Widget eine Vorlage und kein Umbau. An diesem Punkt hängen alle Zielgruppen-Vorlagen.',
+  s:['Feldtypen im Editor auswählbar','Vorlagen als Datei statt festverdrahtet','Food-Truck-Vorlage darauf umstellen','w.js prüft unbekannte Feldtypen ab']},
+ {t:'Anmeldung ohne Ihre Hilfe schaffbar',d:'2026-10-07',k:'produkt',g:'alle',w:1,p:['Betriebs-Trennung & Server-Widgets live'],n:'Eine fremde Person legt ein Konto an, baut das Widget ein und erhält eine Anfrage — ohne Rückfrage an Sie.',
+  s:['Zwei Testpersonen ohne Anleitung beobachten','Abbruchstellen notieren','Texte an den Abbruchstellen nachziehen']},
+ {t:'Food-Truck-Widget: Anfrageformular steht',d:'2026-10-10',k:'produkt',g:'foodtruck',w:1,p:['Konfigurator: Felder frei zusammenstellbar'],n:'Termin, Ort mit PLZ und Anfahrt, Portionen statt Gästezahl, Anlass (Firmenfeier, Stadtfest, Hochzeit, privat), Strom vorhanden, Stellfläche, Menü-Paket, Budget. Vorlage im Konfigurator auswählbar.'},
+ {t:'Einbau-Anleitung für WordPress, Wix und Jimdo',d:'2026-10-12',k:'produkt',g:'alle',n:'Je eine Seite mit Screenshots. Das ist die häufigste Abbruchstelle.'},
+ {t:'Food Trucks: Anfrage-Seite ohne eigene Website',d:'2026-10-16',k:'produkt',g:'foodtruck',w:1,p:['Food-Truck-Widget: Anfrageformular steht'],n:'Viele Trucks haben nur ein Instagram-Profil. Eine fertige Seite unter clickzauber.de/name, Link in die Profil-Beschreibung — kein Einbau-Code nötig. Ohne das fällt die halbe Zielgruppe weg.'},
+ {t:'Onboarding-Mails stehen (3 Mails)',d:'2026-10-18',k:'marketing',g:'alle',n:'Willkommen, Einbau-Erinnerung nach zwei Tagen, erste Anfrage feiern.'},
+ {t:'Fünf Food Trucks als Testkunden',d:'2026-10-22',k:'kunden',g:'foodtruck',z:'5 Trucks',i:'0',w:1,p:['Food Trucks: Anfrage-Seite ohne eigene Website'],n:'Kostenlos gegen Rückmeldung. Wichtigste Frage: wie viele Anfragen kamen vorher per Nachricht, wie viele jetzt über das Widget?'},
+ {t:'10 zahlende Betriebe',d:'2026-10-31',k:'kunden',g:'alle',z:'10 Betriebe',i:'1',w:1,p:['Anmeldung ohne Ihre Hilfe schaffbar','Preis und Angebot festgelegt'],n:'Ab hier ist das Angebot bestätigt, nicht nur die Technik.'},
+ {t:'Food Trucks: belegte Termine sperren',d:'2026-11-05',k:'produkt',g:'foodtruck',p:['Food-Truck-Widget: Anfrageformular steht'],n:'Ein Truck kann an einem Tag nur an einem Ort stehen. Belegte Tage im Widget ausgrauen. Spart mehr Rückfragen als jede andere Funktion.'},
+ {t:'Widget-Vorlagen für drei Anlässe',d:'2026-11-09',k:'produkt',g:'hochzeit',n:'Hochzeit, Firmenfeier, Tagung. Gleiches Widget, andere Fragen und Wortwahl.'},
+ {t:'Anfahrtspauschale automatisch rechnen',d:'2026-11-12',k:'produkt',g:'foodtruck',p:['Food-Truck-Widget: Anfrageformular steht'],n:'Entfernung aus der PLZ, Pauschale je Kilometer im Editor hinterlegt. Der häufigste Streitpunkt im ersten Gespräch, und niemand löst ihn.'},
+ {t:'Cockpit: Anfragen exportieren und Notizen',d:'2026-11-16',k:'produkt',g:'alle',n:'CSV-Export und ein Notizfeld pro Anfrage. Häufigster Wunsch aus den ersten Gesprächen.'},
+ {t:'Kundenportal für Sie selbst',d:'2026-11-24',k:'technik',g:'alle',w:1,p:['10 zahlende Betriebe'],
+  n:'Eine geschützte Seite, die Ihre Supabase-Zahlen lesbar macht: welcher Betrieb, wie viele Widgets, wie viele Anfragen, wann zuletzt aktiv, Zahlungsstand. Die eine Frage, die sie beantworten muss: wer hat sich angemeldet und das Widget nie eingebaut — diese Betriebe kündigen im zweiten Monat, und nur eine Mail von Ihnen verhindert das. Rabatte laufen über Stripe-Gutscheine, nicht über eigene Logik: sonst ziehen Sie Rechnung, Steuer und Storno von Hand nach.',
+  s:['Leseansicht: Betriebe mit Widget- und Anfragezahl','Spalte „Widget eingebaut ja/nein“','Warnliste: 7 Tage angemeldet, nichts eingebaut','Zahlungsstand aus Stripe anzeigen','Gutscheincode je Betrieb hinterlegen','Zugang nur für Ihr Konto']},
+ {t:'Preis für Food Trucks festgelegt',d:'2026-11-20',k:'finanzen',g:'foodtruck',n:'Eigenes, kleineres Paket. Ein Truck verdient anders als eine Location mit 200 Plätzen — ein Preis für beide verliert eine der Zielgruppen.'},
+ {t:'25 zahlende Betriebe',d:'2026-11-30',k:'kunden',g:'alle',z:'25 Betriebe',i:'1',w:1,p:['10 zahlende Betriebe']},
+ {t:'Foto & Video: Vorlage im Konfigurator',d:'2026-11-26',k:'produkt',g:'foto',w:1,p:['Konfigurator: Felder frei zusammenstellbar'],n:'Art des Auftrags, Stundenumfang, Ort, Zweitfotograf, Lieferumfang und Liefertermin. Baut auf dem frei zusammenstellbaren Konfigurator auf — kein neues Formular von Hand.'},
+ {t:'Präsenz in drei Food-Truck-Gruppen',d:'2026-12-04',k:'marketing',g:'foodtruck',w:1,n:'Die Szene ist in Facebook- und WhatsApp-Gruppen organisiert und redet miteinander. Ein zufriedener Truck bringt fünf weitere — das ist der günstigste Vertriebsweg, den Sie haben.'},
+ {t:'Recht abgeschlossen',d:'2026-12-07',k:'recht',g:'alle',n:'AV-Vertrag, AGB und Datenschutz einmal anwaltlich prüfen lassen. Vor dem größeren Verkauf, nicht danach.',
+  s:['AGB prüfen lassen','AV-Vertrag prüfen lassen','Datenschutzerklärung prüfen lassen','Widerrufsrecht für Betriebe klären','Auftragsverarbeiter auflisten (Supabase, Vercel, Stripe)']},
+ {t:'Kündigungsquote unter 5 % im Monat',d:'2026-12-15',k:'finanzen',g:'alle',z:'unter 5 %',n:'Wichtiger als Neukunden: bleiben die Betriebe? Bei Trucks getrennt messen, die Saison verzerrt.'},
+ {t:'Drei Fotografen als Testkunden',d:'2026-12-10',k:'kunden',g:'foto',z:'3 Fotografen',i:'0',p:['Foto & Video: Vorlage im Konfigurator'],n:'Am besten Fotografen, die schon in Ihren Locations arbeiten. Die Empfehlung läuft dann von selbst in beide Richtungen.'},
+ {t:'Jahresabschluss 2026: 40 Betriebe',d:'2026-12-31',k:'finanzen',g:'alle',z:'40 Betriebe',i:'1',w:1,p:['25 zahlende Betriebe'],n:'Angestrebte Mischung: 22 Locations, 12 Food Trucks, 6 Fotografen. Zahlen zusammenstellen, drei Dinge benennen, die 2027 anders laufen.'},
+ {t:'Food Trucks: Menü mit Preisen im Widget',d:'2027-01-15',k:'produkt',g:'foodtruck',n:'Pakete pro Person statt freier Preisverhandlung. Der Gast sieht sofort, was 80 Portionen kosten.'},
+ {t:'Empfehlungsprogramm für Betriebe',d:'2027-01-22',k:'marketing',g:'alle',n:'Ein Freimonat je vermittelter Location, je vermitteltem Truck, je vermitteltem Fotografen.'},
+ {t:'Foto & Video: Paketrechner',d:'2027-01-29',k:'produkt',g:'foto',p:['Foto & Video: Vorlage im Konfigurator'],n:'Stunden mal Leistungen ergibt einen sichtbaren Preis. Fotografen verlieren die meisten Anfragen an der Frage „was kostet das denn ungefähr“ — hier liegt ihr Grund zu zahlen.'},
+ {t:'Zwei Fallbeispiele mit echten Zahlen',d:'2027-02-06',k:'marketing',g:'alle',w:1,n:'Eine Location, ein Food Truck. Anfragen vorher und nachher, ein Zitat, ein Foto. Verkauft besser als jede Funktionsliste.'},
+ {t:'Veranstalter finden Trucks über clickzauber',d:'2027-02-20',k:'kunden',g:'foodtruck',w:1,n:'Die umgekehrte Richtung: Stadtfeste und Firmen schreiben aus, Trucks bewerben sich. Macht aus einzelnen Widgets ein Netz — und den Wechsel zu einem Mitbewerber teuer.'},
+ {t:'Empfehlungskreis Location ↔ Fotograf',d:'2027-03-05',k:'marketing',g:'foto',w:1,p:['Drei Fotografen als Testkunden','Empfehlungsprogramm für Betriebe'],n:'Location empfiehlt Fotografen, Fotograf empfiehlt Location. Beide bekommen einen Freimonat. Ihr günstigster Wachstumsweg, weil er ohne Ihr Zutun läuft.'},
+ {t:'Anbindung an einen Belegungskalender',d:'2027-02-27',k:'technik',g:'alle',n:'Ein Anbieter reicht. Freie Termine im Widget anzeigen statt Anfragen für belegte Tage.'},
+ {t:'Anfragen auf dem Handy beantworten',d:'2027-03-12',k:'produkt',g:'foodtruck',w:1,n:'Trucks stehen am Grill, nicht am Schreibtisch. Cockpit als Handy-Ansicht, Zusage oder Absage in zwei Klicks, Benachrichtigung aufs Telefon.'},
+ {t:'Widget auf Englisch',d:'2027-03-20',k:'produkt',g:'alle',n:'Für Locations mit internationalen Gästen. Umschalter im Editor.'},
+ {t:'Partnerschaft mit einer Hochzeitsmesse',d:'2027-04-10',k:'marketing',g:'hochzeit',n:'Stand oder Vortrag. Ein Nachmittag mit 30 Locations im Raum.'},
+ {t:'Street-Food-Festival als Partner',d:'2027-04-24',k:'marketing',g:'foodtruck',n:'30 Trucks an einem Wochenende, alle mit demselben Problem. Vor Ort einrichten, nicht nur Flyer verteilen.'},
+ {t:'Automatische Nachfass-Mails für Anfragen',d:'2027-04-30',k:'produkt',g:'alle',n:'Nach drei Tagen ohne Antwort erinnert clickzauber den Betrieb. Direkt messbarer Nutzen.'},
+ {t:'Foto & Video: Videofelder ergänzen',d:'2027-05-07',k:'produkt',g:'foto',n:'Filmlänge, Drohne, Rohmaterial, Schnitt-Liefertermin. Videografen zahlen mehr und sind seltener umworben als Fotografen.'},
+ {t:'Erste Aushilfe für Einrichtung und Support',d:'2027-05-20',k:'finanzen',g:'alle',n:'Zehn Stunden pro Woche. Kauft Ihnen die Zeit für Produkt und Verkauf zurück.'},
+ {t:'Halbjahresziel: 120 Betriebe',d:'2027-06-30',k:'finanzen',g:'alle',z:'120 Betriebe',i:'1',w:1,p:['Jahresabschluss 2026: 40 Betriebe'],n:'Angestrebt: 55 Locations, 40 Food Trucks, 20 Fotografen, 5 sonstige. Wachstum kommt aus Empfehlung, Messe und Website — nicht mehr aus Einzelgesprächen.'},
+ {t:'Vierte Zielgruppe testen: Tagungshäuser',d:'2027-07-31',k:'kunden',g:'tagung',z:'5 Testbetriebe',n:'Fünf Testbetriebe, gleiches Produkt, andere Felder. Erst starten, wenn Locations, Trucks und Fotografen von selbst laufen.'},
+ {t:'Selbstbedienung komplett',d:'2027-08-31',k:'produkt',g:'alle',w:1,p:['Kundenportal für Sie selbst','Anmeldung ohne Ihre Hilfe schaffbar'],n:'Konto, Zahlung, Einbau, Kündigung — ohne eine einzige Mail an Sie.'},
+ {t:'Truck-Flotten und Caterer mit mehreren Fahrzeugen',d:'2027-09-15',k:'produkt',g:'foodtruck',n:'Mehrere Trucks in einem Konto, getrennte Kalender, ein Ansprechpartner. Die größeren Betreiber sind das lukrativere Ende der Zielgruppe.'},
+ {t:'Agentur- und Wiederverkäufer-Modell',d:'2027-09-30',k:'kunden',g:'agentur',p:['Selbstbedienung komplett'],n:'Webdesigner verwalten mehrere Betriebe in einem Konto. Ein Vertrag, zehn Locations.'},
+ {t:'Auswertung für Betriebe verbessern',d:'2027-10-22',k:'produkt',g:'alle',n:'Anfragen nach Saison, Anlass und Gästezahl. Grundlage für ein teureres Paket.'},
+ {t:'Zweites Preispaket veröffentlicht',d:'2027-11-15',k:'finanzen',g:'alle',w:1,n:'Größere Locations und Flotten zahlen mehr für Mehrplatz, Auswertung und Kalender.'},
+ {t:'Jahresziel 2027: 300 Betriebe',d:'2027-12-31',k:'finanzen',g:'alle',z:'300 Betriebe',i:'1',w:1,p:['Halbjahresziel: 120 Betriebe'],n:'Tragfähiges Geschäft: die laufenden Einnahmen decken Ihre Arbeit und die Aushilfe.'},
+ {t:'Zugang an den Kunden übergeben',d:'2026-09-30',k:'produkt',g:'alle',w:1,n:'Im Vertriebs-Cockpit die Adresse des Kunden eintragen. Er bekommt einen Link und legt sein Passwort selbst fest. Formular und Anfragen bleiben.',
+  s:['Übergabe im Vertriebs-Cockpit','Willkommens-Mail mit Passwort-Link','Link auch per WhatsApp schickbar']},
+ {t:'Kostenlos bis … für die ersten Kunden',d:'2026-09-30',k:'finanzen',g:'alle',w:1,n:'Datum im Vertriebs-Cockpit setzen, z. B. drei Monate. Bucht der Kunde vorher einen Tarif, wird erst danach abgebucht. Ohne Tarif wird das Formular nach Ablauf ausgeblendet.',
+  s:['Datum setzen und aufheben','Erinnerung 14 Tage vorher','Nach Ablauf ohne Tarif ausblenden','AGB ergänzt']},
+ {t:'Farben aus einem Foto',d:'2026-10-02',k:'produkt',g:'foodtruck',w:1,n:'Im Editor unter „Eigenes Design“: Foto aufnehmen, die kräftigste Farbe wird Knopffarbe, die Fläche eine helle Abtönung davon. Das Foto bleibt im Handy.'},
+ {t:'Friseure: Uhrzeit-Termine mit Mitarbeiterwahl',d:'2026-10-20',k:'produkt',g:'friseur',w:1,n:'Der Kunde bekommt per WhatsApp einen Link, wählt Friseur (z. B. Ilmir oder Patrick), Tag und freie Uhrzeit und reserviert direkt. Bei zwei Personen zwei Termine. Belegte Zeiten sind nicht wählbar.',
+  s:['Mitarbeiter mit Arbeitszeiten anlegen','Leistungen mit Dauer anlegen','Freie Uhrzeiten im Widget anzeigen','Anzahl Personen = Anzahl Termine','Reservierung sofort sperren, keine Doppelbuchung','Kunde bekommt Bestätigung per E-Mail','Termine im Cockpit je Mitarbeiter sehen und absagen']},
+ {t:'Tipp auf Push öffnet die Anfrage',d:'2026-10-06',k:'produkt',g:'alle',w:1,n:'Tipp auf die Nachricht am iPhone öffnet eine Karte mit Annehmen, Ablehnen und „Andere Zeit vorschlagen“. Freie Zeiten desselben Mitarbeiters als Knöpfe. Der Gast bestätigt per Mail oder WhatsApp.',
+  s:['Karte mit Annehmen und Ablehnen','Andere Zeit vorschlagen mit freien Zeiten','WhatsApp-Text, wenn keine E-Mail da ist','Am iPhone mit echter Nachricht testen']},
+ {t:'Echtzeit-Kalender: Google, Outlook, iCloud',d:'2026-10-15',k:'technik',g:'alle',w:1,n:'clickzauber schreibt jeden Termin selbst in den Kalender des Betriebs, wenige Sekunden nach jeder Änderung. iCloud mit App-Passwort, Google und Outlook mit Anmeldung. Das Kalender-Abo bleibt als Alternative.',
+  s:['sql/48 in Supabase einspielen','KALENDER_SCHLUESSEL in Vercel setzen','iCloud mit App-Passwort testen','Google-Projekt anlegen und auf „In Produktion“ stellen','Microsoft-App registrieren','Prüfung bei Google beantragen']},
+ {t:'Cockpit passt sich der Formular-Art an',d:'2026-10-06',k:'produkt',g:'alle',w:1,n:'Oben links wählt man das Formular. Termin-Betriebe (Friseur, Nagelstudio, Wimpern, Kosmetik) sehen Termine statt Angebote, Aufträge (Catering, Food Truck, Foto) keine Räume und keine Warteliste, Locations alles.',
+  s:['Art je Formular vom Server','Umschalter oben links','Startseite für Termin-Betriebe']},
+ {t:'Beispiel-Cockpit mit drei Formular-Arten',d:'2026-10-06',k:'marketing',g:'alle',w:1,n:'Auf der Startseite zeigt das Beispiel-Cockpit die Formularwahl: Hochzeitslocation, Catering und Friseur, jeweils mit eigenen Beispieldaten. Beim Friseur sind die neuen Funktionen zu sehen (Haarlänge, Kundennotiz, Beratung).',
+  s:['Formularwahl im Beispiel-Cockpit','Beispieldaten für Catering und Friseur','Neue Friseur-Funktionen im Beispiel']},
+ {t:'Ein Kalender-Abo für alle Formulare',d:'2026-10-06',k:'produkt',g:'alle',w:1,n:'Eine Abo-Adresse je Konto statt je Formular. Probe-Termin „clickzauber ist verbunden“ und Knopf „Ist da“ zeigen, dass es klappt.',
+  s:['sql/46 in Supabase einspielen','Probe-Termin prüfen','Mit Apple, Google und Outlook testen']},
+ {t:'Nagelstudio und Wimpern als Vorlagen',d:'2026-10-10',k:'produkt',g:'alle',w:1,n:'Eigene Vorlagen für Nagelstudio und Wimpern, mit Uhrzeit-Terminen wie beim Friseur.',
+  s:['Vorlage Nagelstudio','Vorlage Wimpern','Mit je einem Betrieb testen']},
+ {t:'Potenzielle Kunden im Vertrieb',d:'2026-10-08',k:'kunden',g:'alle',w:1,n:'Neuer Reiter in der Vertriebsseite: Betriebe von Lindau bis Ravensburg (Locations, Friseure, Kosmetik, Catering, Food Trucks, Foto, Tagung) mit Ort, Telefon und Website. Der Stand je Betrieb wird auf dem Gerät gemerkt.',
+  s:['Liste durchgehen','Erste zehn Betriebe anrufen','Stand pflegen']},
+ {t:'Missionen und Trophäen',d:'2026-10-08',k:'produkt',g:'alle',w:1,n:'Aufgaben für die Einrichtung (z. B. Kalender verbinden, Formular einbauen). Ob eine Mission erfüllt ist, kommt aus den echten Daten. Verdiente Trophäen bleiben. Vernetzen ist gesperrt, bis die Einrichtung fertig ist.',
+  s:['Missionen aus echten Daten','Trophäen mit Feier','Vernetzen erst nach der Einrichtung']},
+ {t:'Vertrauenspunkte, Abzeichen und Rangliste',d:'2026-10-12',k:'produkt',g:'alle',w:1,n:'Betriebe sammeln Vertrauenspunkte (schnelle Antworten, echte Abschlüsse, jede Gast-Adresse zählt einmal). Neun Stufen von Bronze bis Löwenkristall. Rangliste nach Gebiet und Branche mit Podest und Top 100.',
+  s:['sql/44 in Supabase einspielen','Punkte nachts aktualisieren','Rangliste mit Filtern','Abzeichen im Profil']},
+ {t:'Belohnungen zu den Abzeichen',d:'2026-10-15',k:'finanzen',g:'alle',w:1,n:'Rabatt je Stufe als einziger Stufen-Vorteil. Dazu Glücksanfragen, Aufstiegs-Nachricht, Monatssieger, Sondertrophäen, Urkunde, Freunde werben. Siegel für die eigene Website, das mitwächst.',
+  s:['sql/45 in Supabase einspielen','Rabatt bei Stripe prüfen','Siegel auf einer Test-Website einbauen']},
+ {t:'Pilotphase: vier kostenlose Plätze',d:'2026-09-28',k:'finanzen',g:'alle',w:1,n:'Die nächsten vier neuen Konten bekommen einen Pilotplatz und nutzen clickzauber kostenlos ohne Formular-Grenze. Ab dem fünften gilt der normale Tarif. Plätze lassen sich auf der Plattform-Seite von Hand vergeben oder entziehen.',
+  s:['sql/43 in Supabase einspielen','PILOT_PLAETZE in Vercel (Standard 4)','Zahlung vor dem Einschalten für Pilotbetriebe regeln']},
+ {t:'Neue Formular-Designs',d:'2026-10-06',k:'produkt',g:'alle',w:1,n:'Zwei neue Designs: „Dunkel Minimal“ und „Klar & hell“. Absendername und neue Designs für alle Tarife.',
+  s:['Beide Designs im Editor','Auf Handy und Rechner prüfen']},
+ {t:'Eigene Adresse für Kundenlinks',d:'2026-10-06',k:'technik',g:'alle',w:1,n:'Links in WhatsApp und Mail beginnen mit termin.clickzauber.de statt clickzauber-api.vercel.app. Vercel → Domains, IONOS → CNAME, Vercel-Variable GAST_HOST.',
+  s:['Domain bei Vercel hinzufügen','CNAME bei IONOS eintragen','GAST_HOST setzen, Redeploy']},
+ {t:'Passt nicht: gleich andere Zeit wählen',d:'2026-10-06',k:'produkt',g:'friseur',w:1,n:'Tippt der Kunde bei einem Vorschlag „Passt nicht“, sieht er sofort die freien Zeiten derselben Person. Die gewählte Zeit kommt als Terminwunsch ins Cockpit. Nur „Keine davon passt“ sagt ab.',
+  s:['Freie Zeiten auf der Seite','Gewählte Zeit als Wunsch, Push an den Betrieb']},
+ {t:'Frist zum Absagen',d:'2026-10-06',k:'produkt',g:'friseur',w:1,n:'Unter Leistungen & Regeln: Kunden sagen selbst ab oder buchen um bis 1 Stunde vorher (einstellbar). Danach zeigt die Seite „Anrufen“ und „Per WhatsApp schreiben“ mit der Nummer des Betriebs. Jede Absage meldet clickzauber sofort per Push, kurzfristige als „Kurzfristig abgesagt“.',
+  s:['Einstellung im Cockpit','Anrufen und WhatsApp kurz vor Beginn','Push bei jeder Absage']},
+ {t:'Nicht erschienen merken',d:'2026-10-06',k:'produkt',g:'friseur',w:1,n:'Nach Beginn steht am Termin „Nicht erschienen“. clickzauber zählt es bei der Person mit. Bei der nächsten Buchung steht „1× nicht erschienen“ am Termin und in der Karte. Lässt sich zurücknehmen.',
+  s:['Knopf in der Terminliste','Zähler bei der Person','Hinweis bei der nächsten Buchung']},
+ {t:'Fertig-Seite zeigt die Handynummer',d:'2026-10-06',k:'produkt',g:'friseur',w:1,n:'Nach dem Absenden steht im Formular: „Die Antwort bekommen Sie per WhatsApp an 0176 …“ in allen sieben Sprachen.',
+  s:['Satz in 7 Sprachen']},
+ {t:'Erinnerung am Vortag per WhatsApp',d:'2026-10-06',k:'produkt',g:'friseur',w:1,n:'Im Cockpit unter Kalender → Uhrzeit-Termine: „Morgen erinnern“ zeigt alle festen Termine von morgen mit je einem WhatsApp-Knopf und fertigem Text (mit Link zum Absagen oder Umbuchen). Erinnerte Kunden bekommen ein Häkchen. Einmal täglich kommt eine Push-Nachricht „Morgen 6 Termine“.',
+  s:['sql/51 einspielen','Liste mit WhatsApp-Knöpfen','Häkchen auf allen Geräten','Push-Nachricht am Vortag']},
+ {t:'Kunde bucht selbst um',d:'2026-10-06',k:'produkt',g:'friseur',w:1,n:'Im Link der Bestätigung: „Andere Zeit wählen“ zeigt freie Zeiten desselben Mitarbeiters. Die neue Zeit kommt als Anfrage ins Cockpit, der bisherige Termin bleibt fest, bis der Betrieb annimmt. Lehnt er ab, bleibt alles beim Alten, und der Kunde erfährt das.',
+  s:['Freie Zeiten auf der Antwort-Seite','Neue Zeit als Anfrage, alter Termin bleibt','Annehmen gibt den alten Termin frei','Ablehnen: alter Termin bleibt']},
+ {t:'Warnung bei geänderten Arbeitszeiten',d:'2026-10-06',k:'produkt',g:'friseur',w:1,n:'Nach dem Speichern von Mitarbeitern oder Arbeitszeiten listet das Cockpit alle künftigen Termine auf, die nicht mehr passen, mit Knopf zum Öffnen. Mitarbeiter mit künftigen Terminen werden nicht gelöscht, nur ausgeblendet.',
+  s:['Liste nach dem Speichern','Nicht löschen, nur ausblenden']},
+ {t:'Doppelte Anfragen verhindern',d:'2026-10-06',k:'technik',g:'alle',w:1,n:'Schickt jemand dasselbe Formular binnen 3 Minuten zweimal ab (gleiche Kontaktdaten, gleicher Inhalt oder gleiche Uhrzeit), entsteht nur eine Anfrage.',
+  s:['Prüfung beim Absenden']},
+ {t:'Kundentexte in allen Formularsprachen',d:'2026-10-06',k:'produkt',g:'friseur',w:1,n:'WhatsApp-Texte, SMS und die Antwort-Seite für Kunden gibt es auf Deutsch, Englisch, Albanisch, Französisch, Italienisch, Spanisch und Türkisch, passend zur Sprache, in der der Kunde das Formular ausgefüllt hat.',
+  s:['Texte in 7 Sprachen','Sprache aus der Anfrage','Muttersprachler gegenlesen lassen']},
+ {t:'Termin-Abläufe ohne Lücken',d:'2026-10-06',k:'produkt',g:'friseur',w:1,n:'Alle Wege eines Termins durchgeprüft und geschlossen: WhatsApp öffnet sich direkt mit fertigem Text; danach fragt das Cockpit „Nachricht gesendet?“, sonst steht „Kunde noch nicht informiert“ in der Liste. Absagen und Passt-nicht führen zum Formular mit freien Zeiten. Kunde kann feste Termine selbst absagen. Nachts: abgelaufene Anfragen und Vorschläge aufräumen, an offene Antworten erinnern. Zwei Geräte können einen Termin nicht doppelt bearbeiten. Handynummer im Termin-Formular Pflicht, E-Mail freiwillig. Warnung, wenn Verlängern über den Feierabend geht.',
+  s:['sql/50 in Supabase einspielen','WhatsApp direkt nach Annehmen, Ablehnen, Absagen','Nachricht gesendet? mit Merker in der Liste','Link zum Formular nach Absage','Kunde sagt selbst ab (mit Rückfrage)','Nachts aufräumen und erinnern','Doppelte Bearbeitung ausgeschlossen','Handynummer Pflicht bei Terminen','Mit Kate einen Tag lang testen']},
+ {t:'SMS an Kunden bei Zusage, Absage und neuer Uhrzeit',d:'2026-10-06',k:'produkt',g:'friseur',w:1,n:'Zurückgestellt: Manuel will vorerst nichts für SMS bezahlen. Ohne SMS_KEY läuft alles über WhatsApp. Nur für Uhrzeit-Termine (Friseur, Nagelstudio, Wimpern, Kosmetik). Beim Tipp auf Annehmen, Ablehnen, Absagen oder Andere Zeit geht sofort eine SMS an die Handynummer des Kunden, dazu eine Mail, wenn er eine Adresse angegeben hat. Vor Ablehnen und Absagen fragt das Cockpit nach und zeigt, wer welche Nachricht bekommt. Auch Früher Schluss und Dauert länger schicken SMS. Anbieter: seven.io, Vercel-Variable SMS_KEY.',
+  s:['Konto bei seven.io anlegen, Guthaben laden','SMS_KEY bei Vercel eintragen','Sicherheitsabfrage vor Ablehnen und Absagen','Absage-Mail für bestätigte Termine','Antwort-Link: erst Seite mit Knöpfen, dann speichern','Datenschutzerklärung um seven.io ergänzen','Mit Kate testen']},
+ {t:'Food Trucks: Mischung aus Anfrage und Termin',d:'2026-11-15',k:'produkt',g:'foodtruck',w:1,n:'Später getrennt planen: Food Trucks brauchen Teile der Termin-Funktionen (schnelle Zusage, Absage, SMS), aber Anfragen mit Datum, Gästezahl und Ort wie bei Veranstaltungen.',
+  s:['Mit einem Food Truck klären, was gebraucht wird','Umfang festlegen']},
+ {t:'Früher Schluss und spontan frei',d:'2026-10-06',k:'produkt',g:'friseur',w:1,n:'Im Cockpit (Kalender → Uhrzeit-Termine) und in der Push-Karte: mit einem Tipp den Rest des Tages oder einen ganzen Tag sperren, für alle oder eine Person. Wer in dieser Zeit schon einen Termin hat, bekommt den nächsten freien Termin bei derselben Person vorgeschlagen, per Mail sofort, sonst per WhatsApp mit einem Tipp.',
+  s:['Knopf im Kalender und in der Push-Karte','Vorschläge für betroffene Kunden','Sperre aufheben über Absagen','Mit Kate testen']},
+ {t:'Wartungsmodus für die Plattform',d:'2026-10-06',k:'technik',g:'alle',w:1,n:'Schalter auf der Plattform-Seite (Überblick). Während der Wartung sehen alle Kunden im Cockpit und im Konfigurator einen Hinweis und können nichts ändern. Formulare, Anfragen und Terminantworten der Gäste laufen weiter. Auf Wunsch Rundmail an alle.',
+  s:['sql/49 in Supabase einspielen','Schalter testen','Vor jedem größeren Hochladen einschalten']},
+ {t:'Immer die neueste Version',d:'2026-10-06',k:'technik',g:'alle',w:1,n:'Seiten, Skripte und das Formular werden bei jedem Aufruf kurz auf Neues geprüft, statt bis zu einer Woche alt aus dem Zwischenspeicher zu kommen. Nach dem Hochladen lädt sich die App einmal selbst neu.',
+  s:['.htaccess hochladen','sw.js hochladen','vercel.json mit neuen Zwischenspeicher-Zeiten']},
+ {t:'Mitarbeiter-Namen aus dem Konfigurator',d:'2026-10-02',k:'produkt',g:'friseur',w:1,n:'Namen, die im Konfigurator geändert werden, übernimmt das Cockpit beim Speichern. Platzhalter wie „Mitarbeiter 1“ ersetzt der echte Name. Im Konfigurator entfernte Mitarbeiter werden ausgeblendet, alte Termine bleiben.',
+  s:['Beim Speichern übernehmen','Platzhalter ersetzen','Mit Kate prüfen']},
+ {t:'Terminwunsch: nur Zusage, Absage oder andere Zeit',d:'2026-10-02',k:'produkt',g:'friseur',w:1,n:'Bei Termin-Betrieben zeigt das Anfrage-Blatt keine Angebote, Anzahlungen und Antwort-Mails mehr, sondern nur Annehmen, Ablehnen und andere Uhrzeit. Im Kalender-Eintrag steht ein Link direkt zur Anfrage.',
+  s:['Angebot, Anzahlung und Antworten ausgeblendet','Link zur Anfrage im Kalender-Eintrag','Mit Kate und Ahmad prüfen']},
+ {t:'Friseure: Termine, die länger dauern',d:'2026-10-24',k:'produkt',g:'friseur',w:1,p:['Friseure: Uhrzeit-Termine mit Mitarbeiterwahl'],n:'Aus dem Gespräch mit einem Friseur: Silber bei roten Farbresten dauert 3 statt 1,5 Stunden, sehr dickes Haar braucht lange zum Föhnen, und er will jeden Kunden erst ansehen. Dafür: Termin im Cockpit verlängern (Folgetermine rücken nach, Kunden bekommen Bescheid), Notiz am Kunden mit Extra-Zeit, Frage nach Haarlänge im Formular, Leistungen „nur nach Beratung“ mit Fotos.',
+  s:['sql/47 in Supabase einspielen','Dauert länger: +15 bis +90 Min., Folgetermine rücken nach','Notiz am Kunden mit Extra-Zeit','Haarlänge im Formular mit Zuschlag je Leistung','Nur nach Beratung: Fotos, Wunschtag, Vorschlag mit Dauer','Mit dem Friseur einen Tag lang testen']},
+ {t:'Doppelbuchung technisch ausgeschlossen',d:'2026-10-14',k:'technik',g:'alle',w:1,n:'Die Datenbank lässt einen Zeitraum nur einmal zu. Zwei gleichzeitige Klicks: einer gewinnt, der andere bekommt „gerade vergeben“.',
+  s:['Eindeutige Sperre in der Datenbank','Freundliche Meldung im Widget']},
+ {t:'Cookie-Frage geklärt und aufgeschrieben',d:'2026-10-08',k:'recht',g:'alle',n:'Prüfen, was das Widget im Browser des Gastes speichert. Ergebnis als klarer Satz für Kunden.',
+  s:['Widget-Speicher prüfen','Antwort-Text für Kunden','Falls nötig: Widget ohne Speicher']},
+ {t:'Support-Zusage festgelegt',d:'2026-10-06',k:'kunden',g:'alle',n:'Zum Beispiel: werktags Antwort innerhalb von 24 Stunden. Steht auf der Startseite und in den AGB.'},
+ {t:'Statusseite: läuft clickzauber gerade?',d:'2026-10-26',k:'technik',g:'alle',n:'Eine öffentliche Seite, die zeigt, ob alles läuft. Plus eine Nachricht an Sie, wenn etwas ausfällt.',
+  s:['Überwachung einrichten','Statusseite verlinken']},
+ {t:'Barrierefreiheit geprüft',d:'2026-11-20',k:'recht',g:'alle',n:'Widget mit Tastatur und Vorleseprogramm testen, Kontraste prüfen, Erklärung zur Barrierefreiheit veröffentlichen.',
+  s:['Tastatur-Test','Vorleseprogramm-Test','Erklärung veröffentlichen']},
+ {t:'Testphase statt Pilot-Tarif',d:'2026-10-09',k:'finanzen',g:'alle',n:'Zum Beispiel 14 Tage kostenlos, danach Abo. Ersetzt den abgeschalteten Pilot-Tarif.'},
+ {t:'Mehrere Zugänge pro Betrieb',d:'2026-11-28',k:'produkt',g:'alle',w:1,n:'Chef und Mitarbeiter mit eigenem Login, alle sehen dieselben Anfragen.',
+  s:['Mitarbeiter einladen','Rechte: alles sehen / nur eigene Termine']},
+ {t:'Automatische Antwort an den Gast',d:'2026-11-02',k:'produkt',g:'alle',n:'Eigener Text, der sofort nach dem Absenden an den Gast geht.'},
+ {t:'Englische Fassung des Formulars',d:'2026-12-05',k:'produkt',g:'alle',n:'Das Widget schaltet nach Browsersprache um. Eigene Fragen lassen sich zweisprachig eintragen.'},
+ {t:'Warteliste bei belegtem Termin',d:'2026-12-10',k:'produkt',g:'alle',n:'Gast trägt sich ein, wird benachrichtigt, wenn der Tag frei wird. Nur für Locations und ähnliche Häuser, nicht für Friseur, Nagelstudio, Food Truck oder Foto.'},
+ {t:'Kalender in beide Richtungen',d:'2027-01-20',k:'produkt',g:'alle',n:'Termine aus Google oder Outlook erscheinen in clickzauber als belegt.',
+  s:['Google-Kalender verbinden','Outlook verbinden']},
+ {t:'Zeitfenster und mehrere Einsätze pro Tag',d:'2026-12-15',k:'produkt',g:'foodtruck',n:'Vormittag, Nachmittag, Abend getrennt buchbar. Mehrere Fahrzeuge oder Räume mit eigenem Kalender.',
+  s:['Zeitfenster im Editor','Mehrere Kalender pro Betrieb']},
+ {t:'Preis-Schätzung im Formular',d:'2026-12-20',k:'produkt',g:'alle',w:1,n:'Aus Gästezahl, Monat und Auswahl eine grobe Summe, die der Gast sofort sieht.',
+  s:['Preisregeln im Editor','Anzeige im Widget','Summe in der Anfrage']},
+ {t:'Besichtigungstermin buchen',d:'2027-01-10',k:'produkt',g:'hochzeit',n:'Paare wählen direkt einen Termin, um sich die Location anzusehen. Baut auf den Uhrzeit-Terminen auf.'},
+ {t:'Anzahlung online kassieren',d:'2027-02-01',k:'produkt',g:'alle',w:1,n:'Nach der Zusage zahlt der Gast eine Reservierungsgebühr per Karte. Geld geht direkt an den Betrieb.',
+  s:['Stripe Connect für Betriebe','Anzahlung im Cockpit auslösen']},
+ {t:'Angebot und Vertrag online unterschreiben',d:'2027-02-20',k:'produkt',g:'foto',n:'Angebot als PDF aus der Anfrage, digital unterschreiben, direkt mit Anzahlung.'},
+ {t:'Pakete zur Auswahl mit Preis',d:'2026-12-01',k:'produkt',g:'foto',n:'Fotografen, DJs und Friseure zeigen Pakete oder Leistungen mit Preis zum Anklicken.'},
+ {t:'Nach der Feier um Bewertung bitten',d:'2027-02-10',k:'marketing',g:'alle',n:'Automatische Nachricht ein paar Tage nach dem Termin mit Link zu Google-Bewertungen.'},
+ {t:'Fragen zum Veranstaltungsort (Strom, Wasser, Stellfläche)',d:'2026-11-08',k:'produkt',g:'foodtruck',n:'Fertige Fragen für Foodtrucks und Caterer.'},
+ {t:'Partner-Netz: Betriebsprofil mit Bildern',d:'2026-12-01',k:'produkt',g:'alle',w:1,p:['25 zahlende Betriebe'],n:'Eigene Profilseite je Betrieb wie bei Facebook oder LinkedIn: Titelbild (z. B. der Food Truck), Foto der Person, Branche, Ort, Umkreis, kurzer Text, Bilder. „Gefällt mir“ für Profil und Bilder, keine Kommentare. Nur für angemeldete Betriebe sichtbar.',
+  s:['Titelbild und Profilfoto hochladen','Branche, Ort, Umkreis, Text','Bildergalerie (bis 12 Bilder)','Bilder verkleinern und sicher speichern','„Gefällt mir“ für Profil und Bilder','Keine Kommentarfunktion','AGB: Bildrechte liegen beim Betrieb','Bild melden und entfernen']},
+ {t:'Partner-Netz: Vernetzen im Cockpit',d:'2026-12-05',k:'produkt',g:'alle',w:1,p:['Partner-Netz: Betriebsprofil mit Bildern'],n:'Neuer Bereich „Vernetzen“ im Cockpit, nur für angemeldete Betriebe. Suche nach Branche und Region, zum Beispiel: Location sucht Food Truck. „Vernetzen“ schickt eine Anfrage, der andere bestätigt. Im Monatspreis enthalten, keine Provision, kein Geld läuft über clickzauber.',
+  s:['Suche nach Branche und Region','Vernetzen: Anfrage senden und bestätigen','Liste „Meine Kontakte“','Betrieb kann sich im Bereich Vernetzen ausblenden','AGB: Nutzungsregeln für das Netz']},
+ {t:'Partner-Netz: frei oder belegt beim Weiterleiten',d:'2027-01-20',k:'produkt',g:'alle',w:1,p:['Partner-Netz Stufe 2: Anfrage an Partner weiterleiten'],n:'Beim Weiterleiten zeigt das Cockpit je Partner „Frei“ oder „Belegt“ am Wunschtermin, aus gesperrten Tagen, Kalender-Terminen und festen Buchungen. Freie Partner stehen oben.',
+  s:['Abfrage frei/belegt in /api/netz','Anzeige im Weiterleiten','Mit zwei Partnern testen']},
+ {t:'Partner-Netz: Empfehlungs-Zähler',d:'2027-01-20',k:'produkt',g:'alle',w:1,p:['Partner-Netz Stufe 1: Partner-Empfehlungen'],n:'Zähler oben in „Vernetzen“: Gäste von Partnern bekommen und Anfragen an Partner gegeben, jeweils dieses Jahr. Gezählt über Weiterleitungen, Pakete und Klicks auf „Unsere Partner“ (?von=).',
+  s:['Herkunft bei Partner-Links merken','Zähler im Cockpit','Im Monatsbericht erwähnen']},
+ {t:'Privat-Zugang für Gäste',d:'2027-04-01',k:'produkt',g:'alle',w:1,p:['Partner-Netz: Betriebsprofil mit Bildern'],n:'Bei der Anmeldung zuerst die Frage: Betrieb oder privat? Privatpersonen (z. B. Brautpaare) sehen die Profile, Bilder und Beiträge der Betriebe, markieren „Gefällt mir“ und fragen direkt an. Kein Cockpit, keine Widgets, kostenlos.',
+  s:['Anmeldung: Frage „Betrieb oder privat“','Privat-Konto ohne Cockpit und Widgets','Betriebe in der Nähe ansehen und merken','Anfrage direkt aus dem Profil','Datenschutz: private Daten getrennt halten','AGB und Datenschutz ergänzen']},
+ {t:'Aushilfe-Börse: Personal kurzfristig finden',d:'2027-05-01',k:'produkt',g:'alle',w:1,p:['Partner-Netz: Nachrichten zwischen Betrieben'],n:'Fällt der Koch aus, sucht der Betrieb im Netzwerk Ersatz: Aushilfsköche, Service, DJ, Küche zum Mieten. Anbieter tragen ein, was sie anbieten und wann sie frei sind. Anfrage und Absprache über die Nachrichten, keine Provision.',
+  s:['Kategorie „Aushilfe & Dienstleistung“ im Profil','Gesuch „Wir brauchen kurzfristig …“ aufgeben','Passende Anbieter in der Nähe benachrichtigen','Freie Tage aus dem Kalender zeigen','Rechtliches klären: Vermittlung ohne Arbeitsvertrag','Vorher Anwalt: Personal an andere Betriebe verleihen fällt unter das Arbeitnehmerüberlassungsgesetz (AÜG). Solange das nicht geklärt ist, nicht bauen.']},
+ {t:'Partner-Netz: gemeinsame Pakete',d:'2027-02-01',k:'produkt',g:'alle',w:1,p:['Partner-Netz Stufe 1: Partner-Empfehlungen'],n:'Bis zu drei Pakete je Betrieb aus zugestimmten Partnern. Im Formular wählbar, die Anfrage geht automatisch an alle Partner im Paket. sql/36 nötig.',
+  s:['sql/36 in Supabase einspielen','Pakete im Cockpit anlegen','Paket-Auswahl im Formular','Automatische Weitergabe','Mit einer Location und zwei Partnern testen']},
+ {t:'App im App Store und Google Play',d:'2027-02-15',k:'technik',g:'alle',w:1,p:['Partner-Netz: Nachrichten zwischen Betrieben'],n:'Cockpit als App verpacken (Capacitor), mit echten Handy-Funktionen: Push-Benachrichtigung bei neuer Anfrage und Nachricht, Kamera für Profilbilder, Anmelden mit Face ID. Keine Käufe in der App, Tarife nur über die Webseite. Entwicklerkonten als Firma anlegen.',
+  s:['D-U-N-S-Nummer beantragen (kostenlos, für Firmenkonten)','Apple Developer Program (99 $ im Jahr)','Google Play Konto (25 $ einmalig)','Push-Benachrichtigungen einbauen','App-Symbole, Screenshots, Beschreibung','Datenschutz-Angaben in beiden Stores','Testphase mit Erstkunden','Einreichen und Prüfung']},
+ {t:'Entdecken: weitere Rechner im Cockpit',d:'2026-11-20',k:'produkt',g:'alle',w:1,p:[],n:'Neuer Bereich „Entdecken“ in Seitenleiste und Handy-Leiste. Solar-Rechner und Terrassen-Kalkulator als klickbare Vorschau, Knopf öffnet die Vorlage im Editor. „Mehr“ in der Handy-Leiste ersetzt durch Zahnrad oben rechts.',
+  s:['Vorschau Solar-Rechner','Vorschau Terrassen-Kalkulator','Vorlage im Editor per Link öffnen','Zahnrad statt „Mehr“ auf dem Handy','Mit einem Solar- und einem GaLaBau-Betrieb testen']},
+ {t:'Partner-Netz: Nachrichten zwischen Betrieben',d:'2027-01-12',k:'produkt',g:'alle',w:1,p:['Partner-Netz: Vernetzen im Cockpit'],n:'Nachrichten direkt im Cockpit. Vernetzte Betriebe schreiben frei. Wer noch nicht vernetzt ist, schickt eine erste Nachricht zusammen mit der Vernetzungs-Anfrage. Das bremst Werbe-Nachrichten.',
+  s:['Nachrichten-Ansicht im Cockpit','Benachrichtigung per E-Mail','Erste Nachricht nur mit Vernetzungs-Anfrage','Tageslimit für neue Kontakte','Melden und Blockieren','Datenschutzerklärung ergänzen']},
+ {t:'Partner-Netz Stufe 1: Partner-Empfehlungen',d:'2026-12-12',k:'produkt',g:'alle',w:1,p:['Partner-Netz: Vernetzen im Cockpit'],n:'Aus den vernetzten Kontakten wählt der Betrieb seine „Unsere Partner“ aus. Sie erscheinen unter dem Formular mit Link zur eigenen Anfrageseite. Nur mit Zustimmung des Partners.',
+  s:['Partner aus „Meine Kontakte“ auswählen','Partner muss zustimmen','Bereich „Unsere Partner“ im Widget','Klicks auf Partner im Cockpit zählen','Mit drei Erstkunden testen']},
+ {t:'Partner-Netz Stufe 2: Anfrage an Partner weiterleiten',d:'2027-02-15',k:'produkt',g:'alle',p:['Partner-Netz Stufe 1: Partner-Empfehlungen'],n:'Im Cockpit „An Partner weiterleiten“: die Anfrage geht mit den Angaben des Gastes an den Partner. Der Gast stimmt im Formular vorher zu. Jede Weiterleitung wird gezählt und belegt den Nutzen.',
+  s:['Zustimmung des Gastes im Formular','Knopf „Weiterleiten“ im Cockpit','Partner sieht Herkunft der Anfrage','Zähler: weitergeleitet und angenommen']},
+ {t:'Partner-Netz: Empfehlen statt absagen',d:'2026-11-15',k:'produkt',g:'alle',w:1,p:['Partner-Netz Stufe 1: Partner-Empfehlungen'],n:'Gründe, jeden Tag ins Netzwerk zu schauen, ohne Geld und ohne Gästedaten an Dritte: Ausgebucht-Tage zeigen freie Partner, Profilbesuche, Antwortzeit-Abzeichen, freie Termine melden, Top-Empfehler des Monats. sql/41 nötig. Funktionsbeschreibung in NICHT-HOCHLADEN/skizzen-und-vorschlaege.',
+  s:['sql/41 in Supabase einspielen','GitHub hochladen und Vercel neu bauen','Ausgebuchten Tag im Formular antippen: freie Partner erscheinen','Freie Termine melden: Kontakte bekommen eine Nachricht','Abzeichen erscheint nach 5 beantworteten Anfragen','Mit zwei Partnern echt testen']},
+ {t:'Danke-Seite: Gast wählt Partner selbst',d:'2026-10-15',k:'produkt',g:'alle',w:1,p:['Partner-Netz Stufe 1: Partner-Empfehlungen'],n:'Nach dem Absenden zeigt das Formular die Partner des Betriebs. Der Gast wählt, an wen seine Anfrage zusätzlich gehen darf. Gebaut am 27.09., noch nicht online.',
+  s:['GitHub hochladen und Vercel neu bauen','Testanfrage absenden und einen Partner anhaken','Partner bekommt die Anfrage mit Herkunft']},
+ {t:'Einführungs-Touren: Cockpit und Vernetzen',d:'2026-10-10',k:'produkt',g:'alle',w:1,n:'Entfernt am 02.10.2026: Auf dem Handy verdeckten die Touren, was sie zeigen sollten. Durch den Start führen Branchenwahl, Konfigurator, Live-Schalter und Missionen. Die Mission „Rundgang gemacht“ ist ersetzt durch „Formular live geschaltet“.',
+  s:['IONOS: Cockpit, js/cz-missionen.js, js/cz-live.js','Neues Konto am Handy: keine Tour','Nach dem Live-Schalten: Mission „Formular live geschaltet“ abgehakt','Einrichtung fertig: Vernetzen frei']},
+ {t:'Berufshaftpflicht geklärt',d:'2026-10-15',k:'recht',g:'alle',n:'Versicherung für Schäden durch Fehler in der Software prüfen und abschließen.'}
+];
+const heute=new Date();heute.setHours(0,0,0,0);
+const uid=()=>'m'+Math.random().toString(36).slice(2,9);
+let daten=laden(),filter={status:'alle',zg:'alle',kat:new Set(Object.keys(KAT))},ansicht='zeit',kalM=new Date(heute.getFullYear(),heute.getMonth(),1),bearb=null;
+if(_autoNeu)sichern();
+
+function frisch(){
+  const l=VORGABE.map(v=>({id:uid(),titel:v.t,datum:v.d,kat:v.k,zg:v.g||'alle',notiz:v.n||'',ziel:v.z||'',ist:v.i||'',
+    teil:(v.s||[]).map(t=>({t:t,ok:false})),dep:[],wichtig:!!v.w,fertig:false}));
+  depSetzen(l);return l;
+}
+/* Abhängigkeiten stehen in VORGABE als Titel und werden hier in IDs übersetzt,
+   damit ein umbenannter Meilenstein seine Verknüpfung behält. */
+function depSetzen(l){
+  const nach={};l.forEach(m=>nach[m.titel]=m.id);
+  VORGABE.forEach(v=>{if(!v.p)return;const z=l.find(m=>m.titel===v.t);if(!z)return;
+    const ids=v.p.map(t=>nach[t]).filter(Boolean);
+    z.dep=Array.from(new Set(z.dep.concat(ids))).filter(id=>id!==z.id)});
+}
+function norm(x){return{id:x.id||uid(),titel:x.titel||'',datum:/^\d{4}-\d{2}-\d{2}$/.test(x.datum||'')?x.datum:'2026-12-31',
+  kat:KAT[x.kat]?x.kat:'produkt',zg:ZG[x.zg]?x.zg:'alle',ziel:x.ziel||'',ist:x.ist||'',
+  notiz:x.notiz||'',einfach:x.einfach||'',
+  teil:Array.isArray(x.teil)?x.teil.filter(t=>t&&t.t).map(t=>({t:String(t.t),ok:!!t.ok})):[],
+  dep:Array.isArray(x.dep)?x.dep.filter(d=>typeof d==='string'):[],
+  wichtig:!!x.wichtig,fertig:!!x.fertig}}
+function laden(){
+  try{const r=localStorage.getItem(SCHL);if(r){const p=JSON.parse(r);if(Array.isArray(p.liste)&&p.liste.length){
+    let l=p.liste.map(norm);
+    if((p.v||1)<DV){
+      l=l.filter(x=>!RAUS.includes(x.titel));
+      const hab=new Set(l.map(x=>x.titel));
+      frisch().forEach(n=>{if(!hab.has(n.titel))l.push(n)});
+      l.forEach(x=>{const q=VORGABE.find(v=>v.t===x.titel);if(q){x.zg=q.g||'alle';x.notiz=q.n||x.notiz;x.ziel=q.z||x.ziel;
+        if(q.s&&!x.teil.length)x.teil=q.s.map(t=>({t:t,ok:false}))}});
+      depSetzen(l);
+    }
+    return anreichern(l);
+  }}}catch(e){}
+  return anreichern(frisch());
+}
+function sichern(){try{localStorage.setItem(SCHL,JSON.stringify({v:DV,liste:daten}))}catch(e){}}
+function meldung(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1900)}
+const dt=s=>{const[j,m,t]=s.split('-').map(Number);return new Date(j,m-1,t)};
+const fmt=s=>{const d=dt(s);return d.getDate()+'. '+MON[d.getMonth()].slice(0,3)+' '+d.getFullYear()};
+const spat=m=>!m.fertig&&dt(m.datum)<heute;
+const vonId=id=>daten.find(m=>m.id===id);
+const traeger=m=>daten.filter(x=>(x.dep||[]).includes(m.id));
+const num=s=>{const t=String(s||'').replace(/\./g,'').match(/\d+(?:,\d+)?/);return t?parseFloat(t[0].replace(',','.')):null};
+const plus=(iso,d)=>{const x=dt(iso);x.setDate(x.getDate()+d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')};
+const tage=(a,b)=>Math.round((dt(b)-dt(a))/864e5);
+const imZg=m=>filter.zg==='alle'||m.zg===filter.zg||m.zg==='alle';
+const sicht=()=>daten.filter(m=>filter.kat.has(m.kat)&&imZg(m)&&(filter.status==='alle'||(filter.status==='offen'?!m.fertig:m.fertig)));
+
+function kopf(){
+  const a=daten.length,f=daten.filter(m=>m.fertig).length,p=a?Math.round(f/a*100):0;
+  document.getElementById('k-pct').textContent=p+'%';
+  document.getElementById('ring').style.strokeDashoffset=(150.8*(1-p/100)).toFixed(1);
+  document.getElementById('k-alle').textContent=a;
+  document.getElementById('k-offen').textContent=(a-f)+' offen · '+f+' erledigt';
+  document.getElementById('k-spat').textContent=daten.filter(spat).length;
+  const kon=daten.filter(m=>(m.dep||[]).some(d=>{const v=vonId(d);return v&&!v.fertig&&v.datum>m.datum})).length;
+  document.getElementById('k-kon').textContent=kon?kon+' × Vorgänger liegt später':'Termin verstrichen';
+  const n=daten.filter(m=>!m.fertig&&dt(m.datum)>=heute).sort((x,y)=>x.datum<y.datum?-1:1)[0];
+  document.getElementById('k-next-d').textContent=n?fmt(n.datum):'—';
+  document.getElementById('k-next-t').textContent=n?n.titel:'Alles erledigt';
+  wochenbalken();
+}
+
+/* Eine Zeile ganz oben: der eine Punkt, der jetzt dran ist. Überfälliges schlägt
+   Fälliges, sonst der nächste Termin. Der Rest der Seite bleibt unverändert. */
+const isoH=()=>heute.getFullYear()+'-'+String(heute.getMonth()+1).padStart(2,'0')+'-'+String(heute.getDate()).padStart(2,'0');
+function wochenbalken(){
+  const b=document.getElementById('woche'),offen=daten.filter(m=>!m.fertig);b.hidden=false;
+  if(!offen.length){b.innerHTML='<div class="wtx"><span class="wl">Fertig</span><div class="wt">Alle Meilensteine erledigt.</div></div>';return}
+  const srt=(a,c)=>a.datum<c.datum?-1:a.datum>c.datum?1:(c.wichtig-a.wichtig);
+  const ue=offen.filter(spat).sort(srt),m=ue.length?ue[0]:offen.slice().sort(srt)[0],d=tage(isoH(),m.datum);
+  const lab=ue.length?(ue.length>1?'Überfällig · '+ue.length+' Punkte':'Überfällig'):(d<=7?'Diese Woche':'Als Nächstes');
+  const wann=ue.length?'Termin war '+fmt(m.datum)+' · '+Math.abs(d)+' '+(Math.abs(d)===1?'Tag':'Tage')+' drüber'
+    :'Fällig '+fmt(m.datum)+(d===0?' · heute':d===1?' · morgen':' · in '+d+' Tagen');
+  const tr=traeger(m).filter(x=>!x.fertig).length,ot=(m.teil||[]).filter(t=>!t.ok);
+  b.innerHTML='<div class="wtx"><span class="wl">'+lab+'</span><div class="wt">'+esc(m.titel)+'</div>'
+    +'<div class="wm">'+wann+(tr?' · blockiert '+tr+' '+(tr===1?'Punkt':'Punkte'):'')
+    +(ot.length?' · nächster Schritt: '+esc(ot[0].t):'')+'</div></div>'
+    +'<div class="wa"><button data-w="ok">Erledigt</button><button data-w="auf">Öffnen</button></div>';
+  b.querySelector('[data-w=ok]').onclick=()=>{m.fertig=true;sichern();zeichne();meldung('Erledigt: '+m.titel)};
+  b.querySelector('[data-w=auf]').onclick=()=>oeffne(m);
+}
+
+function chips(){
+  const c=document.getElementById('chips');c.innerHTML='';
+  Object.entries(KAT).forEach(([k,l])=>{
+    const b=document.createElement('button');b.className='chip'+(filter.kat.has(k)?' on':' aus');b.style.color='var(--k-'+k+')';
+    b.innerHTML='<i></i>'+l+' <span style="opacity:.6;font-family:var(--fm);font-size:10.5px">'+daten.filter(m=>m.kat===k).length+'</span>';
+    b.onclick=()=>{filter.kat.has(k)?filter.kat.delete(k):filter.kat.add(k);if(!filter.kat.size)filter.kat=new Set(Object.keys(KAT));zeichne()};
+    c.appendChild(b);
+  });
+}
+
+function karte(m){
+  const e=document.createElement('div');
+  e.className='ms'+(m.fertig?' ok':'');e.style.setProperty('--kf','var(--k-'+m.kat+')');
+  e.innerHTML='<button class="box" aria-label="abhaken"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>'
+   +'<div class="tx"><div class="ti">'+(m.wichtig?'<span class="stern">★</span> ':'')+esc(m.titel)+'</div>'
+   +(m.notiz?'<div class="no">'+esc(m.notiz)+'</div>':'')
+   +(m.einfach?'<div class="ez"><b>Ganz einfach</b>'+esc(m.einfach)+'</div>':'')
+   +'<div class="me"><span class="tag"><i></i>'+KAT[m.kat]+'</span>'+(m.zg!=='alle'?'<span class="zgp">'+ZGK[m.zg]+'</span>':'')+'<span class="dat">'+fmt(m.datum)+'</span>'+(spat(m)?'<span class="spat">überfällig</span>':'')+'</div>'
+   +depZeile(m)+'</div>'
+   +zielFeld(m);
+  if(m.teil&&m.teil.length){
+    const f=m.teil.filter(t=>t.ok).length,tl=document.createElement('div');tl.className='teil';
+    tl.innerHTML='<div class="tc">Teilaufgaben '+f+'/'+m.teil.length+'</div>';
+    m.teil.forEach((t,i)=>{
+      const z=document.createElement('label');z.className='tz'+(t.ok?' ok':'');
+      z.innerHTML='<input type="checkbox"'+(t.ok?' checked':'')+'><span>'+esc(t.t)+'</span>';
+      z.onclick=ev=>ev.stopPropagation();
+      z.querySelector('input').onchange=ev=>{m.teil[i].ok=ev.target.checked;
+        if(m.teil.every(x=>x.ok)&&!m.fertig&&confirm('Alle Teilaufgaben erledigt. „'+m.titel+'“ als erledigt markieren?'))m.fertig=true;
+        sichern();zeichne()};
+      tl.appendChild(z);
+    });
+    e.querySelector('.tx').appendChild(tl);
+  }
+  e.querySelector('.box').onclick=ev=>{ev.stopPropagation();m.fertig=!m.fertig;sichern();zeichne();if(m.fertig)meldung('Erledigt: '+m.titel)};
+  e.onclick=()=>oeffne(m);
+  return e;
+}
+function zielFeld(m){
+  if(!m.ziel)return'';
+  const z=num(m.ziel),i=num(m.ist);
+  if(z===null||m.ist==='')return'<span class="zi">'+esc(m.ziel)+'</span>';
+  const p=Math.max(0,Math.min(100,Math.round(i/z*100)));
+  return'<span class="zi hat"><b>'+esc(m.ist)+'</b> / '+esc(m.ziel)+'<i class="bar"><s style="width:'+p+'%"></s></i></span>';
+}
+/* Zeigt, woran ein Punkt hängt und was an ihm hängt. Ein Vorgänger, der später
+   fällig ist als sein Nachfolger, ist ein Terminfehler — deshalb rot. */
+function depZeile(m){
+  const vor=(m.dep||[]).map(vonId).filter(Boolean),tr=traeger(m);
+  if(!vor.length&&!tr.length)return'';
+  let s='<div class="dep">';
+  vor.forEach(v=>{const kon=v.datum>m.datum&&!v.fertig;
+    s+='<span'+(kon?' class="kon"':'')+'>'+(v.fertig?'✓':'↳')+' hängt an: <b>'+esc(v.titel)+'</b>'+(kon?' (liegt später)':'')+'</span>'});
+  if(tr.length)s+='<span class="traegt">'+tr.length+' '+(tr.length===1?'Punkt hängt':'Punkte hängen')+' daran</span>';
+  return s+'</div>';
+}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function zeitstrahl(){
+  const w=document.getElementById('v-zeit');w.innerHTML='';
+  const liste=sicht().slice().sort((a,b)=>a.datum<b.datum?-1:a.datum>b.datum?1:(b.wichtig-a.wichtig));
+  let von='0000-00-00';
+  PHASEN.forEach(ph=>{
+    const teil=liste.filter(m=>m.datum>von&&m.datum<=ph.bis);
+    const alle=daten.filter(m=>m.datum>von&&m.datum<=ph.bis);
+    const f=alle.filter(m=>m.fertig).length,p=alle.length?Math.round(f/alle.length*100):0;
+    von=ph.bis;
+    const s=document.createElement('section');s.className='phase';
+    s.innerHTML='<div class="ph"><span class="num">'+ph.num+'</span><h2>'+ph.h+'</h2><span class="pz">'+ph.z+'</span>'
+      +'<span class="fort"><span class="tr"><i style="width:'+p+'%"></i></span>'+f+'/'+alle.length+'</span></div>';
+    if(!teil.length){const l=document.createElement('div');l.className='leer';l.style.margin='16px 0';l.textContent='Keine Meilensteine in dieser Auswahl.';s.appendChild(l)}
+    let mk='';
+    teil.forEach(m=>{
+      const k=m.datum.slice(0,7);
+      if(k!==mk){
+        mk=k;const d=dt(m.datum),ist=d.getFullYear()===heute.getFullYear()&&d.getMonth()===heute.getMonth();
+        const mo=document.createElement('div');mo.className='mon'+(ist?' jetzt':'');
+        mo.innerHTML='<div class="mh"><span class="mn">'+MON[d.getMonth()]+' '+d.getFullYear()+(ist?' · jetzt':'')+'</span><span class="ml"></span><button class="plus" title="Meilenstein in diesem Monat">+</button></div><div class="liste"></div>';
+        mo.querySelector('.plus').onclick=()=>oeffne(null,k+'-15');
+        s.appendChild(mo);
+      }
+      s.lastElementChild.querySelector('.liste').appendChild(karte(m));
+    });
+    w.appendChild(s);
+  });
+}
+
+function kalender(){
+  const j=kalM.getFullYear(),m=kalM.getMonth();
+  document.getElementById('kal-titel').textContent=MON[m]+' '+j;
+  const g=document.getElementById('kal-gitter');g.innerHTML='';
+  const erst=new Date(j,m,1),start=(erst.getDay()+6)%7,tage=new Date(j,m+1,0).getDate();
+  const liste=sicht();
+  for(let i=0;i<start;i++){const c=document.createElement('div');c.className='tag-z aus';g.appendChild(c)}
+  for(let t=1;t<=tage;t++){
+    const iso=j+'-'+String(m+1).padStart(2,'0')+'-'+String(t).padStart(2,'0');
+    const c=document.createElement('div');c.className='tag-z';
+    if(new Date(j,m,t).getTime()===heute.getTime())c.classList.add('heute');
+    c.innerHTML='<span class="dn">'+t+'</span>';
+    liste.filter(x=>x.datum===iso).forEach(x=>{
+      const e=document.createElement('div');e.className='kev'+(x.fertig?' ok':'');e.style.setProperty('--kf','var(--k-'+x.kat+')');
+      e.textContent=(x.wichtig?'★ ':'')+x.titel;
+      e.onclick=ev=>{ev.stopPropagation();oeffne(x)};
+      c.appendChild(e);
+    });
+    c.onclick=()=>oeffne(null,iso);
+    g.appendChild(c);
+  }
+}
+
+function zielgruppen(){
+  const w=document.getElementById('v-zg');w.innerHTML='';
+  const hi=document.createElement('div');hi.className='hinw';
+  hi.innerHTML='<b>Zwei Zielgruppen gleichzeitig, die dritte hinterher.</b> Food Trucks bringen Menge und Weiterempfehlung, Hochzeitslocations bringen den Umsatz. Beide brauchen dasselbe Widget mit anderen Feldern — deshalb steht der Umbau des Konfigurators am Anfang und nicht als Sonderfall am Ende. Fotografen und Videografen folgen ab Ende 2026, weil sie bei denselben Veranstaltungen stehen wie Ihre Locations: die Empfehlung läuft in beide Richtungen und kostet Sie nichts. Tagungshäuser und Agenturen kommen erst, wenn die Selbstbedienung ohne Sie funktioniert.';
+  w.appendChild(hi);
+  ZGINFO.forEach(i=>{
+    const alle=daten.filter(m=>m.zg===i.k),f=alle.filter(m=>m.fertig).length,p=alle.length?Math.round(f/alle.length*100):0;
+    const c=document.createElement('div');c.className='zgk';
+    c.innerHTML='<div class="zk"><span class="rang">'+i.rang+'</span><h3>'+ZG[i.k]+'</h3><span class="emp'+(i.warte?' warte':'')+'">'+i.emp+'</span>'
+      +'<span class="zf"><span class="tr"><i style="width:'+p+'%"></i></span>'+f+'/'+alle.length+' erledigt</span></div>'
+      +'<dl><dt>Wer</dt><dd>'+i.wer+'</dd><dt>Warum</dt><dd>'+i.warum+'</dd><dt>Widget braucht</dt><dd>'+i.widget+'</dd>'
+      +'<dt>Dagegen</dt><dd>'+i.gegen+'</dd><dt>Preis</dt><dd>'+i.preis+'</dd></dl>';
+    c.title='Meilensteine dieser Zielgruppe anzeigen';
+    c.onclick=()=>{filter.zg=i.k;document.getElementById('sel-zg').value=i.k;
+      [...document.getElementById('seg-ansicht').children].forEach(x=>x.classList.toggle('on',x.dataset.a==='zeit'));
+      ansicht='zeit';sichtbar();zeichne();window.scrollTo({top:0,behavior:'smooth'});meldung('Gefiltert: '+ZG[i.k])};
+    w.appendChild(c);
+  });
+}
+function sichtbar(){
+  document.getElementById('v-zeit').style.display=ansicht==='zeit'?'':'none';
+  document.getElementById('v-kal').style.display=ansicht==='kal'?'':'none';
+  document.getElementById('v-zg').style.display=ansicht==='zg'?'':'none';
+  document.getElementById('seg-status').style.display=ansicht==='zg'?'none':'';
+  document.getElementById('chips').style.display=ansicht==='zg'?'none':'';
+}
+function zeichne(){kopf();chips();ansicht==='zeit'?zeitstrahl():ansicht==='kal'?kalender():zielgruppen()}
+
+function oeffne(m,datum){
+  bearb=m||null;
+  document.getElementById('sh-titel').textContent=m?'Meilenstein bearbeiten':'Neuer Meilenstein';
+  document.getElementById('fi-titel').value=m?m.titel:'';
+  document.getElementById('fi-datum').value=m?m.datum:(datum||new Date().toISOString().slice(0,10));
+  document.getElementById('fi-kat').value=m?m.kat:'produkt';
+  document.getElementById('fi-zg').value=m?m.zg:(filter.zg||'alle');
+  document.getElementById('fi-ziel').value=m?m.ziel:'';
+  document.getElementById('fi-ist').value=m?m.ist:'';
+  document.getElementById('fi-teil').value=m&&m.teil?m.teil.map(t=>t.t).join('\n'):'';
+  depFuellen(m);
+  document.getElementById('fi-notiz').value=m?m.notiz:'';
+  document.getElementById('fi-wichtig').checked=m?!!m.wichtig:false;
+  document.getElementById('fi-fertig').checked=m?!!m.fertig:false;
+  document.getElementById('sh-loeschen').style.display=m?'':'none';
+  document.getElementById('hg').classList.add('on');
+  setTimeout(()=>document.getElementById('fi-titel').focus(),40);
+}
+function zu(){document.getElementById('hg').classList.remove('on');bearb=null}
+function depFuellen(m){
+  const s=document.getElementById('fi-dep');s.innerHTML='';
+  daten.slice().sort((a,b)=>a.datum<b.datum?-1:1).forEach(x=>{
+    if(m&&x.id===m.id)return;
+    const o=document.createElement('option');o.value=x.id;
+    o.textContent=fmt(x.datum).replace(/ \d{4}$/,'')+' · '+x.titel;
+    if(m&&(m.dep||[]).includes(x.id))o.selected=true;
+    s.appendChild(o)});
+}
+
+document.getElementById('sh-speichern').onclick=()=>{
+  const t=document.getElementById('fi-titel').value.trim();
+  if(!t){document.getElementById('fi-titel').focus();return meldung('Bitte einen Titel eintragen.')}
+  const alt=bearb?bearb.datum:null;
+  const vorher=bearb&&bearb.teil?bearb.teil:[];
+  const zeilen=document.getElementById('fi-teil').value.split('\n').map(z=>z.trim()).filter(Boolean);
+  const o={titel:t,datum:document.getElementById('fi-datum').value||new Date().toISOString().slice(0,10),
+    kat:document.getElementById('fi-kat').value,zg:document.getElementById('fi-zg').value,ziel:document.getElementById('fi-ziel').value.trim(),
+    ist:document.getElementById('fi-ist').value.trim(),
+    teil:zeilen.map(z=>{const f=vorher.find(x=>x.t===z);return{t:z,ok:f?f.ok:false}}),
+    dep:[...document.getElementById('fi-dep').selectedOptions].map(x=>x.value),
+    notiz:document.getElementById('fi-notiz').value.trim(),wichtig:document.getElementById('fi-wichtig').checked,
+    fertig:document.getElementById('fi-fertig').checked};
+  const neu_=!bearb;
+  if(bearb)Object.assign(bearb,o);else{bearb=Object.assign({id:uid()},o);daten.push(bearb)}
+  /* Termin verschoben: alles, was an diesem Punkt hängt, darf mitrutschen. */
+  const d=alt?tage(alt,o.datum):0;
+  if(d!==0){
+    const kette=nachfolger(bearb.id);
+    if(kette.length&&confirm(kette.length+' '+(kette.length===1?'Punkt hängt':'Punkte hängen')+' an „'+bearb.titel+'“.\n\nUm '+Math.abs(d)+' Tage '+(d>0?'nach hinten':'nach vorne')+' mitverschieben?')){
+      kette.forEach(x=>{x.datum=plus(x.datum,d)});meldung(kette.length+' Punkte mitverschoben.');
+    }
+  }
+  const w=bearb.titel;sichern();zu();zeichne();if(d===0)meldung(neu_?'Meilenstein angelegt.':'Gespeichert: '+w);
+};
+/* Alle Punkte, die mittelbar an einem hängen — ohne Kreisläufe. */
+function nachfolger(id){
+  const raus=[],gesehen=new Set([id]);let welle=[id];
+  while(welle.length){
+    const naechste=[];
+    daten.forEach(x=>{if(gesehen.has(x.id))return;
+      if((x.dep||[]).some(d=>welle.includes(d))){gesehen.add(x.id);raus.push(x);naechste.push(x.id)}});
+    welle=naechste;
+  }
+  return raus;
+}
+document.getElementById('sh-loeschen').onclick=()=>{if(!bearb)return;if(!confirm('„'+bearb.titel+'“ löschen?'))return;
+  const w=bearb.id;daten=daten.filter(x=>x!==bearb);daten.forEach(x=>{x.dep=(x.dep||[]).filter(d=>d!==w)});sichern();zu();zeichne();meldung('Gelöscht.')};
+document.querySelector('.vsch').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  const f=document.getElementById('fi-datum');if(!f.value)return;f.value=plus(f.value,parseInt(b.dataset.v,10))};
+document.getElementById('sh-abbruch').onclick=zu;
+document.getElementById('hg').onclick=e=>{if(e.target.id==='hg')zu()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')zu();if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.getElementById('hg').classList.contains('on'))document.getElementById('sh-speichern').click()});
+document.getElementById('btn-neu').onclick=()=>oeffne(null);
+document.getElementById('seg-ansicht').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  [...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));ansicht=b.dataset.a;sichtbar();zeichne()};
+document.getElementById('sel-zg').onchange=e=>{filter.zg=e.target.value;zeichne()};
+document.getElementById('seg-status').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  [...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));filter.status=b.dataset.s;zeichne()};
+document.getElementById('kal-zur').onclick=()=>{kalM.setMonth(kalM.getMonth()+1);kalender()};
+document.getElementById('kal-vor').onclick=()=>{kalM.setMonth(kalM.getMonth()-1);kalender()};
+document.getElementById('kal-heute').onclick=()=>{kalM=new Date(heute.getFullYear(),heute.getMonth(),1);kalender()};
+document.getElementById('btn-export').onclick=()=>{
+  const b=new Blob([JSON.stringify({v:1,stand:new Date().toISOString(),liste:daten},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='clickzauber-meilensteine.json';a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);meldung('Datei gesichert.')};
+document.getElementById('btn-import').onclick=()=>document.getElementById('datei').click();
+document.getElementById('datei').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{const p=JSON.parse(r.result);if(!Array.isArray(p.liste))throw 0;
+    daten=p.liste.map(norm);
+    sichern();zeichne();meldung(daten.length+' Meilensteine geladen.')}catch(err){meldung('Diese Datei konnte nicht gelesen werden.')}
+    e.target.value=''};r.readAsText(f)};
+document.getElementById('btn-reset').onclick=()=>{if(!confirm('Alle eigenen Änderungen verwerfen und die Vorauswahl wiederherstellen?'))return;
+  daten=frisch();sichern();zeichne();meldung('Vorauswahl wiederhergestellt.')};
+const thema=localStorage.getItem('cz-thema');if(thema==='dunkel')document.documentElement.dataset.theme='dunkel';
+document.getElementById('btn-thema').onclick=()=>{const d=document.documentElement.dataset.theme==='dunkel';
+  d?delete document.documentElement.dataset.theme:document.documentElement.dataset.theme='dunkel';localStorage.setItem('cz-thema',d?'hell':'dunkel')};
+const sel=document.getElementById('fi-kat');Object.entries(KAT).forEach(([k,l])=>{const o=document.createElement('option');o.value=k;o.textContent=l;sel.appendChild(o)});
+const selZ=document.getElementById('fi-zg'),selF=document.getElementById('sel-zg');
+Object.entries(ZG).forEach(([k,l])=>{
+  const o=document.createElement('option');o.value=k;o.textContent=k==='alle'?'Alle (zielgruppenübergreifend)':l;selZ.appendChild(o);
+  const o2=document.createElement('option');o2.value=k;o2.textContent=k==='alle'?'Alle Zielgruppen':l;selF.appendChild(o2)});
+sichtbar();zeichne();
+</script>
+</body>
+</html>

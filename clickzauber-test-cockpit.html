@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Test-Cockpit · clickzauber</title>
+<!-- Online, aber versteckt (seit 08.10.2026): clickzauber.de/clickzauber-test-cockpit.html, noindex und in robots.txt gesperrt.
+     In der Vorschau leitet NICHT-HOCHLADEN/Test-Cockpit.html hierher. To-dos und Erkenntnisse: NICHT-HOCHLADEN/test-cockpit-daten.js, nur in der Vorschau. -->
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3efe6;--card:#fff;--ink:#211d16;--ink2:#5f584a;--ink3:#8a8272;--line:#e6ddca;--g:#2f7d59;--gd:#1f6d4a;--gl:#e7f2ec;--y:#f6e7b8;--fd:Figtree,system-ui,sans-serif;--fm:"IBM Plex Mono",ui-monospace,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fd);font-size:15px;line-height:1.5}
+a{color:var(--gd)}a:hover{color:var(--g)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:3px;gap:2px}
+.seg button{border:0;background:none;font:inherit;font-size:14px;font-weight:600;color:var(--ink2);border-radius:9px;padding:0 12px;min-height:38px;cursor:pointer}
+.seg button.an{background:var(--g);color:#fff}
+.kn{border:1px solid var(--line);background:var(--card);font:inherit;font-size:14px;font-weight:600;color:var(--ink);border-radius:12px;padding:0 14px;min-height:44px;cursor:pointer}
+.kn:hover{border-color:var(--g)}
+.haupt{display:grid;grid-template-columns:minmax(240px,320px) minmax(0,1fr);gap:16px;padding:16px;align-items:start}
+.neu{display:flex;flex-direction:column;gap:12px;position:sticky;top:86px;max-height:calc(100vh - 104px);overflow:auto;padding-right:2px}
+.neu h2{margin:0;font-size:15px}
+.neu .h{font-family:var(--fm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:6px 0 -4px}
+.e{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.e .o{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.e b{font-size:15px}
+.e .am{font-family:var(--fm);font-size:11px;color:var(--ink3)}
+.e .br{font-size:11.5px;font-weight:600;border-radius:99px;padding:1px 8px;background:var(--gl);color:var(--gd)}
+.e p{margin:0;font-size:13.5px;color:var(--ink2);text-wrap:pretty}
+.e .u{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:2px}
+.e .zeig{border:0;background:var(--g);color:#fff;font:inherit;font-weight:600;font-size:14px;border-radius:10px;padding:0 14px;min-height:40px;cursor:pointer}
+.e .zeig:hover{background:var(--gd)}
+.e label{display:flex;gap:7px;align-items:center;font-size:13px;color:var(--ink2);cursor:pointer;min-height:40px}
+.e label input{width:18px;height:18px;accent-color:var(--g)}
+.e.server{background:#faf7f0}
+.e.server .wie{font-size:13px;color:var(--ink2)}
+details.fertig summary{cursor:pointer;font-size:13.5px;font-weight:600;color:var(--ink2);min-height:40px;display:flex;align-items:center}
+details.fertig .e{opacity:.7;margin-top:8px}
+.buehne{display:flex;flex-direction:column;gap:10px;min-width:0}
+.meld{min-height:22px;font-size:13.5px;color:var(--gd);font-weight:600}
+.meld.bad{color:#a5341f}
+.rahmen{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;width:100%;height:calc(100vh - 150px);min-height:620px}
+.rahmen.handy{width:390px;max-width:100%;height:812px;min-height:0;border-radius:34px;border:8px solid #211d16;align-self:center}
+.rahmen iframe{display:block;width:100%;height:100%;border:0;background:#faf7f0}
+@media(max-width:720px){.haupt{grid-template-columns:minmax(0,1fr)}.neu{position:static;max-height:42vh}.rahmen{height:760px}}
+@media(max-width:720px){#ans{display:none}.rahmen.handy{width:100%;height:760px;border:1px solid var(--line);border-radius:16px}}
+html.vb,html.vb body{overflow:hidden;height:100%}
+body.vb{background:#211d16}
+body.vb .rahmen{position:fixed;inset:0;z-index:20;width:100%;height:100%;min-height:0;max-width:none;border:0;border-radius:0}
+@media(min-width:721px){body.vb .rahmen.handy{left:50%;right:auto;width:min(430px,100%);transform:translateX(-50%)}}
+body.vb #meld{position:fixed;left:50%;top:70px;transform:translateX(-50%);z-index:35;width:max-content;max-width:calc(100% - 32px);background:#211d16;color:#fff;border-radius:12px;padding:9px 14px;box-shadow:0 10px 30px rgba(0,0,0,.3);font-size:14px;pointer-events:none}
+body.vb #meld:empty{display:none}
+body.vb #meld.bad{background:#a5341f;color:#fff}
+#vb-knopf{display:none}
+body.vb #vb-knopf{display:flex;position:fixed;left:0;top:50%;z-index:40;width:36px;height:56px;margin-top:-28px;align-items:center;justify-content:center;border:0;border-radius:0 14px 14px 0;background:rgba(33,29,22,.86);color:#fff;cursor:pointer;touch-action:none;box-shadow:2px 4px 16px rgba(0,0,0,.25)}
+#vb-knopf i{position:absolute;top:-6px;right:-8px;min-width:20px;height:20px;border-radius:10px;background:#e0a800;color:#211d16;font:600 11.5px/20px var(--fd);font-style:normal;text-align:center;padding:0 5px}
+#vb-knopf i:empty{display:none}
+#vb-rk{position:fixed;inset:0;z-index:45;background:rgba(20,16,10,.45)}
+#vb-blatt{position:fixed;left:0;right:0;bottom:0;z-index:50;max-height:88vh;overflow:auto;overscroll-behavior:contain;background:#faf7f0;border-radius:20px 20px 0 0;padding:14px 16px calc(18px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:12px;box-shadow:0 -20px 50px rgba(0,0,0,.3)}
+#vb-blatt[hidden],#vb-rk[hidden]{display:none}
+#vb-blatt>*{flex-shrink:0}
+.vb-k{display:flex;align-items:center;justify-content:space-between;gap:10px}.vb-k b{font-size:17px}
+.vb-x{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;cursor:pointer;color:var(--ink2)}
+.vb-akt{display:flex;flex-wrap:wrap;gap:8px}.vb-akt .kn{flex:1 1 auto}
+#vb-blatt .seg{display:flex}#vb-blatt .seg button{flex:1 1 0;min-height:44px;padding:0 6px;font-size:13.5px}
+#vb-blatt .neu{position:static;max-height:none;overflow:visible;padding:0}
+#vb-blatt .e .zeig,#vb-blatt .e label{min-height:44px}
+@media(max-width:720px){#vb-blatt #ans{display:none}}
+@media(min-width:721px){#vb-blatt{left:16px;right:auto;bottom:16px;width:400px;max-height:calc(100vh - 32px);border-radius:20px}}
+.vb-tabs{display:flex;gap:3px;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:3px}
+.vb-tabs button[hidden]{display:none}.vb-tabs button{flex:1;border:0;background:none;font:inherit;font-size:14px;font-weight:600;color:var(--ink2);border-radius:9px;min-height:42px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.vb-tabs button.an{background:var(--g);color:#fff}
+.vb-tabs i,#vb-knopf .zahl{font-style:normal;font-size:11.5px;font-weight:700;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:#c0392b;color:#fff;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box}
+.vb-tabs button.an i{background:#fff;color:var(--gd)}
+#vb-knopf .zahl{position:absolute;bottom:-6px;right:-8px}#vb-knopf .zahl[hidden]{display:none}
+#neu[hidden],#todo[hidden],#wissen[hidden]{display:none!important}
+#todo h2,#wissen h2{margin:4px 0 0;font-size:15px}
+.td-sub{margin:4px 0 0;font-size:13px;color:var(--ink2);text-wrap:pretty}
+.td-g{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:14px 0 2px}
+.td-g span{font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.td-g button,.td .zur{border:0;background:none;font:inherit;font-size:13px;font-weight:600;color:var(--gd);cursor:pointer;min-height:36px;padding:0 4px;white-space:nowrap}
+.td{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-top:6px;cursor:pointer}
+.td input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--g);flex:0 0 auto;cursor:pointer}
+.td>span{flex:1;min-width:0}
+.td b{display:block;font-size:14.5px;font-weight:600;overflow-wrap:anywhere}
+.td small{display:block;font-size:13px;color:var(--ink2);margin-top:2px;text-wrap:pretty}
+.td a{display:inline-block;margin-top:4px;font-size:13px;font-weight:600}
+.td.weg{opacity:.6}.td.weg b{text-decoration:line-through}
+.wi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-top:6px}
+.wi b{display:block;font-size:14.5px}.wi p{margin:3px 0 0;font-size:13.5px;color:var(--ink2);text-wrap:pretty}
+</style>
+</head>
+<body>
+<div class="haupt">
+<aside class="neu" id="neu"></aside>
+<div class="buehne"><div class="meld" id="meld" role="status"></div><div class="rahmen" id="rahmen"><iframe id="f" title="Beispiel-Cockpit"></iframe></div></div>
+</div>
+<button type="button" id="vb-knopf" aria-label="Menü öffnen"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 7h14M5 12h14M5 17h14"></path></svg><i id="vb-zahl"></i></button>
+<div id="vb-rk" hidden data-act="menu-zu"></div>
+<div id="vb-blatt" hidden role="dialog" aria-modal="true" aria-label="Menü">
+<div class="vb-k"><b>Menü</b><button type="button" class="vb-x" data-act="menu-zu" aria-label="Schließen"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></div>
+<div class="seg" role="group" aria-label="Branche"><button data-b="friseur">Friseur &amp; Co.</button><button data-b="catering">Food Truck</button><button data-b="location">Location</button><button data-b="handwerk">Handwerk</button><button data-b="makler">Makler</button></div>
+<div class="seg" id="ans" role="group" aria-label="Ansicht"><button data-a="handy">Handy</button><button data-a="pc">Computer</button></div>
+<div class="vb-akt"><button class="kn" data-act="neu-laden">Neu laden</button><button class="kn" data-act="zurueck">Zurücksetzen</button><button class="kn" data-act="gb" id="gb-knopf" hidden>Ganzer Bildschirm</button></div>
+<div class="vb-tabs" role="tablist" aria-label="Bereiche"><button type="button" role="tab" data-tab="neu">Neu</button><button type="button" role="tab" data-tab="todo">To-dos</button><button type="button" role="tab" data-tab="wissen">Erkenntnisse</button></div>
+<div id="vb-liste"><div id="todo" hidden></div><div id="wissen" hidden></div></div>
+</div>
+<script>
+/* Neue Funktionen. Jede sichtbare Neuerung bekommt hier einen Eintrag (CLAUDE.md).
+   zeig(w, h): w ist das Fenster des Cockpits, h die Hilfen markieren(selektor). */
+var NEU = [
+  { id: 'architekt-assistent', am: '21.10.2026', b: 'alle', t: 'Architekt als Assistent, Wenn – Dann ab der Leistung',
+    s: 'Der Architekt fragt wie das Formular: eine Frage je Bildschirm, große Kacheln, kaum Text. Regeln gehen jetzt auch ab der gewählten Leistung oder Kachel (z. B. Wimpern → Seite „Ihre Wimpern“). Mit KI: Preisliste fotografieren, die Leistungen werden erkannt. Im Feld „In eigenen Worten“ wechselt das Beispiel alle 10 Sekunden (30 je Branche), nach „Übernehmen“ geht es direkt zur neuen Stelle. „Zeigen“ öffnet ihn mit Beispiel-Foto.',
+    zeig: function () { window.open('clickzauber-editor.html?vorlage=kosmetik&ki=beispiel', '_blank'); } },
+  { id: 'konfigurator-neu', am: '20.10.2026', b: 'alle', t: 'Neuer Konfigurator: Regeln und Architekt',
+    s: 'Links der Weg des Gastes, Seiten mit Bedingung sind eingerückt. Jede Regel steht als Wenn – Dann – Sonst, unter der Vorschau live mit „greift gerade“. Der Architekt fragt in drei Feldern (Was, Wo, Details) und macht einen Vorschlag zum Übernehmen. Am Handy fünf Reiter. „Zeigen“ öffnet ihn mit der Vorlage Kosmetikstudio.',
+    zeig: function () { window.open('clickzauber-editor.html?vorlage=kosmetik', '_blank'); } },
+  { id: 'wimpern', am: '15.10.2026', b: 'kosmetik', t: 'Wimpern: auffüllen oder neues Set',
+    s: 'Wählt eine Kundin „Auffüllen“, fragt das Formular nach dem letzten Auffüllen, wie viele Wimpern noch da sind, und will eine kurze Beschreibung. Passt eher ein neues Set, plant es dessen Zeit ein und zeigt den Preis als Hinweis. Regeln, Fotos und Höchstzahl je Handy unter Leistungen & Regeln.',
+    zeig: function (w) { w.show('zeiten'); setTimeout(function () { var s = w.document.getElementById('zt-sab'); if (s) w.scrollTo(0, s.getBoundingClientRect().top + w.pageYOffset - 120); }, 400); } },
+  { id: 'kopf-logo', am: '15.10.2026', b: 'alle', t: 'Logo oben, Sprüche unten',
+    s: 'Auf der Startseite steht oben statt „Live · echte Daten“ das Logo aus dem Formular, ohne Logo nur „Live“. Ganz unten wechselt alle zehn Sekunden ein Spruch zur Motivation. Mit Logo zu sehen in Kates Cockpit zum Vorführen (Kundenakte).',
+    zeig: function (w) { w.show('overview'); setTimeout(function () { var s = w.document.getElementById('cz-spruch'); if (s) w.scrollTo(0, s.getBoundingClientRect().top + w.pageYOffset - 220); }, 300); } },
+  { id: 'gestaltung', am: '15.10.2026', b: 'alle', t: 'Eine Gestaltung auf allen Seiten',
+    s: 'Anmelden ist jetzt hell wie „Konto anlegen“. Alle Seiten haben dasselbe Beige, dasselbe Grün und die Schrift Figtree. Die Seite „Ihr Termin“ für Kunden zeigt oben Logo und Namen des Betriebs (läuft erst nach dem Hochladen auf dem Server).',
+    seite: 'clickzauber-login.html' },
+  { id: 'ansicht-2', am: '13.10.2026', b: 'friseur', t: 'Ansicht 1 | Ansicht 2 auf der Startseite',
+    s: 'Mitarbeiter nebeneinander, jede halbe Stunde eine Kachel. Uhrzeit antippen, Leistung wählen, eintragen. 60 Minuten werden ein Block. Gebuchte Termine antippen: dasselbe Blatt wie sonst, mit „Andere Zeit vorschlagen“ und „Gewünscht“.',
+    zeig: function (w) { w.show('overview'); try { w.localStorage.setItem('cz_ansicht', '2'); } catch (e) {} var b = w.document.querySelector('#ta-wahl [data-ta="2"]'); if (b) b.click(); setTimeout(function () { var x = w.document.getElementById('ta'); if (x) w.scrollTo(0, x.getBoundingClientRect().top + w.pageYOffset - 80); }, 300); } },
+  { id: 'wa-nach-annehmen', am: '13.10.2026', b: 'friseur', t: 'Nach „Annehmen“: Per WhatsApp Bescheid sagen',
+    s: 'Unter „Heute“ einen Terminwunsch annehmen. Statt Annehmen/Ablehnen steht dann der grüne Knopf „Per WhatsApp Bescheid sagen“. Danach „Nachricht gesendet?“ (in den Einstellungen abschaltbar), dann verschwindet er.',
+    zeig: function (w) { w.show('overview'); try { w.localStorage.setItem('cz_ansicht', '1'); } catch (e) {} var b = w.document.querySelector('#ta-wahl [data-ta="1"]'); if (b) b.click(); setTimeout(function () { var k = w.document.querySelector('#tm-home .tm-ja, #tm-home .tm-wa'); if (k) w.scrollTo(0, k.getBoundingClientRect().top + w.pageYOffset - 160); }, 400); } },
+  { id: 'kalender-feierabend', am: '13.10.2026', b: 'friseur', t: 'Feierabend im Kalender, an und aus',
+    s: 'Erst über „Jetzt Feierabend“ einen Tag sperren, zum Beispiel übermorgen. Der Tag steht dann rot im Kalender. Antippen: Schalter je Mitarbeiter. Aus = Formular bietet die Zeiten wieder an. An = „Früher Schluss oder frei“ mit denselben Angaben.',
+    zeig: function (w) { w.show('kalender'); } },
+  { id: 'ansicht-2-ziehen', am: '13.10.2026', b: 'friseur', t: 'Ansicht 2: Termin per Ziehen verschieben',
+    s: 'Termin festhalten (am Handy kurz halten) und auf eine freie Uhrzeit ziehen, auch zum anderen Mitarbeiter. Danach unten: „Jetzt Kunde per WhatsApp informieren“, nach dem Antippen „Kunde informiert?“. Mit × schließen, wenn der Kunde schon Bescheid weiß. Ansicht 1 zeigt die neue Zeit mit.',
+    zeig: function (w) { w.show('overview'); try { w.localStorage.setItem('cz_ansicht', '2'); } catch (e) {} var b = w.document.querySelector('#ta-wahl [data-ta="2"]'); if (b) b.click(); } },
+  { id: 'ansicht-2-termin', am: '13.10.2026', b: 'friseur', t: 'Ansicht 2: gebuchten Termin öffnen',
+    s: 'Öffnet einen gebuchten Termin aus Ansicht 2 im bekannten Blatt: Gewünscht mit Leistung und Preis, „Andere Zeit vorschlagen“, Dauert länger, Notiz, Weitere Möglichkeiten.',
+    zeig: function (w) { w.show('overview'); try { w.localStorage.setItem('cz_ansicht', '2'); } catch (e) {} var b = w.document.querySelector('#ta-wahl [data-ta="2"]'); if (b) b.click(); setTimeout(function () { var k = w.document.querySelector('#ta [data-tb]'); if (k) k.click(); }, 500); } },
+  { id: 'ansicht-2-kosmetik', am: '13.10.2026', b: 'kosmetik', t: 'Ansicht 2 im Kosmetik-Cockpit',
+    s: 'Dasselbe für Kosmetik, Nägel & Wimpern: Lena und Mia nebeneinander, Leistungen wie „1:1 Technik Neuset“ (2 Std.) blocken vier Halbstunden.',
+    zeig: function (w) { w.show('overview'); try { w.localStorage.setItem('cz_ansicht', '2'); } catch (e) {} var b = w.document.querySelector('#ta-wahl [data-ta="2"]'); if (b) b.click(); } },
+  { id: 'ansicht-2-eintragen', am: '13.10.2026', b: 'friseur', t: 'Ansicht 2: Termin am Telefon eintragen',
+    s: 'Eine freie Uhrzeit antippen, Leistung wählen („Haare & Bart“ blockt 60 Minuten), Name freiwillig, „Eintragen“.',
+    zeig: function (w) { w.show('overview'); try { w.localStorage.setItem('cz_ansicht', '2'); } catch (e) {} var b = w.document.querySelector('#ta-wahl [data-ta="2"]'); if (b) b.click(); setTimeout(function () { var k = w.document.querySelector('#ta .ta-frei:not(.ta-dim)'); if (k) k.click(); }, 500); } },
+  { id: 'wieder-oeffnen', am: '13.10.2026', b: 'friseur', t: 'Feierabend zurücknehmen',
+    s: 'Unter „Heute“ hat jede Sperre „Wieder öffnen“. Im Fenster „Früher Schluss oder frei“ steht unten die Liste „Gesperrt“ für die nächsten 45 Tage. Danach bietet das Formular die Zeiten wieder an. Braucht für echte Sperren den Server.',
+    zeig: function (w) { w.show('overview'); if (w.czSchluss) w.czSchluss({}); } },
+  { id: 'wa-frage', am: '13.10.2026', b: 'alle', t: 'Nach WhatsApp nachfragen: an / aus',
+    s: 'Zahnrad → Benachrichtigungen. An: Nach jedem WhatsApp-Knopf kommt „Nachricht gesendet?“. Aus: Antippen gilt gleich als gesendet. Der Knopf verschwindet in beiden Fällen.',
+    zeig: function (w, h) { w.show('settings'); setTimeout(function () { var c = w.document.getElementById('s-wa-frage'); if (c) { w.scrollTo(0, c.getBoundingClientRect().top + w.pageYOffset - 140); if (h && h.markieren) h.markieren('#s-wa-frage'); } }, 400); } },
+  { id: 'mails-aus', am: '13.10.2026', b: 'alle', t: 'E-Mails an / aus',
+    s: 'Zahnrad → Benachrichtigungen, ganz oben. Aus: keine Mail mehr bei neuen Anfragen und Terminen, Push bleibt. Mails an Betriebe haben keinen Knopf ins Cockpit mehr.',
+    zeig: function (w, h) { w.show('settings'); setTimeout(function () { var c = w.document.getElementById('s-mail-betrieb'); if (c) { w.scrollTo(0, c.getBoundingClientRect().top + w.pageYOffset - 140); if (h && h.markieren) h.markieren('#s-mail-betrieb'); } }, 400); } },
+  { id: 'kfg-zeiten', am: '13.10.2026', b: 'alle', t: 'Konfigurator: Öffnungstage, Uhrzeiten, Dauer',
+    s: 'Bei Terminbuchungen: Tage an- und ausschalten, von–bis je Tag, Dauer in Stunden und Minuten. Grundpreis und Beispielpreis nur noch bei Hochzeitslocations, „+ Weitere Person“ ist weg. Vorlage „Barbier“ öffnen und zur Seite mit den Uhrzeiten blättern.',
+    seite: 'clickzauber-editor.html' },
+  { id: 'design-undo', am: '13.10.2026', b: 'alle', t: 'Aussehen: Rückgängig',
+    s: 'Im Schritt „Aussehen“ holt der Pfeil „Rückgängig“ Stimmung, Farbe und Schrift von davor zurück, Schritt für Schritt. Im Konfigurator nach dem ersten Speichern.',
+    seite: 'clickzauber-editor.html' },
+  { id: 'kacheln-android', am: '13.10.2026', b: 'alle', t: 'Runde Kacheln passen auf Android',
+    s: 'Lange Namen wie „Wimpernverlängerung“ werden kleiner geschrieben, bis sie ganz in den Kreis passen. Erst wenn es bei 9 Pixeln nicht reicht, wird getrennt. Kates Formular.',
+    seite: 'verkaufsslides/inhaltsverzeichnis.html?v=kate' },
+  { id: 'uncles-web', am: '13.10.2026', b: 'alle', t: 'Webseite Uncle’s Salon 2.0 (Entwurf)',
+    s: 'One-Pager in Schwarz: Start, Leistungen, Diashow aus dem Salon, Termin mit seinem Formular, Kontakt, Impressum. Nur ein „Termin machen“ oben.',
+    seite: 'kunden/uncles-salon/webseite.html' },
+  { id: 'uncles-salon', am: '13.10.2026', b: 'alle', t: 'Formular für Uncle’s Salon 2.0',
+    s: 'Barbershop von Ilmir in Lindau: Logo-Intro, Leistungen als runde Kacheln, dann Tag, Uhrzeit und Barbier (Ilmir oder Patriot). Anthrazit mit silbernen Knöpfen wie sein Logo.',
+    seite: 'verkaufsslides/inhaltsverzeichnis.html?v=uncles' },
+  { id: 'vorschau-24', am: '13.10.2026', b: 'alle', t: 'Vorschau für 24 Stunden',
+    s: 'Neuer Schritt in der Kundenakte vor der Erstversendung: Der Interessent bekommt einen Link mit seinem Formular und einem Beispiel-Cockpit. Eine Testanfrage erscheint sofort im Cockpit. Nach 24 Stunden geht der Link nicht mehr.',
+    seite: 'vorschau.html?beispiel=1&v=amar' },
+  { id: 'pro-gast-spanne', am: '13.10.2026', b: 'alle', t: 'Preis pro Gast und Grundpreis',
+    s: 'Im Konfigurator gibt es je Frage den Haken „Preis pro Gast“. Der Preis wird mit der gewählten Gästezahl malgenommen, z. B. 50–100 Gäste × 120 € = 6.000 bis 12.000 €. Am Ende lässt sich ein Grundpreis eintragen, der immer dazukommt.',
+    seite: 'verkaufsslides/inhaltsverzeichnis.html?v=test01' },
+  { id: 'savoca', am: '13.10.2026', b: 'alle', t: 'Formular für Tenuta Savoca',
+    s: 'Nach ihrem Angebot gebaut: Exklusivmiete je nach Wochentag, Trauung im Wald, Menü pro Gast, Zimmer und Extras. Am Ende eine Einschätzung von bis, zzgl. MwSt.',
+    seite: 'verkaufsslides/inhaltsverzeichnis.html?v=savoca' },
+  { id: 'kosmetik-demo', am: '08.10.2026', b: 'friseur', t: '7-Tage-Demo für Kosmetik: Kate Cosmetics',
+    s: 'So sieht Kate ihre Demo: Anfragen für Wimpern, Gelnägel, Ballancer-Kur und Haarpigmentierung, unter Termine ihr ganzes Angebot mit geschätzten Zeiten. „Neues Formular“ führt im Konfigurator gleich zu „Kosmetik, Nägel & Wimpern“.',
+    seite: 'clickzauber-cockpit-live.html?demo=1&rahmen=1&branche=kosmetik&probe=Kate%20Cosmetics' },
+  { id: 'zeigen-karte', am: '08.10.2026', b: 'friseur', t: '„Zeigen“ klappt die Karte auf',
+    s: 'Im Menü „Funktionen“ führte „Zeigen“ bei den E-Mails nur in die Einstellungen. Jetzt klappt es die Karte „Benachrichtigungen“ auf und hebt sie hervor.',
+    zeig: function (w) { if (w.czFxMenue) w.czFxMenue.zeigen('mails'); } },
+  { id: 'inhaltsverzeichnis', am: '08.10.2026', b: 'friseur', t: 'Inhaltsverzeichnis mit runden Kacheln',
+    s: 'Neue Anfrage von Lea Hoffmann: Balayage und Spitzen schneiden bei schulterlangem, lockigem Haar. Im Termin-Blatt steht jede Leistung mit Zuschlag, dazu Waschen & Föhnen, Dauer und 274 € gesamt. Unter Termine → Leistungen & Regeln stellen Sie die Prozente ein.',
+    zeig: function (w) { if (w.czFxMenue) w.czFxMenue.zeigen('tm-inhalt'); } },
+  { id: 'gesamt-fix', am: '08.10.2026', b: 'friseur', t: 'Gesamtbetrag stimmt wieder',
+    s: '28 € + 60 € ergab 2.860 €: Preise aus dem Konfigurator wurden als Text aneinandergehängt. Jetzt rechnen Formular, Server, Kachel und Termin-Blatt mit Zahlen, auch bei schon gespeicherten Anfragen.',
+    zeig: function (w) { if (w.czFxMenue) w.czFxMenue.zeigen('auswahl'); } },
+  { id: 'auswahl-cockpit', am: '08.10.2026', b: 'friseur', t: 'Alles, was der Kunde gewählt hat, steht im Cockpit',
+    s: 'Jede Seite aus dem Konfigurator kommt mit Antwort und Preis an: auf der Kachel (z. B. „Färben + Intensivkur, Föhnen mit Locken · 112 €“), im Termin-Blatt unter „Gewünscht“ mit Gesamtbetrag und in der E-Mail an den Betrieb. Beispiel: Aylin Demir und Tobias Kern.',
+    zeig: function (w) { if (w.czFxMenue) w.czFxMenue.zeigen('auswahl'); } },
+  { id: 'missionen-kennen', am: '08.10.2026', b: 'alle', t: 'Missionen: erst das Cockpit kennenlernen',
+    s: 'Nach der Einrichtung kommt „Cockpit kennenlernen“: automatische E-Mails, dann Grundlagen, Alltag und Profi-Funktionen der eigenen Branche über das Menü „Funktionen“. „Ersten Textbaustein“ gibt es beim Friseur nicht mehr. Vernetzen steht ganz am Schluss und öffnet sich erst mit der ersten echten Anfrage.',
+    zeig: function (w) { var b = w.document.getElementById('msn-alle'); if (b) b.click(); } },
+  { id: 'preis-gast', am: '08.10.2026', b: 'alle', t: 'Preise für Kunden zeigen oder nicht',
+    s: 'Neuer Schalter unter Einstellungen → Funktionen. An: Der Kunde sieht vor dem Absenden Einzelpreise und Gesamtbetrag, auch in seiner Bestätigung. Aus: nur seine Auswahl. Der Betrieb sieht die Preise immer.',
+    zeig: function (w) { if (w.czFxMenue) w.czFxMenue.zeigen('preis-gast'); } },
+  { id: 'funktionen-menue', am: '08.10.2026', b: 'alle', t: 'Menü „Funktionen“ in jedem Cockpit',
+    s: 'Am Handy die Lasche mit der Glühbirne am linken Rand, am Computer „Funktionen“ in der Seitenleiste. Alle Funktionen der Branche, von den Grundlagen bis zu den Profi-Funktionen, je mit „Zeigen“. „Verstanden“ legt eine Funktion in den Reiter „Verstanden“.',
+    zeig: function (w) { if (w.czFxMenue) w.czFxMenue.auf(); } },
+  { id: 'funktionen', am: '07.10.2026', b: 'friseur', t: 'Funktionen je Betrieb',
+    s: 'Einstellungen → „Funktionen“. Jeder Betrieb schaltet aus, was er nicht braucht, etwa Netzwerk oder Missionen. Es verschwindet sofort, ohne Neuladen. Neu für Salons mit Damen und Herren: „Damen, Herren und Kinder getrennt“. Dann steht bei jeder Leistung (Uhrzeit-Termine → Leistungen & Regeln) „Für: Damen, Herren, Kinder“, und das Formular fragt zuerst „Für wen ist der Termin?“.',
+    zeig: function (w) { w.show('settings'); setTimeout(function () { var c = w.document.getElementById('fx-card'); if (c) w.scrollTo(0, c.getBoundingClientRect().top + w.pageYOffset - 80); }, 400); } },
+  { id: 'demo-ein-formular', am: '07.10.2026', b: 'handwerk', t: '7-Tage-Demo wie beim Interessenten',
+    s: 'So sieht ein Interessent seine Demo: nur das Formular seiner Branche mit seinem Betriebsnamen (hier „Elektro Maier“), im Zahnrad als Pilotbetrieb, mit eigenen Leistungen, Vorlagen, Team und Terminen. Andere Branche: in der Adresse branche= ändern. Zurück über das Menü.',
+    seite: 'clickzauber-cockpit-live.html?demo=1&rahmen=1&branche=handwerk&probe=Elektro%20Maier' },
+  { id: 'handwerk-makler', am: '07.10.2026', b: 'handwerk', t: 'Neue Beispiele: Handwerk & Solar, Makler & Finanzen',
+    s: 'Im Menü stehen zwei neue Branchen. Die Anfragen liegen auf der Tafel (Neu, Kontakt, Angebot, Auftrag, Verloren), mit Wiedervorlage für heute, einem online angenommenen Angebot und einem Verschiebe-Wunsch.',
+    zeig: function (w) { w.show('leads'); } },
+  { id: 'auftrag-beispiele', am: '07.10.2026', b: 'catering', t: 'Food Truck: angenommen, Ausweichtag, verschieben',
+    s: 'Im Beispiel stehen jetzt ein online angenommenes Angebot (Familie Yilmaz), ein gewählter Ausweichtag (Jana Roth), ein Verschiebe-Wunsch (Sportverein Allensbach) und eine Wiedervorlage für heute (Kita Sonnenschein).',
+    zeig: function (w) { if (w.czAuOeffnen) w.czAuOeffnen('c7'); } },
+  { id: 'umbuchen', am: '06.10.2026', b: 'friseur', t: 'Termin umbuchen und Weitere Möglichkeiten',
+    s: 'Im Termin-Blatt steht „Termin umbuchen“, darunter klappt „Weitere Möglichkeiten“ auf, jeweils mit einem Satz, was passiert. Bestätigte Termine: nur absagen, umbuchen oder nachfragen, ob es noch passt.',
+    zeig: function (w) {
+      w.show('zeiten');
+      return new Promise(function (ok, nein) {
+        var n = 0;
+        (function such() {
+          var x = w.czZtTermin && w.czZtTermin('s15');
+          if (x && w.czSchnellTermin) { w.czSchnellTermin(x); setTimeout(function () { var d = w.document.getElementById('sa-opt'); if (d && !d.hidden) d.open = true; ok(); }, 500); return; }
+          if (++n < 40) setTimeout(such, 150); else nein();
+        })();
+      });
+    } },
+  { id: 'historie', am: '05.10.2026', b: 'alle', t: 'Historienbuch',
+    s: 'Alle Kunden der letzten 30 Tage, die da waren, mit allen Angaben und CSV-Download. Friseur: Reiter neben „Anfragen“. Food Truck: neben „Zugesagt“. Location: neben „Auswertung“.',
+    zeig: function (w) { w.czHistorie.oeffnen(); } },
+  { id: 'punkte-klein', am: '05.10.2026', b: 'alle', t: 'Punkte werden beim Scrollen klein',
+    s: 'Ganz oben wie bisher. Beim Herunterscrollen huscht die Box an den rechten Rand, wird kleiner und zeigt nur noch die Punkte und die Zahl offener Aufgaben, die sanft pulsiert. Ein Tipp öffnet sie wieder, ganz nach oben scrollen macht sie wieder groß.',
+    zeig: function (w) {
+      w.show('overview');
+      setTimeout(function () {
+        /* Ist die Seite zu kurz zum Scrollen, hier unten Platz schaffen (nur im Test) */
+        /* Am Handy scrollt #app, am Computer das Fenster */
+        var a = w.document.getElementById('app');
+        if (a && a.scrollHeight > a.clientHeight + 20 && /(auto|scroll)/.test(w.getComputedStyle(a).overflowY)) { a.scrollTo({ top: 600, behavior: 'smooth' }); return; }
+        var d = w.document.documentElement;
+        if (d.scrollHeight - w.innerHeight < 300) d.style.minHeight = (w.innerHeight + 700) + 'px';
+        w.scrollTo({ top: 600, behavior: 'smooth' });
+      }, 400);
+    } },
+  { id: 'kundenkarte', am: '04.10.2026', b: 'friseur', t: 'Kundenkarte',
+    s: 'Ein Tipp auf den Namen zeigt alle Besuche: wann, was gemacht wurde, bei wem und ob jemand nicht gekommen ist. Auch im Termin-Blatt („Alle Besuche ansehen“) und unter Stammkunden. Am besten zu sehen bei Deniz Aras und Maria Lehmann.',
+    zeig: function (w) { w.show('zeiten'); setTimeout(function () { w.czKundenkarte({ name: 'Deniz Aras', telefon: '0176 1234567' }); }, 500); } },
+  { id: 'offline', am: '04.10.2026', b: 'alle', t: 'Ohne Internet',
+    s: 'Statt einer leeren Seite erscheint „Keine Verbindung“. Kommt das Netz zurück, lädt die Seite von selbst neu.',
+    seite: 'offline.html' },
+  { id: 'bestaetigen', am: '03.10.2026', b: 'alle', t: 'Lesen und bestätigen',
+    s: 'Auftragsverarbeitungsvertrag, Datenschutzerklärung, Löschfrist und Benachrichtigung zählen erst, wenn sie ganz unten mit Haken bestätigt sind. Dann gibt es Mission und Punkte.',
+    zeig: function (w) {
+      /* Beispieldaten sind schon bestätigt: für die Vorführung auf offen setzen (es wird nichts gespeichert) */
+      var e = w.EIN && w.EIN.einstellungen;
+      if (e) { w.EIN.av_aktuell = false; e.av_vertrag_am = null; e.av_vertrag_von = null; e.bestaetigt = {}; }
+      try { w.einZeichnen(); } catch (x) {}
+      w.show('recht'); setTimeout(function () { w.czBestaetigen('av'); }, 400);
+    } },
+  { id: 'vortag', am: '03.10.2026', b: 'friseur', t: 'Kunden am Vortag erinnern',
+    s: 'Neuer Schalter in den Einstellungen. Wer bis 17 Uhr nicht per WhatsApp erinnert wurde, bekommt die Erinnerung per Mail oder SMS.',
+    zeig: function (w, h) { w.show('settings'); return h.markieren('#s-erinnerung'); } },
+  { id: 'zwischen', am: '03.10.2026', b: 'alle', t: 'Zwischennachricht an den Gast',
+    s: 'Der Schalter heißt jetzt so und sagt klar, dass er nur die Nachricht an den Gast abschaltet. Ihre eigenen Erinnerungen kommen immer.',
+    zeig: function (w, h) { w.show('settings'); return h.markieren('#s-nachfassen'); } },
+  { id: 'kalender', am: '03.10.2026', b: 'alle', t: 'Kalender verbinden',
+    s: 'Termine landen in Google, Outlook oder iCloud. Private Termine im eigenen Kalender sperren das Formular.',
+    zeig: function (w, h) { w.show('kalender'); return h.markieren('#abo2-karte'); } },
+  { id: 'erinnern', am: '03.10.2026', b: 'catering', t: 'Erinnere mich am …',
+    s: 'Im Anfrage-Blatt einen Tag wählen. An diesem Tag kommt ab 8 Uhr eine Erinnerung. Zum Ansehen eine Anfrage öffnen.',
+    zeig: function (w) { w.show('leads'); } }
+];
+/* Nur nach dem Hochladen testbar: braucht den Server, Gast-Seiten mit echtem Link oder die App. */
+var SERVER = [
+  { id: 's-papierkorb', t: 'Papierkorb für Formulare (21.10.2026)', wie: 'sql/74, GitHub, IONOS. Mit einem Testkonto: Cockpit → Formular → Löschen, Namen eintippen. Das Formular ist von der Website weg, Sie bekommen Push und Mail, die Plattform zeigt „Formular im Papierkorb“. „Zurückholen“ im Cockpit oder in der Kundenakte: alles wieder da, Anfragen auch.' },
+  { id: 's-ziehen', t: 'Nach unten ziehen zum Aktualisieren (20.10.2026)', wie: 'IONOS hochladen. Cockpit in der App oder vom Home-Bildschirm öffnen, ganz oben nach unten ziehen und loslassen: Es lädt neu. Im Konfigurator eine Leistung ändern, ziehen: Die Änderung ist noch da, dieselbe Seite ist offen. Im normalen Browser passiert nichts Neues (das macht der Browser selbst).' },
+  { id: 's-blockieren', t: 'Personen blockieren (15.10.2026)', wie: 'sql/72, GitHub, IONOS. Im echten Konto selbst eine Anfrage schicken, im Termin „Diese Person blockieren“. Noch eine Anfrage vom selben Handy: Formular sagt „Danke“, im Cockpit kommt nichts an. Leistungen & Regeln → Blockierte Personen → Freigeben.' },
+  { id: 's-wimpern', t: 'Wimpern: neues Set, Fotos, Höchstzahl (15.10.2026)', wie: 'GitHub und IONOS hochladen. Bei Kate unter Leistungen & Regeln die Auffüll-Leistungen anhaken (Haken „Auffüllen“), Regeln wählen, Höchstzahl 3, speichern. Im Formular „Auffüllen nach 2 Wochen“, „Vor 5 Wochen oder länger“ wählen: Hinweis „Voraussichtlich ein neues Set“, freie Zeiten für 2 Std. Absenden, im Cockpit Termin öffnen, „Auf neues Set ändern“, WhatsApp-Knopf prüfen, Link öffnen. Vierte Anfrage vom selben Handy: „Schon genug Anfragen“.' },
+  { id: 's-zahl', t: 'Zahl auf dem App-Symbol (15.10.2026)', wie: 'sw.js, Cockpit und lib/lead.js, lib/_push.js hochladen. iPhone: clickzauber vom Home-Bildschirm öffnen, Mitteilungen an. App schließen, eine Anfrage schicken: Auf dem Symbol steht die Zahl der neuen Anfragen. Cockpit öffnen, Anfrage annehmen: Zahl sinkt. Die App aus dem App Store zeigt keine Zahl.' },
+  { id: 's-bestaetigung-neu', t: 'Neue Bestätigungs-Mail mit Kalender-Knopf (15.10.2026)', wie: 'lib/termine.js hochladen. Im Formular von Test Firma 00 mit eigener Mail buchen, im Cockpit „Annehmen“. Die Mail kommt mit dem Namen des Betriebs als Absender, Logo, Adresse, Termin-Karte und grünem Knopf „In meinen Kalender eintragen“. Knopf am iPhone tippen: Kalender öffnet sich. „Termin ändern“ führt auf die Seite „Ihr Termin“. Danach einmal „Ablehnen“ testen: Knopf „Neuen Termin wählen“.' },
+  { id: 's-einladung-meldungen', t: 'Mitteilungen aus der Einladung (10.10.2026)', wie: 'API und Seiten hochladen. Einladungs-Link eines vorgebauten Kontos nach „Ja, verschickt“ im privaten Tab öffnen: Push und Mail „hat den Einladungs-Link geöffnet“, beim nächsten Öffnen mit Zähler. Zugang mit zu kurzem Passwort versuchen: Mitteilung mit Grund, in der Akte steht der Fehlversuch unter „E-Mail und Passwort angelegt“. „Manuel fragen“ antippen und eine Frage schicken: Push und Mail. Dann mit tripi.manu+kate@gmail.com Zugang anlegen, E-Mail bestätigen, Formular ansehen, Home-Bildschirm, eine Anfrage, weiterschicken: jeweils eine Mitteilung. Zum Schluss „Einladung zurücksetzen“.' },
+  { id: 's-gastabsage', t: 'Gast sagt ab, Cockpit räumt auf (09.10.2026)', wie: 'Friseur-Formular: Termin anfragen. Im Cockpit „Andere Uhrzeit vorschlagen“, als Gast den Vorschlag annehmen. Dann als Gast über „Absagen oder anderen Tag wünschen“ (Link in der Bestätigung) absagen. Im Cockpit muss der Termin in spätestens 30 Sekunden als abgesagt dastehen, die Anfrage auf „Verloren“, die Zeit wieder frei. Kurzfristig (innerhalb der Absagefrist) bleibt es eine Meldung.' },
+  { id: 's-online-test', t: 'Formular online testen, vor dem Verschicken (10.10.2026)', wie: 'API und Seiten hochladen. Plattform → Kundenübersicht → vorgebautes Konto mit Formular → Schritt 2 „Bearbeiten und testen“: Schalter „Formular online testen“ an. „Formular öffnen“ am Handy, eine Anfrage schicken: Sie steht im Cockpit des Kontos, die Bestätigung kommt an Ihre Adresse. Dann „Alles geprüft und getestet?“ abhaken: Formular aus, Test-Anfrage gelöscht, Einschalten nur noch nach der E-Mail-Bestätigung des Kunden. Ohne Server: clickzauber-plattform.html?akten=beispiel → Barber by Becks.' },
+  { id: 's-kundenakte', t: 'Kundenübersicht mit Checkliste (09.10.2026)', wie: 'sql/68 einspielen, API und Seiten hochladen. Plattform → Kundenübersicht: Kate Cosmetics steht als vorgemerkt da → „Jetzt vorbauen“. In der Akte: „Bearbeiten und testen“ öffnet das echte Konto in einem neuen Tab, danach „Alles geprüft und getestet?“ abhaken (grau, Haken am Ende). „Per WhatsApp an Kate“ → zurück auf der Plattform „Ja, verschickt“. Öffnet sie den Link, kommt eine Mitteilung, und die Akte hakt den Schritt in spätestens 15 Sekunden ab, ebenso Zugang (E-Mail sichtbar, Passwort nicht), Bestätigung, Live schalten, Home-Bildschirm, Anfragen und Rückmeldung. Ohne Server: clickzauber-plattform.html?akten=beispiel (Knopf „Nächsten Schritt von Kate durchspielen“).' },
+  { id: 's-einladung', t: 'Einladungs-Link mit 14 Tagen Test (09.10.2026)', wie: 'sql/67 einspielen, API und Seiten hochladen. Plattform → „+ Konto vorbauen“ (Angaben, Datenschutz-Link) → „Jetzt öffnen“, Formular bauen. Kunden & Zahlen → Konto → „Einladungs-Link“ → auf zweitem Gerät oder privatem Tab öffnen, Zugang mit tripi.manu+kate@gmail.com → Fenster „Testzugang startet“ → „Ihre ersten Schritte“ durchgehen, Anfrage schicken, Rückmeldung senden. Dann beim Konto „In echtes Konto überführen“ (Cockpit zeigt einmal „Konto freigeschaltet“) oder „Einladung zurücksetzen“ (neuer Link, alles Getestete weg). Ohne Server: einladung.html?beispiel=1 (&eingeloest=1), Karte: clickzauber-cockpit-live.html?test=beispiel' },
+  { id: 's-live-frei', t: 'Live schalten ohne Tarif', wie: 'Nach dem Hochladen: Testkonto ohne Pilotplatz anlegen, Formular speichern, im Cockpit „Live schalten“. Es kommt keine Tarif-Seite, nur E-Mail-Bestätigung und Datenschutz-Link.' },
+  { id: 's-kate-14', t: '14-Tage-Link für Kate Cosmetics', wie: 'Plattform → 7-Tage-Demos → Zugang anlegen: Betrieb „Kate Cosmetics“, Branche „Kosmetik, Nägel & Wimpern“, Laufzeit 14 Tage. Erst an die eigene Nummer schicken und öffnen: oben „Kate Cosmetics“, unter Termine ihr Angebot, im Zahnrad Pilotbetrieb, noch 14 Tage.' },
+  { id: 's-inhalt-form', t: 'Formular mit Inhaltsverzeichnis', wie: 'Am Handy verkaufsslides/inhaltsverzeichnis.html öffnen (für Kate: ?v=kosmetik&betrieb=Kate%20Cosmetics). Tag, Damen, Balayage und Spitzen schneiden, Haare schulterlang und lockig, Farbe dunkelbraun: Es sollen ca. 5 Std. 25 Min. und ca. 274 € herauskommen.' },
+  { id: 's-inhalt-echt', t: 'Inhaltsverzeichnis mit echtem Konto', wie: 'Nach sql/66: Cockpit eines Testkontos → Termine → Leistungen & Regeln → „Inhaltsverzeichnis mit runden Kacheln“ anhaken → „Friseur Damen & Herren“ anhängen → Speichern. Im Formular buchen: Der Termin im Kalender ist so lang wie die ausgerechnete Dauer, die Anfrage zeigt jede Zeile mit Preis.' },
+  { id: 's-plattform-eins', t: 'Plattform und Vertrieb auf einer Seite', wie: 'clickzauber-plattform.html mit Schlüssel öffnen (clickzauber-vertrieb.html leitet weiter). Reiter: Überblick, Kunden & Zahlen, Termine, 7-Tage-Demos, Kennzahlen, Potenzielle Kunden, Meldungen, Rundmail, Protokoll. Am Handy die Leiste wischen. Ein Tipp auf ein Konto im Überblick öffnet es unter „Kunden & Zahlen“.' },
+  { id: 's-konto-loeschen', t: 'Konto sperren und komplett löschen', wie: 'Kunden & Zahlen → Testkonto antippen → „Komplett sperren“, dann „Wieder freigeben“. Danach „Konto endgültig löschen“ und die E-Mail eintippen: Konto, Team-Zugänge, Formulare, Anfragen, Termine und Netzwerk-Profil sind weg, das Protokoll zeigt „Konto gelöscht“.' },
+  { id: 's-wartung', t: 'Wartung: Fenster und Streifen im Cockpit', wie: 'Eigenes Cockpit am Handy offen lassen. Plattform → Überblick → „Wartung starten“. Nach spätestens 20 Sekunden: Fenster „Kurze Wartung“ und roter Streifen oben. „Wartung beenden“ → kurz „Wartung beendet“.' },
+  { id: 's-alle-neu-meldung', t: 'Alle Cockpits aktualisieren: mit Rückmeldung', wie: 'Plattform → Überblick → „Alle Cockpits jetzt aktualisieren“. Darunter steht „✓ Ausgelöst … · N Betriebe“, im eigenen Cockpit nach dem Neuladen kurz „Aktualisiert“.' },
+  { id: 's-missionen-einmal', t: 'Missionen feiern nur einmal', wie: 'Eine Mission erfüllen, zum Beispiel im Menü „Funktionen“ alle Grundlagen mit „Verstanden“. Danach dasselbe Konto in der App oder an einem zweiten Gerät öffnen: keine zweite Feier, die Mission ist abgehakt.' },
+  { id: 's-demo-link', t: '7-Tage-Demo-Link geht auf', wie: 'Nach dem Hochladen von .htaccess, Ordner demo/ und 404.html: Plattform → 7-Tage-Demos → Zugang anlegen → „Per WhatsApp schicken“ an die eigene Nummer → Link am Handy öffnen.' },
+  { id: 's-test-online', t: 'Test-Cockpit online', wie: 'clickzauber.de/clickzauber-test-cockpit.html am Handy öffnen. Dort stehen „Neu“ und das Beispiel-Cockpit mit dem hochgeladenen Stand. To-dos und Erkenntnisse gibt es nur hier in der Vorschau.' },
+  { id: 's-auswahl', t: 'Auswahl und Preise in Mail, Kachel und Formular', wie: 'Im Konfigurator beim Friseur-Formular eine Seite mit Preisen hinzufügen (z. B. „Möchten Sie Haare färben?“, Blond 60 €), speichern, Formular ausfüllen. Die Zusammenfassung zeigt Leistung, Extras und den genauen Gesamtbetrag. Im Cockpit: Kachel mit „+ Blond färben · Betrag“, Termin-Blatt „Gewünscht“ mit Gesamt, Mail an den Betrieb mit allen Antworten und Preisen. Danach Einstellungen → Funktionen → „Preise für Ihre Kunden zeigen“ aus: Formular und Bestätigung ohne Preise. Unter dem Formular steht kein „Powered by clickzauber“ mehr.' },
+  { id: 's-alle-neu', t: 'Alle Cockpits jetzt aktualisieren', wie: 'Nach dem Hochladen: Plattform → Überblick → „Alle Cockpits jetzt aktualisieren“. Eigenes Cockpit am Handy offen lassen, es lädt in spätestens 20 Sekunden neu. Ohne den Knopf übernimmt es den neuen Stand beim Zurückholen oder nach spätestens 5 Minuten, sobald er eine Minute gleich bleibt.' },
+  { id: 's-demo-einverstanden', t: '7-Tage-Demo: Einverständnis und Löschung nach 30 Tagen', wie: 'Plattform → 7-Tage-Demos → Demo-Zugang anlegen → am Handy öffnen. Ohne beide Haken startet die Demo nicht. Im Verlauf steht „Einverstanden“, beim Zugang „wird am … gelöscht“. Dasselbe beim QR-Code und beim Hinterlassen der Nummer aus einem Gruppen-Link.' },
+  { id: 's-funktionen', t: 'Funktionen live schalten', wie: 'Plattform → Kunden & Zahlen → Konto antippen → „Funktionen“. Einen Haken entfernen: Im Cockpit des Kunden ist es nach spätestens 20 Sekunden weg, mit kurzem Hinweis. Nach dem Hochladen neuer Dateien „Jetzt bei ihm neu laden“. Damen/Herren: einschalten, bei den Leistungen „Für“ wählen, speichern, Formular öffnen → „Für wen ist der Termin?“.' },
+  { id: 's-demo-ein-formular', t: '7-Tage-Demos: ein Formular je Branche', wie: 'Plattform → 7-Tage-Demos → Demo-Zugang für „Handwerk & Solar“ anlegen und öffnen. Oben steht nur das eine Formular mit dem Namen des Betriebs, im Zahnrad „Pilotbetrieb · kostenlos“. Mit einem QR-Code oder Link stehen beim Start fünf Branchen zur Wahl.' },
+  { id: 's-termin-link', t: 'Vertrieb: Termin-Link für Interessenten', wie: 'Plattform → Reiter „Termine“ → Termin-Link anlegen, eigene Handynummer und Mail eintragen → „Per WhatsApp schicken“. Am Handy öffnen, Termin wählen, „Per E-Mail“ → Mail mit Kalender-Eintrag, Push an Sie, Kontaktbuch „Termin steht“. Danach „Anderen Termin wünschen“. Ohne Server ansehen: termin.html?beispiel=1' },
+  { id: 's-app-frei', t: 'App: Konto ohne Tarif bekommt eine Mail mit dem Weg zum Tarif, Sie bekommen Push und Mail', wie: 'In der App ein neues Konto anlegen (kein Pilotplatz frei), Formular speichern, „Live schalten“. In der App steht „Wir melden uns bei Ihnen“, die Mail kommt sofort.' },
+  { id: 's-vertrieb-kz', t: 'Vertrieb: Reiter „7-Tage-Demos“ und „Kennzahlen“', wie: 'clickzauber-plattform.html mit Schlüssel öffnen → Reiter „Kennzahlen“. Unter „Jetzt nachfassen“ steht, wer am meisten ausprobiert hat. Antippen zeigt jeden Klick.' },
+  { id: 's-gruppenlink', t: 'Links für Facebook-Gruppen', wie: 'Plattform → 7-Tage-Demos → „Links für Facebook-Gruppen“ → Link anlegen → am Handy öffnen. Die Demo startet ohne Anmeldung, nach gut anderthalb Minuten fragt sie nach einer Nummer. Danach kommt eine Push-Nachricht.' },
+  { id: 's-verschickt', t: 'Versand wird festgehalten', wie: 'Demo-Zugang anlegen → „Per WhatsApp schicken“ → in der Liste steht „per WhatsApp verschickt“ mit Uhrzeit.' },
+  { id: 's-app-update', t: 'App: Hinweis auf neue Store-Version, Sperre unter der Mindestversion', wie: 'Erst wenn die App im Store ist. Plattform → Überblick → App-Versionen → eine Mindestversion über der eigenen eintragen → App öffnen → „Bitte aktualisieren“. Danach das Feld wieder leeren.' },
+  { id: 's-17uhr', t: 'Erinnerung ab 17 Uhr per Mail oder SMS', wie: 'Termin für morgen fest, Kunde mit E-Mail. Nach 17 Uhr kommt die Erinnerung.' },
+  { id: 's-verfallen', t: 'Verfallene Anfrage: SMS an Kunden ohne E-Mail', wie: 'Nur mit eingeschalteter SMS.' },
+  { id: 's-angebot30', t: 'Abgelaufenes Angebot gilt nach erneutem Senden wieder 30 Tage', wie: 'Food Truck: Angebot älter als 30 Tage, „Angebot noch einmal senden“, Link annehmen.' },
+  { id: 's-nachabsage', t: 'Angebot, Ausweich-Link und Absage-Link gelten nach einer Absage nicht mehr', wie: 'Angebot schicken, Anfrage absagen, Link öffnen.' },
+  { id: 's-mehrfach', t: 'Telefon-Termine bei mehreren Aufträgen pro Tag', wie: 'Food Truck: zwei Telefon-Termine am selben Tag eintragen.' },
+  { id: 's-login', t: 'Bestätigungsmail führt direkt zur Anmeldung', wie: 'Neues Konto, in der Mail „E-Mail-Adresse bestätigen“.' },
+  { id: 's-demo', t: 'Demo-Zugänge und QR-Codes', wie: 'Auf der Plattform-Seite anlegen und am Handy öffnen.' },
+  { id: 's-app', t: 'App: Mitteilungen, Teilen, keine Tarife', wie: 'Nach Anleitung in NICHT-HOCHLADEN/app/ auf dem eigenen Handy.' }
+];
+var SLUG = { friseur: 'salon-am-see', catering: 'seerose-catering', location: 'gut-seerose', handwerk: 'sonnenwerk-nord', makler: 'immobilien-weber' };
+var NAME = { friseur: 'Friseur & Co.', catering: 'Food Truck & Catering', location: 'Location', handwerk: 'Handwerk & Solar', makler: 'Makler & Finanzen', alle: 'Alle' };
+var KEY = 'cz_test_cockpit_v1', ST = { b: 'friseur', a: 'pc', h: {} };
+try { var g = JSON.parse(localStorage.getItem(KEY) || 'null'); if (g) ST = Object.assign(ST, g); } catch (e) {}
+ST.vb = true;
+function merk() { try { localStorage.setItem(KEY, JSON.stringify(ST)); } catch (e) {} }
+var F = document.getElementById('f'), RA = document.getElementById('rahmen');
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+var MT = null;
+function meld(t, bad) {
+  var m = $('meld'); m.textContent = t || ''; m.className = 'meld' + (bad ? ' bad' : '');
+  clearTimeout(MT);
+  if (t && ST.vb && !/…$/.test(t)) MT = setTimeout(function () { m.textContent = ''; }, bad ? 7000 : 3500);
+}
+/* In der Vorschau bei Claude braucht jede Datei das Zeichen aus der Adresse dieser Seite (t=…). Es geht an den Rahmen weiter. */
+var VQ = location.search.replace(/^\?/, '');
+function mitVQ(u) { return VQ ? u + (u.indexOf('?') < 0 ? '?' : '&') + VQ : u; }
+/* rahmen=1: das Cockpit wie im Original, ohne Demo-Streifen, Feedback-Knopf, Tour und App-Hinweis */
+function adresse(b) { return mitVQ('clickzauber-cockpit-live.html?demo=1&rahmen=1&branche=' + b); }
+/* Die Beispieldaten schreiben „Beispieldaten — kein Server“ in die Zeile über der Begrüßung. Hier steht wieder der Originaltext. */
+function pur(alt) {
+  /* Wartet auf das neue Dokument im Rahmen (nicht auf „load“: das kann sich in der Vorschau lange hinziehen) */
+  var n = 0, b = ST.b;
+  (function p() {
+    var w, d, lb;
+    try { w = F.contentWindow; d = w.document; } catch (e) { return; }
+    if (!d || d === alt || !/clickzauber-cockpit-live\.html/.test(w.location.pathname) || !(lb = d.querySelector('.top .live'))) { if (++n < 300) setTimeout(p, 100); else F.style.visibility = ''; return; }
+    /* Formular-Auswahl oben weg: die Branche wählt das Menü */
+    if (!d.getElementById('tc-pur')) { var st = d.createElement('style'); st.id = 'tc-pur'; st.textContent = '#art-wahl,#wsel,#kv-wsel{display:none!important}'; d.head.appendChild(st); }
+    var fix = function () { if (/Beispieldaten/.test(lb.textContent)) lb.innerHTML = '<span class="dot"></span>Live · echte Daten'; };
+    fix();
+    new w.MutationObserver(fix).observe(lb, { childList: true, characterData: true, subtree: true });
+    /* Branche: das passende Beispiel-Formular wählen, wie die Demo mit ?branche= (js/cz-demo.js) */
+    /* Bis das Formular gewählt ist, bleibt der Rahmen verdeckt (sonst blitzt kurz „Alle Formulare“ auf).
+       Zwölf Sekunden lang wird nachgehalten, falls das Cockpit die Auswahl beim Laden noch einmal zurücksetzt. */
+    var m = 0;
+    (function wahl() {
+      try { if (F.contentWindow.document !== d) return; } catch (e) { return; }
+      var s = d.getElementById('wsel');
+      if (s && [].some.call(s.options, function (o) { return o.value === SLUG[b]; })) {
+        if (s.value !== SLUG[b] || w.widget !== SLUG[b]) { s.value = SLUG[b]; s.dispatchEvent(new w.Event('change')); }
+        else if (F.style.visibility) setTimeout(function () { F.style.visibility = ''; }, 250);
+      }
+      if (++m < 60) setTimeout(wahl, 200); else F.style.visibility = '';
+    })();
+  })();
+}
+function laden(b) {
+  ST.b = b; merk(); knoepfe();
+  var alt = null; try { alt = F.contentWindow.document; } catch (e) {}
+  F.style.visibility = 'hidden';
+  F.src = adresse(b) + '&_=' + Date.now(); pur(alt);
+}
+function knoepfe() {
+  [].forEach.call(document.querySelectorAll('[data-b]'), function (x) { x.classList.toggle('an', x.getAttribute('data-b') === ST.b); });
+  [].forEach.call(document.querySelectorAll('#ans button'), function (x) { x.classList.toggle('an', x.getAttribute('data-a') === ST.a); });
+  RA.classList.toggle('handy', ST.a === 'handy');
+}
+function bereit(b) {
+  return new Promise(function (ok, nein) {
+    var w0 = null; try { w0 = F.contentWindow; } catch (e) {}
+    var istDa = false; try { istDa = w0 && /clickzauber-cockpit-live\.html/.test(w0.location.pathname) && w0.widget === SLUG[b]; } catch (e) {}
+    if (!istDa) laden(b);
+    var n = 0;
+    (function warte() {
+      var w = null; try { w = F.contentWindow; } catch (e) {}
+      try { if (w && typeof w.show === 'function' && w.widget === SLUG[b] && w.document.querySelector('.view.on')) { setTimeout(function () { ok(w); }, 300); return; } } catch (e) {}
+      if (++n < 120) setTimeout(warte, 150); else nein();
+    })();
+  });
+}
+function hilfe(w) {
+  return { markieren: function (sel) {
+    return new Promise(function (ok, nein) {
+    var n = 0;
+    (function such() {
+      var el = w.document.querySelector(sel);
+      /* Steckt es in einer zugeklappten Karte (Einstellungen), diese aufklappen */
+      var k = el && el.closest('.akk-koerper'), card = k && k.closest('.card');
+      if (card && !card.classList.contains('auf')) { var kopf = card.querySelector('.akk-kopf'); if (kopf) kopf.click(); }
+      if (!el || !el.offsetParent) { if (++n < 30) setTimeout(such, 150); else nein(); return; }
+      var ziel = el.closest('.setrow, .card') || el, p = ziel.parentElement;
+      while (p && p !== w.document.body) { var s = w.getComputedStyle(p); if (/(auto|scroll)/.test(s.overflowY) && p.scrollHeight > p.clientHeight) break; p = p.parentElement; }
+      var y = ziel.getBoundingClientRect().top - 110;
+      if (p && p !== w.document.body) p.scrollTop += y - p.getBoundingClientRect().top; else w.scrollBy({ top: y, behavior: 'smooth' });
+      var alt = ziel.style.outline;
+      ziel.style.outline = '3px solid #e0a800'; ziel.style.outlineOffset = '4px';
+      setTimeout(function () { ziel.style.outline = alt; ziel.style.outlineOffset = ''; }, 2600);
+      ok();
+    })();
+    });
+  } };
+}
+/* ?zeige=ID öffnet einen Eintrag aus „Neu“ direkt (seit 13.10.2026). */
+setTimeout(function () { try { var id = new URLSearchParams(location.search).get('zeige'); if (!id) return; var x = NEU.filter(function (n) { return n.id === id; })[0]; if (x) zeigen(x); } catch (e) {} }, 600);
+function zeigen(x) {
+  if (x.seite) { F.style.visibility = ''; F.src = mitVQ(x.seite); meld(x.t + ': So sieht es aus. Zurück über das Menü links.'); return; }
+  var b = x.b === 'alle' ? ST.b : x.b;
+  meld('Wird geöffnet …');
+  bereit(b).then(function (w) {
+    var schief = function () { meld(x.t + ': ließ sich nicht von selbst zeigen. ' + x.s, true); };
+    try {
+      var r = x.zeig(w, hilfe(w));
+      if (r && r.then) { meld('Wird gesucht …'); r.then(function () { meld(x.t + ' · ' + NAME[b]); }, schief); }
+      else meld(x.t + ' · ' + NAME[b]);
+    } catch (e) { schief(); }
+  }, function () { meld('Das Cockpit lädt nicht. Bitte „Neu laden“.', true); });
+}
+function eintrag(x, server) {
+  var h = '<div class="e' + (server ? ' server' : '') + '"><div class="o"><b>' + esc(x.t) + '</b>' + (x.b ? '<span class="br">' + esc(NAME[x.b]) + '</span>' : '') + (x.am ? '<span class="am">' + esc(x.am) + '</span>' : '') + '</div>';
+  h += server ? '<p class="wie">So testen: ' + esc(x.wie) + '</p>' : '<p>' + esc(x.s) + '</p>';
+  h += '<div class="u">' + (server ? '<span></span>' : '<button class="zeig" data-zeig="' + esc(x.id) + '">Zeigen</button>') + '<label><input type="checkbox" data-hoch="' + esc(x.id) + '"' + (ST.h[x.id] ? ' checked' : '') + '>Hochgeladen</label></div></div>';
+  return h;
+}
+function liste() {
+  var offen = NEU.filter(function (x) { return !ST.h[x.id]; }), offenS = SERVER.filter(function (x) { return !ST.h[x.id]; });
+  var fertig = NEU.concat(SERVER).filter(function (x) { return ST.h[x.id]; });
+  $('vb-zahl').textContent = offen.length || '';
+  var h = '<h2>Neu seit dem letzten Hochladen</h2>';
+  h += offen.length ? '<div class="h">Hier testbar</div>' + offen.map(function (x) { return eintrag(x, false); }).join('') : '<p style="margin:0;color:var(--ink2);font-size:14px">Alles hier Testbare ist hochgeladen.</p>';
+  if (offenS.length) h += '<div class="h">Erst nach dem Hochladen testbar</div>' + offenS.map(function (x) { return eintrag(x, true); }).join('');
+  if (fertig.length) h += '<details class="fertig"><summary>Schon hochgeladen (' + fertig.length + ')</summary>' + fertig.map(function (x) { return eintrag(x, !x.s); }).join('') + '</details>';
+  $('neu').innerHTML = h;
+}
+/* Das Cockpit füllt den ganzen Bildschirm. Alles andere steckt im Menü am linken Rand (Knopf verschiebbar). */
+function menuAuf() { $('vb-rk').hidden = false; $('vb-blatt').hidden = false; $('vb-blatt').scrollTop = 0; }
+function menuZu() { $('vb-rk').hidden = true; $('vb-blatt').hidden = true; }
+function vbSetzen() {
+  document.documentElement.classList.add('vb'); document.body.classList.add('vb');
+  $('vb-liste').appendChild($('neu'));
+}
+/* Wo der Browser es erlaubt (Android, Computer): auch Adressleiste und Ränder weg */
+function ganzerBildschirm() {
+  try {
+    if (document.fullscreenElement) document.exitFullscreen().catch(function () {});
+    else document.documentElement.requestFullscreen().catch(function () {});
+  } catch (e) {}
+}
+if (document.fullscreenEnabled && document.documentElement.requestFullscreen) $('gb-knopf').hidden = false;
+(function () {
+  var k = $('vb-knopf'), start = null, y0 = 0, zog = false;
+  if (ST.ky) k.style.top = Math.max(90, Math.min(innerHeight - 90, ST.ky)) + 'px';
+  k.addEventListener('pointerdown', function (e) { start = e.clientY; y0 = k.getBoundingClientRect().top + 28; zog = false; try { k.setPointerCapture(e.pointerId); } catch (x) {} });
+  k.addEventListener('pointermove', function (e) {
+    if (start === null) return;
+    var d = e.clientY - start; if (Math.abs(d) > 6) zog = true;
+    if (zog) k.style.top = Math.max(90, Math.min(innerHeight - 90, y0 + d)) + 'px';
+  });
+  k.addEventListener('pointerup', function () { if (start === null) return; start = null; if (zog) { ST.ky = parseInt(k.style.top, 10); merk(); } else menuAuf(); });
+  k.addEventListener('pointercancel', function () { start = null; });
+  k.addEventListener('click', function (e) { if (e.detail === 0) menuAuf(); });
+})();
+document.addEventListener('keydown', function (ev) {
+  if (ev.key !== 'Escape') return;
+  if (!$('vb-blatt').hidden) menuZu();
+});
+document.addEventListener('click', function (ev) {
+  var x = ev.target.closest('[data-b]'); if (x) { menuZu(); meld(''); laden(x.getAttribute('data-b')); return; }
+  x = ev.target.closest('[data-a]'); if (x) { ST.a = x.getAttribute('data-a'); merk(); knoepfe(); return; }
+  x = ev.target.closest('[data-zeig]'); if (x) { menuZu(); var e = NEU.filter(function (y) { return y.id === x.getAttribute('data-zeig'); })[0]; if (e) zeigen(e); return; }
+  x = ev.target.closest('[data-act]'); if (!x) return;
+  var act = x.getAttribute('data-act');
+  if (act === 'menu-zu') { menuZu(); return; }
+  if (act === 'gb') { menuZu(); ganzerBildschirm(); return; }
+  menuZu();
+  if (act === 'neu-laden') { meld(''); laden(ST.b); return; }
+  if (act === 'zurueck') {
+    try { F.contentWindow.sessionStorage.removeItem('cz_demo_stand'); } catch (e) {}
+    meld('Beispieldaten zurückgesetzt.'); laden(ST.b);
+  }
+});
+document.addEventListener('change', function (ev) {
+  var x = ev.target.closest('[data-hoch]'); if (!x) return;
+  if (x.checked) ST.h[x.getAttribute('data-hoch')] = 1; else delete ST.h[x.getAttribute('data-hoch')];
+  merk(); liste();
+});
+/* ── To-dos und Erkenntnisse. Daten: test-cockpit-daten.js (Pflege durch Claude, CLAUDE.md). Abgehakt wird hier im Browser. ── */
+var TK = 'cz_test_todos_v1', TD = {}, TWEG = {};
+try { TD = JSON.parse(localStorage.getItem(TK) || '{}') || {}; } catch (e) {}
+function tdMerk() { try { localStorage.setItem(TK, JSON.stringify(TD)); } catch (e) {} }
+var GR = { supabase: '1. Supabase · SQL Editor, der Reihe nach', github: '2. GitHub', ionos: '3. IONOS · Wurzel', js: '3. IONOS · Ordner js/', ablauf: '3. IONOS · Ordner verkaufsslides/ablauf/', loeschen: 'Auf dem Server löschen', danach: 'Danach' };
+function tdLink(u) { if (!/^(https?:|\/)/.test(u)) u = 'NICHT-HOCHLADEN/' + u; var i = u.indexOf('#'); return i < 0 ? mitVQ(u) : mitVQ(u.slice(0, i)) + u.slice(i); }
+function tdOffen(l) { return (l || []).filter(function (x) { return !TD[x.id] || TWEG[x.id]; }); }
+function tdZahl() { var d = window.CZ_TODO; return d ? (d.hochladen || []).filter(function (x) { return !TD[x.id]; }).length : 0; }
+function tdZeile(x) {
+  var weg = !!TWEG[x.id];
+  return '<label class="td' + (weg ? ' weg' : '') + '"><input type="checkbox" data-td="' + esc(x.id) + '"' + (weg ? ' checked' : '') + '><span><b>' + esc(x.t) + '</b>'
+    + (x.s ? '<small>' + esc(x.s) + '</small>' : '') + (x.link ? '<a href="' + esc(tdLink(x.link)) + '" target="_blank" rel="noopener">Öffnen</a>' : '') + '</span>'
+    + (weg ? '<button type="button" class="zur" data-tdzur="' + esc(x.id) + '">Rückgängig</button>' : '') + '</label>';
+}
+function tdGruppe(titel, l, alle) {
+  if (!l.length) return '';
+  var offen = l.filter(function (x) { return !TWEG[x.id]; });
+  return '<div class="td-g"><span>' + esc(titel) + '</span>' + (alle && offen.length > 1 ? '<button type="button" data-tdalle="' + esc(offen.map(function (x) { return x.id; }).join(' ')) + '">Alle erledigt</button>' : '') + '</div>' + l.map(tdZeile).join('');
+}
+function tdFehlt(el) { el.innerHTML = '<p class="td-sub">Die Liste lädt gerade nicht. Bitte oben „Neu laden“ oder die Seite neu öffnen.</p>'; }
+function todo() {
+  var d = window.CZ_TODO, el = $('todo'); if (!d) { tdFehlt(el); return; }
+  var hl = tdOffen(d.hochladen), al = tdOffen(d.aufgaben), gr = [];
+  var h = '<h2>Hochladen</h2><p class="td-sub">Immer der Reihe nach: Supabase, GitHub, IONOS. Abhaken, wenn erledigt. Abgehaktes verschwindet nach ein paar Sekunden.</p>';
+  Object.keys(GR).forEach(function (w) { h += tdGruppe(GR[w], hl.filter(function (x) { return x.wo === w; }), true); });
+  if (!hl.length) h += '<p class="td-sub"><b>Alles hochgeladen.</b></p>';
+  (d.aufgaben || []).forEach(function (x) { if (gr.indexOf(x.g) < 0) gr.push(x.g); });
+  if (al.length) { h += '<h2 style="margin-top:24px">Weitere To-dos</h2>'; gr.forEach(function (g) { h += tdGruppe(g, al.filter(function (x) { return x.g === g; }), false); }); }
+  var fertig = (d.hochladen || []).concat(d.aufgaben || []).filter(function (x) { return TD[x.id] && !TWEG[x.id]; });
+  if (fertig.length) h += '<details class="fertig"><summary>Erledigt (' + fertig.length + ')</summary>' + fertig.map(function (x) { return '<div class="td weg"><span><b>' + esc(x.t) + '</b></span><button type="button" class="zur" data-tdzur="' + esc(x.id) + '">Zurückholen</button></div>'; }).join('') + '</details>';
+  h += '<p class="td-sub" style="margin-top:14px">Stand ' + esc(d.stand || '') + '</p>';
+  el.innerHTML = h; tdKnopf();
+}
+function wissen() {
+  var d = window.CZ_TODO, el = $('wissen'); if (!d) { tdFehlt(el); return; }
+  var th = []; (d.wissen || []).forEach(function (x) { if (th.indexOf(x.th) < 0) th.push(x.th); });
+  el.innerHTML = '<h2>Erkenntnisse</h2><p class="td-sub">Das Wichtigste aus unseren Gesprächen, kurz zusammengefasst.</p>' + th.map(function (n) {
+    return '<div class="td-g"><span>' + esc(n) + '</span></div>' + d.wissen.filter(function (x) { return x.th === n; }).map(function (x) { return '<div class="wi"><b>' + esc(x.t) + '</b><p>' + esc(x.s) + '</p></div>'; }).join('');
+  }).join('');
+}
+function tdKnopf() {
+  var n = tdZahl(), k = $('vb-knopf'), z = k && k.querySelector('.zahl');
+  if (k && !z) { z = document.createElement('b'); z.className = 'zahl'; k.appendChild(z); }
+  if (z) { z.textContent = n; z.hidden = !n; z.title = n + ' Punkte zum Hochladen offen'; }
+  var b = document.querySelector('[data-tab="todo"]'); if (b) b.innerHTML = 'To-dos' + (n ? '<i>' + n + '</i>' : '');
+}
+function tab(n) {
+  if (['neu', 'todo', 'wissen'].indexOf(n) < 0) n = 'neu';
+  ST.tab = n; merk();
+  [].forEach.call(document.querySelectorAll('[data-tab]'), function (b) { var an = b.getAttribute('data-tab') === n; b.classList.toggle('an', an); b.setAttribute('aria-selected', an ? 'true' : 'false'); });
+  $('neu').hidden = n !== 'neu'; $('todo').hidden = n !== 'todo'; $('wissen').hidden = n !== 'wissen';
+  if (n === 'todo') todo(); else if (n === 'wissen') wissen(); else tdKnopf();
+}
+function tdAb(ids, an) {
+  ids.forEach(function (id) { if (an) { TD[id] = Date.now(); TWEG[id] = 1; } else { delete TD[id]; delete TWEG[id]; } });
+  tdMerk(); todo();
+  if (an) setTimeout(function () { ids.forEach(function (id) { delete TWEG[id]; }); if (!$('todo').hidden) todo(); else tdKnopf(); }, 4000);
+}
+document.addEventListener('click', function (ev) {
+  var x = ev.target.closest('[data-tab]'); if (x) { tab(x.getAttribute('data-tab')); return; }
+  x = ev.target.closest('[data-tdzur]'); if (x) { ev.preventDefault(); tdAb([x.getAttribute('data-tdzur')], false); return; }
+  x = ev.target.closest('[data-tdalle]'); if (x) { tdAb(x.getAttribute('data-tdalle').split(' '), true); }
+});
+document.addEventListener('change', function (ev) { var x = ev.target.closest('[data-td]'); if (x) tdAb([x.getAttribute('data-td')], x.checked); });
+knoepfe(); liste(); vbSetzen(); laden(ST.b);
+/* To-dos und Erkenntnisse liegen in NICHT-HOCHLADEN/ und kommen nie auf den Server. Online (clickzauber.de) gibt es deshalb nur „Neu“. */
+(function () {
+  var s = document.createElement('script'); s.src = mitVQ('NICHT-HOCHLADEN/test-cockpit-daten.js');
+  s.onload = s.onerror = function () {
+    if (!window.CZ_TODO) { [].forEach.call(document.querySelectorAll('[data-tab="todo"],[data-tab="wissen"]'), function (b) { b.hidden = true; }); ST.tab = 'neu'; }
+    tab(ST.tab);
+  };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

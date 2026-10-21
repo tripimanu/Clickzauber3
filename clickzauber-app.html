@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script>/* iPhone/iPad: kein automatisches Hineinzoomen beim Antippen eines Eingabefelds. Mit zwei Fingern zoomen bleibt möglich. */(function(){if(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)){var m=document.querySelector("meta[name=viewport]");if(m&&!/maximum-scale/.test(m.content))m.content+=", maximum-scale=1";}})();</script>
+<meta name="robots" content="noindex, nofollow">
+<script src="js/cz-kopf.js"></script><!-- seit 15.10.2026: Token und Schlüssel in Kopfzeilen statt in Adressen -->
+<title>clickzauber — Cockpit</title>
+<meta name="description" content="Ihr clickzauber-Cockpit: offene Anfragen, Werte und die nächsten Schritte auf einem Blick.">
+<meta name="theme-color" content="#1a1813">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="clickzauber">
+<link rel="manifest" href="site.webmanifest">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="assets/cz-favicon-32.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/cz-apple-180.png?v=2">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@300;400;500;600;700&family=Lora:ital,wght@1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{--bg:#1b1916;--card:#252118;--card-2:#302a20;--line:rgba(246,241,228,.11);--ink:#f6f1e4;--ink-2:#b6ad98;--ink-3:#807867;--accent:#8ce3b6;--accent-d:#3fbe86;--warn:#e0b36c;--bad:#e0836c;--fd:"Figtree",system-ui,sans-serif;--fm:"IBM Plex Mono",ui-monospace,monospace;--fs:"Lora",Georgia,serif}
+html,body{margin:0;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-family:var(--fd);background:var(--bg);color:var(--ink);min-height:100dvh}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:#b6f0d3}
+button{font-family:var(--fd)}
+.app{max-width:520px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 14px) 16px calc(env(safe-area-inset-bottom) + 96px)}
+.blind .zahl{filter:blur(9px);user-select:none}
+
+/* Kopf */
+.top{display:flex;align-items:center;gap:6px;justify-content:flex-end;margin-bottom:22px}
+.ico{width:44px;height:44px;border-radius:50%;border:none;background:none;color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative}
+.ico:hover{background:rgba(246,241,228,.06)}
+.ico svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round}
+.ico .dot{position:absolute;top:9px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--bad);border:2px solid var(--bg)}
+.avatar{width:42px;height:42px;border-radius:50%;background:var(--accent-d);color:#12291f;font-weight:700;font-size:14.5px;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;margin-left:4px}
+
+/* Gruß */
+.hallo{margin:0 4px 20px}
+.hallo h1{font-size:26px;font-weight:500;letter-spacing:-.015em;margin:0}
+.hallo h1 em{font-family:var(--fs);font-style:italic;font-weight:400}
+.hallo p{margin:6px 0 0;color:var(--ink-3);font-size:13.5px;font-family:var(--fm)}
+
+/* Kachelreihe (Bereiche) */
+.tiles{display:flex;gap:10px;overflow-x:auto;padding:2px 4px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tiles::-webkit-scrollbar{display:none}
+.tile{flex:none;width:74px;display:flex;flex-direction:column;gap:8px;align-items:center;background:none;border:none;padding:0;cursor:pointer;color:var(--ink-2)}
+.tile .box{width:74px;height:74px;border-radius:22px;background:var(--card-2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;position:relative;transition:transform .14s}
+.tile:hover .box{transform:translateY(-2px)}
+.tile .box b{font-size:22px;font-weight:600;letter-spacing:-.03em;color:var(--ink)}
+.tile .box svg{width:26px;height:26px;stroke:var(--ink);fill:none;stroke-width:1.6;stroke-linecap:round}
+.tile.on .box{background:linear-gradient(160deg,#3a5f4c,#2a4438);box-shadow:0 10px 26px -14px rgba(63,190,134,.7)}
+.tile span{font-size:11.5px;line-height:1.3;text-align:center}
+.tile .neu{position:absolute;top:-3px;right:-3px;min-width:22px;height:22px;border-radius:11px;background:var(--bad);color:#2b0f07;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 5px;border:3px solid var(--bg)}
+
+/* Hauptblock */
+.haupt{background:var(--card);border-radius:26px;padding:22px 20px 20px;margin-bottom:14px}
+.stand{display:flex;align-items:flex-start;gap:14px}
+.stand .l{flex:1;min-width:0}
+.stand .label{font-size:14px;color:var(--ink-2);margin:0 0 4px}
+.stand .wert{font-size:40px;font-weight:600;letter-spacing:-.035em;margin:0;line-height:1.05}
+.stand .unter{margin:6px 0 0;font-size:13.5px;color:var(--ink-3)}
+.pill{background:var(--card-2);border:none;border-radius:999px;color:var(--accent);font-size:14.5px;font-weight:500;padding:12px 18px;display:flex;align-items:center;gap:8px;cursor:pointer;min-height:46px;flex:none}
+.pill:hover{background:#332d25}
+.pill svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.7}
+.aktionen{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:26px}
+.akt{background:none;border:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:9px}
+.akt .kreis{width:62px;height:62px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;transition:transform .14s}
+.akt:hover .kreis{transform:translateY(-2px)}
+.akt .kreis svg{width:26px;height:26px;stroke:#12291f;fill:none;stroke-width:1.9;stroke-linecap:round}
+.akt span{font-size:13px;font-weight:500;color:var(--accent)}
+
+/* Karten */
+.karte{background:var(--card);border-radius:26px;padding:24px 22px;margin-bottom:14px}
+.karte h2{font-size:20px;font-weight:600;letter-spacing:-.02em;margin:0 0 10px;text-wrap:pretty}
+.karte p{margin:0;color:var(--ink-2);font-size:14.5px;line-height:1.6;text-wrap:pretty}
+.karte .btn{margin-top:20px;background:var(--accent);color:#12291f;border:none;border-radius:999px;font-size:15.5px;font-weight:600;padding:15px 26px;cursor:pointer;min-height:52px}
+.karte .btn:hover{background:#a5edc7}
+.karte.hinweis{position:relative;padding-right:64px}
+.karte .zu{position:absolute;top:18px;right:18px;width:38px;height:38px;border-radius:50%;background:var(--card-2);border:none;color:var(--ink-2);font-size:19px;line-height:1;cursor:pointer}
+.karte .zu:hover{color:var(--ink)}
+
+.kopf{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.kopf h2{margin:0}
+.kopf .mehr{background:var(--card-2);border:none;border-radius:999px;color:var(--accent);font-size:14px;padding:10px 16px;cursor:pointer;min-height:42px}
+.kopf .mehr:hover{background:#332d25}
+
+/* Anfrageliste */
+.liste{display:flex;flex-direction:column}
+.zeile{display:flex;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);background:none;border-left:none;border-right:none;border-top:none;cursor:pointer;text-align:left;color:inherit;width:100%}
+.zeile:last-child{border-bottom:none}
+.zeile:hover .nam{color:var(--accent)}
+.zeile .sym{width:44px;height:44px;border-radius:14px;background:var(--card-2);flex:none;display:flex;align-items:center;justify-content:center;font-size:14.5px;font-weight:600;color:var(--ink-2)}
+.zeile .mid{flex:1;min-width:0}
+.zeile .nam{display:block;font-size:15.5px;font-weight:500;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zeile .sub{display:block;margin:3px 0 0;font-size:12.5px;color:var(--ink-3);font-family:var(--fm)}
+.zeile .bet,.zeile .st{display:block}
+.zeile .rechts{text-align:right;flex:none}
+.zeile .bet{font-size:15.5px;font-weight:500;white-space:nowrap}
+.zeile .st{margin:3px 0 0;font-size:11.5px;color:var(--ink-3)}
+.ampel{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:1px}
+.ampel.gruen{background:var(--accent-d)}.ampel.gelb{background:var(--warn)}.ampel.rot{background:var(--bad)}
+
+/* Kennzahlen */
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kpi{background:var(--card-2);border-radius:20px;padding:17px 18px}
+.kpi b{display:block;font-size:26px;font-weight:600;letter-spacing:-.03em}
+.kpi span{display:block;margin-top:4px;font-size:12.5px;color:var(--ink-3);line-height:1.4}
+
+/* Fußnavigation */
+.unten{position:fixed;left:0;right:0;bottom:0;background:rgba(23,21,15,.94);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:8px 6px calc(env(safe-area-inset-bottom) + 8px);z-index:40}
+.unten .inner{max-width:520px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+.nav{background:none;border:none;padding:8px 2px;display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--ink-3);cursor:pointer;min-height:56px}
+.nav svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round}
+.nav span{font-size:11px;letter-spacing:-.01em}
+.nav.on{color:var(--accent)}
+.nav:hover{color:var(--ink-2)}
+
+.laden{padding:60px 0;text-align:center;color:var(--ink-3);font-family:var(--fm);font-size:13px}
+.demo{margin:26px 4px 0;font-family:var(--fm);font-size:11.5px;color:var(--ink-3);line-height:1.7;text-align:center}
+@media(min-width:640px){.app{padding-left:26px;padding-right:26px}.stand .wert{font-size:46px}}
+</style>
+</head>
+<body>
+<div class="app" id="app" hidden>
+  <div class="top">
+    <button class="ico" id="blind" aria-label="Zahlen verbergen"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+    <button class="ico" id="suche" aria-label="Suchen"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg></button>
+    <button class="ico" id="glocke" aria-label="Hinweise"><svg viewBox="0 0 24 24"><path d="M18 15V10a6 6 0 10-12 0v5l-1.5 3h15z"/><path d="M9.5 21h5"/></svg><span class="dot" id="glocke-dot" hidden></span></button>
+    <button class="avatar" id="avatar">CZ</button>
+  </div>
+
+  <div class="hallo">
+    <h1 id="gruss">Guten Tag</h1>
+    <p id="betrieb">clickzauber</p>
+  </div>
+
+  <div class="tiles" id="tiles"></div>
+
+  <div class="haupt">
+    <div class="stand">
+      <div class="l">
+        <p class="label" id="stand-label">Offene Anfragen</p>
+        <p class="wert zahl" id="stand-wert">—</p>
+        <p class="unter" id="stand-unter">wird geladen</p>
+      </div>
+      <button class="pill" id="zu-anfragen"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 8l8 5 8-5"/></svg> Postfach</button>
+    </div>
+    <div class="aktionen">
+      <button class="akt" id="a-angebot"><span class="kreis"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span><span>Angebot</span></button>
+      <button class="akt" id="a-anrufen"><span class="kreis"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z"/></svg></span><span>Anrufen</span></button>
+      <button class="akt" id="a-belegung"><span class="kreis"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><span>Belegung</span></button>
+      <button class="akt" id="a-mehr"><span class="kreis"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></svg></span><span>Mehr</span></button>
+    </div>
+  </div>
+
+  <section class="karte hinweis" id="hinweis" hidden>
+    <button class="zu" id="hinweis-zu" aria-label="Hinweis schließen">×</button>
+    <h2 id="hinweis-titel"></h2>
+    <p id="hinweis-text"></p>
+    <button class="btn" id="hinweis-btn"></button>
+  </section>
+
+  <section class="karte">
+    <div class="kopf">
+      <h2>Letzte Anfragen</h2>
+      <button class="mehr" id="alle-anfragen">Alle anzeigen</button>
+    </div>
+    <div class="liste" id="liste"><p class="laden">wird geladen</p></div>
+  </section>
+
+  <section class="karte">
+    <div class="kopf">
+      <h2>Letzte 30 Tage</h2>
+      <button class="mehr" id="zur-auswertung">Auswertung</button>
+    </div>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <p class="demo" id="demo-note" hidden></p>
+</div>
+
+<p class="laden" id="boot">clickzauber wird geöffnet …</p>
+
+<nav class="unten" id="unten" hidden>
+  <div class="inner">
+    <button class="nav on" data-ziel="start"><svg viewBox="0 0 24 24"><path d="M4 11l8-6.5 8 6.5V20H4z"/></svg><span>Start</span></button>
+    <button class="nav" data-ziel="leads"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 8l8 5 8-5"/></svg><span>Anfragen</span></button>
+    <button class="nav" data-ziel="overview"><svg viewBox="0 0 24 24"><path d="M5 19V11M12 19V5M19 19v-6"/></svg><span>Auswertung</span></button>
+    <button class="nav" data-ziel="belegung"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Belegung</span></button>
+    <button class="nav" data-ziel="widget"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 4v16M4 9h5"/></svg><span>Formular</span></button>
+    <button class="nav" data-ziel="einstellungen"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v3M12 18v3M4.5 7.5l2.2 2.2M17.3 14.3l2.2 2.2M3 12h3M18 12h3M4.5 16.5l2.2-2.2M17.3 9.7l2.2-2.2"/></svg><span>Mehr</span></button>
+  </div>
+</nav>
+
+<script>
+var API = "https://clickzauber-api.vercel.app/api";
+var COCKPIT = "clickzauber-cockpit-live.html";
+var LOGIN = "clickzauber-anmelden.html";
+var q = new URLSearchParams(location.search);
+var DEMO = q.get('demo') === '1';
+var token = q.get('admin') || (function(){ try { return localStorage.getItem('cz_user_token') || ''; } catch(e){ return ''; } })();
+var widget = q.get('widget') || 'clickzauberhochzeit';
+
+function el(id){ return document.getElementById(id); }
+function euro(n){ return Number(n||0).toLocaleString('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function initialen(s){
+  var t = String(s||'').trim().split(/\s+/).filter(Boolean);
+  if (!t.length) return 'CZ';
+  return (t[0][0] + (t[1] ? t[1][0] : '')).toUpperCase();
+}
+function gehe(view){ location.href = COCKPIT + '#' + view; }
+
+/* ── Beispieldaten: damit die App auch ohne Server zeigt, was sie kann ── */
+var BEISPIEL = {
+  user: { vorname:'Manuel', firma:'Gut Seerose', email:'info@gut-seerose.de' },
+  kpis: { anfragen:11, starts:96, quote:11.5, avgWert:19400 },
+  leads: [
+    {name:'Anna Berger & Jonas Weiß', value_est:23800, status:'angebot', ts:Date.now()-864e5, termin:'2027-06-19'},
+    {name:'Familie Kaufmann', value_est:8400, status:'neu', ts:Date.now()-2*864e5, termin:'2026-11-07'},
+    {name:'Lena & Tim Hofer', value_est:31200, status:'gebucht', ts:Date.now()-4*864e5, termin:'2027-08-14'},
+    {name:'Steuerbüro Ritter (Weihnachtsfeier)', value_est:5600, status:'angerufen', ts:Date.now()-6*864e5, termin:'2026-12-12'},
+    {name:'Miriam & Paul Sander', value_est:17500, status:'neu', ts:Date.now()-7*864e5, termin:'2027-05-22'}
+  ]
+};
+
+var STATUS = {
+  neu:        {text:'Neu',        ampel:'rot'},
+  angerufen:  {text:'Angerufen',  ampel:'gelb'},
+  angebot:    {text:'Angebot',    ampel:'gelb'},
+  gebucht:    {text:'Gebucht',    ampel:'gruen'},
+  verloren:   {text:'Verloren',   ampel:''}
+};
+
+/* ── Kopf: Gruß und Betrieb ── */
+function kopf(user){
+  var h = new Date().getHours();
+  var t = h < 5 ? 'Gute Nacht' : h < 11 ? 'Guten Morgen' : h < 18 ? 'Guten Tag' : 'Guten Abend';
+  el('gruss').innerHTML = user && user.vorname ? esc(t) + ', <em>' + esc(user.vorname) + '</em>' : esc(t);
+  el('betrieb').textContent = (user && user.firma) || (user && user.email) || 'clickzauber';
+  el('avatar').textContent = initialen((user && (user.vorname + ' ' + (user.nachname||''))) || (user && user.firma));
+  if (user && user.vorname) { try { localStorage.setItem('cz_user_vorname', user.vorname); } catch(e){} }
+}
+
+/* ── Kachelreihe: die Bereiche mit Zahl darauf ── */
+function tiles(d){
+  var leads = d.leads || [];
+  function n(st){ return leads.filter(function(l){ return l.status === st; }).length; }
+  var reihe = [
+    {label:'Neu',       zahl:n('neu'),       view:'leads',   on:true, neu:n('neu')},
+    {label:'Angerufen', zahl:n('angerufen'), view:'leads'},
+    {label:'Angebot',   zahl:n('angebot'),   view:'leads'},
+    {label:'Gebucht',   zahl:n('gebucht'),   view:'leads'},
+    {label:'Kalender',  icon:'<rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/>', view:'belegung'},
+    {label:'Vorlagen',  icon:'<rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M8 9h8M8 13h8M8 17h4"/>', view:'vorlagen'},
+    {label:'Preise',    icon:'<path d="M12 4v16"/><path d="M16 8.5c0-1.7-1.8-2.5-4-2.5s-4 .8-4 2.5 1.6 2.3 4 3 4 1.5 4 3.3-1.8 2.7-4 2.7-4-1-4-2.7"/>', view:'leistungen'}
+  ];
+  el('tiles').innerHTML = reihe.map(function(t){
+    var inner = t.icon ? '<svg viewBox="0 0 24 24">'+t.icon+'</svg>' : '<b class="zahl">'+t.zahl+'</b>';
+    var badge = t.neu ? '<span class="neu">'+t.neu+'</span>' : '';
+    return '<button class="tile'+(t.on&&t.neu?' on':'')+'" data-view="'+t.view+'">'
+      + '<span class="box">'+inner+badge+'</span><span>'+esc(t.label)+'</span></button>';
+  }).join('');
+  el('tiles').querySelectorAll('.tile').forEach(function(b){
+    b.addEventListener('click', function(){ gehe(b.dataset.view); });
+  });
+}
+
+/* ── Hauptzahl: Wert der offenen Anfragen ── */
+function haupt(d){
+  var leads = d.leads || [];
+  var offen = leads.filter(function(l){ return ['gebucht','verloren'].indexOf(l.status) < 0; });
+  var summe = offen.reduce(function(a,l){ return a + (Number(l.value_est)||0); }, 0);
+  el('stand-wert').textContent = euro(summe);
+  el('stand-unter').textContent = offen.length === 1
+    ? '1 Anfrage wartet auf Ihre Antwort'
+    : offen.length + ' Anfragen warten auf Ihre Antwort';
+}
+
+/* ── Hinweiskarte: der nächste sinnvolle Schritt ── */
+function hinweis(d){
+  var leads = d.leads || [];
+  var alt = leads.filter(function(l){
+    return l.status === 'neu' && (Date.now() - new Date(l.ts).getTime()) > 2 * 864e5;
+  });
+  var k = el('hinweis');
+  var weg = false;
+  try { weg = localStorage.getItem('cz_hinweis_weg') === new Date().toDateString(); } catch(e){}
+  if (weg) return;
+  if (alt.length) {
+    el('hinweis-titel').textContent = alt.length === 1
+      ? 'Eine Anfrage liegt seit über zwei Tagen'
+      : alt.length + ' Anfragen liegen seit über zwei Tagen';
+    el('hinweis-text').textContent = 'Wer innerhalb eines Tages antwortet, bucht deutlich häufiger. Am schnellsten geht es mit einer Vorlage.';
+    el('hinweis-btn').textContent = 'Jetzt beantworten';
+    el('hinweis-btn').onclick = function(){ gehe('leads'); };
+    k.hidden = false;
+  } else if (!(d.kpis && d.kpis.anfragen)) {
+    el('hinweis-titel').textContent = 'Noch keine Anfrage eingegangen';
+    el('hinweis-text').textContent = 'Prüfen Sie, ob der Helfer auf Ihrer Website sichtbar ist. Der Einbau dauert zwei Minuten.';
+    el('hinweis-btn').textContent = 'Einbau prüfen';
+    el('hinweis-btn').onclick = function(){ location.href = 'einbauen.html'; };
+    k.hidden = false;
+  }
+  el('hinweis-zu').onclick = function(){
+    try { localStorage.setItem('cz_hinweis_weg', new Date().toDateString()); } catch(e){}
+    k.hidden = true;
+  };
+}
+
+/* ── Liste der letzten Anfragen ── */
+function liste(d){
+  var leads = (d.leads || []).slice(0, 5);
+  if (!leads.length) {
+    el('liste').innerHTML = '<p class="laden">Noch keine Anfragen in diesem Zeitraum.</p>';
+    return;
+  }
+  el('liste').innerHTML = leads.map(function(l){
+    var st = STATUS[l.status] || {text:l.status||'Neu', ampel:'gelb'};
+    var datum = '';
+    try { datum = new Date(l.ts).toLocaleDateString('de-DE',{day:'2-digit',month:'short'}); } catch(e){}
+    var termin = '';
+    try { if (l.termin) termin = ' · Termin ' + new Date(l.termin).toLocaleDateString('de-DE',{month:'2-digit',year:'2-digit'}); } catch(e){}
+    return '<button class="zeile"><span class="sym">'+esc(initialen(l.name))+'</span>'
+      + '<span class="mid"><span class="nam">'+esc(l.name||'Ohne Namen')+'</span>'
+      + '<span class="sub">'+datum+termin+'</span></span>'
+      + '<span class="rechts"><span class="bet zahl">'+euro(l.value_est)+'</span>'
+      + '<span class="st">'+(st.ampel?'<i class="ampel '+st.ampel+'"></i>':'')+esc(st.text)+'</span></span></button>';
+  }).join('');
+  el('liste').querySelectorAll('.zeile').forEach(function(b){
+    b.addEventListener('click', function(){ gehe('leads'); });
+  });
+}
+
+/* ── Kennzahlen ── */
+function kpis(d){
+  var k = d.kpis || {};
+  var felder = [
+    [k.anfragen || 0, 'Anfragen erhalten'],
+    [(k.quote || 0) + ' %', 'aus gestarteten Helfern'],
+    [euro(k.avgWert), 'Wert je Anfrage im Schnitt'],
+    [k.starts || 0, 'Besucher haben den Helfer gestartet']
+  ];
+  el('kpis').innerHTML = felder.map(function(f){
+    return '<div class="kpi"><b class="zahl">'+esc(f[0])+'</b><span>'+esc(f[1])+'</span></div>';
+  }).join('');
+}
+
+/* ── Knöpfe ── */
+el('zu-anfragen').addEventListener('click', function(){ gehe('leads'); });
+el('alle-anfragen').addEventListener('click', function(){ gehe('leads'); });
+el('zur-auswertung').addEventListener('click', function(){ gehe('overview'); });
+el('a-angebot').addEventListener('click', function(){ gehe('leads'); });
+el('a-anrufen').addEventListener('click', function(){ gehe('leads'); });
+el('a-belegung').addEventListener('click', function(){ gehe('belegung'); });
+el('a-mehr').addEventListener('click', function(){ gehe('overview'); });
+el('avatar').addEventListener('click', function(){ gehe('konto'); });
+el('suche').addEventListener('click', function(){ gehe('leads'); });
+el('glocke').addEventListener('click', function(){ gehe('leads'); });
+el('blind').addEventListener('click', function(){
+  var an = document.body.classList.toggle('blind');
+  try { localStorage.setItem('cz_blind', an ? '1' : ''); } catch(e){}
+});
+document.querySelectorAll('.nav').forEach(function(b){
+  b.addEventListener('click', function(){
+    if (b.dataset.ziel === 'start') return;
+    if (b.dataset.ziel === 'widget') { location.href = 'clickzauber-editor.html'; return; }
+    gehe(b.dataset.ziel);
+  });
+});
+try { if (localStorage.getItem('cz_blind')) document.body.classList.add('blind'); } catch(e){}
+
+/* ── Laden ── */
+function zeigeApp(){ el('boot').hidden = true; el('app').hidden = false; el('unten').hidden = false; }
+
+function malen(user, d){
+  kopf(user); tiles(d); haupt(d); hinweis(d); liste(d); kpis(d);
+  zeigeApp();
+}
+
+if (DEMO || !token) {
+  if (!token && !DEMO) { location.replace(LOGIN); }
+  else {
+    malen(BEISPIEL.user, BEISPIEL);
+    el('demo-note').textContent = 'Beispiel-Modus — erfundene Zahlen von „Gut Seerose“. Nichts wird gespeichert.';
+    el('demo-note').hidden = false;
+  }
+} else {
+  Promise.all([
+    fetch(API + '/profile?token=' + encodeURIComponent(token)).then(function(r){ return r.json(); }).catch(function(){ return {}; }),
+    fetch(API + '/dashboard?widget=' + encodeURIComponent(widget) + '&days=30&token=' + encodeURIComponent(token)).then(function(r){ return r.json(); }).catch(function(){ return {}; })
+  ]).then(function(res){
+    var p = res[0] || {}, d = res[1] || {};
+    if (p && p.error === 'nicht angemeldet') { location.replace(LOGIN + '?abgemeldet=1'); return; }
+    if (!d.kpis) {
+      // Kein Zugriff auf die Kennzahlen (Formular noch nicht verknüpft): Kopf trotzdem zeigen.
+      d = { kpis:{}, leads:[] };
+    }
+    malen(p.user || null, d);
+  }).catch(function(){
+    el('boot').textContent = 'Keine Verbindung zum Server. Bitte später erneut versuchen.';
+  });
+}
+
+/* Nur auf clickzauber.de: In Vorschau- und Testumgebungen fing der Worker sonst Anfragen ab. */
+if('serviceWorker' in navigator && !/(^|\.)clickzauber\.de$/.test(location.hostname)){ try{ var eigen=new URL('sw.js',location.href).pathname.replace(/^\/_t\/[^\/]+/,''); navigator.serviceWorker.getRegistrations().then(function(rs){ rs.forEach(function(r){ var w=r.active||r.installing||r.waiting; if(w&&new URL(w.scriptURL).pathname.replace(/^\/_t\/[^\/]+/,'')===eigen) r.unregister(); }); }).catch(function(){}); }catch(e){} }
+if ('serviceWorker' in navigator && /(^|\.)clickzauber\.de$/.test(location.hostname)) {
+  navigator.serviceWorker.register('sw.js').catch(function(){});
+}
+</script>
+<script>/* Immer der neueste Stand – ohne Versionsnummern von Hand.
+   Das iPhone hält eine App vom Home-Bildschirm tagelang im Speicher und lädt sie beim Zurückholen nicht neu.
+   Deshalb fragt die Seite beim Zurückholen (und alle 5 Minuten) den Server, ob sich die Seite oder eines ihrer
+   Skripte geändert hat (ETag / Last-Modified, nur Kopfzeilen, wenige Bytes). Wenn ja: neu laden.
+   Tippt man gerade oder ist ein Fenster offen, erscheint stattdessen ein Hinweis zum Antippen. */
+(function(){
+  if(!window.fetch||/[?&]demo=1/.test(location.search)) return;
+  var STAND=null, NEU=null, LAEUFT=false, ZULETZT=0;
+  function dateien(){
+    var l=[location.pathname];
+    Array.prototype.forEach.call(document.scripts,function(s){ if(s.src&&s.src.indexOf(location.origin)===0) l.push(s.src.split('?')[0].replace(location.origin,'')); });
+    return l.filter(function(x,i,a){ return a.indexOf(x)===i; }).slice(0,30);
+  }
+  function messen(){
+    return Promise.all(dateien().map(function(p){
+      return fetch(p+(p.indexOf('?')<0?'?':'&')+'_s='+Date.now(),{method:'HEAD',cache:'no-store',credentials:'same-origin'})
+        .then(function(r){ return r.ok?p+'='+(r.headers.get('etag')||r.headers.get('last-modified')||''):p+'=?'; })
+        .catch(function(){ return null; });
+    })).then(function(l){ return l.indexOf(null)>=0?null:l.join('|'); });
+  }
+  function beschaeftigt(){
+    var a=document.activeElement;
+    if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return true;
+    return ['sa','sz','er','sal-neu-bl'].some(function(id){ var x=document.getElementById(id); return x&&!x.hidden; });
+  }
+  function hinweis(){
+    if(document.getElementById('cz-neu-da')) return;
+    var b=document.createElement('button'); b.id='cz-neu-da'; b.type='button';
+    b.textContent='Neue Version bereit · Tippen zum Laden';
+    b.style.cssText='position:fixed;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));z-index:99999;min-height:48px;padding:0 20px;border:0;border-radius:99px;background:#241f19;color:#fffdf8;font:600 15px/1 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.25);cursor:pointer';
+    b.onclick=function(){ location.reload(); };
+    document.body.appendChild(b);
+  }
+  function pruefen(){
+    if(LAEUFT||document.hidden||Date.now()-ZULETZT<20000) return;
+    LAEUFT=true; ZULETZT=Date.now();
+    messen().then(function(s){
+      LAEUFT=false; if(!s) return;
+      if(STAND===null){ STAND=s; return; }
+      if(s===STAND){ NEU=null; return; }
+      /* Erst übernehmen, wenn der neue Stand eine Minute gleich bleibt: Beim Hochladen kommen die Dateien nacheinander an. */
+      if(s!==NEU){ NEU=s; setTimeout(function(){ ZULETZT=0; pruefen(); },60000); return; }
+      if(beschaeftigt()) hinweis(); else location.reload();
+    });
+  }
+  window.addEventListener('load',function(){ setTimeout(function(){ ZULETZT=0; pruefen(); },1500); });
+  document.addEventListener('visibilitychange',function(){ if(!document.hidden) pruefen(); });
+  window.addEventListener('pageshow',function(ev){ if(ev.persisted) location.reload(); });
+  window.addEventListener('focus',pruefen);
+  setInterval(pruefen,300000);
+})();</script>
+<script src="js/cz-native.js?v=20261006c" defer></script>
+</body>
+</html>

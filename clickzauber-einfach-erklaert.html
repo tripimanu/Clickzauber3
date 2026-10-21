@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>clickzauber — ganz einfach erklärt</title>
+<link rel="canonical" href="https://clickzauber.de/clickzauber-einfach-erklaert.html">
+<meta name="description" content="clickzauber in zwölf kurzen Bildern erklärt: vom eigenen Formular über die Anfrage bis zum festen Termin im Kalender.">
+<meta property="og:title" content="clickzauber — ganz einfach erklärt">
+<meta property="og:description" content="Zwölf kurze Bilder, ein Ablauf: so kommen Anfragen zu Ihnen.">
+<meta property="og:image" content="https://clickzauber.de/assets/og-clickzauber.jpg">
+<meta name="theme-color" content="#f0e9dc">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="assets/cz-favicon-32.png?v=2"><link rel="apple-touch-icon" sizes="180x180" href="assets/cz-apple-180.png?v=2">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{--bg:#f0e9dc;--card:#fff;--card-2:#f6f0e3;--ink:#27241d;--ink-2:rgba(34,31,24,.68);--ink-3:rgba(34,31,24,.5);--line:rgba(34,31,24,.12);--line-2:rgba(34,31,24,.2);--accent:#2f7d59;--accent-2:#4fa87c;--gelb:#e3b341;--rot:#c9573f;--fd:"Figtree","Helvetica Neue",Helvetica,system-ui,sans-serif;--fm:"IBM Plex Mono",ui-monospace,monospace}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--fd);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100dvh}
+a{color:var(--accent);text-decoration:none}a:hover{color:var(--accent-2)}
+button{font:inherit;color:inherit}
+.kopf{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:620px;width:100%;margin:0 auto;padding:14px 20px 0}
+.marke{display:flex;align-items:center;gap:9px;font-weight:700;font-size:16px;letter-spacing:-.02em;color:var(--ink)}
+.marke i{width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center}
+.marke svg{width:18px;height:18px}
+.kopf a.zur{font-size:14px;color:var(--ink-2)}
+.buehne{flex:1;display:flex;flex-direction:column;max-width:620px;width:100%;margin:0 auto;padding:14px 20px 20px;gap:14px}
+.balken{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px}
+.balken span{height:4px;border-radius:4px;background:var(--line-2);overflow:hidden}
+.balken span b{display:block;height:100%;width:0;background:var(--accent)}
+.balken span.durch b{width:100%}
+.karte{position:relative;flex:1;display:grid;background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:0 30px 70px -36px rgba(90,70,40,.55);overflow:hidden}
+.szene{grid-area:1/1;position:relative;display:flex;flex-direction:column;padding:28px 28px 30px;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .45s,transform .45s,visibility 0s .45s}
+.szene.an{opacity:1;visibility:visible;transform:none;transition:opacity .45s,transform .45s}
+.nr{font-family:var(--fm);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.szene h2{font-size:clamp(28px,6vw,38px);line-height:1.08;letter-spacing:-.03em;margin:10px 0 10px;text-wrap:balance}
+.szene p{font-size:clamp(17px,3.6vw,19px);line-height:1.5;color:var(--ink-2);margin:0;max-width:34ch;text-wrap:pretty}
+.bild{flex:1;display:flex;align-items:center;justify-content:center;padding-top:22px;min-height:230px}
+.tipp{position:absolute;top:0;bottom:0;width:34%;background:none;border:0;cursor:pointer;z-index:2;-webkit-tap-highlight-color:transparent}
+.tipp.l{left:0}.tipp.r{right:0}
+.fuss{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.fuss button{min-height:44px;min-width:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line-2);background:var(--card);cursor:pointer;font-size:15px;font-weight:600}
+.fuss button:hover{border-color:var(--ink)}
+.fuss .mitte{font-family:var(--fm);font-size:13px;color:var(--ink-3)}
+.fuss .zurueck{padding:0 14px}
+/* Bausteine */
+.mini{background:var(--card);border:1px solid var(--line-2);border-radius:18px;padding:18px;width:100%;max-width:330px;box-shadow:0 18px 40px -26px rgba(90,70,40,.6)}
+.mini .zeile{font-size:14px;color:var(--ink-2);margin:0 0 6px}
+.mini .feld{height:38px;border:1.5px solid var(--line-2);border-radius:10px;margin-bottom:12px;display:flex;align-items:center;padding:0 12px;font-size:15px;color:var(--ink)}
+.mini .knopf{height:42px;border-radius:999px;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:600;font-size:15px}
+.tippen::after{content:"";display:inline-block;width:2px;height:17px;background:var(--accent);margin-left:2px;vertical-align:-3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.an .rein{animation:rein .5s both}
+@keyframes rein{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:340px}
+.chip{padding:10px 16px;border-radius:999px;border:1.5px solid var(--line-2);background:var(--card);font-size:15px;font-weight:500}
+.chip.gruen{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--card));color:var(--accent)}
+.farben{display:flex;gap:10px;justify-content:center;margin-top:18px}
+.farben i{width:34px;height:34px;border-radius:50%;border:3px solid var(--card);box-shadow:0 0 0 1.5px var(--line-2)}
+.farben i.aus{box-shadow:0 0 0 2.5px var(--ink)}
+.wege{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:340px}
+.weg{background:var(--card-2);border:1px solid var(--line);border-radius:16px;padding:16px 14px;display:flex;flex-direction:column;gap:8px}
+.weg b{font-size:16px}
+.weg span{font-size:13.5px;color:var(--ink-2);line-height:1.4}
+.weg .qr{width:34px;height:34px;background:conic-gradient(var(--ink) 25%,transparent 0 50%,var(--ink) 0 75%,transparent 0) 0 0/11px 11px;border-radius:4px;border:3px solid var(--ink)}
+.weg .code{font-family:var(--fm);font-size:11.5px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 7px;color:var(--ink-2);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.kal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;width:100%;max-width:320px}
+.kal .wt{font-family:var(--fm);font-size:11px;color:var(--ink-3);text-align:center}
+.kal i{aspect-ratio:1;border-radius:10px;background:var(--card-2);display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:500;position:relative}
+.kal i.g{background:var(--accent);color:#fff}
+.kal i.y{background:var(--gelb);color:#3a2c07}
+.kal i.r{background:var(--rot);color:#fff}
+.kal i.x{color:var(--ink-3);text-decoration:line-through}
+.an .kal i.wahl{animation:wahl 3.4s 1.2s both}
+@keyframes wahl{0%{background:var(--card-2);color:var(--ink)}30%,100%{background:var(--accent);color:#fff;box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 30%,transparent)}}
+.an .kal i.fest{animation:fest 4s 1.4s both}
+@keyframes fest{0%,25%{background:var(--gelb);color:#3a2c07}45%,100%{background:var(--rot);color:#fff}}
+.legende{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:16px;font-size:14px;color:var(--ink-2)}
+.legende span{display:flex;align-items:center;gap:6px}
+.legende i{width:14px;height:14px;border-radius:4px}
+.zaehler{font-family:var(--fm);font-size:12px;color:var(--ink-3);text-align:right;margin-bottom:10px}
+.handy{width:220px;height:300px;border-radius:32px;border:8px solid var(--ink);background:linear-gradient(var(--card-2),var(--bg));position:relative;overflow:hidden;padding:30px 10px 10px}
+.handy .uhr{position:absolute;top:10px;left:0;right:0;text-align:center;font-family:var(--fm);font-size:11px;color:var(--ink-2)}
+.meldung{background:var(--card);border-radius:16px;padding:12px 13px;box-shadow:0 12px 26px -14px rgba(0,0,0,.4);display:flex;flex-direction:column;gap:3px}
+.meldung small{font-family:var(--fm);font-size:10.5px;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+.meldung b{font-size:14.5px}
+.meldung span{font-size:13px;color:var(--ink-2);line-height:1.35}
+.an .meldung{animation:runter .6s 1s both cubic-bezier(.2,1.4,.4,1)}
+@keyframes runter{from{opacity:0;transform:translateY(-120%)}to{opacity:1;transform:none}}
+.zahlen{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:330px}
+.zahl{background:var(--card-2);border:1px solid var(--line);border-radius:18px;padding:18px 16px}
+.zahl b{display:block;font-size:44px;letter-spacing:-.04em;line-height:1}
+.zahl span{font-size:14px;color:var(--ink-2)}
+.zahl.gruen b{color:var(--accent)}
+.termin{margin-top:14px;background:var(--card-2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14.5px;width:100%;max-width:320px}
+.an .termin{animation:rein .5s 2.6s both}
+.termin b{font-family:var(--fm);font-size:13px;color:var(--rot);margin-right:6px}
+.liste{display:flex;flex-direction:column;gap:10px;width:100%;max-width:330px}
+.aufg{display:flex;align-items:center;gap:12px;background:var(--card-2);border:1px solid var(--line);border-radius:14px;padding:13px 14px;font-size:15.5px}
+.aufg i{flex:0 0 24px;height:24px;border-radius:50%;border:2px solid var(--line-2);display:grid;place-items:center;color:#fff;font-style:normal;font-size:13px;font-weight:700}
+.an .aufg.hak i{animation:hak .4s both}
+.an .aufg.hak:nth-child(1) i{animation-delay:1.2s}.an .aufg.hak:nth-child(2) i{animation-delay:2.2s}
+@keyframes hak{from{background:transparent;border-color:var(--line-2)}to{background:var(--accent);border-color:var(--accent)}}
+.an .aufg.hak span{animation:durch .3s both}
+.an .aufg.hak:nth-child(1) span{animation-delay:1.3s}.an .aufg.hak:nth-child(2) span{animation-delay:2.3s}
+@keyframes durch{to{color:var(--ink-3);text-decoration:line-through}}
+.alt{display:flex;flex-direction:column;gap:10px;width:100%;max-width:320px}
+.alt .aufg{justify-content:space-between}
+.alt small{font-family:var(--fm);font-size:12px;color:var(--ink-3)}
+.an .alt .weg-da{animation:weg 1.2s 1.6s both}
+@keyframes weg{to{opacity:0;transform:translateX(40px);height:0;padding-top:0;padding-bottom:0;margin-top:-10px;border-width:0}}
+.preis{text-align:center;width:100%;max-width:320px}
+.preis .gross{font-size:56px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.preis .klein{font-size:15px;color:var(--ink-2);margin-top:6px}
+.pause{margin-top:22px;display:flex;align-items:center;gap:12px;background:var(--card-2);border:1px dashed var(--line-2);border-radius:14px;padding:12px 14px;font-size:14.5px;text-align:left;color:var(--ink-2)}
+.pause i{flex:0 0 28px;height:28px;border-radius:50%;background:var(--gelb);display:grid;place-items:center;font-style:normal;font-weight:700;color:#3a2c07}
+.ende{display:flex;flex-direction:column;gap:10px;width:100%;max-width:320px}
+.ende a,.ende button{min-height:52px;border-radius:999px;display:grid;place-items:center;font-weight:600;font-size:16px;cursor:pointer;position:relative;z-index:3}
+.ende a{background:var(--accent);color:#fff}
+.ende a:hover{color:#fff;background:var(--accent-2)}
+.ende button{background:var(--card);border:1px solid var(--line-2)}
+.rein.d1{animation-delay:.25s}.rein.d2{animation-delay:.5s}.rein.d3{animation-delay:.75s}.rein.d4{animation-delay:1s}.rein.d5{animation-delay:1.25s}.rein.d6{animation-delay:1.5s}
+@media(max-width:420px){.szene{padding:24px 20px 24px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header class="kopf"><a class="marke" href="index.html"><i><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="4.4" fill="#fffdf8"></circle><path d="M16 5.6a10.4 10.4 0 0 1 10.4 10.4" stroke="#fffdf8" stroke-width="3" stroke-linecap="round"></path><path d="M16 26.4A10.4 10.4 0 0 1 5.6 16" stroke="#fffdf8" stroke-width="3" stroke-linecap="round"></path></svg></i>clickzauber</a><a class="zur" href="index.html">Zur Startseite</a></header>
+<main class="buehne">
+<div class="balken" id="balken" aria-hidden="true"></div>
+<div class="karte" id="karte" aria-live="polite">
+
+<section class="szene" data-screen-label="01 Was ist das" data-dauer="7">
+<div class="nr">Was ist clickzauber?</div>
+<h2>Ein Zettel zum Ausfüllen. Nur im Handy.</h2>
+<p>Früher haben Gäste angerufen oder lange Mails geschrieben. Mit clickzauber füllen sie einen kleinen Zettel aus. Der kommt dann zu Ihnen.</p>
+<div class="bild"><div class="mini rein d1"><div class="zeile">Wie heißen Sie?</div><div class="feld tippen">Lisa</div><div class="zeile">Wann möchten Sie feiern?</div><div class="feld">14. Juni</div><div class="knopf">Absenden</div></div></div>
+</section>
+
+<section class="szene" data-screen-label="02 Formular bauen" data-dauer="7">
+<div class="nr">Schritt 1 · Sie bauen</div>
+<h2>Sie suchen die Fragen aus.</h2>
+<p>Wie viele Gäste? Welcher Tag? Mit Essen? Sie tippen auf die Fragen, die Sie brauchen. Dann wählen Sie Ihre Farbe. Fertig ist Ihr Formular.</p>
+<div class="bild"><div><div class="chips"><span class="chip gruen rein d1">Wunschtag</span><span class="chip gruen rein d2">Anzahl Gäste</span><span class="chip rein d3">Budget</span><span class="chip gruen rein d4">Essen</span><span class="chip rein d5">Musik</span></div><div class="farben rein d6"><i style="background:#2f7d59" class="aus"></i><i style="background:#9c5a3c"></i><i style="background:#3d5a80"></i><i style="background:#27241d"></i></div></div></div>
+</section>
+
+<section class="szene" data-screen-label="03 Aufhaengen" data-dauer="8">
+<div class="nr">Schritt 2 · Sie zeigen es her</div>
+<h2>Sie hängen den Zettel dort auf, wo Ihre Gäste sind.</h2>
+<p>Auf Instagram, in WhatsApp, als QR-Code auf einer Karte oder auf Ihrer Website. Überall ist es derselbe Zettel.</p>
+<div class="bild"><div class="wege"><div class="weg rein d1"><b>Instagram</b><span>Link in der Bio</span></div><div class="weg rein d2"><b>WhatsApp</b><span>Link in den Chat schicken</span></div><div class="weg rein d3"><div class="qr"></div><span>QR-Code auf Tischkarte oder Flyer</span></div><div class="weg rein d4"><b>Website</b><span class="code">&lt;script src="…"&gt;</span></div></div></div>
+</section>
+
+<section class="szene" data-screen-label="04 Gast fuellt aus" data-dauer="8">
+<div class="nr">Schritt 3 · Der Gast füllt aus</div>
+<h2>Der Gast tippt seine Antworten und wählt einen Tag.</h2>
+<p>Tage, die schon vergeben sind, kann er gar nicht anklicken. So wird nichts doppelt gebucht.</p>
+<div class="bild"><div class="mini rein d1"><div class="zaehler">02 / 08</div><div class="kal"><span class="wt">Mo</span><span class="wt">Di</span><span class="wt">Mi</span><span class="wt">Do</span><span class="wt">Fr</span><span class="wt">Sa</span><span class="wt">So</span><i>9</i><i>10</i><i>11</i><i>12</i><i class="x">13</i><i class="wahl">14</i><i>15</i><i>16</i><i>17</i><i>18</i><i>19</i><i>20</i><i class="x">21</i><i>22</i></div></div></div>
+</section>
+
+<section class="szene" data-screen-label="05 Uhrzeit" data-dauer="8">
+<div class="nr">Auch mit Uhrzeit</div>
+<h2>Beim Friseur sucht sich der Kunde die Uhrzeit aus.</h2>
+<p>Er tippt, bei wem er möchte, an welchem Tag und um wie viel Uhr. Was schon vergeben ist, kann er nicht wählen.</p>
+<div class="bild"><div class="chips"><span class="chip gruen rein d1">Bei Ilmir</span><span class="chip rein d2">Bei Patrick</span><span class="chip rein d3">Egal, wer frei ist</span><span class="chip rein d4">Sa, 14. Juni</span><span class="chip rein d5">09:30</span><span class="chip gruen rein d6">10:00</span></div></div>
+</section>
+
+<section class="szene" data-screen-label="06 Pling" data-dauer="7">
+<div class="nr">Schritt 4 · Pling!</div>
+<h2>Ihr Handy sagt Bescheid.</h2>
+<p>Sobald ein Gast auf „Absenden“ drückt, bekommen Sie eine Nachricht. Auf dem Handy und per E-Mail. Sie müssen nicht ständig nachschauen.</p>
+<div class="bild"><div class="handy"><div class="uhr">09:41</div><div class="meldung"><small>clickzauber · jetzt</small><b>Neue Anfrage</b><span>Lisa · 14. Juni · 80 Gäste</span></div></div></div>
+</section>
+
+<section class="szene" data-screen-label="07 Cockpit" data-dauer="7">
+<div class="nr">Schritt 5 · Ihr Cockpit</div>
+<h2>Alles liegt an einem Platz.</h2>
+<p>Das Cockpit ist Ihr Schreibtisch. Ganz oben sehen Sie, wie viele Anfragen gekommen sind und wie viele schon fest gebucht haben.</p>
+<div class="bild"><div class="zahlen"><div class="zahl rein d1"><b data-hoch="12">0</b><span>Anfragen</span></div><div class="zahl gruen rein d2"><b data-hoch="4">0</b><span>fest gebucht</span></div></div></div>
+</section>
+
+<section class="szene" data-screen-label="08 Kalender" data-dauer="8">
+<div class="nr">Schritt 6 · Der Kalender</div>
+<h2>Drei Farben zeigen Ihnen alles.</h2>
+<p>Grün ist fest gebucht. Gelb ist ein Wunsch, der noch wartet. Rot ist gesperrt. Den Kalender können Sie auch in Ihren Handy-Kalender holen.</p>
+<div class="bild"><div><div class="kal rein d1"><i>1</i><i class="g">2</i><i>3</i><i class="y">4</i><i>5</i><i class="r">6</i><i>7</i><i>8</i><i class="y">9</i><i>10</i><i class="g">11</i><i>12</i><i class="g">13</i><i>14</i></div><div class="legende rein d2"><span><i style="background:var(--accent)"></i>fest</span><span><i style="background:var(--gelb)"></i>Wunsch</span><span><i style="background:var(--rot)"></i>gesperrt</span></div></div></div>
+</section>
+
+<section class="szene" data-screen-label="09 Festmachen" data-dauer="8">
+<div class="nr">Schritt 7 · Termin festmachen</div>
+<h2>Sie sagen Ja. Der Tag ist vergeben.</h2>
+<p>Sie tippen auf den gelben Tag, geben eine Uhrzeit und eine kleine Notiz ein. Der Tag wird rot. Jetzt kann ihn niemand anders mehr wählen.</p>
+<div class="bild"><div><div class="kal rein d1"><i>11</i><i>12</i><i>13</i><i class="fest">14</i><i>15</i><i>16</i><i>17</i></div><div class="termin"><b>14:00</b>Lisa · Hochzeit im Garten</div></div></div>
+</section>
+
+<section class="szene" data-screen-label="10 Weitergeben" data-dauer="8">
+<div class="nr">Wenn der Tag schon voll ist</div>
+<h2>Ist der Tag schon voll, hilft ein Freund.</h2>
+<p>Sie kennen andere Betriebe in Ihrer Nähe. Mit einem Tipp geben Sie die Anfrage an einen davon weiter. Der Gast hat vorher Ja gesagt. So geht niemand leer aus.</p>
+<div class="bild"><div class="liste"><div class="aufg rein d1"><i></i><span>Gut Seerose: 14. Juni ist voll</span></div><div class="aufg hak rein d2"><i>✓</i><span>Weitergegeben an Schloss Lindenhof</span></div><div class="aufg hak rein d3"><i>✓</i><span>Lisa bekommt Bescheid</span></div></div></div>
+</section>
+
+<section class="szene" data-screen-label="11 Abzeichen" data-dauer="7">
+<div class="nr">Schnell sein lohnt sich</div>
+<h2>Wer schnell antwortet, bekommt ein Abzeichen.</h2>
+<p>Antworten Sie meist am selben Tag, steht ein kleines Abzeichen in Ihrem Formular. Gäste sehen: Hier kümmert sich jemand.</p>
+<div class="bild"><div class="chips"><span class="chip gruen rein d1">Antwortet meist innerhalb einer Stunde</span></div></div>
+</section>
+
+<section class="szene" data-screen-label="12 Aufgaben" data-dauer="7">
+<div class="nr">Schritt 8 · Ihre Liste</div>
+<h2>Die Liste merkt sich, was noch zu tun ist.</h2>
+<p>Zurückrufen, Angebot schicken, Termin bestätigen. Was erledigt ist, haken Sie ab. So vergessen Sie niemanden.</p>
+<div class="bild"><div class="liste"><div class="aufg hak rein d1"><i>✓</i><span>Lisa zurückrufen</span></div><div class="aufg hak rein d2"><i>✓</i><span>Angebot an Tom schicken</span></div><div class="aufg rein d3"><i></i><span>Termin mit Anna bestätigen</span></div></div></div>
+</section>
+
+<section class="szene" data-screen-label="13 Datenschutz" data-dauer="8">
+<div class="nr">Schritt 9 · Aufräumen</div>
+<h2>Alte Zettel räumen sich selbst weg.</h2>
+<p>Die Daten Ihrer Gäste bleiben nur so lange, wie Sie es einstellen. Danach werden sie von selbst gelöscht. Einen fertigen Text für Ihre Datenschutzerklärung finden Sie im Cockpit.</p>
+<div class="bild"><div class="alt"><div class="aufg weg-da rein d1"><span>Anfrage von Max</span><small>vor 2 Jahren</small></div><div class="aufg rein d2"><span>Anfrage von Lisa</span><small>heute</small></div></div></div>
+</section>
+
+<section class="szene" data-screen-label="14 Bezahlen" data-dauer="8">
+<div class="nr">Schritt 10 · Bezahlen</div>
+<h2>Jeden Monat derselbe Betrag.</h2>
+<p>Sie zahlen einmal im Monat, bequem per Karte oder Lastschrift. Den Preis sehen Sie vorher in Ihrem Cockpit.</p>
+<div class="bild"><div class="preis"><div class="gross rein d1">1× im Monat</div><div class="klein rein d2">Immer gleich. Keine Überraschung.</div><div class="pause rein d3"><i>!</i><span>Klappt eine Zahlung nicht, macht Ihr Formular Pause, bis alles bezahlt ist.</span></div></div></div>
+</section>
+
+<section class="szene" data-screen-label="15 Fertig" data-dauer="0">
+<div class="nr">Das war's</div>
+<h2>Mehr Anfragen. Weniger Zettelchaos.</h2>
+<p>Sie bauen einmal Ihr Formular und zeigen es her. Den Rest ordnet clickzauber für Sie.</p>
+<div class="bild"><div class="ende rein d1"><a href="clickzauber-anmelden.html">Jetzt ausprobieren</a><button type="button" id="nochmal">Noch einmal ansehen</button></div></div>
+</section>
+
+<button class="tipp l" type="button" aria-label="Zurück" data-schritt="-1"></button>
+<button class="tipp r" type="button" aria-label="Weiter" data-schritt="1"></button>
+</div>
+<div class="fuss"><button class="zurueck" type="button" data-schritt="-1" aria-label="Zurück">‹</button><span class="mitte" id="stand">01 / 15</span><button type="button" id="pause">Pause</button><button type="button" data-schritt="1" aria-label="Weiter">›</button></div>
+</main>
+<script>
+(function(){
+  var sz=[].slice.call(document.querySelectorAll('.szene')), n=sz.length;
+  var balken=document.getElementById('balken'), stand=document.getElementById('stand'), pb=document.getElementById('pause');
+  balken.innerHTML=sz.map(function(){return '<span><b></b></span>';}).join('');
+  var teile=[].slice.call(balken.children);
+  var i=0, laeuft=true, t0=0, rest=0, raf=0;
+  try{ var g=parseInt(localStorage.getItem('cz_erklaert_szene'),10); if(g>=0&&g<n) i=g; }catch(e){}
+  function pad(x){return (x<10?'0':'')+x;}
+  function hoch(s){
+    s.querySelectorAll('[data-hoch]').forEach(function(el){
+      var z=+el.getAttribute('data-hoch'), a=performance.now()+600;
+      el.textContent='0';
+      (function f(t){ var p=Math.min(1,Math.max(0,(t-a)/1200)); el.textContent=Math.round(z*(1-Math.pow(1-p,3))); if(p<1&&sz[i]===s) requestAnimationFrame(f); })(a);
+    });
+  }
+  function zeige(k){
+    i=Math.max(0,Math.min(n-1,k));
+    sz.forEach(function(s,j){ s.classList.toggle('an',j===i); s.setAttribute('aria-hidden',j===i?'false':'true'); });
+    teile.forEach(function(t,j){ t.classList.toggle('durch',j<i); t.firstChild.style.width=j<i?'100%':'0'; });
+    stand.textContent=pad(i+1)+' / '+pad(n);
+    try{ localStorage.setItem('cz_erklaert_szene',String(i)); }catch(e){}
+    hoch(sz[i]);
+    rest=(+sz[i].getAttribute('data-dauer')||0)*1000; t0=performance.now();
+    pb.hidden=!rest;
+  }
+  function tick(t){
+    var d=+sz[i].getAttribute('data-dauer')*1000;
+    if(laeuft && rest>0){
+      var weg=d-rest+(t-t0), p=Math.min(1,weg/d);
+      teile[i].firstChild.style.width=(p*100)+'%';
+      if(p>=1){ zeige(i+1); }
+    }
+    raf=requestAnimationFrame(tick);
+  }
+  function pausieren(an){
+    var jetzt=performance.now();
+    if(!an && laeuft){ rest-=jetzt-t0; }
+    if(an && !laeuft){ t0=jetzt; }
+    laeuft=an; pb.textContent=an?'Pause':'Weiter abspielen';
+    document.querySelectorAll('.szene.an *').forEach(function(el){ el.style.animationPlayState=an?'':'paused'; });
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-schritt]'); if(b){ zeige(i+(+b.getAttribute('data-schritt'))); if(!laeuft) pausieren(true); }
+  });
+  pb.addEventListener('click',function(){ pausieren(!laeuft); });
+  document.getElementById('nochmal').addEventListener('click',function(){ zeige(0); pausieren(true); });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight') zeige(i+1); else if(e.key==='ArrowLeft') zeige(i-1);
+    else if(e.key===' '){ e.preventDefault(); pausieren(!laeuft); }
+  });
+  document.addEventListener('visibilitychange',function(){ if(document.hidden) pausieren(false); });
+  if(i>=n-1) i=0;
+  zeige(i); raf=requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
