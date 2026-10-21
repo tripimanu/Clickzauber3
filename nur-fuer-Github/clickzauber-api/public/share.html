@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Jetzt anfragen · clickzauber</title>
+<meta name="description" content="Beantworten Sie ein paar kurze Fragen und erhalten Sie Ihr unverbindliches Angebot.">
+<meta property="og:title" content="Jetzt unverbindlich anfragen">
+<meta property="og:description" content="Ein paar kurze Fragen — und wir melden uns mit Ihrem persönlichen Angebot.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.bunny.net">
+<link href="https://fonts.bunny.net/css2?family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{height:100%}
+/* Mittig, aber nie abgeschnitten: bei zentriertem Flex-Inhalt, der höher ist
+   als das Fenster, ragt der Anfang oben heraus und lässt sich nicht erreichen.
+   `margin:auto` auf der Bühne zentriert genauso und schiebt nichts weg. */
+body{margin:0;font-family:"Space Grotesk",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#1c1a14;background:#efe9db;background-image:radial-gradient(1200px 600px at 50% -10%,#fff 0,rgba(255,255,255,0) 60%);min-height:100dvh;display:flex;flex-direction:column;align-items:center;padding:20px 16px calc(20px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
+a{color:#1f8a5b}a:hover{color:#186e49}
+.stage{width:100%;max-width:560px;margin:auto;display:flex;flex-direction:column;align-items:center}
+#mount{display:block;width:100%;max-width:560px;margin:0 auto}
+.state{width:100%;max-width:460px;background:#fff;border:1px solid rgba(0,0,0,.09);border-radius:16px;box-shadow:0 18px 50px -22px rgba(0,0,0,.28);padding:34px 28px;text-align:center}
+.state .spin{width:34px;height:34px;border-radius:50%;border:3px solid rgba(0,0,0,.1);border-top-color:#1f8a5b;margin:0 auto 16px;animation:cz-spin .8s linear infinite}
+@keyframes cz-spin{to{transform:rotate(360deg)}}
+.state h1{font-size:19px;margin:0 0 6px;letter-spacing:-.01em}
+.state p{font-size:14px;color:#55503f;margin:0;line-height:1.5}
+.foot{margin-top:18px;font-size:12px;color:#8a8577;text-align:center}
+.foot a{color:#8a8577;text-decoration:none;font-weight:500}
+.foot a:hover{color:#55503f}
+.foot .badge{display:inline-flex;align-items:center;gap:6px}
+.foot .badge b{color:#55503f;font-weight:600}
+/* Einbett-Modus (?embed=1): sitzt in einem iframe auf einer fremden Seite —
+   kein eigener Hintergrund, keine Zentrierung, keine Fußzeile. */
+body.emb{background:none;background-image:none;min-height:0;display:block;padding:0}
+body.emb .stage{max-width:none;display:block;margin:0}
+body.emb #mount{max-width:none}
+body.emb .foot{display:none}
+body.emb .state{margin:0 auto;box-shadow:none}
+</style>
+</head>
+<body>
+<div class="stage">
+<div id="mount"></div>
+<div id="fallback" class="state"><div class="spin"></div><h1>Wird geladen …</h1><p>Einen Moment bitte.</p></div>
+
+</div>
+<script>
+(function () {
+  var API = "https://clickzauber-api.vercel.app";
+
+  // Widget-ID aus dem Pfad (z. B. /clickzauberhochzeit) oder ?w=
+  var seg = location.pathname.replace(/^\/+|\/+$/g, "").split("/").pop() || "";
+  var params = new URLSearchParams(location.search);
+  var id = params.get("w") || (seg && seg.toLowerCase() !== "share.html" ? seg : "");
+  var channel = params.get("q") || null;
+  var embed = params.get("embed") === "1" || params.get("embed") === "true";
+
+  var fb = document.getElementById("fallback");
+  var mount = document.getElementById("mount");
+
+  // Im iframe: Herkunft merken, damit im Cockpit sichtbar ist, woher die Anfrage kam.
+  if (embed) {
+    document.body.classList.add("emb");
+    if (!channel) channel = "einbettung";
+  }
+
+  function fail(title, msg) { fb.innerHTML = '<h1>' + title + '</h1><p>' + msg + '</p>'; }
+  // Prüft, ob das Widget schon gerendert wurde (w.js hängt sich in den Shadow-Root)
+  function rendered() {
+    return !!(mount.shadowRoot && mount.shadowRoot.querySelector(".cz"));
+  }
+  function watch() {
+    var tries = 0;
+    var iv = setInterval(function () {
+      tries++;
+      if (rendered()) { fb.style.display = "none"; clearInterval(iv); }
+      else if (tries > 80) { // ~12 s
+        // Warum es nicht lud, weiß nur der Server. Also nachfragen und den
+        // echten Grund nennen — „nicht erreichbar" schickte Kunden und
+        // Betreiber gleichermaßen auf die Suche.
+        fetch(API + "/api/config?widget=" + encodeURIComponent(id))
+          .then(function (r) {
+            var g = {
+              403: ["Noch nicht freigeschaltet", "Dieses Formular ist gebaut, aber noch nicht live geschaltet. Im Konfigurator auf <b>Live schalten</b> tippen — danach funktioniert dieser Link."],
+              402: ["Tarif fehlt", "Dieses Formular braucht einen aktiven Tarif, damit es öffentlich läuft."],
+              404: ["Formular unbekannt", "Unter dieser Kennung liegt kein Formular. Vermutlich wurde es gelöscht oder umbenannt."]
+            }[r.status];
+            if (g) fail(g[0], g[1]);
+            else fail("Formular nicht erreichbar", "Wir konnten dieses Formular gerade nicht laden. Bitte versuchen Sie es später noch einmal.");
+          })
+          .catch(function () {
+            fail("Formular nicht erreichbar", "Wir konnten dieses Formular gerade nicht laden. Bitte versuchen Sie es später noch einmal.");
+          });
+        clearInterval(iv);
+      }
+    }, 150);
+  }
+
+  if (!id) {
+    fail("Kein Widget gefunden", "Dieser Link ist unvollständig. Bitte fragen Sie beim Absender nach dem richtigen Link.");
+    return;
+  }
+
+  // Alle Widgets laufen über dieselbe Runtime wie beim Website-Einbau.
+  mount.setAttribute("data-cz-mount", id);
+  var s = document.createElement("script");
+  s.src = API + "/w.js";
+  s.async = true;
+  s.setAttribute("data-cz", id);
+  if (channel) s.setAttribute("data-cz-channel", channel);
+  document.body.appendChild(s);
+  watch();
+})();
+</script>
+</body>
+</html>

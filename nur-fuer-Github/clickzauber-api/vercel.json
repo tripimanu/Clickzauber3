@@ -1,0 +1,275 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "regions": [
+    "fra1"
+  ],
+  "rewrites": [
+    {
+      "source": "/api/auth/anmelden",
+      "destination": "/api/hub-auth?_h=anmelden"
+    },
+    {
+      "source": "/api/auth/bestaetigen",
+      "destination": "/api/hub-auth?_h=bestaetigen"
+    },
+    {
+      "source": "/api/auth/bestaetigung-neu",
+      "destination": "/api/hub-auth?_h=bestaetigung-neu"
+    },
+    {
+      "source": "/api/auth/passwort-setzen",
+      "destination": "/api/hub-auth?_h=passwort-setzen"
+    },
+    {
+      "source": "/api/auth/passwort-vergessen",
+      "destination": "/api/hub-auth?_h=passwort-vergessen"
+    },
+    {
+      "source": "/api/auth/pruefen",
+      "destination": "/api/hub-auth?_h=pruefen"
+    },
+    {
+      "source": "/api/auth/registrieren",
+      "destination": "/api/hub-auth?_h=registrieren"
+    },
+    {
+      "source": "/api/auftrag",
+      "destination": "/api/hub-content?_h=auftrag"
+    },
+    {
+      "source": "/api/ds-betrieb",
+      "destination": "/api/hub-content?_h=ds-betrieb"
+    },
+    {
+      "source": "/api/anfrage",
+      "destination": "/api/hub-anfrage?_h=anfrage"
+    },
+    {
+      "source": "/api/angebot",
+      "destination": "/api/hub-anfrage?_h=angebot"
+    },
+    {
+      "source": "/api/belegung",
+      "destination": "/api/hub-anfrage?_h=belegung"
+    },
+    {
+      "source": "/api/buchung",
+      "destination": "/api/hub-anfrage?_h=buchung"
+    },
+    {
+      "source": "/api/kontakte",
+      "destination": "/api/hub-anfrage?_h=kontakte"
+    },
+    {
+      "source": "/api/einbau-pruefen",
+      "destination": "/api/hub-anfrage?_h=einbau-pruefen"
+    },
+    {
+      "source": "/api/interesse",
+      "destination": "/api/hub-anfrage?_h=interesse"
+    },
+    {
+      "source": "/api/dashboard",
+      "destination": "/api/hub-cockpit?_h=dashboard"
+    },
+    {
+      "source": "/api/export",
+      "destination": "/api/hub-cockpit?_h=export"
+    },
+    {
+      "source": "/api/pipeline",
+      "destination": "/api/hub-cockpit?_h=pipeline"
+    },
+    {
+      "source": "/api/vergleich",
+      "destination": "/api/hub-cockpit?_h=vergleich"
+    },
+    {
+      "source": "/api/team",
+      "destination": "/api/hub-cockpit?_h=team"
+    },
+    {
+      "source": "/api/profile",
+      "destination": "/api/hub-cockpit?_h=profile"
+    },
+    {
+      "source": "/api/admin",
+      "destination": "/api/hub-cockpit?_h=admin"
+    },
+    {
+      "source": "/api/netz",
+      "destination": "/api/hub-cockpit?_h=netz"
+    },
+    {
+      "source": "/api/abo",
+      "destination": "/api/hub-billing?_h=abo"
+    },
+    {
+      "source": "/api/checkout",
+      "destination": "/api/hub-billing?_h=checkout"
+    },
+    {
+      "source": "/api/save",
+      "destination": "/api/hub-billing?_h=save"
+    },
+    {
+      "source": "/api/abmelden",
+      "destination": "/api/hub-billing?_h=abmelden"
+    },
+    {
+      "source": "/api/konto-loeschen",
+      "destination": "/api/hub-billing?_h=konto-loeschen"
+    },
+    {
+      "source": "/api/widget-loeschen",
+      "destination": "/api/hub-billing?_h=widget-loeschen"
+    },
+    {
+      "source": "/api/sonderpreis",
+      "destination": "/api/hub-billing?_h=sonderpreis"
+    },
+    {
+      "source": "/api/pilot",
+      "destination": "/api/hub-billing?_h=pilot"
+    },
+    {
+      "source": "/api/warteliste",
+      "destination": "/api/hub-anfrage?_h=warteliste"
+    },
+    {
+      "source": "/api/termine",
+      "destination": "/api/hub-anfrage?_h=termine"
+    },
+    {
+      "source": "/api/konto-admin",
+      "destination": "/api/hub-billing?_h=konto-admin"
+    },
+    {
+      "source": "/api/leistungen",
+      "destination": "/api/hub-content?_h=leistungen"
+    },
+    {
+      "source": "/api/vorlagen",
+      "destination": "/api/hub-content?_h=vorlagen"
+    },
+    {
+      "source": "/api/config",
+      "destination": "/api/hub-content?_h=config"
+    },
+    {
+      "source": "/api/event",
+      "destination": "/api/hub-content?_h=event"
+    },
+    {
+      "source": "/api/lead",
+      "destination": "/api/hub-content?_h=lead"
+    },
+    {
+      "source": "/api/wlead",
+      "destination": "/api/hub-content?_h=wlead"
+    },
+    {
+      "source": "/api/demo-mail",
+      "destination": "/api/hub-content?_h=demo-mail"
+    },
+    {
+      "source": "/api/demo-feedback",
+      "destination": "/api/hub-content?_h=demo-feedback"
+    },
+    {
+      "source": "/api/demo-zugang",
+      "destination": "/api/hub-content?_h=demo-zugang"
+    },
+    {
+      "source": "/api/einladung",
+      "destination": "/api/hub-content?_h=einladung"
+    },
+    {
+      "source": "/api/vertrieb-termin",
+      "destination": "/api/hub-content?_h=vertrieb-termin"
+    },
+    {
+      "source": "/api/loeschfrist",
+      "destination": "/api/hub-ops?_h=loeschfrist"
+    },
+    {
+      "source": "/api/bewertung",
+      "destination": "/api/hub-ops?_h=bewertung"
+    },
+    {
+      "source": "/api/monatsbericht",
+      "destination": "/api/hub-ops?_h=monatsbericht"
+    },
+    {
+      "source": "/api/nachfassen",
+      "destination": "/api/hub-ops?_h=nachfassen"
+    },
+    {
+      "source": "/api/kalender",
+      "destination": "/api/hub-ops?_h=kalender"
+    },
+    {
+      "source": "/api/ics",
+      "destination": "/api/hub-ops?_h=ics"
+    },
+    {
+      "source": "/api/kalender-sync",
+      "destination": "/api/hub-ops?_h=kalender-sync"
+    },
+    {
+      "source": "/api/einstellungen",
+      "destination": "/api/hub-ops?_h=einstellungen"
+    },
+    {
+      "source": "/api/push",
+      "destination": "/api/hub-ops?_h=push"
+    },
+    {
+      "source": "/api/kalender-direkt",
+      "destination": "/api/hub-ops?_h=kalender-direkt"
+    },
+    {
+      "source": "/api/kalender-zurueck",
+      "destination": "/api/hub-ops?_h=kalender-direkt&aktion=zurueck"
+    },
+    {
+      "source": "/api/status",
+      "destination": "/api/hub-ops?_h=status"
+    },
+    {
+      "source": "/api/architekt",
+      "destination": "/api/hub-ops?_h=architekt"
+    },
+    {
+      "source": "/api/moderation",
+      "destination": "/api/hub-cockpit?_h=moderation"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/w.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, s-maxage=86400"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/nacht",
+      "schedule": "0 9 * * *"
+    }
+  ],
+  "functions": {
+    "api/hub-ops.js": {
+      "maxDuration": 30
+    }
+  }
+}
